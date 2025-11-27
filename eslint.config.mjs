@@ -1,0 +1,140 @@
+// @ts-check
+// import withNuxt from './.nuxt/eslint.config.mjs'
+import antfu from '@antfu/eslint-config'
+import importX from 'eslint-plugin-import-x'
+
+export default antfu(
+  {
+    formatters: {
+      css: 'prettier',
+      html: 'prettier',
+      markdown: 'prettier',
+    },
+
+    jsonc: true,
+
+    stylistic: {
+      indent: 2,
+      quotes: 'single',
+      overrides: {
+        'style/max-len': [
+          'error',
+          {
+            code: 120,
+            // ignore the `packageManager` in `package.json` and SVG path d attributes
+            ignorePattern: '^\\s*("packageManager":\\s*["\']|d=")',
+          },
+        ],
+      },
+    },
+
+    typescript: true,
+
+    vue: true,
+
+    yaml: true,
+
+    markdown: true,
+  },
+  {
+    files: [
+      '**/*.html',
+      '**/*.js',
+      '**/*.json',
+      '**/*.md',
+      '**/*.ts',
+      '**/*.vue',
+      '**/*.yaml',
+      '**/*.yml',
+    ],
+    ignores: [
+    ],
+    plugins: {
+      'import-x': importX,
+    },
+    rules: {
+      'antfu/consistent-chaining': [
+        'off',
+      ],
+      'import-x/extensions': [ // ensure consistent file extensions in import declarations
+        'error',
+        'ignorePackages',
+        {
+          gltf: 'always',
+          js: 'never',
+          json: 'always',
+          mjs: 'never',
+          ts: 'never',
+          vue: 'never',
+        },
+      ],
+      'jsonc/sort-keys': [
+        'error',
+      ],
+      'vue/attributes-order': [
+        'error',
+        {
+          alphabetical: true,
+        },
+      ],
+      'vue/max-attributes-per-line': [
+        'error',
+        {
+          multiline: 1,
+          singleline: 3,
+        },
+      ],
+    },
+  },
+  {
+    /**
+     * Disable max-len rule in markdown & YAML files
+     */
+    files: [
+      '**/*.md',
+      '**/*.yaml',
+      '**/*.yml',
+    ],
+    rules: {
+      'style/max-len': 'off',
+    },
+  },
+  {
+    /**
+     * Node-run ESM files often require explicit extensions in relative imports
+     */
+    files: [
+      '**/*.mjs',
+      '**/*.cjs',
+      '**/*.config.*',
+      'scripts/**/*.{js,mjs}',
+    ],
+    plugins: {
+      'import-x': importX,
+    },
+    rules: {
+      'import-x/extensions': [
+        'error',
+        'ignorePackages',
+        {
+          js: 'always',
+          mjs: 'always',
+          ts: 'never',
+          vue: 'never',
+        },
+      ],
+    },
+  },
+  {
+    /**
+     * Disable JSONC sort-keys rule for VSCode settings & TS config file
+     */
+    files: [
+      '.vscode/settings.json',
+      'tsconfig.json',
+    ],
+    rules: {
+      'jsonc/sort-keys': 'off',
+    },
+  },
+)

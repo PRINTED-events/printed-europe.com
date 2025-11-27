@@ -1,0 +1,89 @@
+{
+  "name": "quick-conf",
+  "type": "module",
+  "packageManager": "pnpm@10.8.1+sha512.c50088ba998c67b8ca8c99df8a5e02fd2ae2e2b29aaf238feaa9e124248d3f48f9fb6db2424949ff901cffbb5e0f0cc1ad6aedb602cd29450751d11c35023677",
+  "description": "This is a template for quickly setting up a new Conference website with various functionalities.",
+  "author": "Thorsten Seyschab <business@todde.tv> (https://todde.tv/)",
+  "contributors": [
+    {
+      "name": "Thorsten Seyschab",
+      "email": "business@todde.tv",
+      "url": "https://todde.tv/"
+    }
+  ],
+  "license": "SEE LICENSE IN LICENSE.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toddeTV/quick-conf.git"
+  },
+  "bugs": {
+    "url": "https://github.com/toddeTV/quick-conf/issues"
+  },
+  "keywords": [
+    "conference",
+    "conferences",
+    "nuxt",
+    "nuxt3",
+    "nuxt4",
+    "nuxtjs",
+    "template",
+    "typescript",
+    "vite",
+    "vue",
+    "vuejs",
+    "web",
+    "website"
+  ],
+  "engines": {
+    "node": "~22",
+    "pnpm": "~10"
+  },
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "nuxt": "nuxt",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "test:typecheck": "nuxt typecheck"
+  },
+  "dependencies": {
+    "nuxt": "~4.2.1",
+    "vue": "~3.5.25"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "~6.2.0",
+    "@iconify-json/lucide": "~1.2.76",
+    "@iconify-json/mdi": "~1.2.3",
+    "@iconify-json/simple-icons": "~1.2.60",
+    "@nuxt/content": "~3.8.2",
+    "@nuxt/eslint": "~1.11.0",
+    "@nuxt/image": "~2.0.0",
+    "@nuxt/ui": "~4.2.1",
+    "@types/lodash-es": "~4.17.12",
+    "@types/luxon": "~3.7.1",
+    "better-sqlite3": "~12.4.6",
+    "eslint": "~9.39.1",
+    "eslint-plugin-format": "~1.0.2",
+    "eslint-plugin-import-x": "~4.16.1",
+    "lodash-es": "~4.17.21",
+    "luxon": "~3.7.2",
+    "typescript": "~5.9.3",
+    "vue-router": "~4.6.3",
+    "vue-tsc": "~3.1.5",
+    "zod": "~4.1.13"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "@tailwindcss/oxide",
+      "better-sqlite3",
+      "esbuild",
+      "sharp",
+      "unrs-resolver",
+      "vue-demi"
+    ]
+  }
+}
