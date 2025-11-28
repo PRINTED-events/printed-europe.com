@@ -10,7 +10,7 @@ export default defineAppConfig({
    timeZone: 'Europe/Berlin',
 
    logo: {
-     light: '/logo/printed-pd-kopie-01-2.svg',
+     light: '/logo/asset-1.svg',
      dark: '/logo/dark.svg',
    },
 
