@@ -8,19 +8,17 @@
   --breakpoint-xs: 480px;
 
   /* Define new custom color */
-  /*
-  --color-brand-50: #fef2f2;
-  --color-brand-100: #fee2e2;
-  --color-brand-200: #fecaca;
-  --color-brand-300: #fca5a5;
-  --color-brand-400: #f87171;
-  --color-brand-500: #ef4444;
-  --color-brand-600: #dc2626;
-  --color-brand-700: #b91c1c;
-  --color-brand-800: #991b1b;
-  --color-brand-900: #7f1d1d;
-  --color-brand-950: #450a0a;
-  */
+  --color-brand-50: #fff6ed;
+  --color-brand-100: #ffead4;
+  --color-brand-200: #ffd1a8;
+  --color-brand-300: #ffb071;
+  --color-brand-400: #ff914d;
+  --color-brand-500: #fe6211;
+  --color-brand-600: #ef4707;
+  --color-brand-700: #c63208;
+  --color-brand-800: #9d290f;
+  --color-brand-900: #7e2410;
+  --color-brand-950: #440f06;
 }
 
 .dark {
