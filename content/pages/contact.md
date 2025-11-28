@@ -9,9 +9,9 @@ Have questions? We're here to help!
 
 ## Email
 
-- **General inquiries:** [info@quickconf.example](mailto:info@quickconf.example)
-- **Sponsorship:** [sponsors@quickconf.example](mailto:sponsors@quickconf.example)
-- **Speaker support:** [speakers@quickconf.example](mailto:speakers@quickconf.example)
+- **General inquiries:** <info@quickconf.example>
+- **Sponsorship:** <sponsors@quickconf.example>
+- **Speaker support:** <speakers@quickconf.example>
 
 ## Address
 

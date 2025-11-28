@@ -1,13 +1,13 @@
 slug: day
-title: Day Ticket
+title: All Inclusive Early bird
 description: Access to all talks and events for a single day.
-price: $99
-discount: $50
-# scale: false
+price: 199 €
+discount: 159 €
 features:
   - Access to all talks
   - Free coffee and snacks
   - Networking opportunities
 button:
   label: Buy Now
-  to: https://example.com/shop/day-ticket
+  to: https://printed-events.tito.page/printed-worldconference?visit=skip&q-early-bird-2-day-access=1
+scale: false
