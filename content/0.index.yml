@@ -10,7 +10,7 @@ hero:
       trailing: false
       size: xl
       to: /tickets
-    - label: See the FAQ
+    - label: Yay
       icon: i-lucide-circle-help
       trailing: false
       color: neutral
@@ -74,7 +74,7 @@ features:
       description: Unwind and socialize with fellow attendees at our official after-party.
       icon: i-lucide-party-popper
 speakers:
-  title: Our Esteemed Speakers
+  title: Meet our speakers
   description: We are excited to present a lineup of distinguished speakers who are experts in their fields.
   headline: Featured Speakers
 testimonials:

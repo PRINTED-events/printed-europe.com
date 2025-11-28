@@ -42,10 +42,10 @@ export default defineAppConfig({
   },
 
   customFooterColumn: {
-    title: 'About This Conference',
+    title: '',
     links: {
       link1: {
-        name: 'some link without icon',
+        name: '',
         // icon: 'i-lucide-house',
         url: '/',
       },
