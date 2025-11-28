@@ -3,11 +3,6 @@ const route = useRoute()
 
 const items = computed(() => [
   {
-    label: 'Schedule',
-    to: '/schedule',
-    active: route.path.startsWith('/schedule') || route.path.startsWith('/talks'),
-  },
-  {
     label: 'Speakers',
     to: '/speakers',
     active: route.path.startsWith('/speakers'),

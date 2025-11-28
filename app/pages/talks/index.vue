@@ -1,5 +1,5 @@
 <script setup lang="ts">
 await navigateTo({
-  path: '/schedule',
+  path: '/',
 })
 </script>

@@ -72,7 +72,6 @@ function formatDateTime(dateTimeStr?: string): string {
         class="pt-3"
         :items="[
           { label: 'Home', to: '/' },
-          { label: 'Schedule', to: '/schedule' },
           { label: talk.title },
         ]"
       />
@@ -92,10 +91,10 @@ function formatDateTime(dateTimeStr?: string): string {
             <span>{{ talk.type }}</span>
           </div>
 
-          <ULink class="flex items-center" to="/schedule">
+          <div class="flex items-center text-muted">
             <UIcon class="mr-2 size-5" name="i-lucide-calendar" />
             <span>{{ formatDateTime(talk.dateTime) }}</span>
-          </ULink>
+          </div>
 
           <ULink v-if="stage" class="flex items-center" to="/faq/location">
             <UIcon class="mr-2 size-5" name="i-lucide-map-pin" />

@@ -13,13 +13,13 @@ hero:
       size: xl
       to: /tickets
       # target: _blank
-    - label: View Schedule
-      icon: i-lucide-calendar
+    - label: See the FAQ
+      icon: i-lucide-circle-help
       trailing: false
       color: neutral
       variant: subtle
       size: xl
-      to: /schedule
+      to: /faq
       # target: _blank
 sections:
   - title: Discover a World of Innovation
