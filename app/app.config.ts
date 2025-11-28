@@ -4,23 +4,28 @@
  */
 export default defineAppConfig({
   general: {
-    conferenceName: 'CONF',
-    // conferenceFoundingYear: 2025,
-    timeZone: 'Europe/Berlin',
-    logo: {
-      light: '/logo/light.svg',
-      dark: '/logo/dark.svg',
-    },
-    favicon: {
-      light: '/favicon/favicon.svg',
-      dark: '/favicon/favicon.svg',
-    },
+   conferenceName: 'Printed Worldconference',
+
+   // conferenceFoundingYear: 2025,
+   timeZone: 'Europe/Berlin',
+
+   logo: {
+     light: '/logo/printed-pd-kopie-01-2.svg',
+     dark: '/logo/dark.svg',
+   },
+
+   favicon: {
+     light: '/favicon/favicon.svg',
+     dark: '/favicon/favicon.svg',
+   },
+
+   conferenceFoundingYear: 2025,
   },
 
   socials: {
     social1: {
-      name: 'toddeTV',
-      url: 'https://x.com/toddeTV',
+      name: 'Printed Events',
+      url: 'https://instagram.com/@printedeurope',
     },
     social2: {
       name: 'toddeTV',
@@ -59,7 +64,7 @@ export default defineAppConfig({
 
   ui: { // for `@nuxt/ui`
     colors: {
-      primary: 'green',
+      primary: 'brand',
       neutral: 'slate',
     },
   },

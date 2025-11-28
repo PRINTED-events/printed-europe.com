@@ -1,4 +1,4 @@
-title: Welcome to Your Next Conference
+title: PRINTED Worldconference
 description: This is a modern, feature-rich, and easily customizable template for your next conference or meetup. Built with Nuxt 4, it provides everything you need to get started.
 seo:
   title: A Nuxt 4 Conference Template
@@ -8,11 +8,8 @@ hero:
     - label: Buy Your Ticket
       icon: i-lucide-ticket
       trailing: false
-      # color: primary
-      # variant: solid
       size: xl
       to: /tickets
-      # target: _blank
     - label: See the FAQ
       icon: i-lucide-circle-help
       trailing: false
@@ -20,7 +17,6 @@ hero:
       variant: subtle
       size: xl
       to: /faq
-      # target: _blank
 sections:
   - title: Discover a World of Innovation
     description: Join us for an unforgettable experience where industry leaders, experts, and enthusiasts come together to share their knowledge and passion. Explore the latest trends and network with peers.
