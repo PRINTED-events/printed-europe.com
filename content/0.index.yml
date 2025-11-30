@@ -91,33 +91,33 @@ testimonials:
         avatar:
           src: https://i.pravatar.cc/120?img=1
           alt: Avatar of Blayne Sapelli
-    - quote: An incredibly well-organized event with a great atmosphere. I learned a lot and met some amazing people. Highly recommended!
+    - quote: PRINTED Amsterdam was an incredible opportunity to connect with other creators, share insights, and build genuine collaborations. The sense of community and openness made it one of the most valuable events I’ve attended.
       user:
-        name: Samantha Lee
-        description: Product Manager at Innovate Ltd.
-        to: https://x.com/toddeTV
+        name: Jonathan Kobylanski
+        description: Inventor of Multiboard
+        to: https://www.multiboard.io
         target: _blank
         avatar:
           src: https://i.pravatar.cc/120?img=2
           alt: Avatar of Samantha Lee
-    - quote: The workshops were very hands-on and practical. I was able to apply what I learned to my work immediately. Great job!
+    - quote: Talking at PRINTED World and engaging with the next generation of creators reminded me that innovation doesn’t always come from big labs, it comes from passionate individuals daring to try something new.   At Polymaker we’re committed to supporting up-and-coming makers by giving them the material freedom, and the community they need to transform ideas into reality. It’s both inspiring and humbling to witness their journeys and it fuels us to keep pushing the boundaries of additive manufacturing together.
       user:
-        name: David Chen
-        description: UI/UX Designer at Creative Solutions
-        to: https://x.com/toddeTV
+        name: Luke Taylor,
+        description: Creative Director at Polymaker
+        to: https://www.linkedin.com/in/luke-taylor-ba8642148/
         target: _blank
         avatar:
           src: https://i.pravatar.cc/120?img=3
-          alt: Avatar of David Chen
-    - quote: A must-attend event for anyone in the industry. The quality of the talks and the level of organization were top-notch.
+          alt: Avatar of Luke Taylor
+    - quote: The Printed Worldconference was such a unique experience, full of creators, passion, and inspiration.  I am so thankful to have been introduced to this community and can't wait for what next year will bring!
       user:
-        name: Maria Garcia
-        description: Engineering Manager at Future Systems
-        to: https://x.com/toddeTV
+        name: Daniel Bettencourt
+        description: Creator behind Kaizen3D
+        to: https://www.youtube.com/@kaizen3dprints/
         target: _blank
         avatar:
           src: https://i.pravatar.cc/120?img=4
-          alt: Avatar of Maria Garcia
+          alt: Avatar of Daniel Bettencourt
 sponsors:
   title: Our Amazing Sponsors
   description: We are grateful for the support of our sponsors, who help make this event possible.
