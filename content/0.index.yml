@@ -82,15 +82,15 @@ testimonials:
   title: A Truly Memorable Experience
   description: Hear from past attendees about their experiences at our conference.
   items:
-    - quote: The best conference I have attended this year. The speakers were excellent and the networking opportunities were fantastic. I will definitely be back next year!
+    - quote: ery happy to have sponsored 2x PRINTED events - both PRINTED Amsterdam and PRINTED Hub!   Getting on the ground facetime with top tier influencers, meeting some of our superfans, and networking with all kinds of brilliant people - both right before  and throughout a new product launch - was invaluable.   Printed Worldconference isn't just another trade expo - it's a way for your brand to actually be part of the community.   It's an opportunity to meet your fans, mingle with brilliant minds, and enjoy a truly unique atmosphere that helps ground your marketing and reminds you for whom and why you're building products.
       user:
-        name: Alex Johnson
-        description: Senior Developer at TechCorp
-        to: https://x.com/toddeTV
+        name: Blayne Sapelli
+        description: Creative Marketing Manager at Snapmaker
+        to: https://www.linkedin.com/in/blaynesapelli/
         target: _blank
         avatar:
           src: https://i.pravatar.cc/120?img=1
-          alt: Avatar of Alex Johnson
+          alt: Avatar of Blayne Sapelli
     - quote: An incredibly well-organized event with a great atmosphere. I learned a lot and met some amazing people. Highly recommended!
       user:
         name: Samantha Lee
