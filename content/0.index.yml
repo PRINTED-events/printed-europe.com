@@ -102,7 +102,7 @@ testimonials:
           alt: Avatar of Samantha Lee
     - quote: Talking at PRINTED World and engaging with the next generation of creators reminded me that innovation doesn’t always come from big labs, it comes from passionate individuals daring to try something new.   At Polymaker we’re committed to supporting up-and-coming makers by giving them the material freedom, and the community they need to transform ideas into reality. It’s both inspiring and humbling to witness their journeys and it fuels us to keep pushing the boundaries of additive manufacturing together.
       user:
-        name: Luke Taylor,
+        name: Luke Taylor
         description: Creative Director at Polymaker
         to: https://www.linkedin.com/in/luke-taylor-ba8642148/
         target: _blank
