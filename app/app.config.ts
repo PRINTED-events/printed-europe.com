@@ -15,8 +15,8 @@ export default defineAppConfig({
    },
 
    favicon: {
-     light: '/favicon/favicon.svg',
-     dark: '/favicon/favicon.svg',
+     light: '/favicon/asset-4.svg',
+     dark: '/favicon/asset-3.svg',
    },
 
    conferenceFoundingYear: 2025,
