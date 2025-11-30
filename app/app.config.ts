@@ -11,7 +11,7 @@ export default defineAppConfig({
 
    logo: {
      light: '/logo/asset-1.svg',
-     dark: '/logo/dark.svg',
+     dark: '/logo/asset-2.svg',
    },
 
    favicon: {
