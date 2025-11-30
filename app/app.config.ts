@@ -24,20 +24,23 @@ export default defineAppConfig({
 
   socials: {
     social1: {
-      name: 'Printed Events',
-      url: 'https://instagram.com/@printedeurope',
+     name: 'printedeurope',
+     url: 'https://www.instagram.com/printedeurope/',
+     icon: 'i-mdi-instagram',
     },
     social2: {
-      name: 'toddeTV',
-      url: 'https://bsky.app/profile/todde.tv',
+     name: 'Printedeurope',
+     url: 'https://www.tiktok.com/@printedeurope/',
+     icon: 'i-ic-baseline-tiktok',
     },
     social3: {
-      name: 'toddeTV',
-      url: 'https://www.linkedin.com/in/toddetv/',
+     name: 'PRINTED events',
+     url: 'https://www.linkedin.com/company/104095382/admin/dashboard/',
+     icon: 'i-mdi-linkedin',
     },
     social4: {
-      name: 'toddeTV',
-      url: 'https://github.com/toddeTV/',
+      name: '',
+      url: '',
     },
   },
 
