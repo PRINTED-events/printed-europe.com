@@ -98,8 +98,8 @@ testimonials:
         to: https://www.multiboard.io
         target: _blank
         avatar:
-          src: https://i.pravatar.cc/120?img=2
-          alt: Avatar of Samantha Lee
+          src: /testimonials/jonathan-kobylanski.jpg
+          alt: Avatar of Jonathan Kobylanski
     - quote: Talking at PRINTED World and engaging with the next generation of creators reminded me that innovation doesn’t always come from big labs, it comes from passionate individuals daring to try something new.   At Polymaker we’re committed to supporting up-and-coming makers by giving them the material freedom, and the community they need to transform ideas into reality. It’s both inspiring and humbling to witness their journeys and it fuels us to keep pushing the boundaries of additive manufacturing together.
       user:
         name: Luke Taylor
@@ -107,7 +107,7 @@ testimonials:
         to: https://www.linkedin.com/in/luke-taylor-ba8642148/
         target: _blank
         avatar:
-          src: https://i.pravatar.cc/120?img=3
+          src: /testimonials/luke-taylor.jpeg
           alt: Avatar of Luke Taylor
     - quote: The Printed Worldconference was such a unique experience, full of creators, passion, and inspiration.  I am so thankful to have been introduced to this community and can't wait for what next year will bring!
       user:
