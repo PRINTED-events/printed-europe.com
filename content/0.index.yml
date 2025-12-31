@@ -10,7 +10,7 @@ hero:
       trailing: false
       size: xl
       to: /tickets
-    - label: Yay
+    - label: FAQ
       icon: i-lucide-circle-help
       trailing: false
       color: neutral
