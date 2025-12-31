@@ -32,8 +32,8 @@ sections:
         description: We aim to communicate anything in the best way possible. If you have any questions, let us know in the feedback form.
         icon: i-lucide-wrench
     image:
-      src: https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=700&auto=format
-      alt: A speaker presenting on a stage at a conference.
+      src: /Mainpage/important-info.png
+      alt: a graphic that says "important information"
   - title: Why You Should Attend
     description: Our conference is designed to provide maximum value to attendees. Whether you are a beginner or an expert, you will find something to learn and enjoy.
     orientation: horizontal
