@@ -1,8 +1,8 @@
-title: PRINTED Worldconference
-description: This is a modern, feature-rich, and easily customizable template for your next conference or meetup. Built with Nuxt 4, it provides everything you need to get started.
+title: Printed Events
+description: The No. 1 event for the 3D printing community to learn, network and create awesome things!
 seo:
-  title: A Nuxt 4 Conference Template
-  description: A template for quickly setting up a new Conference or Meetup website with various functionalities.
+  title: 'Printed Events '
+  description: The No. 1 event for the 3D printing community to learn, network and create awesome things!
 hero:
   links:
     - label: Buy Your Ticket
