@@ -116,7 +116,7 @@ testimonials:
         to: https://www.youtube.com/@kaizen3dprints/
         target: _blank
         avatar:
-          src: https://i.pravatar.cc/120?img=4
+          src: /testimonials/kaizen3-d.png
           alt: Avatar of Daniel Bettencourt
 sponsors:
   title: Our Amazing Sponsors
