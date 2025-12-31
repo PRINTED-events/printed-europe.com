@@ -18,18 +18,18 @@ hero:
       size: xl
       to: /faq
 sections:
-  - title: Discover a World of Innovation
-    description: Join us for an unforgettable experience where industry leaders, experts, and enthusiasts come together to share their knowledge and passion. Explore the latest trends and network with peers.
+  - title: Important Information on PRINTED Worldconference 2026
+    description: 'We have to postpone PRINTED Worldconference in Rüdesheim in May 2026 due to some organizational hurdles we had to face. Heres the most important information for you:'
     orientation: horizontal
     features:
-      - title: Expert Speakers
-        description: Learn from the best in the industry with a lineup of world-class speakers.
+      - title: Sold tickets
+        description: The tickets that we already sold will hold their value and will be transfered to the worldconference 2027
         icon: i-lucide-users
-      - title: Networking Opportunities
-        description: Connect with fellow attendees, speakers, and sponsors to build valuable relationships.
+      - title: Next events
+        description: PRINTED Hub will happen in August 2026. You may also tranfer your tickets to that event.
         icon: i-lucide-contact
-      - title: Hands-on Workshops
-        description: Participate in interactive workshops to gain practical skills and knowledge.
+      - title: Communication
+        description: We aim to communicate anything in the best way possible. If you have any questions, let us know in the feedback form.
         icon: i-lucide-wrench
     image:
       src: https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=700&auto=format
