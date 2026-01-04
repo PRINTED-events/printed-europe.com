@@ -2,7 +2,7 @@
 slug: adrian-luben
 featured: true
 name: Adrian Luben
-description: Cloud Architect at a major tech company
+description: creator behind marsgizmo
 image: /speaker/marsgizmo.jpeg
 company: Marsgizmo
 socialMedia:
