@@ -1,10 +1,10 @@
-# quick-conf
+# quick-conf / PRINTED events
 
-This is a template for quickly setting up a new Conference or Meetup website with various functionalities.
+This is the official template for Printed Events in Europe. 
 
 ## Sponsoring
 
-If you like this project and want to support me, I would be very happy to see you as a sponsor on GitHub ❤️<br>
+If you like this project and want to support the developer, I would be very happy to see you as a sponsor on GitHub ❤️<br>
 You can find the `Sponsor` button on the top right of the [GitHub project page](https://github.com/toddeTV/quick-conf).<br>
 Thanks a lot for the support <3
 
@@ -35,6 +35,8 @@ Start with the [developer setup guide](/docs/developer-setup.md) for local setup
 ### Current Core Team Members
 
 - [Thorsten Seyschab](https://todde.tv) as Project Founder & Lead.
+- [Janos Kehl](https://couchnet.eu) as CEO and Founder of Printed Events
+- [Carl Rehberg] as Co-Founder of Printed Events
 
 ### Acknowledgments
 
