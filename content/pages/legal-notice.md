@@ -1,31 +1,28 @@
----
-title: Legal Notice
-description: Legal information and disclaimer
----
+# Impressum
 
-# Legal Notice
+Printed Events (haftungsbeschränkt)  
+Etzenbacher Mühle 1  
+66894 Käshofen  
 
-## Publisher
+Handelsregister: HRB 33424  
+Registergericht: Amtsgericht Zweibrücken  
 
-QuickConf Organization
-Conference Street 42
-12345 Sampletown
-Germany
+**Vertreten durch:**  
+Janos Kehl  
 
-**Email:** [info@quickconf.example](mailto:info@quickconf.example)
+## Kontakt
 
-## Represented by
+Telefon: +49 1523 4284407  
+E-Mail: office@printed-events.com  
 
-Jane Doe, Conference Director
+## Redaktionell verantwortlich
 
-## VAT ID
+Janos Kehl  
+Etzenbachermühle 1  
+66894 Bechhofen  
 
-DE123456789
+## Verbraucher­streit­beilegung / Universal­schlichtungs­stelle
 
-## Disclaimer
+Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
 
-All content on this website is provided for informational purposes only. We make no guarantees regarding accuracy or completeness.
-
-## Copyright
-
-© 2025 QuickConf Organization. All rights reserved.
+Quelle: [https://www.e-recht24.de](https://www.e-recht24.de)
