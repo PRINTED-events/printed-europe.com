@@ -52,7 +52,7 @@ sections:
       src: https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=700&auto=format
       alt: A photo of an audience at a conference.
 features:
-  title: What to Expect at Our Conference
+  title: What to Expect at Printed Events
   description: Our event is packed with features designed to provide a comprehensive and enriching experience for all attendees.
   items:
     - title: Keynote Speeches
