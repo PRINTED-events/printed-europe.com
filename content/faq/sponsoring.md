@@ -1,28 +1,19 @@
 ---
 title: Become a Sponsor
-description: Information about sponsorship opportunities at QuickConf
+description: Information about sponsorship opportunities at Printed Events
 order: 5
 ---
 
 # Become a Sponsor
 
-Interested in sponsoring QuickConf? We offer various sponsorship packages to help your company gain visibility among developers and tech enthusiasts.
+Interested in sponsoring Printed Events? We offer various sponsorship packages to help your company gain visibility among developers and tech enthusiasts.
 
 ## Why Sponsor QuickConf?
 
-- **Reach your target audience** - Connect with hundreds of developers, engineers, and tech decision-makers
+- **Reach your target audience** - Connect with hundreds of creators, makers, designers and 3D printing enthusiasts
 - **Brand visibility** - Your logo on our website, event materials, and social media
 - **Recruitment opportunities** - Meet potential candidates in person
 - **Community support** - Show your commitment to the developer community
-
-## Sponsorship Packages
-
-| Package  | Price   | Benefits                                                   |
-| -------- | ------- | ---------------------------------------------------------- |
-| Bronze   | €1,000  | Logo on website, 2 conference tickets                      |
-| Silver   | €2,500  | Bronze + logo on event materials, 5 tickets, booth (small) |
-| Gold     | €5,000  | Silver + main stage mention, 10 tickets, booth (large)     |
-| Platinum | €10,000 | Gold + keynote slot, 20 tickets, premium booth location    |
 
 ## Custom Packages
 
@@ -30,13 +21,13 @@ We also offer custom sponsorship packages tailored to your specific needs. Wheth
 
 ## How to Apply
 
-To become a sponsor, please contact us at [sponsors@quickconf.example](mailto:sponsors@quickconf.example) with the following information:
+To become a sponsor, please contact us at [office@printed-events.com](mailto:office@printed-events.com) with the following information:
 
 1. Your company name and website
 2. Your preferred sponsorship package
 3. Any specific requirements or questions
 
-Our sponsorship team will get back to you within 48 hours.
+Our sponsorship team will get back to you within 72 hours.
 
 ## Current Sponsors
 

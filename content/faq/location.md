@@ -6,29 +6,21 @@ order: 2
 
 # Location & Directions
 
-## Where does QuickConf take place?
+## Where does Printed Events take place?
 
-QuickConf takes place at the **Convention Center Sampletown**.
+PRINTED Worldconference and PRINTED Hub are "on tour" in europe. We started with PRINTED Worldconference 2025 in Amsterdam, Netherlands.
 
-**Address:**
-Conference Street 42
-12345 Sampletown
+PRINTED Hub took place in Rüdesheim am Rhein (near Frankfurt) in Germany.
 
-## How do I get to the venue?
+The upcoming Printed Hub will again be in Rüdesheim am Rhein (near Frankfurt).
 
 ### By car
 
-The convention center has a large parking garage with over 500 spaces. Parking fees are €5 per day for conference attendees.
+We always inform you where you can park your car and try to make space for dedicated parking space for attendees.
 
 ### By public transport
 
-- **Subway:** Line U3, stop "Convention Center"
-- **Bus:** Lines 42 and 43, stop "Sampletown Center"
-- **Commuter rail:** S1 and S2, stop "Sampletown Main Station" (10 minutes walk)
-
-### By train
-
-From Sampletown Main Station, you can reach the convention center in about 10 minutes on foot or by subway (one stop).
+As we are close to the international airport in frankfurt, we try to organize a special shuttle service or inform you how to get to the venue using public transportation.
 
 ## Is there accessible access?
 
@@ -36,8 +28,4 @@ Yes, the entire convention center is fully accessible. All entrances, elevators,
 
 ## Are there hotels nearby?
 
-Yes, we have partnerships with several hotels in the area. Use the code **QUICKCONF2025** for discounted rates:
-
-- Hotel Sampletown (5 min. walk)
-- City Inn (10 min. walk)
-- Business Hotel Central (directly opposite)
+Yes, we have partnerships with several hotels in the area. We will let you know in advance which hotels partner up with us. We aim to make a good deal for you as sponsor, partner and attendee.

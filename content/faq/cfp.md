@@ -1,6 +1,6 @@
 ---
 title: Call for Papers (CFP)
-description: Information about submitting talk proposals for QuickConf
+description: Information about submitting talk proposals for Printed Events
 order: 7
 ---
 
@@ -16,15 +16,10 @@ We use **Sessionize** to manage our Call for Papers. Sessionize is a professiona
 
 To submit your talk proposal:
 
-1. Visit our CFP page on Sessionize
-2. Create an account or log in
-3. Fill out the submission form with your talk details
-4. Submit before the deadline
-
-::u-button{to="https://sessionize.com/" target="_blank" icon="i-heroicons-arrow-top-right-on-square"}
-Submit Your Talk on Sessionize
-::
+1. write down what you want to talk about.
+2. send us an email with your proposal to <office@printed-events.com>
+3. we will reach out to you after 72 hours.
 
 ## Questions?
 
-If you have any questions about the CFP process, feel free to contact us at [cfp@quickconf.example](mailto:cfp@quickconf.example).
+If you have any questions about the CFP process, feel free to contact us at [office@printed-events.com](office@printed-events.com).

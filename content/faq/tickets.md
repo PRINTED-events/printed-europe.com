@@ -6,27 +6,20 @@ order: 3
 
 # Tickets
 
-## What ticket types are available?
-
-We offer different ticket categories:
-
-| Category | Price | Includes                   |
-| -------- | ----- | -------------------------- |
-| Standard | €149  | Access to all talks        |
-| Premium  | €249  | Standard + workshop access |
-| VIP      | €499  | Premium + speaker dinner   |
+|   |
+| - |
 
 ## When does ticket sales start?
 
-Ticket sales start on **March 1, 2025**. Early-bird tickets are available until March 15.
+Check out the ticket menu on top of the page. As soon as there are tickets for a printed event available, it will be shown there.
 
 ## Can I change my booking?
 
 Yes, changes are free of charge up to 14 days before the event. After that, a processing fee of €25 applies.
 
-## Is there a student discount?
+## Is there a discount?
 
-Yes! Students receive a 30% discount on all ticket categories. A valid student ID must be presented at check-in.
+We offer (super) early bird tickets and tickets for people with special needs. (super) early bird tickets are available over our website. If you have interest in tickets for people with special needs, please reach out vie email (office\@printed-events.com).
 
 ---
 
