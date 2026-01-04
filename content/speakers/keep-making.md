@@ -3,7 +3,7 @@ slug: keep-making
 featured: true
 name: Jonathan Kobylanski
 description: Founder of Multiboard
-image: /speaker/wc26-3-jonathan-kobilanski-1.png
+image: /testimonials/jonathan-kobylanski.jpg
 company: AutoDeploy
 socialMedia:
   - url: https://www.youtube.com/@Keep-Making
