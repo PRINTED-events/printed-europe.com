@@ -1,4 +1,9 @@
-# Impressum
+---
+title: Legal Notice
+description: Legal information and disclaimer
+---
+
+<UPageHeader title="Legal Notice" />
 
 Printed Events UG (haftungsbeschränkt) :br Etzenbacher Mühle 1 :br 66894 Käshofen
 

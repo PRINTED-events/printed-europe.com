@@ -1,8 +1,10 @@
 {
   "name": "quick-conf",
+  "isQuickConfTemplate": true,
   "type": "module",
+  "version": "1.0.0-rc.0",
   "packageManager": "pnpm@10.8.1+sha512.c50088ba998c67b8ca8c99df8a5e02fd2ae2e2b29aaf238feaa9e124248d3f48f9fb6db2424949ff901cffbb5e0f0cc1ad6aedb602cd29450751d11c35023677",
-  "description": "This is a template for quickly setting up a new Conference website with various functionalities.",
+  "description": "This is a template for quickly setting up a new Conference or Meetup website with various functionalities.",
   "author": "Thorsten Seyschab <business@todde.tv> (https://todde.tv/)",
   "contributors": [
     {
@@ -35,19 +37,24 @@
     "website"
   ],
   "engines": {
-    "node": "~22",
-    "pnpm": "~10"
+    "node": "22.x",
+    "pnpm": "10.x"
   },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "dev:preset": "nuxt dev --port 3000 --public",
+    "fix:lint": "run-s \"test:lint --fix\"",
     "generate": "nuxt generate",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "nuxi": "nuxi",
     "nuxt": "nuxt",
-    "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "test:typecheck": "nuxt typecheck"
+    "preview": "nuxt preview",
+    "reset": "rimraf node_modules .nuxt .output dist .data",
+    "test": "run-s test:*",
+    "test:lint": "eslint .",
+    "test:renovate": "renovate-config-validator",
+    "test:types": "nuxt typecheck"
   },
   "dependencies": {
     "nuxt": "~4.2.1",
@@ -58,7 +65,7 @@
     "@iconify-json/lucide": "~1.2.76",
     "@iconify-json/mdi": "~1.2.3",
     "@iconify-json/simple-icons": "~1.2.60",
-    "@nuxt/content": "~3.8.2",
+    "@nuxt/content": "~3.10.0",
     "@nuxt/eslint": "~1.11.0",
     "@nuxt/image": "~2.0.0",
     "@nuxt/ui": "~4.2.1",
@@ -70,6 +77,11 @@
     "eslint-plugin-import-x": "~4.16.1",
     "lodash-es": "~4.17.21",
     "luxon": "~3.7.2",
+    "npm-run-all2": "~8.0.4",
+    "nuxi": "~3.31.3",
+    "nuxt-studio": "~1.0.0",
+    "renovate": "~42.66.8",
+    "rimraf": "~6.1.2",
     "typescript": "~5.9.3",
     "vue-router": "~4.6.3",
     "vue-tsc": "~3.1.5",

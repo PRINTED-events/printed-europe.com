@@ -3,7 +3,7 @@ title: Privacy Policy
 description: How we handle your personal data
 ---
 
-# Datenschutz­erklärung
+<UPageHeader title="Privacy Policy" />
 
 ## 1. Datenschutz auf einen Blick
 

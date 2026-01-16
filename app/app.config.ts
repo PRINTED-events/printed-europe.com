@@ -1,74 +1,31 @@
+import { z } from 'zod/v4'
+import _customConfig from '../content/0.custom-config.json'
+import { customConfigSchema } from './schemas/customConfigPlain'
+
+const parseResult = customConfigSchema.safeParse(_customConfig)
+if (!parseResult.success) {
+  // We only warn here and do not throw an error to allow the app to start even if the config is invalid.
+  // This is intentional to prevent the app from crashing if non-technical users make a mistake in the CMS.
+  console.warn('⚠️ Invalid custom config:', z.treeifyError(parseResult.error))
+}
+
+const customConfig = (parseResult.success ? parseResult.data : _customConfig) as z.infer<typeof customConfigSchema>
+
 /**
  * Application configuration file.
- * Schema is defined in `nuxt.schema.ts`.
+ * Configuration is managed in `content/0.custom-config.json`.
  */
 export default defineAppConfig({
-  general: {
-   conferenceName: 'Printed Worldconference',
-
-   // conferenceFoundingYear: 2025,
-   timeZone: 'Europe/Berlin',
-
-   logo: {
-     light: '/logo/asset-1.svg',
-     dark: '/logo/asset-2.svg',
-   },
-
-   favicon: {
-     light: '/favicon/asset-4.svg',
-     dark: '/favicon/asset-3.svg',
-   },
-
-   conferenceFoundingYear: 2025,
-  },
-
-  socials: {
-    social1: {
-     name: 'printedeurope',
-     url: 'https://www.instagram.com/printedeurope/',
-     icon: 'i-mdi-instagram',
-    },
-    social2: {
-     name: 'Printedeurope',
-     url: 'https://www.tiktok.com/@printedeurope/',
-     icon: 'i-ic-baseline-tiktok',
-    },
-    social3: {
-     name: 'PRINTED events',
-     url: 'https://www.linkedin.com/company/104095382/admin/dashboard/',
-     icon: 'i-mdi-linkedin',
-    },
-    social4: {
-      name: '',
-      url: '',
-    },
-  },
-
-  customFooterColumn: {
-    title: '',
-    links: {
-      link1: {
-        name: '',
-        // icon: 'i-lucide-house',
-        url: '/',
-      },
-      link2: {
-        name: '',
-        icon: '',
-        url: '',
-      },
-      link3: {
-        name: '',
-        icon: '',
-        url: '',
+  general: customConfig.general,
+  socials: customConfig.socials,
+  customFooterColumn: customConfig.customFooterColumn,
+  ui: {
+    ...customConfig.nuxtUI,
+    pageHeader: {
+      slots: {
+        root: 'border-b-0!', // remove bottom border
       },
     },
   },
-
-  ui: { // for `@nuxt/ui`
-    colors: {
-      primary: 'brand',
-      neutral: 'slate',
-    },
-  },
+  studio: customConfig.nuxtStudio,
 })

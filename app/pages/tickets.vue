@@ -16,9 +16,8 @@ useSeoMeta({
 
 <template>
   <template v-if="tickets">
-    <UContainer>
+    <UContainer class="pt-3 pb-8">
       <UBreadcrumb
-        class="pt-3"
         :items="[
           { label: 'Home', to: '/' },
           { label: 'Tickets' },
@@ -28,9 +27,6 @@ useSeoMeta({
       <UPageHeader
         :description="description"
         :title="title"
-        :ui="{
-          root: 'border-b-0!',
-        }"
       />
 
       <UPricingPlans :plans="tickets" />

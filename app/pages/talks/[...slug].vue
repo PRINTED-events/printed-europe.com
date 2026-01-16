@@ -67,11 +67,11 @@ function formatDateTime(dateTimeStr?: string): string {
 
 <template>
   <template v-if="talk">
-    <UContainer>
+    <UContainer class="pt-3 pb-8">
       <UBreadcrumb
-        class="pt-3"
         :items="[
           { label: 'Home', to: '/' },
+          { label: 'Schedule', to: '/schedule' },
           { label: talk.title },
         ]"
       />
@@ -80,9 +80,6 @@ function formatDateTime(dateTimeStr?: string): string {
         <UPageHeader
           headline="Talk Details"
           :title="talk.title"
-          :ui="{
-            root: 'border-b-0!',
-          }"
         />
 
         <div class="flex flex-col gap-2 max-w-sm -mt-5">
@@ -91,10 +88,10 @@ function formatDateTime(dateTimeStr?: string): string {
             <span>{{ talk.type }}</span>
           </div>
 
-          <div class="flex items-center text-muted">
+          <ULink class="flex items-center" to="/schedule">
             <UIcon class="mr-2 size-5" name="i-lucide-calendar" />
             <span>{{ formatDateTime(talk.dateTime) }}</span>
-          </div>
+          </ULink>
 
           <ULink v-if="stage" class="flex items-center" to="/faq/location">
             <UIcon class="mr-2 size-5" name="i-lucide-map-pin" />
