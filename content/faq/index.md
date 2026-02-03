@@ -1,7 +1,8 @@
 ---
-title: FAQ Overview
-description: Welcome to the frequently asked questions about QuickConf
+title: FAQ
 order: 1
 ---
 
 # Frequently Asked Questions
+
+Answers to your questions.

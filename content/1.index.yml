@@ -1,5 +1,10 @@
-title: Printed Events
-description: "The No. 1 events for the 3D printing community to learn, network and create awesome things! –\_Experience PRINTED Hub in your native language or join our international audience at PRINTED Worldconference"
+title: Home
+description: Welcome
 seo:
-  title: 'Printed Events '
-  description: The No. 1 event for the 3D printing community to learn, network and create awesome things!
+  title: Home
+  description: Welcome
+blocks:
+  - component: AppLandingHero
+    title: Conference Name
+    description: Tagline
+    headline: Headline

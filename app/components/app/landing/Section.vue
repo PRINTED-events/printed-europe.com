@@ -3,6 +3,7 @@ defineProps<{
   title?: string
   description?: string
   headline?: string
+  // class?: string // works without using it due to Vue3's attribute fallthrough
   orientation?: 'vertical' | 'horizontal'
   reverse?: boolean
   features?: {
@@ -13,6 +14,8 @@ defineProps<{
   image?: {
     src: string
     alt?: string
+    loading?: 'eager' | 'lazy'
+    sizes?: string
   }
 }>()
 </script>
@@ -30,6 +33,8 @@ defineProps<{
       v-if="image"
       :alt="image.alt"
       class="w-full rounded-lg h-full object-cover"
+      :loading="image.loading"
+      :sizes="image.sizes"
       :src="image.src"
     />
   </UPageSection>

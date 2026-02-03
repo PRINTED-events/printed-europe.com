@@ -5,12 +5,14 @@ defineProps<{
   title?: string
   description?: string
   headline?: string
+  // class?: string // works without using it due to Vue3's attribute fallthrough
   links?: ButtonProps[]
 }>()
 </script>
 
 <template>
   <UPageHero
+    class="overflow-hidden"
     :description="description"
     :headline="headline"
     :links="links"

@@ -1,21 +1,26 @@
 <script setup lang="ts">
 import type { ButtonProps } from '@nuxt/ui'
 
-defineProps<{
+withDefaults(defineProps<{
   title?: string
   description?: string
   headline?: string
+  // class?: string // works without using it due to Vue3's attribute fallthrough
   links?: ButtonProps[]
   image?: {
     src: string
     alt?: string
+    loading?: 'eager' | 'lazy'
+    sizes?: string
   }
   video?: {
     src: string
     poster?: string
   }
   overlayOpacity?: number
-}>()
+}>(), {
+  overlayOpacity: 0.5, // redundant, keep in sync with Zod schema default in `app/schemas/landing.ts`
+})
 </script>
 
 <template>
@@ -36,11 +41,13 @@ defineProps<{
         v-else-if="image"
         :alt="image.alt"
         class="w-full h-full object-cover"
+        :loading="image.loading"
+        :sizes="image.sizes"
         :src="image.src"
       />
 
       <!-- Overlay for better text readability -->
-      <div class="absolute inset-0 bg-black" :style="{ opacity: overlayOpacity ?? 0.5 }" />
+      <div class="absolute inset-0 bg-black" :style="{ opacity: overlayOpacity }" />
     </div>
 
     <!-- Content -->

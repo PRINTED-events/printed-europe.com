@@ -5,6 +5,7 @@ defineProps<{
   title?: string
   description?: string
   headline?: string
+  // class?: string // works without using it due to Vue3's attribute fallthrough
   items: {
     label: string
     content: string

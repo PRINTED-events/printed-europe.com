@@ -7,10 +7,16 @@ const seoMetadata = extractSeoMetadata({
   title: 'Tickets',
   description: 'Purchase your ticket to join the conference.',
 })
-const { title, description } = seoMetadata
+// const { title, description } = seoMetadata
 
 useSeoMeta({
   ...getSeoMetaBase(seoMetadata),
+})
+
+defineOgImageComponent('DefaultSatori', {
+  headline: 'Tickets',
+  title: seoMetadata.title,
+  description: seoMetadata.description,
 })
 </script>
 
@@ -25,8 +31,8 @@ useSeoMeta({
       />
 
       <UPageHeader
-        :description="description"
-        :title="title"
+        :description="seoMetadata.description"
+        :title="seoMetadata.title"
       />
 
       <UPricingPlans :plans="tickets" />

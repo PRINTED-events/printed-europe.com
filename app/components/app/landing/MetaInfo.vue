@@ -3,6 +3,8 @@ defineProps<{
   title?: string
   description?: string
   headline?: string
+  // class?: string // works without using it due to Vue3's attribute fallthrough
+  height?: 'normal' | 'small'
   items: {
     icon: string
     text: string
@@ -13,6 +15,7 @@ defineProps<{
 
 <template>
   <UPageSection
+    :class="{ 'md:-my-[70px] relative z-10': height === 'small' }"
     :description="description"
     :headline="headline"
     :title="title"

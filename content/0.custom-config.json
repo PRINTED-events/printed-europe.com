@@ -1,37 +1,64 @@
 {
-  "_warning": "⚠️ RESTART REQUIRED: Changes here need a full rebuild/restart!",
-  "customFooterColumn": {
-    "links": [
-      {
-        "name": "some link without icon",
-        "url": "/"
+  "footer": {
+    "bottomIcons": {
+      "showAdminLink": true,
+      "showRepositoryLink": true
+    },
+    "footerColumns": {
+      "column1": {
+        "links": [
+          {
+            "name": "Link 1",
+            "url": "/"
+          }
+        ],
+        "title": "Links"
       },
-      {
-        "icon": "i-lucide-house",
-        "name": "some link with icon",
-        "url": "/"
+      "column2": {
+        "links": [
+          {
+            "icon": "i-lucide-github",
+            "name": "quick-conf",
+            "url": "https://github.com/toddeTV/quick-conf"
+          }
+        ],
+        "title": "Template"
       },
-      {
-        "icon": "i-simple-icons-x",
-        "name": "external links also work",
-        "url": "https://x.com/toddeTV"
+      "column4": {
+        "socials": [
+          {
+            "name": "toddeTV",
+            "url": "https://x.com/toddeTV"
+          },
+          {
+            "name": "toddeTV",
+            "url": "https://bsky.app/profile/todde.tv"
+          },
+          {
+            "name": "toddeTV",
+            "url": "https://www.linkedin.com/in/toddetv/"
+          },
+          {
+            "name": "toddeTV",
+            "url": "https://github.com/toddeTV/"
+          }
+        ]
       }
-    ],
-    "title": "About This Conference"
+    }
   },
   "general": {
     "conferenceFoundingYear": 2025,
-    "conferenceName": "Printed Events",
+    "conferenceName": "Printed Europe",
     "favicon": {
-      "dark": "/favicon/favicon.svg",
-      "light": "/favicon/favicon.svg"
+      "dark": "",
+      "light": ""
     },
     "logo": {
-      "dark": "/logo/dark.svg",
-      "light": "/logo/light.svg"
+      "dark": "",
+      "light": ""
     },
-    "siteUrl": "https://todde.tv",
-    "timeZone": "Europe/Berlin"
+    "siteUrl": "https://example.com",
+    "timeZone": "UTC"
   },
   "nuxtStudio": {
     "i18n": {
@@ -39,34 +66,15 @@
     },
     "repository": {
       "branch": "main",
-      "owner": "PRINTED-events",
-      "private": true,
+      "owner": "",
       "provider": "github",
-      "repo": "printed-europe.com"
+      "repo": ""
     }
   },
   "nuxtUI": {
     "colors": {
       "neutral": "slate",
-      "primary": "brand"
+      "primary": "green"
     }
-  },
-  "socials": [
-    {
-      "name": "toddeTV",
-      "url": "https://x.com/toddeTV"
-    },
-    {
-      "name": "toddeTV",
-      "url": "https://bsky.app/profile/todde.tv"
-    },
-    {
-      "name": "toddeTV",
-      "url": "https://www.linkedin.com/in/toddetv/"
-    },
-    {
-      "name": "toddeTV",
-      "url": "https://github.com/toddeTV/"
-    }
-  ]
+  }
 }

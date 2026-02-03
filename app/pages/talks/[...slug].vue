@@ -39,13 +39,6 @@ const [
   useAsyncData(`${route.path}-speakers`, () => queryCollection('speakers').where('slug', 'IN', slug_speakers).all()),
 ])
 
-const seoMetadata = extractSeoMetadata(talk.value)
-// const { title, description } = seoMetadata
-
-useSeoMeta({
-  ...getSeoMetaBase(seoMetadata),
-})
-
 function formatDateTime(dateTimeStr?: string): string {
   if (!dateTimeStr)
     return 'Date & time TBA'
@@ -63,6 +56,21 @@ function formatDateTime(dateTimeStr?: string): string {
 
   return `${day} at ${time} (${timeZone})`
 }
+
+const seoMetadata = extractSeoMetadata(talk.value)
+// const { title, description } = seoMetadata
+
+useSeoMeta({
+  ...getSeoMetaBase(seoMetadata),
+})
+
+defineOgImageComponent('DefaultSatori', {
+  headline: 'Talk',
+  title: seoMetadata.title,
+  description: speakers.value?.length
+    ? `Presented by ${speakers.value.map(s => s.name).join(', ')}`
+    : undefined,
+})
 </script>
 
 <template>
@@ -102,6 +110,25 @@ function formatDateTime(dateTimeStr?: string): string {
         <!-- talk details -->
         <div class="prose dark:prose-invert">
           <ContentRenderer v-if="talk.body" :value="talk" />
+        </div>
+
+        <!-- resources -->
+        <div v-if="talk.resources?.length">
+          <ProseH2>
+            Resources
+          </ProseH2>
+          <div class="flex flex-wrap gap-3">
+            <UButton
+              v-for="resource in talk.resources"
+              :key="resource.url"
+              color="neutral"
+              :icon="resource.icon || getIconForUrl(resource.url)"
+              :label="resource.description || 'Resource'"
+              target="_blank"
+              :to="resource.url"
+              variant="subtle"
+            />
+          </div>
         </div>
 
         <!-- speakers -->

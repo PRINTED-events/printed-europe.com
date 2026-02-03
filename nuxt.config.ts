@@ -16,16 +16,30 @@ const customConfig = (parseResult.success ? parseResult.data : _customConfig) as
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
 
+  app: {
+    head: {
+      meta: [
+        { name: 'generator', content: 'quick-conf' },
+        { name: 'application-name', content: 'quick-conf-template' },
+      ],
+      htmlAttrs: {
+        'data-theme-source': 'quick-conf',
+      },
+    },
+  },
+
   modules: [
     '@nuxt/content',
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/ui',
     'nuxt-studio',
+    '@nuxtjs/seo',
   ],
 
   runtimeConfig: {
     public: {
+      demoMode: false,
     },
   },
 
@@ -72,7 +86,8 @@ export default defineNuxtConfig({
   content: { // for `@nuxt/content`
   },
 
-  studio: {
+  studio: { // for `nuxt-studio`
+    route: '/_admin', // default: `/_studio`
     repository: {
       provider: customConfig.nuxtStudio.repository.provider,
       owner: customConfig.nuxtStudio.repository.owner,
@@ -83,5 +98,46 @@ export default defineNuxtConfig({
     i18n: {
       defaultLocale: customConfig.nuxtStudio.i18n.defaultLocale,
     },
+  },
+
+  site: { // for `@nuxtjs/seo`
+    url: customConfig.general.siteUrl,
+    name: customConfig.general.conferenceName,
+  },
+
+  robots: { // for `robots` (included in `@nuxtjs/seo`)
+    groups: [
+      {
+        userAgent: [
+          'GPTBot',
+          'CCBot',
+          'Google-Extended',
+          'AnthropicAI',
+          'Claude-Web',
+          'Omgilibot',
+          'FacebookBot',
+        ],
+        disallow: ['/'],
+      },
+      {
+        userAgent: '*',
+        allow: '/',
+        contentUsage: {
+          'bots': 'y',
+          'train-ai': 'n',
+        },
+        contentSignal: {
+          'ai-train': 'no',
+          'search': 'yes',
+        },
+      },
+    ],
+  },
+
+  ogImage: { // for `nuxt-og-image` (included in `@nuxtjs/seo`)
+    componentDirs: [
+      // 'OgImage',
+      'OgImageTemplate',
+    ],
   },
 })

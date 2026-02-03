@@ -3,9 +3,12 @@ defineProps<{
   title?: string
   description?: string
   headline?: string
+  // class?: string // works without using it due to Vue3's attribute fallthrough
   images: {
     src: string
     alt?: string
+    loading?: 'eager' | 'lazy'
+    sizes?: string
   }[]
 }>()
 </script>
@@ -25,7 +28,8 @@ defineProps<{
         <NuxtImg
           :alt="image.alt"
           class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-          loading="lazy"
+          :loading="image.loading"
+          :sizes="image.sizes"
           :src="image.src"
         />
       </div>

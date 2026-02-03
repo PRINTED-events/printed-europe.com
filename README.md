@@ -1,3 +1,7 @@
-# quick-conf / PRINTED events
+# Printed Europe
 
-This is the official template for Printed Events in Europe. 
+This website is built with the **Quick Conf Template**.
+
+For full documentation, configuration options, and usage guides, please visit the official repository:
+
+👉 [https://github.com/toddeTV/quick-conf](https://github.com/toddeTV/quick-conf)

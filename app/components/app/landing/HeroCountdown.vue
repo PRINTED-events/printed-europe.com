@@ -5,8 +5,9 @@ const props = defineProps<{
   title?: string
   description?: string
   headline?: string
-  links?: ButtonProps[]
+  // class?: string // works without using it due to Vue3's attribute fallthrough
   targetDate: string // ISO string or UTC date string
+  links?: ButtonProps[]
 }>()
 
 const now = ref(new Date())
@@ -84,20 +85,28 @@ const countdown = computed(() => {
 
       <div
         v-else-if="status === 'live'"
-        class="inline-flex items-center px-8 py-4 rounded-full bg-red-600 text-white animate-pulse"
+        class="flex flex-col items-center"
       >
-        <span class="relative flex h-3 w-3 mr-3">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
-          <span class="relative inline-flex rounded-full h-3 w-3 bg-white" />
-        </span>
-        <span class="text-2xl font-bold uppercase tracking-widest">Live Now</span>
+        <div
+          class="inline-flex items-center px-8 py-4 rounded-full bg-red-600 text-white animate-pulse"
+        >
+          <span class="relative flex h-3 w-3 mr-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-white" />
+          </span>
+          <span class="text-2xl font-bold uppercase tracking-widest">Live Now</span>
+        </div>
       </div>
 
       <div
         v-else
-        class="inline-block px-8 py-4 rounded-xl bg-gray-200 dark:bg-gray-800 text-gray-500 dark:text-gray-400"
+        class="flex flex-col items-center"
       >
-        <span class="text-2xl font-bold">Event Ended</span>
+        <div
+          class="inline-block px-8 py-4 rounded-xl bg-gray-200 dark:bg-gray-800 text-gray-500 dark:text-gray-400"
+        >
+          <span class="text-2xl font-bold">Event Ended</span>
+        </div>
       </div>
     </div>
 

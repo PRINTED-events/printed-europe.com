@@ -19,6 +19,12 @@ const seoMetadata = extractSeoMetadata(page.value)
 useSeoMeta({
   ...getSeoMetaBase(seoMetadata),
 })
+
+defineOgImageComponent('DefaultSatori', {
+  headline: 'Page',
+  title: seoMetadata.title,
+  description: seoMetadata.description,
+})
 </script>
 
 <template>
@@ -31,7 +37,7 @@ useSeoMeta({
         ]"
       />
 
-      <ContentRenderer v-if="page.body" :value="page" />
+      <ContentRenderer v-if="page.body" class="mt-8" :value="page" />
     </UContainer>
   </template>
 </template>

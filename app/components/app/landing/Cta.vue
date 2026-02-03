@@ -4,7 +4,8 @@ import type { ButtonProps } from '@nuxt/ui'
 defineProps<{
   title?: string
   description?: string
-  headline?: string // TODO not used
+  // headline?: string // TODO not used
+  // class?: string // works without using it due to Vue3's attribute fallthrough
   links?: ButtonProps[]
 }>()
 </script>
