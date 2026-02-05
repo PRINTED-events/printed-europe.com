@@ -11,6 +11,8 @@ defineProps<{
   getTalkStyle: (talk: ProcessedTalkType) => { top: string, height: string }
   getTalksForStage: (stageSlug: string) => ProcessedTalkType[]
 }>()
+
+const { public: { demoMode } } = useRuntimeConfig()
 </script>
 
 <template>
@@ -21,16 +23,17 @@ defineProps<{
   >
     <!-- Time Axis (Sticky Left) -->
     <div
-      class="sticky left-0 z-30 min-w-[3.75rem] flex-none border-r border-gray-200 bg-gray-50
-      dark:border-gray-800 dark:bg-gray-800/95 backdrop-blur"
+      class="sticky left-0 z-30 min-w-15 flex-none border-r border-gray-200 bg-gray-50
+      dark:border-gray-800 dark:bg-gray-800/95 backdrop-blur rounded-l-xl"
     >
       <!-- Header Spacer -->
       <div
-        class="sticky top-0 z-40 border-b border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-800"
+        class="sticky top-0 z-40 border-b border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-800
+          rounded-tl-xl"
         :style="{ height: `${HEADER_HEIGHT}px` }"
       />
 
-      <!-- Current Time Label -->
+      <!-- Current Time Label (red "now" line) -->
       <div
         v-if="currentTimeLineStyle.display !== 'none'"
         class="pointer-events-none absolute right-0 z-50 -mt-3 pr-0 text-right"
@@ -45,7 +48,7 @@ defineProps<{
       <div
         v-for="h in timeSlots"
         :key="h"
-        class="relative border-b border-gray-200 dark:border-gray-800"
+        class="relative border-b border-gray-200 dark:border-gray-800 last:rounded-bl-xl first:rounded-tl-xl"
         :style="{ height: `${HOUR_HEIGHT}px` }"
       >
         <span class="absolute right-2 -top-3 text-xs font-mono text-gray-500 dark:text-gray-400">
@@ -61,7 +64,17 @@ defineProps<{
         v-if="currentTimeLineStyle.display !== 'none'"
         class="pointer-events-none absolute inset-x-0 z-50 border-t-2 border-red-500 shadow-sm"
         :style="currentTimeLineStyle"
-      />
+      >
+        <div
+          v-if="demoMode"
+          class="absolute right-3 top-0 z-10 flex -translate-y-1/2 items-center gap-1.5 whitespace-nowrap
+            rounded-full border border-red-200 bg-red-50/90 px-3 py-1 text-xs font-semibold
+            text-red-600 shadow-sm backdrop-blur dark:border-red-900/50 dark:bg-red-950/80 dark:text-red-400"
+        >
+          <UIcon class="size-3.5" name="i-lucide-flask-conical" />
+          <span>Demo Time</span>
+        </div>
+      </div>
 
       <div
         v-for="stage in stages"

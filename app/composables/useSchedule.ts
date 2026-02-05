@@ -8,18 +8,19 @@ export async function useSchedule() {
   const route = useRoute()
   const router = useRouter()
   const appConfig = useAppConfig()
+  const runtimeConfig = useRuntimeConfig()
   const timeZone = appConfig.general.timeZone || 'UTC'
 
-  // --- Data Fetching ---
-  const [
-    { data: stages },
-    { data: speakers },
-    { data: talks },
-  ] = await Promise.all([
-    useAsyncData(`${route.path}-stages`, () => queryCollection('stages').all()),
-    useAsyncData(`${route.path}-speakers`, () => queryCollection('speakers').all()),
-    useAsyncData(`${route.path}-talks`, () => queryCollection('talks').order('dateTime', 'ASC').all()),
-  ])
+  // --- Data Fetching (Init, the await is at the end so that lifecycle hooks will register first) ---
+  const stagesRequest = useAsyncData(`${route.path}-stages`, () => queryCollection('stages').all())
+  const stages = stagesRequest.data
+
+  const speakersRequest = useAsyncData(`${route.path}-speakers`, () => queryCollection('speakers').all())
+  const speakers = speakersRequest.data
+
+  const talksRequest = useAsyncData(`${route.path}-talks`, () =>
+    queryCollection('talks').order('dateTime', 'ASC').all())
+  const talks = talksRequest.data
 
   // --- Processed Data ---
   const processedTalks = computed<ProcessedTalkType[]>(() => {
@@ -138,22 +139,14 @@ export async function useSchedule() {
   })
 
   // --- Live Time Line ---
-  const now = ref(DateTime.now().setZone(timeZone))
+  const now = ref<DateTime | null>(null)
   let timer: ReturnType<typeof setInterval>
 
-  onMounted(() => {
-    timer = setInterval(() => {
-      now.value = DateTime.now().setZone(timeZone)
-    }, 60000) // Update every minute
-  })
-
-  onUnmounted(() => {
-    if (timer) {
-      clearInterval(timer)
-    }
-  })
-
   const currentTimeLineStyle = computed(() => {
+    if (!now.value) {
+      return { display: 'none' }
+    }
+
     const currentISO = now.value.toISODate()
     if (currentISO !== activeDayISO.value) {
       return { display: 'none' }
@@ -173,7 +166,33 @@ export async function useSchedule() {
 
     const top = HEADER_HEIGHT + (minutesFromStart / 60) * HOUR_HEIGHT
     return {
-      top: `${top}px`,
+      top: `${top.toFixed(2)}px`,
+    }
+  })
+
+  onMounted(() => {
+    if (runtimeConfig.public.demoMode) {
+      // Use activeDayISO if available, otherwise fallback to today or availableDays[0] if activeDayISO is empty?
+      // activeDayISO logic handles fallback to 'now'.
+      now.value = DateTime.fromISO(`${activeDayISO.value}T13:20:00`, { zone: timeZone })
+    }
+    else {
+      now.value = DateTime.now().setZone(timeZone)
+    }
+
+    timer = setInterval(() => {
+      if (runtimeConfig.public.demoMode && now.value) {
+        now.value = now.value.plus({ minutes: 1 })
+      }
+      else {
+        now.value = DateTime.now().setZone(timeZone)
+      }
+    }, 60000) // Update every minute
+  })
+
+  onUnmounted(() => {
+    if (timer) {
+      clearInterval(timer)
     }
   })
 
@@ -199,6 +218,14 @@ export async function useSchedule() {
     return activeTalks.value.filter(t => t.stage?.slug === stageSlug)
   }
 
+  // --- Data Fetching (await) ---
+  await Promise.all([
+    stagesRequest,
+    speakersRequest,
+    talksRequest,
+  ])
+
+  // --- Returns ---
   return {
     stages,
     speakers,
