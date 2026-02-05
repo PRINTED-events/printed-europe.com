@@ -29,9 +29,9 @@
 /* dark mode */
 .dark {
   /* Backgrounds */
-  --ui-bg: var(--color-neutral-900);
-  --ui-bg-muted: var(--color-neutral-800);
-  --ui-bg-elevated: var(--color-neutral-800);
-  --ui-bg-accented: var(--color-neutral-700);
+  --ui-bg: oklch(20.5% 0 0);
+  --ui-bg-muted: oklch(26.9% 0 0);
+  --ui-bg-elevated: oklch(26.9% 0 0);
+  --ui-bg-accented: oklch(37.1% 0 0);
   --ui-bg-inverted: white;
 }
