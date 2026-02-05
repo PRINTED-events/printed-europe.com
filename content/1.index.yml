@@ -4,4 +4,34 @@ blocks:
     title: PRINTED Hub
     description: 25th and 26th September 2026 – Rüdesheim (near Frankfurt)
     headline: Get ready for 2 days of workshops, content and community
-description: Welcome
+  - component: AppLandingMetaInfo
+    title: Learn. Network. Create.
+    description: null
+    headline: Experience the most special event for 3D printing in europe!
+    items:
+      - icon: i-lucide-calendar
+        text: 25.-26. Sep 2026
+        label: Date
+      - icon: i-lucide-map-pin
+        text: Asbachgasse, Rüdesheim am Rhein
+        label: Location
+      - icon: i-lucide-users
+        text: 200+
+        label: Capacity
+      - icon: i-lucide-mic-2
+        text: 30+ Speakers
+        label: Content
+  - component: AppLandingHeroMedia
+    title: Meet like-minded people
+    description: Immerse yourself.
+    headline: Atmosphere
+    overlayOpacity: 0.4
+    image:
+      src: https://images.unsplash.com/photo-1540575467063-178a50c2df87
+      alt: Event Crowd
+    links:
+      - label: Aftermovie Printed Hub 2025
+        icon: i-lucide-play
+        variant: solid
+        size: lg
+        to: https://www.youtube.com/watch?v=mou_V2jFpBE
