@@ -1,13 +1,13 @@
-title: All access incl. Education day
+title: Education Day (Friday)
 button:
   label: Use Template
   to: https://github.com/toddeTV/quick-conf
   target: _blank
 description: Some description.
-discount: € 99,-
+discount: € 49,-
 features:
   - Entry
   - Seat
-price: € 129,-
+price: € 79,-
 scale: false
 slug: sample-ticket

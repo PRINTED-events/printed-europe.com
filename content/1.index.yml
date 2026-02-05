@@ -4,6 +4,21 @@ blocks:
     title: PRINTED Hub
     description: 25th and 26th September 2026 – Rüdesheim (near Frankfurt)
     headline: Get ready for 2 days of workshops, content and community
+    links:
+      - label: Buy Tickets
+        icon: i-lucide-ticket
+        trailing: false
+        color: primary
+        variant: solid
+        size: xl
+        to: /tickets
+      - label: View Schedule
+        icon: i-lucide-calendar
+        trailing: false
+        color: neutral
+        variant: subtle
+        size: xl
+        to: /schedule
   - component: AppLandingMetaInfo
     title: Learn. Network. Create.
     description: null
