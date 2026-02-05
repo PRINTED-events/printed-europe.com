@@ -5,7 +5,7 @@ blocks:
     description: 25th and 26th September 2026 – Rüdesheim (near Frankfurt)
     headline: Get ready for 2 days of workshops, content and community
     links:
-      - label: Buy Tickets
+      - label: Buy Ticket
         icon: i-lucide-ticket
         trailing: false
         color: primary
