@@ -1,10 +1,7 @@
 title: Home
-description: Welcome
-seo:
-  title: Home
-  description: Welcome
 blocks:
   - component: AppLandingHero
-    title: Conference Name
-    description: Tagline
-    headline: Headline
+    title: PRINTED Hub
+    description: 25th and 26th September 2026 – Rüdesheim (near Frankfurt)
+    headline: Get ready for 2 days of workshops, content and community
+description: Welcome
