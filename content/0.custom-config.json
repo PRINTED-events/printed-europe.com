@@ -73,7 +73,7 @@
   },
   "nuxtUI": {
     "colors": {
-      "neutral": "gray",
+      "neutral": "neutral",
       "primary": "brand"
     }
   }
