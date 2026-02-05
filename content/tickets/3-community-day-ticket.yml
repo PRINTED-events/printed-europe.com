@@ -1,13 +1,13 @@
-title: All access incl. Education day
+title: Community Day (Saturday)
 button:
-  label: Use Template
+  label: Buy ticket
   to: https://github.com/toddeTV/quick-conf
   target: _blank
 description: Some description.
-discount: € 99,-
+discount: € 39,-
 features:
   - Entry
   - Seat
-price: € 129,-
+price: € 69,-
 scale: false
 slug: sample-ticket

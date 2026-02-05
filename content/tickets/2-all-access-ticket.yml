@@ -1,0 +1,13 @@
+title: All access incl. Education day
+button:
+  label: Buy ticket
+  to: ""
+  target: _blank
+description: Some description.
+discount: € 79,-
+features:
+  - Entry
+  - Seat
+price: € 148,-
+scale: true
+slug: 2-ticket-allaccess

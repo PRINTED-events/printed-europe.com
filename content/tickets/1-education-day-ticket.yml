@@ -1,7 +1,7 @@
 title: Education Day (Friday)
 button:
-  label: Use Template
-  to: https://github.com/toddeTV/quick-conf
+  label: Buy ticket
+  to: ""
   target: _blank
 description: Some description.
 discount: € 49,-
