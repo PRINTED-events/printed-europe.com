@@ -15,7 +15,7 @@ const __dirname = path.dirname(__filename)
 // Ensure we are working in the script's directory
 process.chdir(__dirname)
 
-const CLI_VERSION = '1.0.0'
+const CLI_VERSION = '1.1.0'
 const REPO_OWNER = 'toddeTV'
 const REPO_NAME = 'quick-conf'
 const GITHUB_API_BASE = 'https://api.github.com'
@@ -134,6 +134,7 @@ function removeRepoFiles() {
   log('Removing repository files (docs, content, public, etc.)...', 'info')
   const folders = [
     '.github',
+    '.vscode',
     'content',
     'docs',
     'public',
@@ -141,6 +142,7 @@ function removeRepoFiles() {
   const files = [
     '.coderabbit.yml',
     '.release-please-manifest.json',
+    'CHANGELOG.md',
     'CONTRIBUTING.md',
     'LICENSE.md',
     'README.md',
@@ -751,10 +753,10 @@ async function updateTemplate() {
   moveIfExists('.env', '.env')
   moveIfExists('LICENSE.md', 'LICENSE.md')
   moveIfExists('README.md', 'README.md')
-  // Preserve configuration files
-  moveIfExists('.gitignore', '.gitignore')
-  moveIfExists('.npmrc', '.npmrc')
-  moveIfExists('.vscode/settings.json', '.vscode/settings.json')
+
+  // Preserve IDE settings
+  moveIfExists('.vscode', '.vscode')
+  moveIfExists('.idea', '.idea')
 
   // Handle package.json metadata separately later, but we need to read it now
   let oldPkg = null
