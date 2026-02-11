@@ -27,20 +27,19 @@
       "column4": {
         "socials": [
           {
-            "name": "toddeTV",
-            "url": "https://x.com/toddeTV"
+            "name": "PRINTED events",
+            "url": "https://www.youtube.com/@printed-europe",
+            "icon": "i-tabler-brand-youtube-filled"
           },
           {
-            "name": "toddeTV",
-            "url": "https://bsky.app/profile/todde.tv"
+            "name": "PRINTED events",
+            "url": "https://www.linkedin.com/company/104095382/admin/dashboard/",
+            "icon": "i-mdi-linkedin"
           },
           {
-            "name": "toddeTV",
-            "url": "https://www.linkedin.com/in/toddetv/"
-          },
-          {
-            "name": "toddeTV",
-            "url": "https://github.com/toddeTV/"
+            "name": "printedeurope",
+            "url": "https://www.instagram.com/printedeurope/",
+            "icon": "i-mdi-instagram"
           }
         ]
       }
