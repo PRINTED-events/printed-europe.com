@@ -54,8 +54,8 @@
       "light": ""
     },
     "logo": {
-      "dark": "/printed-pd-02.png",
-      "light": "/printed-pd-02.png"
+      "dark": "/printedhub-logo.svg",
+      "light": "/printdhub-logo-white.svg"
     },
     "siteUrl": "https://example.com",
     "timeZone": "UTC"
