@@ -40,6 +40,11 @@
             "name": "printedeurope",
             "url": "https://www.instagram.com/printedeurope/",
             "icon": "i-mdi-instagram"
+          },
+          {
+            "name": "printedeurope",
+            "url": "https://www.tiktok.com/@printedeurope",
+            "icon": "i-ic-baseline-tiktok"
           }
         ]
       }
