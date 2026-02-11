@@ -50,12 +50,12 @@
     "conferenceFoundingYear": 2025,
     "conferenceName": "Printed Europe",
     "favicon": {
-      "dark": "",
-      "light": ""
+      "dark": "/printed-pd-02.png",
+      "light": "/printed-pd-02.png"
     },
     "logo": {
-      "dark": "/printedhub-logo.svg",
-      "light": "/printdhub-logo-white.svg"
+      "dark": "/printed-pd-02.png",
+      "light": "/printed-pd-02.png"
     },
     "siteUrl": "https://example.com",
     "timeZone": "UTC"
