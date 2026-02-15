@@ -54,11 +54,11 @@ blocks:
         icon: i-lucide-party-popper
   - component: AppLandingHeroMedia
     title: Meet like-minded people
-    description: join the best event for the 3D printing community in europe
-    headline: Let's get together
+    description: Immerse yourself.
+    headline: Atmosphere
     overlayOpacity: 0.4
     image:
-      src: /printed-events/hub317
+      src: /printedhub25-317.jpg
       alt: Event Crowd
     links:
       - label: Aftermovie Printed Hub 2025
