@@ -6,13 +6,6 @@ blocks:
     headline: Get ready for 2 days of workshops, content and community
     links:
       - label: Buy Ticket
-        icon: i-lucide-ticket
-        trailing: false
-        color: primary
-        variant: solid
-        size: xl
-        to: /tickets
-      - label: View Schedule
         icon: i-lucide-calendar
         trailing: false
         color: neutral
@@ -36,6 +29,29 @@ blocks:
       - icon: i-lucide-mic-2
         text: 30+ Speakers
         label: Content
+  - component: AppLandingFeatures
+    title: What to expect at PRINTED
+    description: Education, Community and Fun
+    headline: Highlights
+    items:
+      - title: Talks on stage
+        description: Hear from professionals, companies and creators about their visions and experience. All our talks are being recorded and published after the event.
+        icon: i-lucide-mic
+      - title: Workshops
+        description: Af full day full of workshops for beginnners to experienced people in 3D Design and 3D Printing. Learn from the best.
+        icon: i-lucide-code
+      - title: Community projects
+        description: Our "show your stuff" area is again here to give YOU the opportunity to show your projects and passion. Apply for your space (applications open soon)
+        icon: i-lucide-messages-square
+      - title: Networking
+        description: Connect with other attendees. Meet new friends and kearn from each other. Some new ideas formed first at PRINTED events.
+        icon: i-lucide-coffee
+      - title: Sponsors
+        description: Our sponsors make the events possible. They show their products and solutions, give talks and workshops.
+        icon: i-lucide-store
+      - title: After Party
+        description: Its all about community and meeting like-minded people. A huge part of it is to have fun together and socialize. Be part and enjoy our after-parties and evening events.
+        icon: i-lucide-party-popper
   - component: AppLandingHeroMedia
     title: Meet like-minded people
     description: Immerse yourself.
