@@ -1,7 +1,7 @@
 title: All access incl. Education day
 button:
   label: Buy ticket
-  to: ""
+  to: https://printed-events.tito.page/allaccess
   target: _blank
 description: Some description.
 discount: € 79,-

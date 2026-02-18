@@ -1,7 +1,7 @@
 title: Community Day (Saturday)
 button:
   label: Buy ticket
-  to: ""
+  to: https://printed-events.tito.page/commnunity
   target: _blank
 description: Some description.
 discount: € 39,-

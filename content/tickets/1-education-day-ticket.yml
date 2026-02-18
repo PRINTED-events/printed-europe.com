@@ -1,7 +1,7 @@
 title: Education Day (Friday)
 button:
   label: Buy ticket
-  to: ""
+  to: https://printed-events.tito.page/education
   target: _blank
 description: Some description.
 discount: € 49,-

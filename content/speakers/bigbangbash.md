@@ -19,12 +19,6 @@ socialMedia:
 
 # BigBangBash
 
-BigBangBash ist ein etablierter Social-Media-Creator und Unternehmer, der mit seiner kreativen Art und starken Community-Orientierung regelmäßig Hunderttausende Menschen erreicht. Auf YouTube hat er über **600.000** Abonnenten und insgesamt mehrere hundert Millionen Aufrufe, auf Instagram folgen ihm rund **176.000** Menschen und auf TikTok begeistert er bereits über **2 Millionen Follower** mit seinen Inhalten.
-
-Seine Videos verbinden **unterhaltsame Experimente**, spannende Projekte und **authentische Persönlichkeit** zu einem einzigartigen Stil, der sowohl junge Zuschauer als auch brancheninteressierte Partner anspricht. Mit einem klaren Fokus auf Reichweite, Impact und Community-Engagement steht **BigBangBash** für **kreative** digitale Präsenz und **erfolgreiche Content-Strategien.**
-
-## BigBangBash
-
 **BigBangBash** ist erfolgreicher Social-Media-Creator, Unternehmer und Innovator, der es geschafft hat, seine Kindheitsträume in reale Projekte zu verwandeln. Mit über 600.000 Abonnenten auf YouTube und einer starken Community auf Instagram und TikTok erreicht er täglich Hunderttausende Menschen mit kreativen Experimenten, technischen Projekten und authentischem Storytelling.
 
 Schon früh begann er, Dinge nicht nur zu konsumieren, sondern selbst zu erschaffen. Heute ist seine Werkstatt Herzstück seiner Arbeit: Mit modernem 3D-Druck, eigenen Entwicklungen und einer großen Portion Neugier setzt er Ideen in funktionierende Produkte um. Seine Community begleitet diesen Prozess aktiv – von der ersten Skizze bis zum fertigen Ergebnis.
@@ -44,15 +38,3 @@ In seinen Vorträgen spricht er offen über Erfolge, Rückschläge und Lernproze
 - 3D-Druck und Prototyping als Business-Werkzeug
 - Community-Building und nachhaltige Reichweite
 - Vom Content Creator zum Produktentwickler
-
----
-
-### Erfolgreiches YouTube-Projekt
-
-Ein Einblick in seine Arbeit und seinen Stil:
-
-👉 [Erfolgreichstes YouTube-Video ansehen](HIER_DEIN_LINK_EINF%C3%9CGEN)
-
----
-
-Weitere Informationen: :br<https://bigbangbash.de>

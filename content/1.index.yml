@@ -11,7 +11,7 @@ blocks:
         color: neutral
         variant: subtle
         size: xl
-        to: /schedule
+        to: /tickets
   - component: AppLandingMetaInfo
     title: Learn. Network. Create.
     description: null
