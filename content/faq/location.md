@@ -8,7 +8,7 @@ order: 2
 
 Nestled at the gateway to the UNESCO World Heritage Upper Middle Rhine Valley, Rüdesheim offers a unique blend of romantic vineyards and vibrant culture. With its world-class Riesling and historic charm, it provides the perfect scenic backdrop for the PRINTED Hub.
 
-## ->Bild 1 einfügen
+![image](/9257f014-d09d-40d5-892b-02203a7f2c62-Rheingau-Gondel-Assmannshausen-010.jpg)
 
 ### Asbachgasse – The Venue
 
