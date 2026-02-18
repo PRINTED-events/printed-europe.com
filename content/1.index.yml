@@ -29,6 +29,10 @@ blocks:
       - icon: i-lucide-mic-2
         text: 30+ Speakers
         label: Content
+  - component: AppLandingSpeakers
+    title: Those who paved the way...
+    description: Here to share their knowledge and experience.
+    headline: Speakers
   - component: AppLandingMarquee
     direction: left
     speed: 40
@@ -42,7 +46,7 @@ blocks:
         alt: Panel discussion creators
       - src: /eventimages/stage1.jpg
         alt: Networking
-      - src: /eventimages/stage2.JPG
+      - src: /eventimages/stage2.jpg
         alt: stageview
       - src: /eventimages/outside1PWC.jpg
         alt: Exhibition Space
@@ -69,11 +73,17 @@ blocks:
       - title: After Party
         description: Its all about community and meeting like-minded people. A huge part of it is to have fun together and socialize. Be part and enjoy our after-parties and evening events.
         icon: i-lucide-party-popper
+  - component: AppLandingSponsors
+    title: Those who make it all possible!
+    description: Thanks to our sponsors & Partners.
+    headline: Sponsors
+    showViewAll: true
+    viewAllLink: /faq/sponsors
   - component: AppLandingHeroMedia
     title: Meet like-minded people
     description: Immerse yourself.
     headline: Atmosphere
-    overlayOpacity: 0.4
+    overlayOpacity: 0.5
     image:
       src: /printedhub25317.jpg
       alt: Event Crowd
