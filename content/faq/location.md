@@ -6,7 +6,7 @@ order: 2
 
 ### Destination Rüdesheim – Where History Meets the Rhine
 
-Nestled at the gateway to the UNESCO World Heritage Upper Middle Rhine Valley, Rüdesheim offers a unique blend of romantic vineyards and vibrant culture. With its world-class Riesling and historic charm, it provides the perfect scenic backdrop for the PRINTED Hub.
+Nestled at the gateway to the UNESCO World Heritage Upper Middle Rhine Valley, Rüdesheim offers a unique blend of romantic vineyards and vibrant culture. With its world-class Riesling and historic charm, it provides the perfect scenic backdrop for PRINTED Hub.
 
 ![image](/9257f014-d09d-40d5-892b-02203a7f2c62-Rheingau-Gondel-Assmannshausen-010.jpg)
 
@@ -16,7 +16,7 @@ Nestled at the gateway to the UNESCO World Heritage Upper Middle Rhine Valley, R
 
 Located on the grounds of the former Asbach distillery, **Asbachgasse** is a revitalized industrial quarter where history and innovation converge. Its winding courtyards and rustic brick halls have been transformed into a dynamic space for culture, design, and events.
 
-**The Ideal Setting for the PRINTED Hub**
+**The Ideal Setting for PRINTED Hub**
 
 We chose this location to make ideas visible and innovations tangible. Asbachgasse offers an inspiring alternative to standard conference centers:
 
@@ -27,9 +27,9 @@ We chose this location to make ideas visible and innovations tangible. Asbachgas
 
 More than just a venue, Asbachgasse is a space where brands and people connect naturally.
 
-**Welcome to the creative heart of Rüdesheim.**
+**Welcome to the creative heart of Rüdesheim**
 
--> Bild 2 einfügen
+![image](/printedhub25-116.jpg)
 
 ---
 
