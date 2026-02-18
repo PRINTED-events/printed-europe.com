@@ -4,50 +4,47 @@ description: Details to the location & venue.
 order: 2
 ---
 
-# Location
+### Destination Rüdesheim – Where History Meets the Rhine
 
-## Asbachgasse – Event Location für die PRINTED Hub in Rüdesheim am Rhein
+Nestled at the gateway to the UNESCO World Heritage Upper Middle Rhine Valley, Rüdesheim offers a unique blend of romantic vineyards and vibrant culture. With its world-class Riesling and historic charm, it provides the perfect scenic backdrop for the PRINTED Hub.
 
-Mitten im Herzen von **Rüdesheim am Rhein** liegt die **Asbachgassse** ein außergewöhnlicher Ort, an dem Geschichte, Kreativität und modernes Event-Design aufeinandertreffen.
+## ->Bild 1 einfügen
 
-Auf dem Gelände der ehemaligen Asbach-Brennerei ist ein lebendiges Quartier entstanden, das heute für Kultur, Genuss, Design und Begegnung steht. Historische Industriearchitektur verbindet sich hier mit zeitgemäßen Konzepten und schafft eine inspirierende Atmosphäre für besondere Veranstaltungen.
+### Asbachgasse – The Venue
 
----
+**Industrial Heritage meets Modern Creativity**
 
-## Ein Ort mit Charakter und Atmosphäre
+Located on the grounds of the former Asbach distillery, **Asbachgasse** is a revitalized industrial quarter where history and innovation converge. Its winding courtyards and rustic brick halls have been transformed into a dynamic space for culture, design, and events.
 
-Die Asbachgasse begeistert durch ihre verwinkelten Höfe, offenen Plätze und beeindruckenden Hallen. Der rustikale Charme der alten Mauern trifft auf moderne Ausstattung und flexible Nutzungsmöglichkeiten.
+**The Ideal Setting for the PRINTED Hub**
 
-Ob in großzügigen Hallen oder im geschützten Innenhof – jede Fläche bietet ein einzigartiges Ambiente. Umgeben von Vinotheken, Manufakturen, Galerien und Gastronomie entsteht ein Erlebnisraum, der weit über klassische Eventlocations hinausgeht.
+We chose this location to make ideas visible and innovations tangible. Asbachgasse offers an inspiring alternative to standard conference centers:
 
-Hier wird jedes Event Teil eines lebendigen Quartiers.
+- **Authentic Atmosphere:** Rough industrial charm combined with modern facilities.
+- **Flexible Spaces:** Perfect for workshops, presentations, and networking.
+- **Vibrant Surroundings:** Nestled among manufactories, galleries, and gastronomy.
+- **Prime Location:** Easily accessible in the heart of the Rheingau.
 
----
+More than just a venue, Asbachgasse is a space where brands and people connect naturally.
 
-## Die ideale Location für die PRINTED Hub
+**Welcome to the creative heart of Rüdesheim.**
 
-Für die PRINTED Hub bietet die Asbachgasse den perfekten Rahmen, um Ideen sichtbar zu machen, Menschen zu vernetzen und Innovationen erlebbar zu gestalten.
-
-**Ihre Vorteile auf einen Blick:**
-
--  **Flexible Flächen** für Workshops, Präsentationen, Ausstellungen und Netzwerkformate
-- **Authentische Industriearchitektur** mit kreativer Ausstrahlung
-- **Inspirierendes Umfeld** aus Kultur, Handwerk und Genuss
-- **Zentrale Lage** im Rheingau mit guter Erreichbarkeit
-- **Erlebnischarakter**, der Besucher nachhaltig begeistert
-
-Die Verbindung aus Geschichte und Zukunft, Tradition und Innovation macht die Asbachgasse zu einem idealen Ort für kreative Formate und visionäre Projekte.
+-> Bild 2 einfügen
 
 ---
 
-## Mehr als eine Location – ein Erlebnisraum
+### Getting There
 
-Ein Event in der Asbachgasse ist mehr als eine Veranstaltung:
+**By Car**
 
-Es ist ein Eintauchen in ein lebendiges Quartier voller Ideen, Begegnungen und Inspiration.
+We recommend using **Parking Lot P8** or **P10**, which are conveniently located nearby.
 
-Für die PRINTED Hub entsteht hier ein Raum, in dem Marken, Menschen und Inhalte auf natürliche Weise zusammenfinden – authentisch, hochwertig und mit bleibendem Eindruck.
+**By Train (Direct)**
 
-**Willkommen in der Asbachgasse.**
+The event location is perfectly situated just **50 meters** from the **Rüdesheim (Rhein)** train station.
 
-**Willkommen im kreativen Zentrum von Rüdesheim.**
+**The Scenic Route (via Bingen)**
+
+For a touch of adventure, take the train to **Bingen (Rhein) Hbf**. From there, enjoy a short 900m walk (or take a bus) to the riverfront and cross the Rhine on the **passenger ferry**. It’s a beautiful way to start your visit!
+
+Ferry Schedule & prices: [bingen-ruedesheimer.de](https://www.bingen-ruedesheimer.de/rheinfaehren/personenfaehre/)
