@@ -29,6 +29,23 @@ blocks:
       - icon: i-lucide-mic-2
         text: 30+ Speakers
         label: Content
+  - component: AppLandingMarquee
+    direction: left
+    speed: 40
+    gap: 30
+    images:
+      - src: /eventimages/Panel2PWC.jpg
+        alt: Panel discussion
+      - src: /eventimages/cakePWC.jpg
+        alt: Prusa Cake One
+      - src: /eventimages/panelPWC.jpg
+        alt: Panel discussion creators
+      - src: /eventimages/stage1.jpg
+        alt: Networking
+      - src: /eventimages/stage2.JPG
+        alt: stageview
+      - src: /eventimages/outside1PWC.jpg
+        alt: Exhibition Space
   - component: AppLandingFeatures
     title: What to expect at PRINTED
     description: Education, Community and Fun
@@ -58,7 +75,7 @@ blocks:
     headline: Atmosphere
     overlayOpacity: 0.4
     image:
-      src: /printedhub25-317.jpg
+      src: /printedhub25317.jpg
       alt: Event Crowd
     links:
       - label: Aftermovie Printed Hub 2025
