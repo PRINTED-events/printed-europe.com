@@ -12,6 +12,14 @@ blocks:
         variant: subtle
         size: xl
         to: /tickets
+      - label: Vote for Printed 2027
+        icon: i-lucide-vote
+        trailing: false
+        color: primary
+        variant: subtle
+        size: xl
+        to: https://2de1x8.share-eu1.hsforms.com/2sX5T9vJOSQCoIx-r8TnjSQ
+        target: _blank
   - component: AppLandingMetaInfo
     title: Learn. Network. Create.
     description: null
