@@ -1,10 +1,13 @@
 ---
 title: BigBangBash
-description: Content Creator, Unternehmer
 company: Company
+description: Content Creator, Entrepreneur
 featured: true
 image: /speaker/BigBangBash.jpeg
 name: BigBangBash
+seo:
+  title: BigBangBash
+  description: Content Creator, Unternehmer
 slug: bigbangbash
 socialMedia:
   - url: https://www.youtube.com/@bigbangbash

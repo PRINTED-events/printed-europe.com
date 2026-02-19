@@ -1,7 +1,7 @@
 ---
 title: Roman Rackwitz
-description: Keynote Speaker, Autor, Experte für behavioural Design
 company: Engaginglab
+description: Keynote Speaker, Autor, Expert in behavioural Design
 featured: true
 image: /speaker/RomanRackwitz.png
 name: Roman Rackwitz

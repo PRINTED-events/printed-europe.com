@@ -1,7 +1,7 @@
 ---
 title: Rudolf Leue
 company: Recycling Fabrik GmbH
-description: Mit-Günder und Geschäftsführer der Recycling Fabrik
+description: Co-founder und CEO of Recycling Fabrik GmbH
 featured: true
 image: /speaker/RudolfLeue.jpg
 name: Rudolf Leue
