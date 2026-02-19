@@ -46,7 +46,7 @@ Germany*
 
 **By Car**
 
-We recommend using **Parking Lot P8** or **P10**, which are conveniently located nearby.
+We recommend using **Parking Lot P8** or at **Oberstrasse**, which are conveniently located nearby.
 
 **By Train (Direct)**
 
