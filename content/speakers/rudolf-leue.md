@@ -1,9 +1,16 @@
 ---
 title: Rudolf Leue
+company: Recycling Fabrik GmbH
 description: Mit-Günder und Geschäftsführer der Recycling Fabrik
+featured: true
+image: /speaker/RudolfLeue.jpg
+name: Rudolf Leue
+navigation:
+  title: Rudolf Leue
 seo:
   title: Rudolf Leue
   description: K
+slug: rudolfleue
 socialMedia:
   - url: https://recyclingfabrik.com
     description: "Website "
@@ -13,33 +20,26 @@ socialMedia:
     description: TikTok Kanal
   - url: https://www.instagram.com/recyclingfabrik
     description: Instagram Profil
-navigation:
-  title: Rudolf Leue
-slug: rudolfleue
-featured: true
-name: Rudolf Leue
-image: /speaker/RudolfLeue.jpg
-company: Recycling Fabrik GmbH
 ---
 
-## Recycling Pioneer und Kreislaufliebhaber
+## Recycling Pioneer and Circular Economy Advocate
 
-**Rudolf Leue** ist Mitgründer der Recycling Fabrik und treibende Kraft hinter der Idee, 3D-Druck-Material nachhaltig zu recyceln. Mit seiner Vision, technische Innovation und Umweltbewusstsein zu verbinden, legte er den Grundstein für ein Unternehmen, das zeigt, wie Kreislaufwirtschaft im digitalen Zeitalter funktionieren kann.
+Rudolf Leue is a co-founder of Recycling Fabrik and the driving force behind the idea of sustainably recycling 3D printing materials. With his vision of combining technological innovation and environmental responsibility, he laid the foundation for a company that demonstrates how circular economy principles can work in the digital age.
 
-Als Ideengeber überzeugte er sein Team früh davon, aus vermeintlichem Abfall neues, hochwertiges 3D-Druck-Filament zu produzieren. Was als mutige Idee begann, entwickelte sich zu einem skalierbaren Geschäftsmodell mit klarem Fokus auf Ressourcenschonung, Qualität und Wirtschaftlichkeit.
+As the original idea generator, he convinced his team early on to transform what was once considered waste into high-quality 3D printing filament. What began as a bold concept evolved into a scalable business model with a clear focus on resource efficiency, quality, and economic viability.
 
-Rudolf verbindet technisches Verständnis mit unternehmerischem Denken. Neben der Entwicklung und Optimierung von Produktionsprozessen begeistert er sich besonders für Vertrieb und Marketing. Sein Ziel ist es, nachhaltige Technologien nicht nur zu entwickeln, sondern erfolgreich am Markt zu positionieren und langfristig zu etablieren.
+Rudolf combines technical expertise with entrepreneurial thinking. In addition to developing and optimizing production processes, he is particularly passionate about sales and marketing. His goal is not only to develop sustainable technologies, but also to successfully position them in the market and establish them for the long term.
 
-Er steht für pragmatische Lösungen, klare Kommunikation und den Mut, neue Wege zu gehen. In seinen Vorträgen gibt er ehrliche Einblicke in die Gründungsphase, den Aufbau eines Green-Tech-Unternehmens und die Herausforderungen, die mit nachhaltiger Produktion und Skalierung verbunden sind.
+He stands for pragmatic solutions, clear communication, and the courage to explore new paths. In his talks, he offers honest insights into the founding phase, the building of a green-tech company, and the challenges associated with sustainable production and scaling.
 
-Mit seiner Arbeit zeigt Rudolf Leue, dass ökologische Verantwortung und wirtschaftlicher Erfolg kein Widerspruch sind – sondern sich gegenseitig stärken können.
+Through his work, Rudolf Leue demonstrates that ecological responsibility and economic success are not contradictions—but forces that can strengthen each other.
 
 ---
 
-### Themenschwerpunkte
+### Key Topics
 
-- Kreislaufwirtschaft im 3D-Druck
-- Von der Idee zum nachhaltigen Geschäftsmodell
-- Green-Tech-Startups aufbauen und skalieren
-- Nachhaltigkeit wirtschaftlich denken
-- Vertrieb und Positionierung nachhaltiger Technologien
+- Circular economy in 3D printing
+- From idea to sustainable business model
+- Building and scaling green-tech startups
+- Thinking about sustainability in economic terms
+- Sales and market positioning of sustainable technologies

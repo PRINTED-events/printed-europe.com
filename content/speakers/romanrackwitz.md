@@ -1,7 +1,7 @@
 ---
 title: Roman Rackwitz
-company: Engaginglab
 description: Keynote Speaker, Autor, Experte für behavioural Design
+company: Engaginglab
 featured: true
 image: /speaker/RomanRackwitz.png
 name: Roman Rackwitz
@@ -18,18 +18,18 @@ socialMedia:
     description: LinkedIn Profile
 ---
 
-#### **Roman Rackwitz** ist ein international gefragter **Keynote Speaker, Autor und Experte für Gamification, Motivation und Behavioural Design**. Mit über 15 Jahren Erfahrung in der Entwicklung motivierender Systeme zeigt er Unternehmen, wie sie echte **intrinsische Motivation**, nachhaltiges Engagement und messbare Leistung – unabhängig von klassischen Belohnungsmechanismen – schaffen.
+**Roman Rackwitz** is an **internationally** sought-after **keynote speaker**, **author**, and **expert** in gamification, motivation, and **behavioral design**. With over 15 years of experience in developing motivating systems, he helps organizations create genuine intrinsic motivation, sustainable **engagement**, and measurable **performance**—independent of traditional reward mechanisms.
 
-Als Gründer und Geschäftsführer der Engaginglab GmbH verbindet Roman wissenschaftliche Erkenntnisse aus Psychologie und Verhaltensforschung mit praktischer unternehmerischer Erfahrung. Sein Ansatz geht weit über einfache Spielmechaniken hinaus: Er fokussiert darauf, wie Menschen tatsächlich denken, handeln und sich langfristig motivieren lassen.
+As the **founder** and CEO of **Engaginglab GmbH**, Roman combines scientific insights from psychology and behavioral research with practical **entrepreneurial experience**. His approach goes far beyond simple game mechanics: he focuses on how people actually think, act, and sustain long-term motivation.
 
-Sein Buch **„Drive Method“** gilt als wegweisender Leitfaden für Unternehmen und Teams, die Motivation nicht kaufen, sondern systematisch gestalten wollen. In seinen Vorträgen vermittelt er komplexe Zusammenhänge verständlich, praxisnah und inspirierend – immer mit konkreten Werkzeugen für den Arbeitsalltag.
+His book “**Drive Method**” is considered a groundbreaking guide for companies and teams that want to design motivation systematically rather than buy it. In his keynotes, he explains **complex concepts** in a clear, practical, and inspiring way—always providing concrete tools that can be applied in everyday work environments.
 
-### Schwerpunktthemen seiner Vorträge
+## Key Topics of His Talks
 
-- Gamification als strategisches Werkzeug für Motivation und Performance
-- Intrinsische Motivation und nachhaltiges Leistungsdesign
-- Behavioural Design im Unternehmenskontext
-- Engagement-Strategien für Teams und Organisationen
-- Game Thinking für Veränderungs- und Innovationsprozesse
+- Gamification as a strategic tool for motivation and performance
+- Intrinsic motivation and sustainable performance design
+- Behavioral design in corporate environments
+- Engagement strategies for teams and organizations
+- Game thinking for transformation and innovation processes
 
-Roman Rackwitz spricht regelmäßig auf nationalen und internationalen Bühnen und wird als Experte für Motivation und Verhaltensdesign geschätzt. Mit klarem Blick für moderne Arbeitswelten liefert er Impulse, die Führungskräfte, Produktteams und Organisationen dabei unterstützen, Menschen langfristig zu begeistern und erfolgreich zu machen.
+Roman Rackwitz regularly speaks on national and international stages and is highly regarded as an expert in motivation and behavioral design. With a sharp understanding of modern work environments, he delivers insights that empower leaders, product teams, and organizations to inspire people sustainably and drive long-term success.

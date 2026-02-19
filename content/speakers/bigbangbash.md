@@ -19,22 +19,20 @@ socialMedia:
 
 # BigBangBash
 
-**BigBangBash** ist erfolgreicher Social-Media-Creator, Unternehmer und Innovator, der es geschafft hat, seine Kindheitsträume in reale Projekte zu verwandeln. Mit über 600.000 Abonnenten auf YouTube und einer starken Community auf Instagram und TikTok erreicht er täglich Hunderttausende Menschen mit kreativen Experimenten, technischen Projekten und authentischem Storytelling.
+**BigBangBash** is a successful social media creator, entrepreneur, and innovator who has managed to turn his childhood dreams into real-world projects. With over 600,000 subscribers on YouTube and a strong community on Instagram and TikTok, he reaches hundreds of thousands of people every day through creative experiments, technical projects, and authentic storytelling.
 
-Schon früh begann er, Dinge nicht nur zu konsumieren, sondern selbst zu erschaffen. Heute ist seine Werkstatt Herzstück seiner Arbeit: Mit modernem 3D-Druck, eigenen Entwicklungen und einer großen Portion Neugier setzt er Ideen in funktionierende Produkte um. Seine Community begleitet diesen Prozess aktiv – von der ersten Skizze bis zum fertigen Ergebnis.
+From an early age, he began not only consuming content but creating it himself. Today, his workshop is the heart of his work: using modern 3D printing, his own developments, and a great deal of curiosity, he turns ideas into fully functional products. His community actively follows this process—from the first sketch to the finished result.
 
-Ein zentrales Beispiel für seinen unternehmerischen Erfolg ist der von ihm entwickelte **Schüttelautomat**, der mittlerweile im dritten Jahr erfolgreich betrieben wird. Das Projekt verbindet Nostalgie, Technik und Entertainment und zeigt, wie aus einer spielerischen Idee ein nachhaltiges Geschäftsmodell entstehen kann.
+A key example of his entrepreneurial success is the vending machine he developed, which has been operating successfully for three years. The project combines nostalgia, technology, and entertainment, demonstrating how a playful idea can evolve into a sustainable business model.
 
-BigBangBash steht für eine neue Generation von Machern: kreativ, technologieaffin und nahbar. Er beweist, dass Reichweite und unternehmerischer Erfolg kein Widerspruch sind, sondern sich gegenseitig verstärken können, wenn Leidenschaft, Disziplin und Community zusammenkommen.
+BigBangBash represents a new generation of makers: creative, tech-savvy, and approachable. He proves that reach and entrepreneurial success are not contradictions, but can reinforce each other when passion, discipline, and community come together.
 
-In seinen Vorträgen spricht er offen über Erfolge, Rückschläge und Lernprozesse und gibt praxisnahe Einblicke in den Weg vom Hobby zum professionellen Creator-Business.
+In his talks, he speaks openly about successes, setbacks, and learning experiences, offering practical insights into the journey from hobby to professional creator business.
 
----
+## Key Topics
 
-### Themenschwerpunkte
-
-- Kindheitsträume in reale Projekte verwandeln
-- Kreativität und Unternehmertum im digitalen Zeitalter
-- 3D-Druck und Prototyping als Business-Werkzeug
-- Community-Building und nachhaltige Reichweite
-- Vom Content Creator zum Produktentwickler
+- Turning childhood dreams into real projects
+- Creativity and entrepreneurship in the digital age
+- 3D printing and prototyping as business tools
+- Community building and sustainable reach
+- From content creator to product developer
