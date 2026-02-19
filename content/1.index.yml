@@ -111,3 +111,4 @@ blocks:
         variant: solid
         size: lg
         to: https://www.youtube.com/watch?v=mou_V2jFpBE
+        target: _blank
