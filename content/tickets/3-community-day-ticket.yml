@@ -3,11 +3,12 @@ button:
   label: Buy ticket
   to: https://printed-events.tito.page/commnunity
   target: _blank
-description: Some description.
+description: The communiity day will be the best way to connect, meet like minded people and talk with your favorite creators and companies. Experience new projects from creative minds in 3d printing and enjoy your day.
 discount: € 39,-
 features:
   - Entry
-  - Seat
+  - survival package (snacks and drinks)
+  - enter the community giveaway
 price: € 69,-
 scale: false
 slug: sample-ticket

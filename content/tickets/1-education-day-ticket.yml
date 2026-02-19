@@ -3,11 +3,12 @@ button:
   label: Buy ticket
   to: https://printed-events.tito.page/education
   target: _blank
-description: Some description.
+description: Our education day is for everyone with a focus on groups of students from schools and universities. Enjoy one full day with up to 6 workshops, each available for beginners and experienced people. In total we provide 12 workshops where you can choose which skill level suits you the most.
 discount: € 49,-
 features:
   - Entry
-  - Seat
+  - choose 6 out of 12 workshops
+  - survival package (snacks and drinks)
 price: € 79,-
 scale: false
 slug: sample-ticket

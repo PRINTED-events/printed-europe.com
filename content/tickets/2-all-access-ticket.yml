@@ -3,11 +3,13 @@ button:
   label: Buy ticket
   to: https://printed-events.tito.page/allaccess
   target: _blank
-description: Some description.
+description: Get the full experience starting with a full day of workshops on friday and the community day with talks and more chances to learn from each other. Meet creators and experience the offers from our sponsors.
 discount: € 79,-
 features:
   - Entry
-  - Seat
+  - choose 6 out of 12 workshops
+  - 2 x survival package (snacks and drinks)
+  - Enter the community giveaway
 price: € 148,-
 scale: true
 slug: 2-ticket-allaccess

@@ -1,21 +1,21 @@
 ---
 title: Roman Rackwitz
+company: Engaginglab
 description: Keynote Speaker, Autor, Experte für behavioural Design
+featured: true
+image: /speaker/RomanRackwitz.png
+name: Roman Rackwitz
+navigation:
+  title: Roman Rackwitz
 seo:
   title: RomanRackwitz file
   description: K
+slug: romanrackwitz
 socialMedia:
   - url: https://romanrackwitz.de/
     description: "Website "
   - url: https://www.linkedin.com/in/romanrackwitz/
     description: LinkedIn Profile
-navigation:
-  title: Roman Rackwitz
-slug: romanrackwitz
-featured: false
-name: Roman Rackwitz
-image: /speaker/RomanRackwitz.png
-company: Engaginglab
 ---
 
 #### **Roman Rackwitz** ist ein international gefragter **Keynote Speaker, Autor und Experte für Gamification, Motivation und Behavioural Design**. Mit über 15 Jahren Erfahrung in der Entwicklung motivierender Systeme zeigt er Unternehmen, wie sie echte **intrinsische Motivation**, nachhaltiges Engagement und messbare Leistung – unabhängig von klassischen Belohnungsmechanismen – schaffen.
