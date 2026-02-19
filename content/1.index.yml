@@ -29,6 +29,24 @@ blocks:
       - icon: i-lucide-mic-2
         text: 30+ Speakers
         label: Content
+  - component: AppLandingSection
+    title: Where ideas happen.
+    description: Join us for an unforgettable experience.
+    headline: Printed Events
+    orientation: horizontal
+    features:
+      - title: Experts
+        description: Our business professionals give valuable insights on how companies in 3D printing and 3D design work. Learn about new products and be the first to try out new stuff.
+        icon: i-lucide-users
+      - title: Networking
+        description: Connecting with like-minded people is a key outcome of printed events. Our ain goal is to connect the right people to each other.
+        icon: i-lucide-contact
+      - title: Workshops
+        description: Learn from others. No matter if you just start or are experienced. From 3D printing to designing and devloping new products. From Hardware to software.
+        icon: i-lucide-wrench
+    image:
+      src: /eventimages/printedhub25340.jpg
+      alt: Glass Print with PVB
   - component: AppLandingSpeakers
     title: Those who paved the way...
     description: Here to share their knowledge and experience.
@@ -93,4 +111,3 @@ blocks:
         variant: solid
         size: lg
         to: https://www.youtube.com/watch?v=mou_V2jFpBE
-        target: _blank
