@@ -4,7 +4,7 @@ company: Marsgizmo
 description: Founder and CEO of Marsgizmo
 featured: true
 image: /speaker/AdrianLuben.jpg
-name: AdrianLuben
+name: Adrian Luben
 navigation:
   title: Adrian Luben
 seo:

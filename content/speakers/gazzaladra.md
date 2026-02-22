@@ -1,10 +1,10 @@
 ---
 title: Gazzaladra (Johannes)
-description: Co-founder und CEO of Recycling Fabrik GmbH
 company: Gazzaladra
+description: Gazzaladra, Creator & 3D-Designer
 featured: true
 image: /speaker/gazzaladra.jpeg
-name: Gazzaladra (Johannes Straka)
+name: Johannes Straka
 navigation:
   title: Gazzaladra (Johannes Straka)
 seo:
