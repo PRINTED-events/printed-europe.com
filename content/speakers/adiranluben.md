@@ -7,9 +7,6 @@ image: /speaker/AdrianLuben.jpg
 name: Adrian Luben
 navigation:
   title: Adrian Luben
-seo:
-  title: Adrian Luben
-  description: K
 slug: adrianluben
 socialMedia:
   - url: https://www.marsgizmo.com/
