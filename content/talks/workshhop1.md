@@ -6,7 +6,7 @@ duration: 20
 resources: []
 slug: talk-start
 speakers:
-  - Janos Kehl
+  - Rüdiger Neuweg
 stage: main-stage
 type: Keynote
 ---
