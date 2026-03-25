@@ -1,11 +1,8 @@
 ---
-slug: talk-opening
-type: other
 title: "Opening Ceremony: Breaking the Seal"
-speakers: []
-dateTime: 2042-04-01T09:00:00.000Z
-duration: 25
-stage: stage-main
+description: Opening ceremony to onboard all participants to PRINTED education day.
+dateTime: 2026-09-25T09:00:00.000Z
+duration: 15
 resources:
   - url: "#"
     description: Slides
@@ -16,6 +13,10 @@ resources:
   - url: "#"
     description: Source Code
     icon: i-lucide-link
+slug: talk-opening
+speakers: []
+stage: stage-main
+type: other
 ---
 
 We officially open the first can of paint to kickoff the event. Please bring your own stir stick.
