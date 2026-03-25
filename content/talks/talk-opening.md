@@ -14,7 +14,8 @@ resources:
     description: Source Code
     icon: i-lucide-link
 slug: talk-opening
-speakers: []
+speakers:
+  - Janos Kehl
 stage: stage-main
 type: other
 ---
