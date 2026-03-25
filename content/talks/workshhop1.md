@@ -1,14 +1,15 @@
 ---
-title: Onboarding Ceremony
-description: The start
-dateTime: 2026-09-25T09:00:00.000Z
-duration: 20
-resources: []
-slug: talk-start
+title: 3D Printing Hardware Basics
+dateTime: 2026-09-25T9.30.000.000Z
+duration: 60
+resources:
+  - {}
+seo:
+  title: Onboarding Ceremony
+  description: The start
+slug: workshop-basics-1
 speakers:
   - Rüdiger Neuweg
-stage: main-stage
-type: Keynote
+stage: Workshop1
+type: workshop
 ---
-
-And it begins.
