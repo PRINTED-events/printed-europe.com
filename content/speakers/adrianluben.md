@@ -1,24 +1,23 @@
 ---
 title: Adrian Luben
+name: Adrian Luben
+slug: adrianluben
 company: Marsgizmo
 description: Founder and CEO of Marsgizmo
 featured: true
 image: /speaker/AdrianLuben.jpg
-name: Adrian Luben
 navigation:
   title: Adrian Luben
-slug: adrianluben
 socialMedia:
-  - url: https://www.marsgizmo.com/
-    description: "Website "
-  - url: https://www.youtube.com/@marsgizmo
+  - url: 'https://www.marsgizmo.com/'
+    description: Website
+  - url: 'https://www.youtube.com/@marsgizmo'
     description: Youtube Kanal
-  - url: https://www.tiktok.com/@marsgizmo
+  - url: 'https://www.tiktok.com/@marsgizmo'
     description: TikTok Kanal
-  - url: https://www.instagram.com/marsgizmo/
+  - url: 'https://www.instagram.com/marsgizmo/'
     description: Instagram Profil
 ---
-
 ## 3D Printing towards MARS. One step at a time.
 
 **Adrian Luben**, widely known online as *Marsgizmo*, is an **internationally** recognized 3D printing **creator** and **digital innovator** whose content has generated **billions** of views across social media platforms.
