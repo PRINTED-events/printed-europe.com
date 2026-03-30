@@ -6,7 +6,7 @@ description: ''
 duration: 60
 resources: []
 speakers:
-  - ''
+  - romanrackwitz
 stage: workshop-space-4
 type: Workshop
 ---

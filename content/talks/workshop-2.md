@@ -6,7 +6,7 @@ description: ''
 duration: 60
 resources: []
 speakers:
-  - ''
+  - bigbangbash
 stage: workshop-space-2
 type: Workshop
 ---

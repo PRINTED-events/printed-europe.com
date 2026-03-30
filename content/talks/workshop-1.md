@@ -6,7 +6,7 @@ description: ''
 duration: 60
 resources: []
 speakers:
-  - ''
+  - adrianluben
 stage: workshop-space-1
 type: Workshop
 ---

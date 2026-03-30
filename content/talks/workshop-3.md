@@ -6,7 +6,7 @@ description: ''
 duration: 60
 resources: []
 speakers:
-  - ''
+  - irenaheuzeroth
 stage: workshop-space-3
 type: Workshop
 ---
