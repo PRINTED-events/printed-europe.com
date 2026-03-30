@@ -69,5 +69,12 @@
       "neutral": "neutral",
       "primary": "brand"
     }
+  },
+  "ogImage": {
+    "bgLight": "#0f172a",
+    "bgDark": "#0f172a",
+    "textLight": "#64748b",
+    "textDark": "#94a3b8",
+    "primary": "#ff914d"
   }
 }
