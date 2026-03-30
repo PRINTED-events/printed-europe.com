@@ -6,7 +6,7 @@ description: ''
 duration: 10
 resources: []
 speakers:
-  - ''
+  - janos-kehl
 stage: main-stage
 type: Keynote
 ---
