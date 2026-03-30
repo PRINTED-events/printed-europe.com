@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json({ limit: '10mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-const REPO_DIR = path.join(__dirname, '..', 'repo');
+const REPO_DIR = path.join(__dirname, '..');
 const CONTENT_DIR = path.join(REPO_DIR, 'content');
 const TALKS_DIR = path.join(CONTENT_DIR, 'talks');
 const SPEAKERS_DIR = path.join(CONTENT_DIR, 'speakers');
