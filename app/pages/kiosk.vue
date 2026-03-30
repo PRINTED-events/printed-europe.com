@@ -74,10 +74,14 @@ const timeSlots = computed(() => {
   return slots
 })
 
+const SPEAKER_CARD_MIN_H = 110 // minimum height when speakers are present
+
 function getTalkStyle(talk: any) {
   const startMin = (talk.start.hour - timeRange.value.start) * 60 + talk.start.minute
   const top = (startMin / 60) * HOUR_H
-  const height = Math.max((talk.duration / 60) * HOUR_H, 28)
+  const hasSpeakers = talk.speakers?.some((s: any) => s.slug)
+  const minH = hasSpeakers ? SPEAKER_CARD_MIN_H : 36
+  const height = Math.max((talk.duration / 60) * HOUR_H, minH)
   return { top: `${top}px`, height: `${height}px` }
 }
 
@@ -555,20 +559,20 @@ function typeLabel(type: string) {
   font-variant-numeric: tabular-nums;
 }
 
-.talk-speakers { margin-top: 4px; display: flex; flex-direction: column; gap: 4px; }
-.talk-speaker { display: flex; align-items: center; gap: 6px; }
+.talk-speakers { margin-top: auto; padding-top: 8px; display: flex; flex-direction: column; gap: 6px; }
+.talk-speaker { display: flex; align-items: center; gap: 8px; }
 .speaker-img {
-  width: 22px;
-  height: 22px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 2px solid rgba(255,255,255,0.15);
 }
 .speaker-name {
-  font-size: 11px;
-  color: rgba(255,255,255,0.65);
-  font-weight: 500;
+  font-size: 12px;
+  color: rgba(255,255,255,0.75);
+  font-weight: 600;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
