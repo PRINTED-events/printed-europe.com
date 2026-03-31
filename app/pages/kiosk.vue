@@ -204,6 +204,11 @@ onMounted(() => {
   })
 })
 
+// ── Sponsor panel ────────────────────────────────────────────
+const showSponsorPanel = ref(true)
+// Array keeps door open for carousel later
+const sponsorImages = ['/sponsors.jpg']
+
 // ── Talk type styles ─────────────────────────────────────────
 function talkStyle(type: string) {
   switch (type?.toLowerCase()) {
@@ -279,6 +284,16 @@ function typeLabel(type: string) {
             </div>
           </div>
 
+          <!-- Sponsor panel toggle -->
+          <div class="admin-group">
+            <div class="admin-group-label">Sponsoren</div>
+            <div class="admin-row">
+              <button class="ctrl-btn" :class="{ active: showSponsorPanel }" @click="showSponsorPanel = !showSponsorPanel; resetHideTimer()">
+                {{ showSponsorPanel ? 'Eingeblendet' : 'Ausgeblendet' }}
+              </button>
+            </div>
+          </div>
+
           <!-- Fullscreen -->
           <button class="fullscreen-btn" :title="isFullscreen ? 'Vollbild beenden' : 'Vollbild'" @click="toggleFullscreen">
             <svg v-if="!isFullscreen" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -300,6 +315,9 @@ function typeLabel(type: string) {
     <div v-if="isLive" class="fixed-timeline" :style="{ top: fixedLineY + 'px' }">
       <div class="fixed-now-badge">NOW</div>
     </div>
+
+    <!-- ── Main content area ────────────────────────────── -->
+    <div class="content-area">
 
     <!-- ── Schedule ───────────────────────────────────────── -->
     <div
@@ -376,6 +394,21 @@ function typeLabel(type: string) {
     <div v-else class="empty-state">
       <p>Keine Talks für diesen Tag geplant.</p>
     </div>
+
+    <!-- ── Sponsor panel ──────────────────────────────────── -->
+    <Transition name="sponsor">
+      <div v-if="showSponsorPanel" class="sponsor-panel">
+        <img
+          v-for="(src, i) in sponsorImages"
+          :key="i"
+          :src="src"
+          alt="Sponsoren"
+          class="sponsor-img"
+        >
+      </div>
+    </Transition>
+
+    </div><!-- end content-area -->
 
   </div>
 </template>
@@ -559,13 +592,46 @@ function typeLabel(type: string) {
   letter-spacing: 0.08em;
 }
 
+/* ── Content area (schedule + sponsor side by side) ── */
+.content-area {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  min-height: 0;
+}
+
 /* ── Schedule scroll ── */
 .schedule-scroll {
   flex: 1;
   overflow-y: auto;
   overflow-x: auto;
   scrollbar-width: none;
+  min-width: 0;
 }
+
+/* ── Sponsor panel ── */
+.sponsor-panel {
+  width: 280px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-left: 1px solid rgba(255,255,255,0.06);
+  overflow: hidden;
+}
+.sponsor-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 24px;
+}
+
+/* Sponsor panel slide transition */
+.sponsor-enter-active, .sponsor-leave-active { transition: width 0.3s ease; overflow: hidden; }
+.sponsor-enter-from, .sponsor-leave-to { width: 0; }
 .schedule-scroll::-webkit-scrollbar { display: none; }
 .schedule-inner { display: flex; min-width: 100%; }
 
