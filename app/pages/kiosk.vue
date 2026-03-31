@@ -117,7 +117,6 @@ const now = ref(DateTime.now().setZone(timeZone))
 let clockTimer: ReturnType<typeof setInterval>
 
 const timeLineTop = computed(() => {
-  if (now.value.toISODate() !== selectedDay.value) return null
   const minutesFromStart = (now.value.hour - timeRange.value.start) * 60 + now.value.minute
   const totalMinutes = (timeRange.value.end - timeRange.value.start) * 60
   if (minutesFromStart < 0 || minutesFromStart > totalMinutes) return null
@@ -125,6 +124,8 @@ const timeLineTop = computed(() => {
 })
 
 const scrollEl = ref<HTMLElement | null>(null)
+const userScrolling = ref(false)
+let scrollPauseTimer: ReturnType<typeof setTimeout>
 
 function centerScroll(smooth = false) {
   if (!scrollEl.value || timeLineTop.value === null) return
@@ -132,15 +133,27 @@ function centerScroll(smooth = false) {
   scrollEl.value.scrollTo({ top: Math.max(0, target), behavior: smooth ? 'smooth' : 'instant' })
 }
 
+function onUserScroll() {
+  userScrolling.value = true
+  clearTimeout(scrollPauseTimer)
+  scrollPauseTimer = setTimeout(() => {
+    userScrolling.value = false
+    centerScroll(true)
+  }, 3000)
+}
+
 onMounted(() => {
   now.value = DateTime.now().setZone(timeZone)
   nextTick(() => centerScroll(false))
   clockTimer = setInterval(() => {
     now.value = DateTime.now().setZone(timeZone)
-    centerScroll(true)
+    if (!userScrolling.value) centerScroll(true)
   }, 1000)
 })
-onUnmounted(() => clearInterval(clockTimer))
+onUnmounted(() => {
+  clearInterval(clockTimer)
+  clearTimeout(scrollPauseTimer)
+})
 
 const clockHours = computed(() => now.value.toFormat('HH'))
 const clockMinutes = computed(() => now.value.toFormat('mm'))
@@ -271,7 +284,7 @@ function typeLabel(type: string) {
 
     <!-- ── Fixed center timeline ──────────────────────────── -->
     <div class="fixed-timeline">
-      <div class="fixed-now-badge">JETZT</div>
+      <div class="fixed-now-badge">NOW</div>
     </div>
 
     <!-- ── Schedule ───────────────────────────────────────── -->
@@ -279,6 +292,7 @@ function typeLabel(type: string) {
       v-if="visibleStages.length && activeTalks.length"
       ref="scrollEl"
       class="schedule-scroll"
+      @scroll.passive="onUserScroll"
     >
       <div class="schedule-inner">
 
