@@ -6,7 +6,7 @@ description: ''
 duration: 20
 resources: []
 speakers:
-  - ''
+  - rudolfleue
 stage: main-stage
 type: Talk
 ---

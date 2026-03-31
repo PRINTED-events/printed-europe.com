@@ -6,7 +6,7 @@ description: ''
 duration: 20
 resources: []
 speakers:
-  - ''
+  - gazzaladra
 stage: main-stage
 type: Talk
 ---
