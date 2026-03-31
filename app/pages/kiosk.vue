@@ -310,31 +310,32 @@ function typeLabel(type: string) {
                   borderColor: talkStyle(talk.type).border,
                 }"
               >
-                <!-- Left: text content -->
-                <div class="talk-content">
-                  <div class="talk-type" :style="{ color: talkStyle(talk.type).accent }">
-                    {{ typeLabel(talk.type) }}
-                  </div>
-                  <div class="talk-title">{{ talk.title }}</div>
-                  <div class="talk-time">
-                    {{ talk.start.toFormat('HH:mm') }} · {{ talk.duration }} min
-                  </div>
+                <div class="talk-type" :style="{ color: talkStyle(talk.type).accent }">
+                  {{ typeLabel(talk.type) }}
+                </div>
+                <div class="talk-title">{{ talk.title }}</div>
+                <div class="talk-time">
+                  {{ talk.start.toFormat('HH:mm') }} · {{ talk.duration }} min
                 </div>
 
-                <!-- Right: speaker image(s) -->
-                <div v-if="talk.speakers?.some((s: any) => s.image)" class="talk-speaker-panel">
-                  <div
-                    v-for="sp in talk.speakers.filter((s: any) => s.image)"
-                    :key="sp.slug"
-                    class="speaker-panel-item"
-                  >
+                <!-- Speaker avatars -->
+                <div v-if="talk.speakers?.some((s: any) => s.slug)" class="talk-speakers">
+                  <div class="avatar-stack">
                     <NuxtImg
+                      v-for="(sp, i) in talk.speakers.filter((s: any) => s.image).slice(0, 6)"
+                      :key="sp.slug"
                       :src="sp.image"
                       :alt="sp.name"
-                      class="speaker-img-rect"
+                      :title="sp.name"
+                      class="avatar"
+                      :style="{ zIndex: 6 - i }"
+                      width="34"
+                      height="34"
                     />
-                    <span class="speaker-panel-name">{{ sp.name }}</span>
                   </div>
+                  <span v-if="talk.speakers.filter((s: any) => s.slug).length === 1" class="speaker-solo-name">
+                    {{ talk.speakers[0]?.name }}
+                  </span>
                 </div>
               </div>
             </div>
@@ -619,18 +620,10 @@ function typeLabel(type: string) {
   border: 1px solid;
   border-radius: 10px;
   overflow: hidden;
-  display: flex;
-  flex-direction: row;
-}
-
-/* Left text content */
-.talk-content {
-  flex: 1;
   padding: 8px 10px;
   display: flex;
   flex-direction: column;
   gap: 3px;
-  min-width: 0;
 }
 
 .talk-type {
@@ -655,45 +648,41 @@ function typeLabel(type: string) {
   font-size: 10px;
   color: rgba(255,255,255,0.38);
   font-variant-numeric: tabular-nums;
+}
+
+/* Speaker avatars */
+.talk-speakers {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin-top: auto;
+  padding-top: 6px;
 }
 
-/* Right speaker panel */
-.talk-speaker-panel {
+.avatar-stack {
   display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  width: 72px;
-  gap: 0;
+  flex-direction: row;
 }
 
-.speaker-panel-item {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.speaker-img-rect {
-  width: 100%;
-  flex: 1;
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
   object-fit: cover;
   object-position: top center;
-  min-height: 0;
-  display: block;
+  border: 2px solid rgba(0,0,0,0.4);
+  margin-left: -8px;
+  flex-shrink: 0;
 }
+.avatar:first-child { margin-left: 0; }
 
-.speaker-panel-name {
-  font-size: 9px;
+.speaker-solo-name {
+  font-size: 12px;
   font-weight: 600;
-  color: rgba(255,255,255,0.6);
-  text-align: center;
-  padding: 3px 4px;
-  background: rgba(0,0,0,0.3);
-  white-space: nowrap;
+  color: rgba(255,255,255,0.75);
   overflow: hidden;
   text-overflow: ellipsis;
-  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 /* ── Empty state ── */
