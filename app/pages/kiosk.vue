@@ -73,6 +73,7 @@ const activeTalks = computed(() => processedTalks.value.filter(t => t.start.toIS
 const HEADER_H = 52
 const PAGE_HEADER_H = 60
 const hourH = ref(150) // px per hour — adjustable via slider
+const fontScale = ref(1) // font size multiplier — adjustable via slider
 
 const timeRange = computed(() => {
   if (activeTalks.value.length === 0) return { start: 9, end: 18 }
@@ -308,6 +309,19 @@ function typeLabel(type: string) {
                 :value="hourH"
                 class="zoom-slider"
                 @input="hourH = +($event.target as HTMLInputElement).value; resetHideTimer()"
+              >
+            </div>
+          </div>
+
+          <!-- Font scale -->
+          <div class="admin-group">
+            <div class="admin-group-label">Schrift ({{ fontScale.toFixed(1) }}×)</div>
+            <div class="admin-row">
+              <input
+                type="range" min="0.6" max="2.0" step="0.05"
+                :value="fontScale"
+                class="zoom-slider"
+                @input="fontScale = +($event.target as HTMLInputElement).value; resetHideTimer()"
               >
             </div>
           </div>
@@ -701,7 +715,7 @@ function typeLabel(type: string) {
   position: absolute;
   top: -9px;
   right: 6px;
-  font-size: 11px;
+  font-size: calc(11px * v-bind(fontScale));
   font-weight: 500;
   font-variant-numeric: tabular-nums;
   color: rgba(255,255,255,0.25);
@@ -734,6 +748,7 @@ function typeLabel(type: string) {
   border-bottom: 1px solid rgba(255,255,255,0.06);
   color: rgba(255,255,255,0.75);
   letter-spacing: 0.02em;
+  font-size: calc(13px * v-bind(fontScale));
 }
 
 .stage-body { position: relative; }
@@ -753,7 +768,7 @@ function typeLabel(type: string) {
 }
 
 .talk-title {
-  font-size: 12px;
+  font-size: calc(12px * v-bind(fontScale));
   font-weight: 700;
   line-height: 1.2;
   color: #fff;
@@ -769,14 +784,14 @@ function typeLabel(type: string) {
   flex-shrink: 0;
 }
 .talk-type {
-  font-size: 9px;
+  font-size: calc(9px * v-bind(fontScale));
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.09em;
   line-height: 1;
 }
 .talk-time {
-  font-size: 9px;
+  font-size: calc(9px * v-bind(fontScale));
   color: rgba(255,255,255,0.38);
   font-variant-numeric: tabular-nums;
 }
@@ -808,7 +823,7 @@ function typeLabel(type: string) {
 .avatar:first-child { margin-left: 0; }
 
 .speaker-solo-name {
-  font-size: 12px;
+  font-size: calc(12px * v-bind(fontScale));
   font-weight: 600;
   color: rgba(255,255,255,0.75);
   overflow: hidden;
