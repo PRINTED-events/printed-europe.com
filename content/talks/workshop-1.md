@@ -7,7 +7,9 @@ duration: 60
 resources: []
 speakers:
   - adrianluben
+  - bigbangbash
+  - irenaheuzeroth
 stage: workshop-space-1
-type: Workshop
+type: Panel
 ---
 
