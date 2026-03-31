@@ -207,7 +207,7 @@ onMounted(() => {
 // ── Sponsor panel ────────────────────────────────────────────
 const showSponsorPanel = ref(true)
 // Array keeps door open for carousel later
-const sponsorImages = ['/sponsors.jpg']
+const sponsorImages = ['/sponsors.png']
 
 // ── Talk type styles ─────────────────────────────────────────
 function talkStyle(type: string) {
@@ -618,7 +618,7 @@ function typeLabel(type: string) {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #fff;
+  background: #0d0d0d;
   border-left: 1px solid rgba(255,255,255,0.06);
   overflow: hidden;
 }
