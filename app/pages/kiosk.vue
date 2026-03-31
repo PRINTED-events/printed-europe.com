@@ -71,8 +71,8 @@ const activeTalks = computed(() => processedTalks.value.filter(t => t.start.toIS
 
 // ── Grid geometry ────────────────────────────────────────────
 const HEADER_H = 52
-const HOUR_H = 150
 const PAGE_HEADER_H = 60
+const hourH = ref(150) // px per hour — adjustable via slider
 
 const timeRange = computed(() => {
   if (activeTalks.value.length === 0) return { start: 9, end: 18 }
@@ -95,8 +95,8 @@ const timeSlots = computed(() => {
 
 function getTalkStyle(talk: any) {
   const startMin = (talk.start.hour - timeRange.value.start) * 60 + talk.start.minute
-  const top = (startMin / 60) * HOUR_H
-  const height = Math.max((talk.duration / 60) * HOUR_H, 28)
+  const top = (startMin / 60) * hourH.value
+  const height = Math.max((talk.duration / 60) * hourH.value, 28)
   return { top: `${top}px`, height: `${height}px` }
 }
 
@@ -118,32 +118,38 @@ const totalScheduleMinutes = computed(() =>
 const minutesFromStart = computed(() =>
   (now.value.hour - timeRange.value.start) * 60 + now.value.minute)
 
-// Last talk end time for the selected day
-const lastTalkEnd = computed(() => {
+// Last talk end in minutes-since-midnight for the selected day
+const lastTalkEndMins = computed(() => {
   if (!activeTalks.value.length) return null
-  return activeTalks.value.reduce((latest, t) =>
-    t.end > latest ? t.end : latest, activeTalks.value[0]!.end)
+  return activeTalks.value.reduce((max, t) => {
+    const m = t.end.hour * 60 + t.end.minute
+    return m > max ? m : max
+  }, 0)
 })
 
-// True only while programme is running (hides once last talk has ended)
+// True only while programme is running — compare HH:MM only, not full date
 const isLive = computed(() => {
-  if (!lastTalkEnd.value) return false
-  return now.value < lastTalkEnd.value && minutesFromStart.value >= 0
+  if (lastTalkEndMins.value === null) return false
+  const nowMins = now.value.hour * 60 + now.value.minute
+  return nowMins >= minutesFromStart.value + timeRange.value.start * 60
+    && nowMins < lastTalkEndMins.value
 })
 
 const timeLineTop = computed(() => {
   if (minutesFromStart.value < 0) return null
   // Clamp to end so scroll stops at bottom when programme is over
   const clamped = Math.min(minutesFromStart.value, totalScheduleMinutes.value)
-  return HEADER_H + (clamped / 60) * HOUR_H
+  return HEADER_H + (clamped / 60) * hourH.value
 })
 
 const scrollEl = ref<HTMLElement | null>(null)
+const sponsorPanelEl = ref<HTMLElement | null>(null)
 const userScrolling = ref(false)
 let scrollPauseTimer: ReturnType<typeof setTimeout>
 
-// Y position of the NOW line — normally upper third, but travels down when scroll hits bottom
+// Y position and right edge of the NOW line
 const fixedLineY = ref(PAGE_HEADER_H)
+const fixedLineRight = ref(0)
 
 function centerScroll(smooth = false) {
   if (!scrollEl.value || timeLineTop.value === null) return
@@ -151,8 +157,8 @@ function centerScroll(smooth = false) {
   const maxScroll = scrollEl.value.scrollHeight - scrollEl.value.clientHeight
   const target = timeLineTop.value - offset
   const actualScroll = Math.max(0, Math.min(target, maxScroll))
-  // Let the line follow the dot's real visual position
   fixedLineY.value = PAGE_HEADER_H + (timeLineTop.value - actualScroll)
+  fixedLineRight.value = sponsorPanelEl.value?.offsetWidth ?? 0
   scrollEl.value.scrollTo({ top: actualScroll, behavior: smooth ? 'smooth' : 'instant' })
 }
 
@@ -293,6 +299,19 @@ function typeLabel(type: string) {
             </div>
           </div>
 
+          <!-- Zoom -->
+          <div class="admin-group">
+            <div class="admin-group-label">Zoom ({{ hourH }}px/h)</div>
+            <div class="admin-row">
+              <input
+                type="range" min="60" max="400" step="10"
+                :value="hourH"
+                class="zoom-slider"
+                @input="hourH = +($event.target as HTMLInputElement).value; resetHideTimer()"
+              >
+            </div>
+          </div>
+
           <!-- Sponsor panel toggle -->
           <div class="admin-group">
             <div class="admin-group-label">Sponsoren</div>
@@ -321,7 +340,7 @@ function typeLabel(type: string) {
     </Transition>
 
     <!-- ── Fixed center timeline ──────────────────────────── -->
-    <div v-if="isLive" class="fixed-timeline" :style="{ top: fixedLineY + 'px' }">
+    <div v-if="isLive" class="fixed-timeline" :style="{ top: fixedLineY + 'px', right: fixedLineRight + 'px' }">
       <div class="fixed-now-badge">NOW</div>
     </div>
 
@@ -341,7 +360,7 @@ function typeLabel(type: string) {
         <div class="time-axis">
           <div class="time-axis-header" :style="{ height: `${HEADER_H}px` }" />
           <div v-if="timeLineTop !== null" class="now-axis-dot" :style="{ top: `${timeLineTop}px` }" />
-          <div v-for="h in timeSlots" :key="h" class="time-cell" :style="{ height: `${HOUR_H}px` }">
+          <div v-for="h in timeSlots" :key="h" class="time-cell" :style="{ height: `${hourH}px` }">
             <span class="time-label">{{ formatHour(h) }}</span>
           </div>
         </div>
@@ -353,7 +372,7 @@ function typeLabel(type: string) {
               {{ stage.name }}
             </div>
             <div class="stage-body">
-              <div v-for="h in timeSlots" :key="`g-${h}`" class="grid-line" :style="{ height: `${HOUR_H}px` }" />
+              <div v-for="h in timeSlots" :key="`g-${h}`" class="grid-line" :style="{ height: `${hourH}px` }" />
 
               <div
                 v-for="talk in getTalksForStage(stage.slug)"
@@ -365,12 +384,10 @@ function typeLabel(type: string) {
                   borderColor: talkStyle(talk.type).border,
                 }"
               >
-                <div class="talk-type" :style="{ color: talkStyle(talk.type).accent }">
-                  {{ typeLabel(talk.type) }}
-                </div>
                 <div class="talk-title">{{ talk.title }}</div>
-                <div class="talk-time">
-                  {{ talk.start.toFormat('HH:mm') }} · {{ talk.duration }} min
+                <div class="talk-meta">
+                  <span class="talk-type" :style="{ color: talkStyle(talk.type).accent }">{{ typeLabel(talk.type) }}</span>
+                  <span class="talk-time">{{ talk.start.toFormat('HH:mm') }} · {{ talk.duration }} min</span>
                 </div>
 
                 <!-- Speaker avatars -->
@@ -406,7 +423,7 @@ function typeLabel(type: string) {
 
     <!-- ── Sponsor panel ──────────────────────────────────── -->
     <Transition name="sponsor">
-      <div v-if="showSponsorPanel" class="sponsor-panel">
+      <div v-if="showSponsorPanel" ref="sponsorPanelEl" class="sponsor-panel">
         <img
           v-for="(src, i) in sponsorImages"
           :key="i"
@@ -543,6 +560,12 @@ function typeLabel(type: string) {
 }
 .ctrl-btn:hover { border-color: rgba(255,255,255,0.3); color: #fff; }
 .ctrl-btn.active { background: rgba(255,145,77,0.16); border-color: #ff914d; color: #ff914d; }
+
+.zoom-slider {
+  width: 140px;
+  accent-color: #ff914d;
+  cursor: pointer;
+}
 
 .date-select {
   background: rgba(255,255,255,0.06);
@@ -721,34 +744,39 @@ function typeLabel(type: string) {
   position: absolute;
   inset-inline: 4px;
   border: 1px solid;
-  border-radius: 10px;
+  border-radius: 8px;
   overflow: hidden;
-  padding: 8px 10px;
+  padding: 5px 8px;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
 }
 
+.talk-title {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.talk-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
 .talk-type {
   font-size: 9px;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.09em;
   line-height: 1;
-  flex-shrink: 0;
-}
-.talk-title {
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1.25;
-  color: #fff;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
 }
 .talk-time {
-  font-size: 10px;
+  font-size: 9px;
   color: rgba(255,255,255,0.38);
   font-variant-numeric: tabular-nums;
 }
