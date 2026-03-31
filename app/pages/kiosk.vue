@@ -137,18 +137,18 @@ const scrollEl = ref<HTMLElement | null>(null)
 const userScrolling = ref(false)
 let scrollPauseTimer: ReturnType<typeof setTimeout>
 
-// Fixed Y position of the NOW line on screen — derived once from real window height
-// so that CSS position and JS scroll calculation always match
+// Y position of the NOW line — normally upper third, but travels down when scroll hits bottom
 const fixedLineY = ref(PAGE_HEADER_H)
-
-function updateFixedLineY() {
-  fixedLineY.value = PAGE_HEADER_H + (window.innerHeight - PAGE_HEADER_H) / 3
-}
 
 function centerScroll(smooth = false) {
   if (!scrollEl.value || timeLineTop.value === null) return
-  const target = timeLineTop.value - (fixedLineY.value - PAGE_HEADER_H)
-  scrollEl.value.scrollTo({ top: Math.max(0, target), behavior: smooth ? 'smooth' : 'instant' })
+  const offset = (window.innerHeight - PAGE_HEADER_H) / 3
+  const maxScroll = scrollEl.value.scrollHeight - scrollEl.value.clientHeight
+  const target = timeLineTop.value - offset
+  const actualScroll = Math.max(0, Math.min(target, maxScroll))
+  // Let the line follow the dot's real visual position
+  fixedLineY.value = PAGE_HEADER_H + (timeLineTop.value - actualScroll)
+  scrollEl.value.scrollTo({ top: actualScroll, behavior: smooth ? 'smooth' : 'instant' })
 }
 
 function onUserScroll() {
@@ -161,8 +161,6 @@ function onUserScroll() {
 }
 
 onMounted(() => {
-  updateFixedLineY()
-  window.addEventListener('resize', updateFixedLineY)
   now.value = DateTime.now().setZone(timeZone)
   nextTick(() => centerScroll(false))
   clockTimer = setInterval(() => {
@@ -173,7 +171,6 @@ onMounted(() => {
 onUnmounted(() => {
   clearInterval(clockTimer)
   clearTimeout(scrollPauseTimer)
-  window.removeEventListener('resize', updateFixedLineY)
 })
 
 const clockHours = computed(() => now.value.toFormat('HH'))
