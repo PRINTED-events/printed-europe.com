@@ -128,7 +128,7 @@ const scrollEl = ref<HTMLElement | null>(null)
 
 function centerScroll(smooth = false) {
   if (!scrollEl.value || timeLineTop.value === null) return
-  const target = timeLineTop.value - scrollEl.value.clientHeight / 2
+  const target = timeLineTop.value - scrollEl.value.clientHeight / 3
   scrollEl.value.scrollTo({ top: Math.max(0, target), behavior: smooth ? 'smooth' : 'instant' })
 }
 
@@ -512,7 +512,7 @@ function typeLabel(type: string) {
   position: fixed;
   left: 0;
   right: 0;
-  top: calc(v-bind('PAGE_HEADER_H + "px"') + (100dvh - v-bind('PAGE_HEADER_H + "px"')) / 2);
+  top: calc(v-bind('PAGE_HEADER_H + "px"') + (100dvh - v-bind('PAGE_HEADER_H + "px"')) / 3);
   z-index: 100;
   pointer-events: none;
   border-top: 2px solid #e53e3e;
