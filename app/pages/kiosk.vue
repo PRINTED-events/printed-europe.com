@@ -93,14 +93,10 @@ const timeSlots = computed(() => {
   return slots
 })
 
-const SPEAKER_CARD_MIN_H = 110
-
 function getTalkStyle(talk: any) {
   const startMin = (talk.start.hour - timeRange.value.start) * 60 + talk.start.minute
   const top = (startMin / 60) * HOUR_H
-  const hasSpeakers = talk.speakers?.some((s: any) => s.slug)
-  const minH = hasSpeakers ? SPEAKER_CARD_MIN_H : 36
-  const height = Math.max((talk.duration / 60) * HOUR_H, minH)
+  const height = Math.max((talk.duration / 60) * HOUR_H, 28)
   return { top: `${top}px`, height: `${height}px` }
 }
 
