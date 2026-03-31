@@ -116,11 +116,21 @@ function formatHour(h: number) {
 const now = ref(DateTime.now().setZone(timeZone))
 let clockTimer: ReturnType<typeof setInterval>
 
+const totalScheduleMinutes = computed(() =>
+  (timeRange.value.end - timeRange.value.start) * 60)
+
+const minutesFromStart = computed(() =>
+  (now.value.hour - timeRange.value.start) * 60 + now.value.minute)
+
+// True only while programme is running
+const isLive = computed(() =>
+  minutesFromStart.value >= 0 && minutesFromStart.value <= totalScheduleMinutes.value)
+
 const timeLineTop = computed(() => {
-  const minutesFromStart = (now.value.hour - timeRange.value.start) * 60 + now.value.minute
-  const totalMinutes = (timeRange.value.end - timeRange.value.start) * 60
-  if (minutesFromStart < 0 || minutesFromStart > totalMinutes) return null
-  return HEADER_H + (minutesFromStart / 60) * HOUR_H
+  if (minutesFromStart.value < 0) return null
+  // Clamp to end so scroll stops at bottom when programme is over
+  const clamped = Math.min(minutesFromStart.value, totalScheduleMinutes.value)
+  return HEADER_H + (clamped / 60) * HOUR_H
 })
 
 const scrollEl = ref<HTMLElement | null>(null)
@@ -283,7 +293,7 @@ function typeLabel(type: string) {
     </Transition>
 
     <!-- ── Fixed center timeline ──────────────────────────── -->
-    <div class="fixed-timeline">
+    <div v-if="isLive" class="fixed-timeline">
       <div class="fixed-now-badge">NOW</div>
     </div>
 
