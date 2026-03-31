@@ -118,9 +118,18 @@ const totalScheduleMinutes = computed(() =>
 const minutesFromStart = computed(() =>
   (now.value.hour - timeRange.value.start) * 60 + now.value.minute)
 
-// True only while programme is running
-const isLive = computed(() =>
-  minutesFromStart.value >= 0 && minutesFromStart.value <= totalScheduleMinutes.value)
+// Last talk end time for the selected day
+const lastTalkEnd = computed(() => {
+  if (!activeTalks.value.length) return null
+  return activeTalks.value.reduce((latest, t) =>
+    t.end > latest ? t.end : latest, activeTalks.value[0]!.end)
+})
+
+// True only while programme is running (hides once last talk has ended)
+const isLive = computed(() => {
+  if (!lastTalkEnd.value) return false
+  return now.value < lastTalkEnd.value && minutesFromStart.value >= 0
+})
 
 const timeLineTop = computed(() => {
   if (minutesFromStart.value < 0) return null
@@ -612,8 +621,9 @@ function typeLabel(type: string) {
 
 /* ── Sponsor panel ── */
 .sponsor-panel {
-  width: 280px;
   flex-shrink: 0;
+  aspect-ratio: 9 / 16;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -626,7 +636,7 @@ function typeLabel(type: string) {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 24px;
+  padding: 20px;
 }
 
 /* Sponsor panel slide transition */
