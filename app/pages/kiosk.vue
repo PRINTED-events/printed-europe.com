@@ -183,7 +183,7 @@ function talkStyle(type: string) {
     case 'keynote':  return { bg: 'rgba(255,145,77,0.14)', border: 'rgba(255,145,77,0.45)', accent: '#ff914d' }
     case 'workshop': return { bg: 'rgba(63,185,80,0.11)',  border: 'rgba(63,185,80,0.38)',  accent: '#3fb950' }
     case 'panel':    return { bg: 'rgba(88,166,255,0.11)', border: 'rgba(88,166,255,0.38)', accent: '#58a6ff' }
-    default:         return { bg: 'rgba(255,255,255,0.04)', border: 'rgba(255,255,255,0.10)', accent: '#888' }
+    default:         return { bg: 'rgba(148,163,184,0.10)', border: 'rgba(148,163,184,0.28)', accent: '#94a3b8' }
   }
 }
 
@@ -270,7 +270,7 @@ function typeLabel(type: string) {
     </Transition>
 
     <!-- ── Fixed center timeline ──────────────────────────── -->
-    <div v-if="timeLineTop !== null" class="fixed-timeline">
+    <div class="fixed-timeline">
       <div class="fixed-now-badge">JETZT</div>
     </div>
 
