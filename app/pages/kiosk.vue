@@ -75,6 +75,33 @@ const PAGE_HEADER_H = 60
 const hourH = ref(150) // px per hour — adjustable via slider
 const fontScale = ref(1) // font size multiplier — adjustable via slider
 
+function loadSettings() {
+  if (typeof sessionStorage === 'undefined') return
+  const s = sessionStorage.getItem('kiosk-settings')
+  if (!s) return
+  try {
+    const p = JSON.parse(s)
+    if (p.hourH) hourH.value = p.hourH
+    if (p.fontScale) fontScale.value = p.fontScale
+    if (typeof p.showSponsorPanel === 'boolean') showSponsorPanel.value = p.showSponsorPanel
+    if (typeof p.autoMode === 'boolean') autoMode.value = p.autoMode
+    if (p.manualDate) manualDate.value = p.manualDate
+    if (p.selectedStages) selectedStages.value = new Set(p.selectedStages)
+  } catch {}
+}
+
+function saveSettings() {
+  if (typeof sessionStorage === 'undefined') return
+  sessionStorage.setItem('kiosk-settings', JSON.stringify({
+    hourH: hourH.value,
+    fontScale: fontScale.value,
+    showSponsorPanel: showSponsorPanel.value,
+    autoMode: autoMode.value,
+    manualDate: manualDate.value,
+    selectedStages: [...selectedStages.value],
+  }))
+}
+
 const timeRange = computed(() => {
   if (activeTalks.value.length === 0) return { start: 9, end: 18 }
   let minH = 24; let maxH = 0
@@ -173,6 +200,7 @@ function onUserScroll() {
 }
 
 onMounted(() => {
+  loadSettings()
   now.value = DateTime.now().setZone(timeZone)
   nextTick(() => centerScroll(false))
   clockTimer = setInterval(() => {
@@ -180,6 +208,7 @@ onMounted(() => {
     if (!userScrolling.value) centerScroll(true)
   }, 1000)
 })
+
 onUnmounted(() => {
   clearInterval(clockTimer)
   clearTimeout(scrollPauseTimer)
@@ -224,6 +253,9 @@ onMounted(() => {
 const showSponsorPanel = ref(true)
 // Array keeps door open for carousel later
 const sponsorImages = ['/sponsors.png']
+
+// Persist all settings across page refreshes within the same session
+watch([hourH, fontScale, showSponsorPanel, autoMode, manualDate, selectedStages], saveSettings, { deep: true })
 
 // ── Talk type styles ─────────────────────────────────────────
 function talkStyle(type: string) {
@@ -499,14 +531,14 @@ function typeLabel(type: string) {
   align-items: baseline;
   gap: 1px;
   font-family: 'Inter', system-ui, sans-serif;
-  font-weight: 300;
+  font-weight: 800;
   letter-spacing: -2px;
   line-height: 1;
 }
 .clock-digits {
   font-size: 38px;
   font-variant-numeric: tabular-nums;
-  color: #fff;
+  color: #ff914d;
 }
 .clock-sep {
   font-size: 32px;
