@@ -128,12 +128,12 @@ const lastTalkEndMins = computed(() => {
   }, 0)
 })
 
-// True only while programme is running — compare HH:MM only, not full date
+// True only while current time is within the visible schedule range and before last talk ends
 const isLive = computed(() => {
+  if (timeLineTop.value === null) return false  // before schedule starts
   if (lastTalkEndMins.value === null) return false
   const nowMins = now.value.hour * 60 + now.value.minute
-  return nowMins >= minutesFromStart.value + timeRange.value.start * 60
-    && nowMins < lastTalkEndMins.value
+  return nowMins < lastTalkEndMins.value
 })
 
 const timeLineTop = computed(() => {
