@@ -151,6 +151,9 @@ const talkProgress = computed(() => {
   return Math.min(100, Math.round((elapsedSeconds.value / total) * 100))
 })
 
+// ── Font scale ────────────────────────────────────────────────
+const fontScale = ref(1.0)
+
 // ── QR Code ───────────────────────────────────────────────────
 const qrUrl = ref('')
 
@@ -268,6 +271,7 @@ function loadSettings() {
     if (p.timeOverride) applyTimeOverride(p.timeOverride)
     if (Array.isArray(p.hiddenAltSlugs)) hiddenAltSlugs.value = new Set(p.hiddenAltSlugs)
     if (p.qrUrl) qrUrl.value = p.qrUrl
+    if (typeof p.fontScale === 'number') fontScale.value = p.fontScale
   }
   catch {}
 }
@@ -281,6 +285,7 @@ function saveSettings() {
     timeOverride: timeOverride.value,
     hiddenAltSlugs: [...hiddenAltSlugs.value],
     qrUrl: qrUrl.value,
+    fontScale: fontScale.value,
   }))
 }
 
@@ -302,7 +307,7 @@ function fmtDayLabel(iso: string): string {
   return DateTime.fromISO(iso).setLocale('en').toFormat('EEE, d. MMM')
 }
 
-watch([mainStageSlug, autoMode, manualDate], saveSettings)
+watch([mainStageSlug, autoMode, manualDate, fontScale], saveSettings)
 
 onMounted(() => {
   loadSettings()
@@ -317,7 +322,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div :class="['screen-root', mainStageEmpty && 'screen-root--empty']">
+  <div :class="['screen-root', mainStageEmpty && 'screen-root--empty']" :style="{ zoom: fontScale }">
     <!-- ── Config overlay ───────────────────────────────────── -->
     <Transition name="fade">
       <div
@@ -430,6 +435,33 @@ onUnmounted(() => {
             </div>
           </div>
 
+          <!-- Font size -->
+          <div class="config-section">
+            <p class="config-section-label">
+              Text Size
+            </p>
+            <div class="config-font-row">
+              <span class="config-font-a config-font-a--sm">A</span>
+              <input
+                v-model.number="fontScale"
+                type="range"
+                min="0.8"
+                max="1.35"
+                step="0.05"
+                class="config-font-slider"
+                @click.stop
+              >
+              <span class="config-font-a config-font-a--lg">A</span>
+              <button
+                v-if="fontScale !== 1"
+                class="config-date-btn"
+                @click="fontScale = 1; saveSettings(); scheduleHide()"
+              >
+                Reset
+              </button>
+            </div>
+          </div>
+
           <!-- QR Code URL -->
           <div class="config-section">
             <p class="config-section-label">
@@ -484,152 +516,131 @@ onUnmounted(() => {
     </main>
     <main
       v-else
-      :class="['screen-main', !currentTalk && 'screen-main--pause']"
+      :class="['screen-main', (!currentTalk || !nextTalk) && 'screen-main--single']"
     >
-      <!-- Current talk tile (top left) -->
-      <div :class="['tile tile-current', !currentTalk && 'tile-current--pause']">
-        <template v-if="currentTalk">
-          <!-- Label: Now Live -->
-          <p class="tile-label tile-label--live">
-            <span class="live-dot" />
-            Now Live
-          </p>
+      <!-- Current talk tile — only when a talk is live -->
+      <div
+        v-if="currentTalk"
+        class="tile tile-current"
+      >
+        <!-- Title -->
+        <h1 class="current-title">
+          {{ currentTalk.title }}
+        </h1>
 
-          <!-- Title -->
-          <h1 class="current-title">
-            {{ currentTalk.title }}
-          </h1>
+        <!-- Type badge -->
+        <div class="talk-type-badge">
+          {{ fmtType(currentTalk.type) }}
+        </div>
 
-          <!-- Type badge -->
-          <div class="talk-type-badge">
-            {{ fmtType(currentTalk.type) }}
-          </div>
+        <!-- Time row -->
+        <p class="current-time-row">
+          <UIcon name="i-lucide-clock" class="inline-icon" />
+          {{ fmtTime(currentTalk.start) }}
+          <span class="current-time-sep">–</span>
+          {{ fmtTime(currentTalk.end) }}
+        </p>
 
-          <!-- Time row -->
-          <p class="current-time-row">
-            <UIcon name="i-lucide-clock" class="inline-icon" />
-            {{ fmtTime(currentTalk.start) }}
-            <span class="current-time-sep">–</span>
-            {{ fmtTime(currentTalk.end) }}
-          </p>
+        <!-- Body content -->
+        <div
+          v-if="currentTalk.body"
+          class="current-desc"
+        >
+          <ContentRenderer :value="currentTalk" />
+        </div>
 
-          <!-- Body content -->
+        <!-- Speaker row -->
+        <div
+          v-if="currentTalk.speakerObjects.length"
+          class="speaker-row"
+        >
           <div
-            v-if="currentTalk.body"
-            class="current-desc"
+            v-for="speaker in currentTalk.speakerObjects"
+            :key="speaker.slug"
+            class="speaker-item"
           >
-            <ContentRenderer :value="currentTalk" />
+            <NuxtImg
+              v-if="speaker.image"
+              :src="speaker.image"
+              :alt="speaker.name"
+              class="speaker-avatar"
+            />
+            <div class="speaker-info">
+              <span class="speaker-name">{{ speaker.name }}</span>
+              <span
+                v-if="speaker.description"
+                class="speaker-desc"
+              >{{ speaker.description }}</span>
+            </div>
           </div>
+        </div>
 
-          <!-- Speaker row -->
-          <div
-            v-if="currentTalk.speakerObjects.length"
-            class="speaker-row"
-          >
+        <!-- Progress bar pinned to bottom -->
+        <div class="progress-footer">
+          <div class="progress-footer-labels">
+            <span class="progress-footer-elapsed">{{ fmtTimer(elapsedSeconds) }}</span>
+            <span class="progress-footer-remain">{{ fmtTimer(remainingSeconds) }}</span>
+          </div>
+          <div class="progress-footer-track">
             <div
-              v-for="speaker in currentTalk.speakerObjects"
-              :key="speaker.slug"
-              class="speaker-item"
-            >
-              <NuxtImg
-                v-if="speaker.image"
-                :src="speaker.image"
-                :alt="speaker.name"
-                class="speaker-avatar"
-              />
-              <div class="speaker-info">
-                <span class="speaker-name">{{ speaker.name }}</span>
-                <span
-                  v-if="speaker.description"
-                  class="speaker-desc"
-                >{{ speaker.description }}</span>
-              </div>
-            </div>
+              class="progress-footer-fill"
+              :style="{ width: talkProgress + '%' }"
+            />
           </div>
-
-          <!-- ── Progress bar pinned to bottom ── -->
-          <div class="progress-footer">
-            <div class="progress-footer-labels">
-              <span class="progress-footer-elapsed">{{ fmtTimer(elapsedSeconds) }}</span>
-              <span class="progress-footer-remain">{{ fmtTimer(remainingSeconds) }}</span>
-            </div>
-            <div class="progress-footer-track">
-              <div
-                class="progress-footer-fill"
-                :style="{ width: talkProgress + '%' }"
-              />
-            </div>
-          </div>
-        </template>
-
-        <!-- Pause state -->
-        <template v-else>
-          <div class="pause-state">
-            <span class="pause-label">Pause</span>
-          </div>
-        </template>
+        </div>
       </div>
 
-      <!-- Next talk tile (top right) -->
-      <div class="tile tile-next">
-        <template v-if="nextTalk">
-          <p class="tile-label">
-            Next talk
-          </p>
-          <h2 class="next-title">
-            {{ nextTalk.title }}
-          </h2>
-          <div class="talk-type-badge talk-type-badge--small">
-            {{ fmtType(nextTalk.type) }}
-          </div>
-          <p class="next-time">
-            <UIcon
-              name="i-lucide-clock"
-              class="inline-icon"
-            />
-            {{ fmtTime(nextTalk.start) }}
-            <span class="current-time-sep">–</span>
-            {{ fmtTime(nextTalk.end) }}
-            <span
-              v-if="untilNextSeconds"
-              class="next-time-countdown"
-            >· in {{ fmtCountdown(untilNextSeconds) }}</span>
-          </p>
+      <!-- Next talk tile — only when a next talk exists -->
+      <div
+        v-if="nextTalk"
+        class="tile tile-next"
+      >
+        <p class="tile-label">
+          Next
+        </p>
+        <h2 class="next-title">
+          {{ nextTalk.title }}
+        </h2>
+        <div class="talk-type-badge talk-type-badge--small">
+          {{ fmtType(nextTalk.type) }}
+        </div>
+        <p class="next-time">
+          <UIcon
+            name="i-lucide-clock"
+            class="inline-icon"
+          />
+          {{ fmtTime(nextTalk.start) }}
+          <span class="current-time-sep">–</span>
+          {{ fmtTime(nextTalk.end) }}
+          <span
+            v-if="untilNextSeconds"
+            class="next-time-countdown"
+          >· in {{ fmtCountdown(untilNextSeconds) }}</span>
+        </p>
+        <div
+          v-if="nextTalk.speakerObjects.length"
+          class="speaker-row speaker-row--compact"
+        >
           <div
-            v-if="nextTalk.speakerObjects.length"
-            class="speaker-row speaker-row--compact"
+            v-for="speaker in nextTalk.speakerObjects"
+            :key="speaker.slug"
+            class="speaker-item"
           >
-            <div
-              v-for="speaker in nextTalk.speakerObjects"
-              :key="speaker.slug"
-              class="speaker-item"
-            >
-              <NuxtImg
-                v-if="speaker.image"
-                :src="speaker.image"
-                :alt="speaker.name"
-                class="speaker-avatar speaker-avatar--small"
-              />
-              <div class="speaker-info">
-                <span class="speaker-name">{{ speaker.name }}</span>
-                <span
-                  v-if="speaker.company"
-                  class="speaker-desc"
-                >{{ speaker.company }}</span>
-              </div>
+            <NuxtImg
+              v-if="speaker.image"
+              :src="speaker.image"
+              :alt="speaker.name"
+              class="speaker-avatar speaker-avatar--small"
+            />
+            <div class="speaker-info">
+              <span class="speaker-name">{{ speaker.name }}</span>
+              <span
+                v-if="speaker.company"
+                class="speaker-desc"
+              >{{ speaker.company }}</span>
             </div>
           </div>
-        </template>
-        <template v-else>
-          <p class="tile-label">
-            Next talk
-          </p>
-          <div class="no-talk">
-            <p class="no-talk-text">
-              No more talks scheduled
-            </p>
-          </div>
-        </template>
+        </div>
       </div>
     </main>
 
@@ -652,17 +663,17 @@ onUnmounted(() => {
               class="stage-type-badge"
             >{{ fmtType((getAltStageTalk(stage.slug) as any).talk.type) }}</span>
             <div class="stage-time-status">
-              <span class="stage-time">
-                {{ fmtTime((getAltStageTalk(stage.slug) as any).talk.start) }}–{{ fmtTime((getAltStageTalk(stage.slug) as any).talk.end) }}
-              </span>
               <div
                 v-if="(getAltStageTalk(stage.slug) as any).status === 'live'"
                 class="stage-live-badge"
               >
                 LIVE
               </div>
+              <span class="stage-time">
+                {{ fmtTime((getAltStageTalk(stage.slug) as any).talk.start) }}–{{ fmtTime((getAltStageTalk(stage.slug) as any).talk.end) }}
+              </span>
               <span
-                v-else-if="(getAltStageTalk(stage.slug) as any).untilSeconds !== null"
+                v-if="(getAltStageTalk(stage.slug) as any).status === 'next' && (getAltStageTalk(stage.slug) as any).untilSeconds !== null"
                 class="stage-next-in"
               >next in {{ fmtCountdownHM((getAltStageTalk(stage.slug) as any).untilSeconds) }}</span>
             </div>
@@ -696,8 +707,8 @@ onUnmounted(() => {
           </div>
         </template>
         <template v-else>
-          <p class="stage-empty">
-            —
+          <p class="stage-empty-today">
+            This stage is empty for today
           </p>
         </template>
       </div>
@@ -733,7 +744,7 @@ onUnmounted(() => {
 .screen-root {
   min-height: 100dvh;
   display: grid;
-  grid-template-rows: 88px 1fr 260px;
+  grid-template-rows: 88px 1fr 300px;
   background: #080808;
   color: #fff;
   font-family: 'Public Sans', sans-serif;
@@ -925,6 +936,10 @@ onUnmounted(() => {
   grid-template-rows: 88px auto 1fr;
 }
 
+.screen-main--single {
+  grid-template-columns: 1fr;
+}
+
 .screen-main-empty {
   display: flex;
   align-items: center;
@@ -948,10 +963,6 @@ onUnmounted(() => {
   padding: 16px 24px;
   min-height: 0;
   transition: grid-template-columns 0.4s ease;
-}
-
-.screen-main--pause {
-  grid-template-columns: 220px 1fr;
 }
 
 /* ── Tiles ──────────────────────────────────────────────────── */
@@ -981,13 +992,6 @@ onUnmounted(() => {
   );
 }
 
-.tile-current--pause {
-  border-color: rgba(255, 255, 255, 0.06);
-  background: rgba(255, 255, 255, 0.02);
-  justify-content: center;
-  align-items: center;
-  padding: 24px 20px;
-}
 
 .tile-next {
   background: rgba(255, 255, 255, 0.03);
@@ -1042,25 +1046,6 @@ onUnmounted(() => {
   color: rgba(255, 255, 255, 0.3);
   font-weight: 400;
   font-size: 0.95rem;
-}
-
-/* ── Pause state ────────────────────────────────────────────── */
-.pause-state {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-}
-
-.pause-label {
-  font-size: 1.6rem;
-  font-weight: 800;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.15);
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform: rotate(180deg);
 }
 
 /* ── Type badge ─────────────────────────────────────────────── */
@@ -1462,10 +1447,42 @@ onUnmounted(() => {
   font-style: italic;
 }
 
-.stage-empty {
+.stage-empty-today {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: rgba(255, 255, 255, 0.15);
-  font-size: 1.4rem;
   margin: auto 0;
+}
+
+/* ── Font size slider ───────────────────────────────────────── */
+.config-font-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.config-font-slider {
+  flex: 1;
+  accent-color: #ff914d;
+  cursor: pointer;
+  height: 4px;
+}
+
+.config-font-a {
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.config-font-a--sm {
+  font-size: 0.8rem;
+}
+
+.config-font-a--lg {
+  font-size: 1.3rem;
 }
 
 /* ── QR tile ────────────────────────────────────────────────── */
