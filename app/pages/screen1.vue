@@ -49,6 +49,10 @@ const processedTalks = computed(() => {
   })
 })
 
+// ── Date selection (declared early — needed by applyTimeOverride) ─
+const autoMode = ref(true)
+const manualDate = ref('')
+
 // ── Live clock ────────────────────────────────────────────────
 // timeOverride: 'HH:mm' string — when set, clock runs forward from
 // that simulated time (offset = simTime - realTimeAtActivation)
@@ -75,14 +79,15 @@ function applyTimeOverride(hhmm: string) {
     return
   }
   const [h, m] = hhmm.split(':').map(Number)
-  const simTarget = nowTick.value.startOf('day').plus({ hours: h, minutes: m })
+  // Use the selected conference date as base, not today
+  const dateStr = manualDate.value || nowTick.value.toISODate()!
+  const simTarget = DateTime.fromISO(dateStr, { zone: timeZone }).set({ hour: h, minute: m, second: 0, millisecond: 0 })
   timeOverrideOffset.value = simTarget.diff(nowTick.value).milliseconds
   timeOverride.value = hhmm
 }
 
-// ── Date selection ────────────────────────────────────────────
-const autoMode = ref(true)
-const manualDate = ref('')
+// Re-apply offset when date changes while override is active
+watch(manualDate, () => { if (timeOverride.value) applyTimeOverride(timeOverride.value) })
 
 const availableDays = computed(() => {
   const days = new Set<string>()
@@ -142,6 +147,9 @@ const talkProgress = computed(() => {
   const total = (currentTalk.value.duration ?? 30) * 60
   return Math.min(100, Math.round((elapsedSeconds.value / total) * 100))
 })
+
+// ── QR Code ───────────────────────────────────────────────────
+const qrUrl = ref('')
 
 // ── Alternative stages ────────────────────────────────────────
 const hiddenAltSlugs = ref<Set<string>>(new Set())
@@ -244,6 +252,7 @@ function loadSettings() {
     if (p.manualDate) manualDate.value = p.manualDate
     if (p.timeOverride) applyTimeOverride(p.timeOverride)
     if (Array.isArray(p.hiddenAltSlugs)) hiddenAltSlugs.value = new Set(p.hiddenAltSlugs)
+    if (p.qrUrl) qrUrl.value = p.qrUrl
   }
   catch {}
 }
@@ -256,6 +265,7 @@ function saveSettings() {
     manualDate: manualDate.value,
     timeOverride: timeOverride.value,
     hiddenAltSlugs: [...hiddenAltSlugs.value],
+    qrUrl: qrUrl.value,
   }))
 }
 
@@ -401,6 +411,30 @@ onUnmounted(() => {
                 @click="toggleAltStage(stage.slug)"
               >
                 {{ stage.name }}
+              </button>
+            </div>
+          </div>
+
+          <!-- QR Code URL -->
+          <div class="config-section">
+            <p class="config-section-label">
+              QR Code URL
+            </p>
+            <div class="config-time-row">
+              <input
+                v-model="qrUrl"
+                type="url"
+                placeholder="https://..."
+                class="config-time-input config-url-input"
+                @click.stop
+                @change="saveSettings()"
+              >
+              <button
+                v-if="qrUrl"
+                class="config-date-btn"
+                @click="qrUrl = ''; saveSettings()"
+              >
+                Clear
               </button>
             </div>
           </div>
@@ -577,6 +611,7 @@ onUnmounted(() => {
 
     <!-- ── Alt stages row ──────────────────────────────────── -->
     <footer class="stages-row">
+      <!-- Stage tiles -->
       <div
         v-for="stage in visibleAltStages"
         :key="stage.slug"
@@ -614,7 +649,7 @@ onUnmounted(() => {
             v-if="getAltStageTalk(stage.slug)!.status === 'next'"
             class="stage-next-time"
           >
-            {{ fmtTime(getAltStageTalk(stage.slug)!.talk.start) }} Uhr
+            {{ fmtTime(getAltStageTalk(stage.slug)!.talk.start) }}
           </p>
         </template>
         <template v-else>
@@ -622,6 +657,26 @@ onUnmounted(() => {
             —
           </p>
         </template>
+      </div>
+
+      <!-- QR code tile (always last) -->
+      <div class="stage-tile qr-tile">
+        <NuxtImg
+          v-if="qrUrl"
+          :src="qrUrl"
+          alt="QR Code"
+          class="qr-img"
+        />
+        <div
+          v-else
+          class="qr-placeholder"
+        >
+          <UIcon
+            name="i-lucide-qr-code"
+            class="qr-placeholder-icon"
+          />
+          <span class="qr-placeholder-text">QR Code</span>
+        </div>
       </div>
     </footer>
   </div>
@@ -632,7 +687,7 @@ onUnmounted(() => {
 .screen-root {
   min-height: 100dvh;
   display: grid;
-  grid-template-rows: 88px 1fr 190px;
+  grid-template-rows: 88px 1fr 260px;
   background: #080808;
   color: #fff;
   font-family: 'Public Sans', sans-serif;
@@ -1008,6 +1063,14 @@ onUnmounted(() => {
   display: flex;
   flex-wrap: wrap;
   gap: 18px;
+  container-type: inline-size;
+}
+
+/* When the tile is narrow (portrait/stacked): column layout */
+@container (max-width: 540px) {
+  .speaker-row {
+    flex-direction: column;
+  }
 }
 
 .speaker-row--compact {
@@ -1018,6 +1081,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 16px;
+  min-width: 0;
 }
 
 .speaker-avatar {
@@ -1168,16 +1232,16 @@ onUnmounted(() => {
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.07);
   background: rgba(255, 255, 255, 0.025);
-  padding: 18px 22px;
+  padding: 20px 24px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   min-width: 0;
   overflow: hidden;
 }
 
 .stage-name {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -1191,24 +1255,24 @@ onUnmounted(() => {
 .stage-live-badge {
   display: inline-flex;
   align-items: center;
-  padding: 2px 8px;
+  padding: 3px 10px;
   border-radius: 4px;
   background: rgba(229, 62, 62, 0.2);
   border: 1px solid rgba(229, 62, 62, 0.35);
   color: #e53e3e;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.14em;
   width: fit-content;
 }
 
 .stage-talk-title {
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.85);
   margin: 0;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   line-height: 1.35;
@@ -1217,37 +1281,81 @@ onUnmounted(() => {
 .stage-speakers {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   margin-top: auto;
 }
 
 .stage-avatar {
-  width: 28px;
-  height: 28px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid rgba(255, 145, 77, 0.3);
+  border: 1px solid rgba(255, 145, 77, 0.35);
   flex-shrink: 0;
 }
 
 .stage-speaker-name {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.45);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .stage-next-time {
-  font-size: 0.82rem;
+  font-size: 0.88rem;
   color: rgba(255, 255, 255, 0.3);
   margin: 0;
 }
 
 .stage-empty {
   color: rgba(255, 255, 255, 0.15);
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   margin: auto 0;
+}
+
+/* ── QR tile ────────────────────────────────────────────────── */
+.qr-tile {
+  flex: 0 0 auto;
+  width: 220px;
+  align-items: center;
+  justify-content: center;
+}
+
+.qr-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.qr-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+}
+
+.qr-placeholder-icon {
+  font-size: 3rem;
+}
+
+.qr-placeholder-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── Config URL input ───────────────────────────────────────── */
+.config-url-input {
+  flex: 1;
+  font-size: 0.8rem;
+  font-weight: 400;
 }
 
 /* ── Transition ─────────────────────────────────────────────── */
