@@ -336,13 +336,13 @@ onUnmounted(() => {
             {{ currentTalk.title }}
           </h1>
 
-          <!-- Description -->
-          <p
-            v-if="currentTalk.description"
+          <!-- Description (body content) -->
+          <div
+            v-if="currentTalk.body"
             class="current-desc"
           >
-            {{ currentTalk.description }}
-          </p>
+            <ContentRenderer :value="currentTalk" />
+          </div>
 
           <!-- Speaker row -->
           <div
@@ -806,6 +806,44 @@ onUnmounted(() => {
   line-height: 1.65;
   color: rgba(255, 255, 255, 0.5);
   margin: 0;
+  max-height: 8rem;
+  overflow: hidden;
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+/* Override ContentRenderer/Prose styles for dark screen */
+.current-desc :deep(p) {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.current-desc :deep(p + p) {
+  margin-top: 0.75em;
+}
+
+.current-desc :deep(h1),
+.current-desc :deep(h2),
+.current-desc :deep(h3) {
+  display: none;
+}
+
+.current-desc :deep(strong) {
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 700;
+}
+
+.current-desc :deep(a) {
+  color: #ff914d;
+  text-decoration: none;
+}
+
+.current-desc :deep(ul),
+.current-desc :deep(ol) {
+  padding-left: 1.2em;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 /* ── Next talk content ──────────────────────────────────────── */
