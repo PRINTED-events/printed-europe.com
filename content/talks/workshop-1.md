@@ -2,7 +2,7 @@
 title: Workshop 1
 slug: workshop-1
 dateTime: '2026-09-26T10:30:00.000Z'
-description: ''
+description: Lorem Ipsum Janos sei Dank
 duration: 60
 resources: []
 speakers:
