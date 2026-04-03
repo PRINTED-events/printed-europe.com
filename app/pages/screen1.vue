@@ -59,14 +59,36 @@ onMounted(() => {
 })
 onUnmounted(() => clearInterval(clockTimer))
 
-const clockDisplay = computed(() => now.value.toFormat('HH:mm:ss'))
-const dateDisplay = computed(() => now.value.setLocale('de').toFormat('EEEE, d. MMMM yyyy'))
+const clockDisplay = computed(() => now.value.toFormat('HH:mm'))
+
+// ── Date selection ────────────────────────────────────────────
+const autoMode = ref(true)
+const manualDate = ref('')
+
+const availableDays = computed(() => {
+  const days = new Set<string>()
+  processedTalks.value.forEach((t) => {
+    const day = t.start.toISODate()
+    if (day) days.add(day)
+  })
+  return Array.from(days).sort()
+})
+
+const selectedDay = computed(() => {
+  if (autoMode.value) {
+    const today = now.value.toISODate() ?? ''
+    return availableDays.value.includes(today) ? today : (availableDays.value[0] ?? today)
+  }
+  return manualDate.value || availableDays.value[0] || ''
+})
 
 // ── Main stage ────────────────────────────────────────────────
 const mainStageSlug = ref('main-stage')
 
 const mainStageTalks = computed(() =>
-  processedTalks.value.filter(t => t.stageObject?.slug === mainStageSlug.value),
+  processedTalks.value.filter(
+    t => t.stageObject?.slug === mainStageSlug.value && t.start.toISODate() === selectedDay.value,
+  ),
 )
 
 const currentTalk = computed(() =>
@@ -249,16 +271,13 @@ onUnmounted(() => {
           class="logo-img"
         />
       </button>
-      <div class="header-right">
-        <span class="clock-date">{{ dateDisplay }}</span>
-        <span class="clock-time">{{ clockDisplay }}</span>
-      </div>
+      <span class="clock-time">{{ clockDisplay }}</span>
     </header>
 
     <!-- ── Main grid ───────────────────────────────────────── -->
-    <main class="screen-main">
+    <main :class="['screen-main', !currentTalk && 'screen-main--pause']">
       <!-- Current talk tile (top left) -->
-      <div class="tile tile-current">
+      <div :class="['tile tile-current', !currentTalk && 'tile-current--pause']">
         <template v-if="currentTalk">
           <!-- Type badge -->
           <div class="talk-type-badge">
@@ -348,24 +367,10 @@ onUnmounted(() => {
           </div>
         </template>
 
-        <!-- No talk running -->
+        <!-- Pause state -->
         <template v-else>
-          <div class="no-talk">
-            <UIcon
-              name="i-lucide-monitor-off"
-              class="no-talk-icon"
-            />
-            <p class="no-talk-text">
-              Aktuell kein Talk auf der Hauptbühne
-            </p>
-            <div
-              v-if="nextTalk"
-              class="no-talk-next"
-            >
-              Nächster Talk: <strong>{{ nextTalk.title }}</strong>
-              um {{ fmtTime(nextTalk.start) }} Uhr
-              <span v-if="untilNextSeconds">(in {{ fmtCountdown(untilNextSeconds) }})</span>
-            </div>
+          <div class="pause-state">
+            <span class="pause-label">Pause</span>
           </div>
         </template>
       </div>
@@ -488,7 +493,7 @@ onUnmounted(() => {
 .screen-root {
   min-height: 100dvh;
   display: grid;
-  grid-template-rows: 64px 1fr 160px;
+  grid-template-rows: 88px 1fr 190px;
   background: #080808;
   color: #fff;
   font-family: 'Public Sans', sans-serif;
@@ -556,7 +561,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 0 32px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   background: rgba(255, 255, 255, 0.02);
 }
@@ -565,8 +570,8 @@ onUnmounted(() => {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 6px;
-  border-radius: 8px;
+  padding: 8px;
+  border-radius: 10px;
   transition: background 0.15s;
   display: flex;
   align-items: center;
@@ -577,50 +582,43 @@ onUnmounted(() => {
 }
 
 .logo-img {
-  height: 36px;
+  height: 48px;
   width: auto;
 }
 
-.header-right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 1px;
-}
-
 .clock-time {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-family: 'Inter', 'Public Sans', sans-serif;
+  font-size: 3.2rem;
+  font-weight: 800;
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.02em;
   color: #ff914d;
   line-height: 1;
-}
-
-.clock-date {
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.35);
-  letter-spacing: 0.05em;
 }
 
 /* ── Main grid ──────────────────────────────────────────────── */
 .screen-main {
   display: grid;
-  grid-template-columns: 1fr 380px;
+  grid-template-columns: 1fr 440px;
   gap: 16px;
   padding: 16px 24px;
   min-height: 0;
+  transition: grid-template-columns 0.4s ease;
+}
+
+.screen-main--pause {
+  grid-template-columns: 220px 1fr;
 }
 
 /* ── Tiles ──────────────────────────────────────────────────── */
 .tile {
-  border-radius: 18px;
+  border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.07);
   background: rgba(255, 255, 255, 0.035);
-  padding: 28px 32px;
+  padding: 32px 36px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 18px;
   min-height: 0;
   overflow: hidden;
   position: relative;
@@ -635,12 +633,20 @@ onUnmounted(() => {
   );
 }
 
+.tile-current--pause {
+  border-color: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.02);
+  justify-content: center;
+  align-items: center;
+  padding: 24px 20px;
+}
+
 .tile-next {
   background: rgba(255, 255, 255, 0.03);
 }
 
 .tile-label {
-  font-size: 0.65rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -648,16 +654,35 @@ onUnmounted(() => {
   margin: 0;
 }
 
+/* ── Pause state ────────────────────────────────────────────── */
+.pause-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.pause-label {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.15);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+}
+
 /* ── Type badge ─────────────────────────────────────────────── */
 .talk-type-badge {
   display: inline-flex;
   align-items: center;
-  padding: 3px 10px;
+  padding: 4px 14px;
   border-radius: 20px;
   background: rgba(255, 145, 77, 0.15);
   border: 1px solid rgba(255, 145, 77, 0.3);
   color: #ff914d;
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -665,22 +690,22 @@ onUnmounted(() => {
 }
 
 .talk-type-badge--small {
-  font-size: 0.6rem;
-  padding: 2px 8px;
+  font-size: 0.7rem;
+  padding: 3px 12px;
 }
 
 /* ── Current talk content ───────────────────────────────────── */
 .current-title {
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
   font-weight: 800;
-  line-height: 1.15;
+  line-height: 1.1;
   margin: 0;
   color: #fff;
 }
 
 .current-desc {
-  font-size: 0.875rem;
-  line-height: 1.6;
+  font-size: 1.05rem;
+  line-height: 1.65;
   color: rgba(255, 255, 255, 0.5);
   margin: 0;
   display: -webkit-box;
@@ -691,9 +716,9 @@ onUnmounted(() => {
 
 /* ── Next talk content ──────────────────────────────────────── */
 .next-title {
-  font-size: clamp(1.1rem, 2vw, 1.6rem);
-  font-weight: 700;
-  line-height: 1.2;
+  font-size: clamp(1.6rem, 2.8vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.15;
   margin: 0;
   color: #fff;
 }
@@ -701,19 +726,19 @@ onUnmounted(() => {
 .next-time {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.8rem;
+  gap: 8px;
+  font-size: 1rem;
   color: rgba(255, 255, 255, 0.45);
   margin: 0;
 }
 
 .next-time-countdown {
   color: #ff914d;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .inline-icon {
-  font-size: 0.85rem;
+  font-size: 1rem;
   flex-shrink: 0;
 }
 
@@ -721,48 +746,48 @@ onUnmounted(() => {
 .speaker-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: 18px;
   margin-top: auto;
 }
 
 .speaker-row--compact {
-  margin-top: 8px;
+  margin-top: 12px;
 }
 
 .speaker-item {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
 }
 
 .speaker-avatar {
-  width: 56px;
-  height: 56px;
+  width: 88px;
+  height: 88px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid rgba(255, 145, 77, 0.35);
+  border: 2px solid rgba(255, 145, 77, 0.4);
   flex-shrink: 0;
 }
 
 .speaker-avatar--small {
-  width: 40px;
-  height: 40px;
+  width: 72px;
+  height: 72px;
 }
 
 .speaker-info {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 .speaker-name {
-  font-size: 0.9rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: #fff;
 }
 
 .speaker-desc {
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.4);
 }
 
@@ -770,13 +795,13 @@ onUnmounted(() => {
 .timer-block {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   margin-top: auto;
   padding-top: 4px;
 }
 
 .progress-bar-track {
-  height: 3px;
+  height: 4px;
   background: rgba(255, 255, 255, 0.08);
   border-radius: 99px;
   overflow: hidden;
@@ -791,17 +816,17 @@ onUnmounted(() => {
 
 .timer-row {
   display: flex;
-  gap: 20px;
+  gap: 28px;
 }
 
 .timer-item {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 9px;
 }
 
 .timer-icon {
-  font-size: 0.85rem;
+  font-size: 1rem;
   flex-shrink: 0;
 }
 
@@ -814,16 +839,16 @@ onUnmounted(() => {
 }
 
 .timer-label {
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.35);
   letter-spacing: 0.04em;
 }
 
 .timer-value {
-  font-size: 1.05rem;
-  font-weight: 700;
+  font-size: 1.4rem;
+  font-weight: 800;
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
 }
 
 .timer-value--elapsed {
@@ -837,23 +862,23 @@ onUnmounted(() => {
 .next-hint {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.8rem;
+  gap: 8px;
+  font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.4);
-  padding: 8px 12px;
+  padding: 10px 16px;
   background: rgba(255, 255, 255, 0.04);
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .next-hint strong {
-  color: rgba(255, 255, 255, 0.75);
-  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 700;
 }
 
 .next-hint-icon {
   color: #ff914d;
-  font-size: 0.85rem;
+  font-size: 1rem;
   flex-shrink: 0;
 }
 
@@ -866,62 +891,40 @@ onUnmounted(() => {
 .no-talk {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  flex: 1;
-  text-align: center;
-}
-
-.no-talk--small {
   align-items: flex-start;
-  text-align: left;
-}
-
-.no-talk-icon {
-  font-size: 2.5rem;
-  color: rgba(255, 255, 255, 0.1);
+  gap: 10px;
+  flex: 1;
 }
 
 .no-talk-text {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: rgba(255, 255, 255, 0.3);
   margin: 0;
-}
-
-.no-talk-next {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.5);
-  max-width: 400px;
-}
-
-.no-talk-next strong {
-  color: #fff;
 }
 
 /* ── Alt stages row ─────────────────────────────────────────── */
 .stages-row {
   display: flex;
-  gap: 12px;
-  padding: 0 24px 16px;
+  gap: 14px;
+  padding: 0 24px 20px;
   min-height: 0;
 }
 
 .stage-tile {
   flex: 1;
-  border-radius: 14px;
+  border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.07);
   background: rgba(255, 255, 255, 0.025);
-  padding: 14px 18px;
+  padding: 18px 22px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   min-width: 0;
   overflow: hidden;
 }
 
 .stage-name {
-  font-size: 0.6rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -935,19 +938,19 @@ onUnmounted(() => {
 .stage-live-badge {
   display: inline-flex;
   align-items: center;
-  padding: 1px 7px;
+  padding: 2px 8px;
   border-radius: 4px;
   background: rgba(229, 62, 62, 0.2);
   border: 1px solid rgba(229, 62, 62, 0.35);
   color: #e53e3e;
-  font-size: 0.55rem;
+  font-size: 0.65rem;
   font-weight: 800;
   letter-spacing: 0.14em;
   width: fit-content;
 }
 
 .stage-talk-title {
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.85);
   margin: 0;
@@ -955,19 +958,19 @@ onUnmounted(() => {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  line-height: 1.3;
+  line-height: 1.35;
 }
 
 .stage-speakers {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   margin-top: auto;
 }
 
 .stage-avatar {
-  width: 22px;
-  height: 22px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   object-fit: cover;
   border: 1px solid rgba(255, 145, 77, 0.3);
@@ -975,7 +978,7 @@ onUnmounted(() => {
 }
 
 .stage-speaker-name {
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.4);
   white-space: nowrap;
   overflow: hidden;
@@ -983,14 +986,14 @@ onUnmounted(() => {
 }
 
 .stage-next-time {
-  font-size: 0.7rem;
+  font-size: 0.82rem;
   color: rgba(255, 255, 255, 0.3);
   margin: 0;
 }
 
 .stage-empty {
   color: rgba(255, 255, 255, 0.15);
-  font-size: 1rem;
+  font-size: 1.2rem;
   margin: auto 0;
 }
 
