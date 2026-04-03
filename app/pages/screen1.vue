@@ -523,6 +523,12 @@ onUnmounted(() => {
         v-if="currentTalk"
         class="tile tile-current"
       >
+        <!-- Label: Now Live -->
+        <p class="tile-label tile-label--live">
+          <span class="live-dot" />
+          Now Live
+        </p>
+
         <!-- Title -->
         <h1 class="current-title">
           {{ currentTalk.title }}
@@ -663,12 +669,13 @@ onUnmounted(() => {
               class="stage-type-badge"
             >{{ fmtType((getAltStageTalk(stage.slug) as any).talk.type) }}</span>
             <div class="stage-time-status">
-              <div
+              <p
                 v-if="(getAltStageTalk(stage.slug) as any).status === 'live'"
-                class="stage-live-badge"
+                class="stage-now-live"
               >
-                LIVE
-              </div>
+                <span class="live-dot" />
+                Now Live
+              </p>
               <span class="stage-time">
                 {{ fmtTime((getAltStageTalk(stage.slug) as any).talk.start) }}–{{ fmtTime((getAltStageTalk(stage.slug) as any).talk.end) }}
               </span>
@@ -1345,18 +1352,16 @@ onUnmounted(() => {
   text-overflow: ellipsis;
 }
 
-.stage-live-badge {
-  display: inline-flex;
+.stage-now-live {
+  display: flex;
   align-items: center;
-  padding: 3px 10px;
-  border-radius: 4px;
-  background: rgba(229, 62, 62, 0.2);
-  border: 1px solid rgba(229, 62, 62, 0.35);
-  color: #e53e3e;
+  gap: 6px;
   font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  width: fit-content;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #e53e3e;
+  margin: 0;
 }
 
 .stage-talk-title {
