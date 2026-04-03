@@ -50,29 +50,35 @@ const processedTalks = computed(() => {
 })
 
 // ── Live clock ────────────────────────────────────────────────
-// timeOverride: 'HH:mm' string or '' for real time
+// timeOverride: 'HH:mm' string — when set, clock runs forward from
+// that simulated time (offset = simTime - realTimeAtActivation)
 const timeOverride = ref('')
-
-const now = computed(() => {
-  if (timeOverride.value) {
-    const [h, m] = timeOverride.value.split(':').map(Number)
-    const base = DateTime.now().setZone(timeZone).startOf('day')
-    return base.plus({ hours: h, minutes: m })
-  }
-  return nowTick.value
-})
+const timeOverrideOffset = ref(0) // milliseconds offset applied to real clock
 
 const nowTick = ref(DateTime.now().setZone(timeZone))
 let clockTimer: ReturnType<typeof setInterval>
 onMounted(() => {
   clockTimer = setInterval(() => {
-    if (!timeOverride.value) nowTick.value = DateTime.now().setZone(timeZone)
+    nowTick.value = DateTime.now().setZone(timeZone)
   }, 1000)
 })
 onUnmounted(() => clearInterval(clockTimer))
 
+const now = computed(() => nowTick.value.plus(timeOverrideOffset.value))
 const clockDisplay = computed(() => now.value.toFormat('HH:mm'))
 const isTimeOverride = computed(() => !!timeOverride.value)
+
+function applyTimeOverride(hhmm: string) {
+  if (!hhmm) {
+    timeOverrideOffset.value = 0
+    timeOverride.value = ''
+    return
+  }
+  const [h, m] = hhmm.split(':').map(Number)
+  const simTarget = nowTick.value.startOf('day').plus({ hours: h, minutes: m })
+  timeOverrideOffset.value = simTarget.diff(nowTick.value).milliseconds
+  timeOverride.value = hhmm
+}
 
 // ── Date selection ────────────────────────────────────────────
 const autoMode = ref(true)
@@ -236,7 +242,7 @@ function loadSettings() {
     if (p.mainStageSlug) mainStageSlug.value = p.mainStageSlug
     if (typeof p.autoMode === 'boolean') autoMode.value = p.autoMode
     if (p.manualDate) manualDate.value = p.manualDate
-    if (p.timeOverride) timeOverride.value = p.timeOverride
+    if (p.timeOverride) applyTimeOverride(p.timeOverride)
     if (Array.isArray(p.hiddenAltSlugs)) hiddenAltSlugs.value = new Set(p.hiddenAltSlugs)
   }
   catch {}
@@ -268,7 +274,7 @@ function setAutoMode() {
 }
 
 function fmtDayLabel(iso: string): string {
-  return DateTime.fromISO(iso).setLocale('de').toFormat('EEE, d. MMM')
+  return DateTime.fromISO(iso).setLocale('en').toFormat('EEE, d. MMM')
 }
 
 watch([mainStageSlug, autoMode, manualDate], saveSettings)
@@ -293,13 +299,14 @@ onUnmounted(() => {
         v-if="showConfig"
         class="config-panel"
         @mousemove="keepOpen"
+        @click.self="showConfig = false"
       >
         <div class="config-inner">
           <p class="config-label">
-            Einstellungen
+            Settings
           </p>
 
-          <!-- Vollbild -->
+          <!-- Fullscreen -->
           <button
             class="config-btn"
             @click="toggleFullscreen"
@@ -308,13 +315,13 @@ onUnmounted(() => {
               :name="isFullscreen ? 'i-lucide-minimize' : 'i-lucide-maximize'"
               class="config-btn-icon"
             />
-            {{ isFullscreen ? 'Vollbild beenden' : 'Vollbild' }}
+            {{ isFullscreen ? 'Exit fullscreen' : 'Fullscreen' }}
           </button>
 
-          <!-- Datum -->
+          <!-- Date -->
           <div class="config-section">
             <p class="config-section-label">
-              Datum
+              Date
             </p>
             <div class="config-date-row">
               <button
@@ -334,40 +341,40 @@ onUnmounted(() => {
             </div>
           </div>
 
-          <!-- Zeit -->
+          <!-- Time simulation -->
           <div class="config-section">
             <p class="config-section-label">
-              Zeit überschreiben
+              Simulate time
             </p>
             <div class="config-time-row">
               <input
-                v-model="timeOverride"
+                :value="timeOverride"
                 type="time"
                 class="config-time-input"
                 :class="isTimeOverride && 'config-time-input--active'"
-                @change="saveSettings(); scheduleHide()"
+                @change="applyTimeOverride(($event.target as HTMLInputElement).value); saveSettings()"
                 @click.stop
               >
               <button
                 v-if="isTimeOverride"
                 class="config-date-btn"
-                @click="timeOverride = ''; saveSettings(); scheduleHide()"
+                @click="applyTimeOverride(''); saveSettings()"
               >
-                Zurücksetzen
+                Reset
               </button>
             </div>
             <p
               v-if="isTimeOverride"
               class="config-time-hint"
             >
-              Echtzeit pausiert — zeige {{ timeOverride }} Uhr
+              Simulating {{ timeOverride }} — clock running forward
             </p>
           </div>
 
-          <!-- Hauptbühne -->
+          <!-- Main stage -->
           <div class="config-section">
             <p class="config-section-label">
-              Hauptbühne (oben)
+              Main stage (top)
             </p>
             <div class="config-date-row">
               <button
@@ -381,10 +388,10 @@ onUnmounted(() => {
             </div>
           </div>
 
-          <!-- Alt-Stages -->
+          <!-- Side stages -->
           <div class="config-section">
             <p class="config-section-label">
-              Stages unten anzeigen
+              Show stages below
             </p>
             <div class="config-date-row">
               <button
@@ -405,7 +412,7 @@ onUnmounted(() => {
     <header class="screen-header">
       <button
         class="logo-btn"
-        aria-label="Einstellungen öffnen"
+        aria-label="Open settings"
         @click="openConfig"
       >
         <NuxtImg
@@ -432,7 +439,7 @@ onUnmounted(() => {
             {{ currentTalk.title }}
           </h1>
 
-          <!-- Description (body content) -->
+          <!-- Body content (above speakers) -->
           <div
             v-if="currentTalk.body"
             class="current-desc"
@@ -466,51 +473,35 @@ onUnmounted(() => {
             </div>
           </div>
 
-          <!-- Progress section -->
-          <div class="progress-section">
-            <!-- Time labels above bar -->
-            <div class="progress-labels">
-              <div class="progress-label-item">
-                <span class="progress-label-text">Läuft seit</span>
-                <span class="progress-label-value progress-label-value--elapsed">{{ fmtTimer(elapsedSeconds) }}</span>
-              </div>
-              <div class="progress-label-item progress-label-item--right">
-                <span class="progress-label-text">Verbleibend</span>
-                <span class="progress-label-value progress-label-value--remain">{{ fmtTimer(remainingSeconds) }}</span>
-              </div>
-            </div>
+          <!-- Until next talk hint -->
+          <div
+            v-if="untilNextSeconds !== null"
+            class="next-hint"
+          >
+            <UIcon
+              name="i-lucide-arrow-right"
+              class="next-hint-icon"
+            />
+            Next talk in
+            <strong>{{ fmtCountdown(untilNextSeconds) }}</strong>
+            <span class="next-hint-time">({{ nextTalk ? fmtTime(nextTalk.start) : '' }})</span>
+          </div>
 
-            <!-- Visual bar -->
-            <div class="progress-bar-track">
+          <!-- ── Progress bar pinned to bottom ── -->
+          <div class="progress-footer">
+            <div class="progress-footer-labels">
+              <span class="progress-footer-elapsed">{{ fmtTimer(elapsedSeconds) }}</span>
+              <span class="progress-footer-remain">{{ fmtTimer(remainingSeconds) }}</span>
+            </div>
+            <div class="progress-footer-track">
               <div
-                class="progress-bar-fill"
+                class="progress-footer-fill"
                 :style="{ width: talkProgress + '%' }"
               />
-              <!-- Current position marker -->
               <div
-                class="progress-bar-marker"
-                :style="{ left: talkProgress + '%' }"
+                class="progress-footer-marker"
+                :style="{ left: `clamp(14px, calc(${talkProgress}% ), calc(100% - 14px))` }"
               />
-            </div>
-
-            <!-- Time stamps below bar -->
-            <div class="progress-timestamps">
-              <span>{{ fmtTime(currentTalk.start) }}</span>
-              <span>{{ fmtTime(currentTalk.end) }}</span>
-            </div>
-
-            <!-- Until next talk -->
-            <div
-              v-if="untilNextSeconds !== null"
-              class="next-hint"
-            >
-              <UIcon
-                name="i-lucide-arrow-right"
-                class="next-hint-icon"
-              />
-              Nächster Talk in
-              <strong>{{ fmtCountdown(untilNextSeconds) }}</strong>
-              <span class="next-hint-time">({{ nextTalk ? fmtTime(nextTalk.start) : '' }} Uhr)</span>
             </div>
           </div>
         </template>
@@ -527,7 +518,7 @@ onUnmounted(() => {
       <div class="tile tile-next">
         <template v-if="nextTalk">
           <p class="tile-label">
-            Nächster Talk
+            Next talk
           </p>
           <div class="talk-type-badge talk-type-badge--small">
             {{ fmtType(nextTalk.type) }}
@@ -540,7 +531,7 @@ onUnmounted(() => {
               name="i-lucide-clock"
               class="inline-icon"
             />
-            {{ fmtTime(nextTalk.start) }} Uhr
+            {{ fmtTime(nextTalk.start) }}
             <span
               v-if="untilNextSeconds"
               class="next-time-countdown"
@@ -573,11 +564,11 @@ onUnmounted(() => {
         </template>
         <template v-else>
           <p class="tile-label">
-            Nächster Talk
+            Next talk
           </p>
-          <div class="no-talk no-talk--small">
+          <div class="no-talk">
             <p class="no-talk-text">
-              Keine weiteren Talks geplant
+              No more talks scheduled
             </p>
           </div>
         </template>
@@ -847,13 +838,17 @@ onUnmounted(() => {
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.07);
   background: rgba(255, 255, 255, 0.035);
-  padding: 32px 36px;
+  padding: 32px 36px 0;
   display: flex;
   flex-direction: column;
   gap: 18px;
   min-height: 0;
   overflow: hidden;
   position: relative;
+}
+
+.tile-next {
+  padding-bottom: 32px;
 }
 
 .tile-current {
@@ -1013,7 +1008,6 @@ onUnmounted(() => {
   display: flex;
   flex-wrap: wrap;
   gap: 18px;
-  margin-top: auto;
 }
 
 .speaker-row--compact {
@@ -1057,88 +1051,64 @@ onUnmounted(() => {
   color: rgba(255, 255, 255, 0.4);
 }
 
-/* ── Progress section ───────────────────────────────────────── */
-.progress-section {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+/* ── Progress footer (pinned to bottom of current tile) ─────── */
+.progress-footer {
   margin-top: auto;
+  flex-shrink: 0;
 }
 
-.progress-labels {
+.progress-footer-labels {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: baseline;
+  padding: 0 4px 8px;
 }
 
-.progress-label-item {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.progress-label-item--right {
-  align-items: flex-end;
-}
-
-.progress-label-text {
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.3);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.progress-label-value {
-  font-size: 2rem;
+.progress-footer-elapsed {
+  font-size: 1.6rem;
   font-weight: 800;
   font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.35);
   letter-spacing: 0.02em;
   line-height: 1;
 }
 
-.progress-label-value--elapsed {
-  color: rgba(255, 255, 255, 0.35);
-}
-
-.progress-label-value--remain {
+.progress-footer-remain {
+  font-size: 1.6rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
   color: #ff914d;
+  letter-spacing: 0.02em;
+  line-height: 1;
 }
 
-.progress-bar-track {
+.progress-footer-track {
   position: relative;
-  height: 20px;
+  height: 24px;
   background: rgba(255, 255, 255, 0.07);
-  border-radius: 99px;
+  border-radius: 0 0 18px 18px;
   overflow: visible;
 }
 
-.progress-bar-fill {
+.progress-footer-fill {
   height: 100%;
-  background: linear-gradient(90deg, rgba(255, 145, 77, 0.5), #ff914d);
-  border-radius: 99px;
+  background: linear-gradient(90deg, rgba(255, 145, 77, 0.35), rgba(255, 145, 77, 0.8));
+  border-radius: 0 0 0 18px;
   transition: width 1s linear;
 }
 
-.progress-bar-marker {
+.progress-footer-marker {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: #ff914d;
-  border: 3px solid #080808;
-  box-shadow: 0 0 12px rgba(255, 145, 77, 0.6);
+  border: 3px solid #0d0d0d;
+  box-shadow: 0 0 16px rgba(255, 145, 77, 0.7), 0 0 4px rgba(255, 145, 77, 0.4);
   pointer-events: none;
-}
-
-.progress-timestamps {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.2);
-  font-variant-numeric: tabular-nums;
-  padding: 0 2px;
+  transition: left 1s linear;
 }
 
 .next-hint {
