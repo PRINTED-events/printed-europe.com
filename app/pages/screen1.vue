@@ -50,16 +50,29 @@ const processedTalks = computed(() => {
 })
 
 // ── Live clock ────────────────────────────────────────────────
-const now = ref(DateTime.now().setZone(timeZone))
+// timeOverride: 'HH:mm' string or '' for real time
+const timeOverride = ref('')
+
+const now = computed(() => {
+  if (timeOverride.value) {
+    const [h, m] = timeOverride.value.split(':').map(Number)
+    const base = DateTime.now().setZone(timeZone).startOf('day')
+    return base.plus({ hours: h, minutes: m })
+  }
+  return nowTick.value
+})
+
+const nowTick = ref(DateTime.now().setZone(timeZone))
 let clockTimer: ReturnType<typeof setInterval>
 onMounted(() => {
   clockTimer = setInterval(() => {
-    now.value = DateTime.now().setZone(timeZone)
+    if (!timeOverride.value) nowTick.value = DateTime.now().setZone(timeZone)
   }, 1000)
 })
 onUnmounted(() => clearInterval(clockTimer))
 
 const clockDisplay = computed(() => now.value.toFormat('HH:mm'))
+const isTimeOverride = computed(() => !!timeOverride.value)
 
 // ── Date selection ────────────────────────────────────────────
 const autoMode = ref(true)
@@ -125,9 +138,22 @@ const talkProgress = computed(() => {
 })
 
 // ── Alternative stages ────────────────────────────────────────
+const hiddenAltSlugs = ref<Set<string>>(new Set())
+
 const altStages = computed(() =>
   (stages.value ?? []).filter(s => s.slug !== mainStageSlug.value),
 )
+
+const visibleAltStages = computed(() =>
+  altStages.value.filter(s => !hiddenAltSlugs.value.has(s.slug)),
+)
+
+function toggleAltStage(slug: string) {
+  if (hiddenAltSlugs.value.has(slug)) hiddenAltSlugs.value.delete(slug)
+  else hiddenAltSlugs.value.add(slug)
+  saveSettings()
+  scheduleHide()
+}
 
 function getAltStageTalk(stageSlug: string) {
   const stageTalks = processedTalks.value.filter(t => t.stageObject?.slug === stageSlug)
@@ -148,9 +174,11 @@ function fmtTimer(seconds: number): string {
 }
 
 function fmtCountdown(seconds: number): string {
-  if (seconds < 60) return `${seconds}s`
-  const m = Math.floor(seconds / 60)
-  return `${m} min`
+  const h = Math.floor(seconds / 3600)
+  const m = Math.floor((seconds % 3600) / 60)
+  const s = seconds % 60
+  if (h > 0) return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
+  return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
 }
 
 function fmtTime(dt: DateTime): string {
@@ -208,6 +236,8 @@ function loadSettings() {
     if (p.mainStageSlug) mainStageSlug.value = p.mainStageSlug
     if (typeof p.autoMode === 'boolean') autoMode.value = p.autoMode
     if (p.manualDate) manualDate.value = p.manualDate
+    if (p.timeOverride) timeOverride.value = p.timeOverride
+    if (Array.isArray(p.hiddenAltSlugs)) hiddenAltSlugs.value = new Set(p.hiddenAltSlugs)
   }
   catch {}
 }
@@ -218,6 +248,8 @@ function saveSettings() {
     mainStageSlug: mainStageSlug.value,
     autoMode: autoMode.value,
     manualDate: manualDate.value,
+    timeOverride: timeOverride.value,
+    hiddenAltSlugs: [...hiddenAltSlugs.value],
   }))
 }
 
@@ -298,6 +330,70 @@ onUnmounted(() => {
                 @click="setManualDate(day)"
               >
                 {{ fmtDayLabel(day) }}
+              </button>
+            </div>
+          </div>
+
+          <!-- Zeit -->
+          <div class="config-section">
+            <p class="config-section-label">
+              Zeit überschreiben
+            </p>
+            <div class="config-time-row">
+              <input
+                v-model="timeOverride"
+                type="time"
+                class="config-time-input"
+                :class="isTimeOverride && 'config-time-input--active'"
+                @change="saveSettings(); scheduleHide()"
+                @click.stop
+              >
+              <button
+                v-if="isTimeOverride"
+                class="config-date-btn"
+                @click="timeOverride = ''; saveSettings(); scheduleHide()"
+              >
+                Zurücksetzen
+              </button>
+            </div>
+            <p
+              v-if="isTimeOverride"
+              class="config-time-hint"
+            >
+              Echtzeit pausiert — zeige {{ timeOverride }} Uhr
+            </p>
+          </div>
+
+          <!-- Hauptbühne -->
+          <div class="config-section">
+            <p class="config-section-label">
+              Hauptbühne (oben)
+            </p>
+            <div class="config-date-row">
+              <button
+                v-for="stage in stages"
+                :key="stage.slug"
+                :class="['config-date-btn', mainStageSlug === stage.slug && 'config-date-btn--active']"
+                @click="mainStageSlug = stage.slug; saveSettings(); scheduleHide()"
+              >
+                {{ stage.name }}
+              </button>
+            </div>
+          </div>
+
+          <!-- Alt-Stages -->
+          <div class="config-section">
+            <p class="config-section-label">
+              Stages unten anzeigen
+            </p>
+            <div class="config-date-row">
+              <button
+                v-for="stage in altStages"
+                :key="stage.slug"
+                :class="['config-date-btn', !hiddenAltSlugs.has(stage.slug) && 'config-date-btn--active']"
+                @click="toggleAltStage(stage.slug)"
+              >
+                {{ stage.name }}
               </button>
             </div>
           </div>
@@ -491,7 +587,7 @@ onUnmounted(() => {
     <!-- ── Alt stages row ──────────────────────────────────── -->
     <footer class="stages-row">
       <div
-        v-for="stage in altStages"
+        v-for="stage in visibleAltStages"
         :key="stage.slug"
         class="stage-tile"
       >
@@ -652,6 +748,44 @@ onUnmounted(() => {
   border-color: rgba(255, 145, 77, 0.4);
   color: #ff914d;
   font-weight: 700;
+}
+
+.config-time-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.config-time-input {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  color-scheme: dark;
+}
+
+.config-time-input:focus {
+  outline: none;
+  border-color: rgba(255, 145, 77, 0.4);
+}
+
+.config-time-input--active {
+  border-color: rgba(255, 145, 77, 0.4);
+  background: rgba(255, 145, 77, 0.1);
+  color: #ff914d;
+}
+
+.config-time-hint {
+  font-size: 0.72rem;
+  color: rgba(255, 145, 77, 0.7);
+  margin: 6px 0 0;
 }
 
 /* ── Header ─────────────────────────────────────────────────── */
