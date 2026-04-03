@@ -206,6 +206,8 @@ function loadSettings() {
     if (!raw) return
     const p = JSON.parse(raw)
     if (p.mainStageSlug) mainStageSlug.value = p.mainStageSlug
+    if (typeof p.autoMode === 'boolean') autoMode.value = p.autoMode
+    if (p.manualDate) manualDate.value = p.manualDate
   }
   catch {}
 }
@@ -214,10 +216,30 @@ function saveSettings() {
   if (typeof sessionStorage === 'undefined') return
   sessionStorage.setItem('screen1-settings', JSON.stringify({
     mainStageSlug: mainStageSlug.value,
+    autoMode: autoMode.value,
+    manualDate: manualDate.value,
   }))
 }
 
-watch(mainStageSlug, saveSettings)
+function setManualDate(date: string) {
+  autoMode.value = false
+  manualDate.value = date
+  saveSettings()
+  scheduleHide()
+}
+
+function setAutoMode() {
+  autoMode.value = true
+  manualDate.value = ''
+  saveSettings()
+  scheduleHide()
+}
+
+function fmtDayLabel(iso: string): string {
+  return DateTime.fromISO(iso).setLocale('de').toFormat('EEE, d. MMM')
+}
+
+watch([mainStageSlug, autoMode, manualDate], saveSettings)
 
 onMounted(() => {
   loadSettings()
@@ -244,6 +266,8 @@ onUnmounted(() => {
           <p class="config-label">
             Einstellungen
           </p>
+
+          <!-- Vollbild -->
           <button
             class="config-btn"
             @click="toggleFullscreen"
@@ -254,6 +278,29 @@ onUnmounted(() => {
             />
             {{ isFullscreen ? 'Vollbild beenden' : 'Vollbild' }}
           </button>
+
+          <!-- Datum -->
+          <div class="config-section">
+            <p class="config-section-label">
+              Datum
+            </p>
+            <div class="config-date-row">
+              <button
+                :class="['config-date-btn', autoMode && 'config-date-btn--active']"
+                @click="setAutoMode"
+              >
+                Auto
+              </button>
+              <button
+                v-for="day in availableDays"
+                :key="day"
+                :class="['config-date-btn', !autoMode && selectedDay === day && 'config-date-btn--active']"
+                @click="setManualDate(day)"
+              >
+                {{ fmtDayLabel(day) }}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </Transition>
@@ -323,32 +370,37 @@ onUnmounted(() => {
             </div>
           </div>
 
-          <!-- Timers -->
-          <div class="timer-block">
-            <!-- Progress bar -->
+          <!-- Progress section -->
+          <div class="progress-section">
+            <!-- Time labels above bar -->
+            <div class="progress-labels">
+              <div class="progress-label-item">
+                <span class="progress-label-text">Läuft seit</span>
+                <span class="progress-label-value progress-label-value--elapsed">{{ fmtTimer(elapsedSeconds) }}</span>
+              </div>
+              <div class="progress-label-item progress-label-item--right">
+                <span class="progress-label-text">Verbleibend</span>
+                <span class="progress-label-value progress-label-value--remain">{{ fmtTimer(remainingSeconds) }}</span>
+              </div>
+            </div>
+
+            <!-- Visual bar -->
             <div class="progress-bar-track">
               <div
                 class="progress-bar-fill"
                 :style="{ width: talkProgress + '%' }"
               />
+              <!-- Current position marker -->
+              <div
+                class="progress-bar-marker"
+                :style="{ left: talkProgress + '%' }"
+              />
             </div>
-            <div class="timer-row">
-              <div class="timer-item">
-                <UIcon
-                  name="i-lucide-play"
-                  class="timer-icon timer-icon--elapsed"
-                />
-                <span class="timer-label">Läuft seit</span>
-                <span class="timer-value timer-value--elapsed">{{ fmtTimer(elapsedSeconds) }}</span>
-              </div>
-              <div class="timer-item">
-                <UIcon
-                  name="i-lucide-timer"
-                  class="timer-icon timer-icon--remain"
-                />
-                <span class="timer-label">Verbleibend</span>
-                <span class="timer-value timer-value--remain">{{ fmtTimer(remainingSeconds) }}</span>
-              </div>
+
+            <!-- Time stamps below bar -->
+            <div class="progress-timestamps">
+              <span>{{ fmtTime(currentTalk.start) }}</span>
+              <span>{{ fmtTime(currentTalk.end) }}</span>
             </div>
 
             <!-- Until next talk -->
@@ -556,6 +608,52 @@ onUnmounted(() => {
   flex-shrink: 0;
 }
 
+.config-section {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.config-section-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  margin: 0 0 10px;
+}
+
+.config-date-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.config-date-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s, color 0.15s;
+}
+
+.config-date-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.config-date-btn--active {
+  background: rgba(255, 145, 77, 0.15);
+  border-color: rgba(255, 145, 77, 0.4);
+  color: #ff914d;
+  font-weight: 700;
+}
+
 /* ── Header ─────────────────────────────────────────────────── */
 .screen-header {
   display: flex;
@@ -708,10 +806,6 @@ onUnmounted(() => {
   line-height: 1.65;
   color: rgba(255, 255, 255, 0.5);
   margin: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 /* ── Next talk content ──────────────────────────────────────── */
@@ -761,17 +855,17 @@ onUnmounted(() => {
 }
 
 .speaker-avatar {
-  width: 88px;
-  height: 88px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid rgba(255, 145, 77, 0.4);
+  border: 3px solid rgba(255, 145, 77, 0.45);
   flex-shrink: 0;
 }
 
 .speaker-avatar--small {
-  width: 72px;
-  height: 72px;
+  width: 100px;
+  height: 100px;
 }
 
 .speaker-info {
@@ -791,72 +885,88 @@ onUnmounted(() => {
   color: rgba(255, 255, 255, 0.4);
 }
 
-/* ── Timers ─────────────────────────────────────────────────── */
-.timer-block {
+/* ── Progress section ───────────────────────────────────────── */
+.progress-section {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   margin-top: auto;
-  padding-top: 4px;
+}
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.progress-label-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.progress-label-item--right {
+  align-items: flex-end;
+}
+
+.progress-label-text {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.progress-label-value {
+  font-size: 2rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.progress-label-value--elapsed {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.progress-label-value--remain {
+  color: #ff914d;
 }
 
 .progress-bar-track {
-  height: 4px;
-  background: rgba(255, 255, 255, 0.08);
+  position: relative;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.07);
   border-radius: 99px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .progress-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #ff914d, #fe6211);
+  background: linear-gradient(90deg, rgba(255, 145, 77, 0.5), #ff914d);
   border-radius: 99px;
   transition: width 1s linear;
 }
 
-.timer-row {
+.progress-bar-marker {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #ff914d;
+  border: 3px solid #080808;
+  box-shadow: 0 0 12px rgba(255, 145, 77, 0.6);
+  pointer-events: none;
+}
+
+.progress-timestamps {
   display: flex;
-  gap: 28px;
-}
-
-.timer-item {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-}
-
-.timer-icon {
-  font-size: 1rem;
-  flex-shrink: 0;
-}
-
-.timer-icon--elapsed {
-  color: rgba(255, 255, 255, 0.3);
-}
-
-.timer-icon--remain {
-  color: #ff914d;
-}
-
-.timer-label {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.35);
-  letter-spacing: 0.04em;
-}
-
-.timer-value {
-  font-size: 1.4rem;
-  font-weight: 800;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.2);
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0.02em;
-}
-
-.timer-value--elapsed {
-  color: rgba(255, 255, 255, 0.45);
-}
-
-.timer-value--remain {
-  color: #ff914d;
+  padding: 0 2px;
 }
 
 .next-hint {
@@ -869,6 +979,7 @@ onUnmounted(() => {
   background: rgba(255, 255, 255, 0.04);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.07);
+  margin-top: 4px;
 }
 
 .next-hint strong {
