@@ -1,13 +1,12 @@
 ---
-title: Talk 6
 slug: talk-6
-dateTime: '2026-09-26T14:30:00.000Z'
-description: ''
-duration: 20
-resources: []
+title: Sustainability in 3D Printing
+type: talk
+dateTime: '2026-09-26T10:00:00.000Z'
+duration: 35
 speakers:
-  - ''
+  - irenaheuzeroth
 stage: main-stage
-type: Talk
+resources: []
 ---
-
+Recycled filaments, bio-based materials, and responsible disposal — Irena examines how the maker community can lead on sustainability.

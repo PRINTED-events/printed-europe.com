@@ -1,13 +1,12 @@
 ---
-title: Talk 4
 slug: talk-4
-dateTime: '2026-09-26T12:00:00.000Z'
-description: ''
-duration: 20
-resources: []
+title: 'Scaling Up: From One Printer to a Print Farm'
+type: talk
+dateTime: '2026-09-26T07:30:00.000Z'
+duration: 40
 speakers:
-  - ''
+  - adrianluben
 stage: main-stage
-type: Talk
+resources: []
 ---
-
+What changes when you go from one machine to twenty? Adrian shares the operational, financial, and creative challenges of running a real print farm.

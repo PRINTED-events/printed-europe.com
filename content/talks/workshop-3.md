@@ -1,13 +1,12 @@
 ---
-title: Workshop 3
 slug: workshop-3
-dateTime: '2026-09-26T15:00:00.000Z'
-description: ''
-duration: 60
-resources: []
+title: Troubleshooting Common Print Failures
+type: workshop
+dateTime: '2026-09-26T10:00:00.000Z'
+duration: 90
 speakers:
   - irenaheuzeroth
 stage: workshop-space-3
-type: Workshop
+resources: []
 ---
-
+Stringing, layer separation, warping, under-extrusion — systematic diagnosis and fixes for the most common FDM problems. Bring your failed prints.

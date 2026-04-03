@@ -463,17 +463,35 @@ onUnmounted(() => {
       <!-- Current talk tile (top left) -->
       <div :class="['tile tile-current', !currentTalk && 'tile-current--pause']">
         <template v-if="currentTalk">
-          <!-- Type badge -->
-          <div class="talk-type-badge">
-            {{ fmtType(currentTalk.type) }}
-          </div>
+          <!-- Label: Now Live -->
+          <p class="tile-label tile-label--live">
+            <span class="live-dot" />
+            Now Live
+          </p>
 
           <!-- Title -->
           <h1 class="current-title">
             {{ currentTalk.title }}
           </h1>
 
-          <!-- Body content (above speakers) -->
+          <!-- Type badge -->
+          <div class="talk-type-badge">
+            {{ fmtType(currentTalk.type) }}
+          </div>
+
+          <!-- Time row -->
+          <p class="current-time-row">
+            <UIcon name="i-lucide-clock" class="inline-icon" />
+            {{ fmtTime(currentTalk.start) }}
+            <span class="current-time-sep">–</span>
+            {{ fmtTime(currentTalk.end) }}
+            <span
+              v-if="untilNextSeconds !== null"
+              class="next-hint-inline"
+            >· next in {{ fmtCountdown(untilNextSeconds) }}</span>
+          </p>
+
+          <!-- Body content -->
           <div
             v-if="currentTalk.body"
             class="current-desc"
@@ -507,20 +525,6 @@ onUnmounted(() => {
             </div>
           </div>
 
-          <!-- Until next talk hint -->
-          <div
-            v-if="untilNextSeconds !== null"
-            class="next-hint"
-          >
-            <UIcon
-              name="i-lucide-arrow-right"
-              class="next-hint-icon"
-            />
-            Next talk in
-            <strong>{{ fmtCountdown(untilNextSeconds) }}</strong>
-            <span class="next-hint-time">({{ nextTalk ? fmtTime(nextTalk.start) : '' }})</span>
-          </div>
-
           <!-- ── Progress bar pinned to bottom ── -->
           <div class="progress-footer">
             <div class="progress-footer-labels">
@@ -531,10 +535,6 @@ onUnmounted(() => {
               <div
                 class="progress-footer-fill"
                 :style="{ width: talkProgress + '%' }"
-              />
-              <div
-                class="progress-footer-marker"
-                :style="{ left: `clamp(14px, calc(${talkProgress}% ), calc(100% - 14px))` }"
               />
             </div>
           </div>
@@ -554,22 +554,24 @@ onUnmounted(() => {
           <p class="tile-label">
             Next talk
           </p>
-          <div class="talk-type-badge talk-type-badge--small">
-            {{ fmtType(nextTalk.type) }}
-          </div>
           <h2 class="next-title">
             {{ nextTalk.title }}
           </h2>
+          <div class="talk-type-badge talk-type-badge--small">
+            {{ fmtType(nextTalk.type) }}
+          </div>
           <p class="next-time">
             <UIcon
               name="i-lucide-clock"
               class="inline-icon"
             />
             {{ fmtTime(nextTalk.start) }}
+            <span class="current-time-sep">–</span>
+            {{ fmtTime(nextTalk.end) }}
             <span
               v-if="untilNextSeconds"
               class="next-time-countdown"
-            >— in {{ fmtCountdown(untilNextSeconds) }}</span>
+            >· in {{ fmtCountdown(untilNextSeconds) }}</span>
           </p>
           <div
             v-if="nextTalk.speakerObjects.length"
@@ -934,6 +936,48 @@ onUnmounted(() => {
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.3);
   margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tile-label--live {
+  color: #e53e3e;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e53e3e;
+  flex-shrink: 0;
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.current-time-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+}
+
+.current-time-sep {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.next-hint-inline {
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 400;
+  font-size: 0.95rem;
 }
 
 /* ── Pause state ────────────────────────────────────────────── */
@@ -1087,15 +1131,16 @@ onUnmounted(() => {
 .speaker-avatar {
   width: 130px;
   height: 130px;
-  border-radius: 50%;
+  border-radius: 18px;
   object-fit: cover;
-  border: 3px solid rgba(255, 145, 77, 0.45);
+  border: 2px solid rgba(255, 145, 77, 0.35);
   flex-shrink: 0;
 }
 
 .speaker-avatar--small {
   width: 100px;
   height: 100px;
+  border-radius: 14px;
 }
 
 .speaker-info {
@@ -1148,31 +1193,29 @@ onUnmounted(() => {
 
 .progress-footer-track {
   position: relative;
-  height: 24px;
+  height: 28px;
   background: rgba(255, 255, 255, 0.07);
-  border-radius: 0 0 18px 18px;
-  overflow: visible;
+  border-radius: 8px 8px 18px 18px;
+  overflow: hidden;
 }
 
 .progress-footer-fill {
   height: 100%;
-  background: linear-gradient(90deg, rgba(255, 145, 77, 0.35), rgba(255, 145, 77, 0.8));
-  border-radius: 0 0 0 18px;
+  background: linear-gradient(90deg, rgba(255, 145, 77, 0.3), rgba(255, 145, 77, 0.85));
+  border-radius: 8px 0 0 18px;
   transition: width 1s linear;
+  position: relative;
 }
 
-.progress-footer-marker {
+.progress-footer-fill::after {
+  content: '';
   position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
   background: #ff914d;
-  border: 3px solid #0d0d0d;
-  box-shadow: 0 0 16px rgba(255, 145, 77, 0.7), 0 0 4px rgba(255, 145, 77, 0.4);
-  pointer-events: none;
-  transition: left 1s linear;
+  box-shadow: 0 0 14px rgba(255, 145, 77, 0.9);
 }
 
 .next-hint {
