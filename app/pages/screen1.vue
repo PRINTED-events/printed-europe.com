@@ -123,6 +123,9 @@ const nextTalk = computed(() =>
   mainStageTalks.value.find(t => t.start > now.value) ?? null,
 )
 
+// True when stage has no current or upcoming talk (all done / none scheduled today)
+const mainStageEmpty = computed(() => !currentTalk.value && !nextTalk.value)
+
 // ── Live timers for current talk ──────────────────────────────
 const elapsedSeconds = computed(() => {
   if (!currentTalk.value) return 0
@@ -170,11 +173,16 @@ function toggleAltStage(slug: string) {
 }
 
 function getAltStageTalk(stageSlug: string) {
-  const stageTalks = processedTalks.value.filter(t => t.stageObject?.slug === stageSlug)
+  const stageTalks = processedTalks.value.filter(
+    t => t.stageObject?.slug === stageSlug && t.start.toISODate() === selectedDay.value,
+  )
   const current = stageTalks.find(t => t.start <= now.value && t.end > now.value)
-  if (current) return { talk: current, status: 'live' as const }
+  if (current) return { talk: current, status: 'live' as const, untilSeconds: null as number | null }
   const next = stageTalks.find(t => t.start > now.value)
-  if (next) return { talk: next, status: 'next' as const }
+  if (next) {
+    const diff = Math.floor(next.start.diff(now.value, 'seconds').seconds)
+    return { talk: next, status: 'next' as const, untilSeconds: diff > 0 ? diff : null }
+  }
   return null
 }
 
@@ -197,6 +205,13 @@ function fmtCountdown(seconds: number): string {
 
 function fmtTime(dt: DateTime): string {
   return dt.toFormat('HH:mm')
+}
+
+function fmtCountdownHM(seconds: number): string {
+  const h = Math.floor(seconds / 3600)
+  const m = Math.floor((seconds % 3600) / 60)
+  if (h > 0) return `${h}h ${String(m).padStart(2, '0')}m`
+  return `${m}m`
 }
 
 function fmtType(type: string): string {
@@ -302,7 +317,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="screen-root">
+  <div :class="['screen-root', mainStageEmpty && 'screen-root--empty']">
     <!-- ── Config overlay ───────────────────────────────────── -->
     <Transition name="fade">
       <div
@@ -459,7 +474,18 @@ onUnmounted(() => {
     </header>
 
     <!-- ── Main grid ───────────────────────────────────────── -->
-    <main :class="['screen-main', !currentTalk && 'screen-main--pause']">
+    <main
+      v-if="mainStageEmpty"
+      class="screen-main-empty"
+    >
+      <p class="stage-empty-msg">
+        This stage is empty for today
+      </p>
+    </main>
+    <main
+      v-else
+      :class="['screen-main', !currentTalk && 'screen-main--pause']"
+    >
       <!-- Current talk tile (top left) -->
       <div :class="['tile tile-current', !currentTalk && 'tile-current--pause']">
         <template v-if="currentTalk">
@@ -485,10 +511,6 @@ onUnmounted(() => {
             {{ fmtTime(currentTalk.start) }}
             <span class="current-time-sep">–</span>
             {{ fmtTime(currentTalk.end) }}
-            <span
-              v-if="untilNextSeconds !== null"
-              class="next-hint-inline"
-            >· next in {{ fmtCountdown(untilNextSeconds) }}</span>
           </p>
 
           <!-- Body content -->
@@ -622,37 +644,56 @@ onUnmounted(() => {
         <p class="stage-name">
           {{ stage.name }}
         </p>
-        <template v-if="getAltStageTalk(stage.slug)">
-          <div
-            v-if="getAltStageTalk(stage.slug)!.status === 'live'"
-            class="stage-live-badge"
-          >
-            LIVE
+        <template v-if="getAltStageTalk(stage.slug) as any">
+          <!-- Status row: time range + LIVE badge or "next in" -->
+          <div class="stage-status-row">
+            <span
+              v-if="fmtType((getAltStageTalk(stage.slug) as any).talk.type)"
+              class="stage-type-badge"
+            >{{ fmtType((getAltStageTalk(stage.slug) as any).talk.type) }}</span>
+            <div class="stage-time-status">
+              <span class="stage-time">
+                {{ fmtTime((getAltStageTalk(stage.slug) as any).talk.start) }}–{{ fmtTime((getAltStageTalk(stage.slug) as any).talk.end) }}
+              </span>
+              <div
+                v-if="(getAltStageTalk(stage.slug) as any).status === 'live'"
+                class="stage-live-badge"
+              >
+                LIVE
+              </div>
+              <span
+                v-else-if="(getAltStageTalk(stage.slug) as any).untilSeconds !== null"
+                class="stage-next-in"
+              >next in {{ fmtCountdownHM((getAltStageTalk(stage.slug) as any).untilSeconds) }}</span>
+            </div>
           </div>
+          <!-- Title -->
           <p class="stage-talk-title">
-            {{ getAltStageTalk(stage.slug)!.talk.title }}
+            {{ (getAltStageTalk(stage.slug) as any).talk.title }}
           </p>
+          <!-- Speakers stacked -->
           <div
-            v-if="getAltStageTalk(stage.slug)!.talk.speakerObjects.length"
+            v-if="(getAltStageTalk(stage.slug) as any).talk.speakerObjects.length"
             class="stage-speakers"
           >
-            <NuxtImg
-              v-for="sp in getAltStageTalk(stage.slug)!.talk.speakerObjects.slice(0, 2)"
+            <div
+              v-for="sp in (getAltStageTalk(stage.slug) as any).talk.speakerObjects.slice(0, 2)"
               :key="sp.slug"
-              :src="sp.image"
-              :alt="sp.name"
-              class="stage-avatar"
-            />
-            <span class="stage-speaker-name">
-              {{ getAltStageTalk(stage.slug)!.talk.speakerObjects.map((s: any) => s.name).join(', ') }}
-            </span>
+              class="stage-speaker-item"
+            >
+              <NuxtImg
+                v-if="sp.image"
+                :src="sp.image"
+                :alt="sp.name"
+                class="stage-avatar"
+              />
+              <span class="stage-speaker-name">{{ sp.name }}</span>
+            </div>
+            <span
+              v-if="(getAltStageTalk(stage.slug) as any).talk.speakerObjects.length > 2"
+              class="stage-speaker-more"
+            >und {{ (getAltStageTalk(stage.slug) as any).talk.speakerObjects.length - 2 }} weitere</span>
           </div>
-          <p
-            v-if="getAltStageTalk(stage.slug)!.status === 'next'"
-            class="stage-next-time"
-          >
-            {{ fmtTime(getAltStageTalk(stage.slug)!.talk.start) }}
-          </p>
         </template>
         <template v-else>
           <p class="stage-empty">
@@ -663,6 +704,9 @@ onUnmounted(() => {
 
       <!-- QR code tile (always last) -->
       <div class="stage-tile qr-tile">
+        <p class="qr-schedule-label">
+          View full Schedule
+        </p>
         <NuxtImg
           v-if="qrUrl"
           :src="qrUrl"
@@ -876,6 +920,26 @@ onUnmounted(() => {
   line-height: 1;
 }
 
+/* ── Empty main stage ───────────────────────────────────────── */
+.screen-root--empty {
+  grid-template-rows: 88px auto 1fr;
+}
+
+.screen-main-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.stage-empty-msg {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.15);
+}
+
 /* ── Main grid ──────────────────────────────────────────────── */
 .screen-main {
   display: grid;
@@ -1034,10 +1098,10 @@ onUnmounted(() => {
   line-height: 1.65;
   color: rgba(255, 255, 255, 0.5);
   margin: 0;
-  max-height: 8rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
 }
 
 /* Override ContentRenderer/Prose styles for dark screen */
@@ -1164,6 +1228,7 @@ onUnmounted(() => {
 .progress-footer {
   margin-top: auto;
   flex-shrink: 0;
+  padding-bottom: 20px;
 }
 
 .progress-footer-labels {
@@ -1195,14 +1260,14 @@ onUnmounted(() => {
   position: relative;
   height: 28px;
   background: rgba(255, 255, 255, 0.07);
-  border-radius: 8px 8px 18px 18px;
+  border-radius: 14px;
   overflow: hidden;
 }
 
 .progress-footer-fill {
   height: 100%;
   background: linear-gradient(90deg, rgba(255, 145, 77, 0.3), rgba(255, 145, 77, 0.85));
-  border-radius: 8px 0 0 18px;
+  border-radius: 14px 0 0 14px;
   transition: width 1s linear;
   position: relative;
 }
@@ -1321,34 +1386,80 @@ onUnmounted(() => {
   line-height: 1.35;
 }
 
-.stage-speakers {
+.stage-status-row {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.stage-type-badge {
+  display: inline-flex;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(255, 145, 77, 0.12);
+  border: 1px solid rgba(255, 145, 77, 0.25);
+  color: #ff914d;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.stage-time-status {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.stage-time {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-variant-numeric: tabular-nums;
+}
+
+.stage-next-in {
+  font-size: 0.8rem;
+  color: rgba(255, 145, 77, 0.85);
+  font-weight: 600;
+}
+
+.stage-speakers {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   margin-top: auto;
+}
+
+.stage-speaker-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
 }
 
 .stage-avatar {
   width: 36px;
   height: 36px;
-  border-radius: 50%;
+  border-radius: 6px;
   object-fit: cover;
   border: 1px solid rgba(255, 145, 77, 0.35);
   flex-shrink: 0;
 }
 
 .stage-speaker-name {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.stage-next-time {
-  font-size: 0.88rem;
+.stage-speaker-more {
+  font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.3);
-  margin: 0;
+  font-style: italic;
 }
 
 .stage-empty {
@@ -1392,6 +1503,17 @@ onUnmounted(() => {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+/* ── QR schedule label ──────────────────────────────────────── */
+.qr-schedule-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  margin: 0;
+  text-align: center;
 }
 
 /* ── Config URL input ───────────────────────────────────────── */
