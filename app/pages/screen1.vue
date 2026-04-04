@@ -516,7 +516,7 @@ onUnmounted(() => {
     </main>
     <main
       v-else
-      :class="['screen-main', (!currentTalk || !nextTalk) && 'screen-main--single']"
+      :class="['screen-main', !(currentTalk && nextTalk) && 'screen-main--single']"
     >
       <!-- Current talk tile — only when a talk is live -->
       <div
@@ -658,12 +658,14 @@ onUnmounted(() => {
         :key="stage.slug"
         class="stage-tile"
       >
+        <!-- Stage name always top -->
         <p class="stage-name">
           {{ stage.name }}
         </p>
-        <template v-if="getAltStageTalk(stage.slug) as any">
-          <!-- Status row: time range + LIVE badge or "next in" -->
-          <div class="stage-status-row">
+
+        <!-- Status row (type badge + Now Live / time + next-in) — always present, empty when no talk -->
+        <div class="stage-status-row">
+          <template v-if="getAltStageTalk(stage.slug)">
             <span
               v-if="fmtType((getAltStageTalk(stage.slug) as any).talk.type)"
               class="stage-type-badge"
@@ -684,16 +686,26 @@ onUnmounted(() => {
                 class="stage-next-in"
               >next in {{ fmtCountdownHM((getAltStageTalk(stage.slug) as any).untilSeconds) }}</span>
             </div>
-          </div>
-          <!-- Title -->
-          <p class="stage-talk-title">
-            {{ (getAltStageTalk(stage.slug) as any).talk.title }}
-          </p>
-          <!-- Speakers stacked -->
-          <div
-            v-if="(getAltStageTalk(stage.slug) as any).talk.speakerObjects.length"
-            class="stage-speakers"
-          >
+          </template>
+        </div>
+
+        <!-- Title — always present, empty when no talk -->
+        <p
+          v-if="getAltStageTalk(stage.slug)"
+          class="stage-talk-title"
+        >
+          {{ (getAltStageTalk(stage.slug) as any).talk.title }}
+        </p>
+        <p
+          v-else
+          class="stage-empty-today"
+        >
+          This stage is empty for today
+        </p>
+
+        <!-- Speakers — always present, empty when no talk -->
+        <div class="stage-speakers">
+          <template v-if="getAltStageTalk(stage.slug) && (getAltStageTalk(stage.slug) as any).talk.speakerObjects.length">
             <div
               v-for="sp in (getAltStageTalk(stage.slug) as any).talk.speakerObjects.slice(0, 2)"
               :key="sp.slug"
@@ -711,13 +723,8 @@ onUnmounted(() => {
               v-if="(getAltStageTalk(stage.slug) as any).talk.speakerObjects.length > 2"
               class="stage-speaker-more"
             >und {{ (getAltStageTalk(stage.slug) as any).talk.speakerObjects.length - 2 }} weitere</span>
-          </div>
-        </template>
-        <template v-else>
-          <p class="stage-empty-today">
-            This stage is empty for today
-          </p>
-        </template>
+          </template>
+        </div>
       </div>
 
       <!-- QR code tile (always last) -->
@@ -751,7 +758,7 @@ onUnmounted(() => {
 .screen-root {
   min-height: 100dvh;
   display: grid;
-  grid-template-rows: 88px 1fr 300px;
+  grid-template-rows: 88px 1fr 360px;
   background: #080808;
   color: #fff;
   font-family: 'Public Sans', sans-serif;
@@ -777,6 +784,8 @@ onUnmounted(() => {
   border-radius: 14px;
   padding: 20px 24px;
   min-width: 220px;
+  max-height: calc(100dvh - 120px);
+  overflow-y: auto;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
 }
 
@@ -1419,7 +1428,7 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  margin-top: auto;
+  min-height: 42px;
 }
 
 .stage-speaker-item {
