@@ -155,7 +155,7 @@ const talkProgress = computed(() => {
 const fontScale = ref(1.0)
 
 // ── QR Code ───────────────────────────────────────────────────
-const qrUrl = ref('')
+const qrUrl = ref('/Hub26_scheduleqr_white_scaled.png')
 
 // ── Alternative stages ────────────────────────────────────────
 const hiddenAltSlugs = ref<Set<string>>(new Set())
