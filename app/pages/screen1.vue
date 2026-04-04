@@ -490,7 +490,7 @@ onUnmounted(() => {
     </Transition>
 
     <!-- ── Zoomed content root ───────────────────────────────── -->
-    <div :class="['screen-root', mainStageEmpty && 'screen-root--empty']" :style="{ zoom: fontScale }">
+    <div :class="['screen-root', mainStageEmpty && 'screen-root--empty']" :style="{ zoom: fontScale, '--font-scale': fontScale }">
 
     <!-- ── Header bar ──────────────────────────────────────── -->
     <header class="screen-header">
@@ -776,7 +776,7 @@ onUnmounted(() => {
 }
 
 .screen-root {
-  min-height: 100dvh;
+  height: calc(100dvh / var(--font-scale, 1));
   display: grid;
   grid-template-rows: 88px 1fr 360px;
   background: #080808;
