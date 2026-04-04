@@ -715,15 +715,16 @@ onUnmounted(() => {
         </p>
 
         <!-- Speakers — always present, empty when no talk -->
+        <!-- Images only shown for single speaker; multiple speakers → names only -->
         <div class="stage-speakers">
           <template v-if="getAltStageTalk(stage.slug) && (getAltStageTalk(stage.slug) as any).talk.speakerObjects.length">
             <div
-              v-for="sp in (getAltStageTalk(stage.slug) as any).talk.speakerObjects.slice(0, 2)"
+              v-for="sp in (getAltStageTalk(stage.slug) as any).talk.speakerObjects.slice(0, 3)"
               :key="sp.slug"
               class="stage-speaker-item"
             >
               <NuxtImg
-                v-if="sp.image"
+                v-if="sp.image && (getAltStageTalk(stage.slug) as any).talk.speakerObjects.length === 1"
                 :src="sp.image"
                 :alt="sp.name"
                 class="stage-avatar"
@@ -731,9 +732,9 @@ onUnmounted(() => {
               <span class="stage-speaker-name">{{ sp.name }}</span>
             </div>
             <span
-              v-if="(getAltStageTalk(stage.slug) as any).talk.speakerObjects.length > 2"
+              v-if="(getAltStageTalk(stage.slug) as any).talk.speakerObjects.length > 3"
               class="stage-speaker-more"
-            >und {{ (getAltStageTalk(stage.slug) as any).talk.speakerObjects.length - 2 }} weitere</span>
+            >und {{ (getAltStageTalk(stage.slug) as any).talk.speakerObjects.length - 3 }} weitere</span>
           </template>
         </div>
       </div>
@@ -1350,7 +1351,8 @@ onUnmounted(() => {
   display: flex;
   gap: 14px;
   padding: 0 24px 20px;
-  min-height: 0;
+  height: 100%;
+  align-items: stretch;
 }
 
 .stage-tile {
@@ -1445,7 +1447,8 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  min-height: 42px;
+  overflow: hidden;
+  min-height: 0;
 }
 
 .stage-speaker-item {
