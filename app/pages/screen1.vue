@@ -322,8 +322,8 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div :class="['screen-root', mainStageEmpty && 'screen-root--empty']" :style="{ zoom: fontScale }">
-    <!-- ── Config overlay ───────────────────────────────────── -->
+  <div class="screen-outer">
+    <!-- ── Config overlay (outside zoom) ─────────────────────── -->
     <Transition name="fade">
       <div
         v-if="showConfig"
@@ -489,6 +489,9 @@ onUnmounted(() => {
       </div>
     </Transition>
 
+    <!-- ── Zoomed content root ───────────────────────────────── -->
+    <div :class="['screen-root', mainStageEmpty && 'screen-root--empty']" :style="{ zoom: fontScale }">
+
     <!-- ── Header bar ──────────────────────────────────────── -->
     <header class="screen-header">
       <button
@@ -516,7 +519,8 @@ onUnmounted(() => {
     </main>
     <main
       v-else
-      :class="['screen-main', !(currentTalk && nextTalk) && 'screen-main--single']"
+      class="screen-main"
+      :style="!(currentTalk && nextTalk) ? { gridTemplateColumns: '1fr' } : {}"
     >
       <!-- Current talk tile — only when a talk is live -->
       <div
@@ -667,9 +671,9 @@ onUnmounted(() => {
         <div class="stage-status-row">
           <template v-if="getAltStageTalk(stage.slug)">
             <span
-              v-if="fmtType((getAltStageTalk(stage.slug) as any).talk.type)"
               class="stage-type-badge"
-            >{{ fmtType((getAltStageTalk(stage.slug) as any).talk.type) }}</span>
+              :style="{ visibility: fmtType((getAltStageTalk(stage.slug) as any).talk.type) ? 'visible' : 'hidden' }"
+            >{{ fmtType((getAltStageTalk(stage.slug) as any).talk.type) || '&nbsp;' }}</span>
             <div class="stage-time-status">
               <p
                 v-if="(getAltStageTalk(stage.slug) as any).status === 'live'"
@@ -686,6 +690,13 @@ onUnmounted(() => {
                 class="stage-next-in"
               >next in {{ fmtCountdownHM((getAltStageTalk(stage.slug) as any).untilSeconds) }}</span>
             </div>
+          </template>
+          <!-- Invisible placeholder keeps height when no talk -->
+          <template v-else>
+            <span class="stage-type-badge" style="visibility: hidden">
+              &nbsp;
+            </span>
+            <div class="stage-time-status" />
           </template>
         </div>
 
@@ -750,11 +761,20 @@ onUnmounted(() => {
         </div>
       </div>
     </footer>
-  </div>
+    </div><!-- /screen-root -->
+  </div><!-- /screen-outer -->
 </template>
 
 <style scoped>
 /* ── Root ───────────────────────────────────────────────────── */
+.screen-outer {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  background: #080808;
+}
+
 .screen-root {
   min-height: 100dvh;
   display: grid;
@@ -952,9 +972,6 @@ onUnmounted(() => {
   grid-template-rows: 88px auto 1fr;
 }
 
-.screen-main--single {
-  grid-template-columns: 1fr;
-}
 
 .screen-main-empty {
   display: flex;
