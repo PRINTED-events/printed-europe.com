@@ -86,6 +86,11 @@ export default defineNuxtConfig({
     fonts: true, // use `@nuxt/fonts`
   },
 
+  colorMode: { // force dark mode for all users
+    preference: 'dark',
+    fallback: 'dark',
+  },
+
   image: { // for `@nuxt/image`
   },
 
