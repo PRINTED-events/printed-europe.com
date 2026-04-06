@@ -154,6 +154,67 @@ const talkProgress = computed(() => {
 // ── Font scale ────────────────────────────────────────────────
 const fontScale = ref(1.0)
 
+// ── Clipping detection (hide images when tile overflows) ──────
+const currentTileRef = ref<HTMLElement | null>(null)
+const nextTileRef = ref<HTMLElement | null>(null)
+const hideCurrentImages = ref(false)
+const hideNextImages = ref(false)
+const hideAltImages = reactive<Record<string, boolean>>({})
+const altObservers = new Map<string, ResizeObserver>()
+
+function isClipped(el: HTMLElement) {
+  return el.scrollHeight > el.clientHeight + 2
+}
+
+// Reset when talks change (allow re-check after content changes)
+watch(currentTalk, () => { hideCurrentImages.value = false })
+watch(nextTalk, () => { hideNextImages.value = false })
+
+// Reset on zoom change so images show again if now there's space
+watch(fontScale, () => {
+  hideCurrentImages.value = false
+  hideNextImages.value = false
+  Object.keys(hideAltImages).forEach(k => { hideAltImages[k] = false })
+})
+
+watchEffect((onCleanup) => {
+  const el = currentTileRef.value
+  if (!el) return
+  const obs = new ResizeObserver(() => {
+    if (!hideCurrentImages.value && isClipped(el)) hideCurrentImages.value = true
+  })
+  obs.observe(el)
+  onCleanup(() => obs.disconnect())
+})
+
+watchEffect((onCleanup) => {
+  const el = nextTileRef.value
+  if (!el) return
+  const obs = new ResizeObserver(() => {
+    if (!hideNextImages.value && isClipped(el)) hideNextImages.value = true
+  })
+  obs.observe(el)
+  onCleanup(() => obs.disconnect())
+})
+
+function setAltRef(el: HTMLElement | null, slug: string) {
+  if (!el) {
+    altObservers.get(slug)?.disconnect()
+    altObservers.delete(slug)
+    return
+  }
+  altObservers.get(slug)?.disconnect()
+  const obs = new ResizeObserver(() => {
+    if (!hideAltImages[slug] && isClipped(el)) hideAltImages[slug] = true
+  })
+  altObservers.set(slug, obs)
+  obs.observe(el)
+}
+
+onUnmounted(() => {
+  altObservers.forEach(obs => obs.disconnect())
+})
+
 // ── QR Code ───────────────────────────────────────────────────
 const qrUrl = ref('/Hub26_scheduleqr_white_scaled.png')
 
@@ -525,6 +586,7 @@ onUnmounted(() => {
       <!-- Current talk tile — only when a talk is live -->
       <div
         v-if="currentTalk"
+        ref="currentTileRef"
         class="tile tile-current"
       >
         <!-- Label: Now Live -->
@@ -570,7 +632,7 @@ onUnmounted(() => {
             class="speaker-item"
           >
             <NuxtImg
-              v-if="speaker.image"
+              v-if="speaker.image && !hideCurrentImages"
               :src="speaker.image"
               :alt="speaker.name"
               class="speaker-avatar"
@@ -603,6 +665,7 @@ onUnmounted(() => {
       <!-- Next talk tile — only when a next talk exists -->
       <div
         v-if="nextTalk"
+        ref="nextTileRef"
         class="tile tile-next"
       >
         <p class="tile-label">
@@ -637,7 +700,7 @@ onUnmounted(() => {
             class="speaker-item"
           >
             <NuxtImg
-              v-if="speaker.image"
+              v-if="speaker.image && !hideNextImages"
               :src="speaker.image"
               :alt="speaker.name"
               class="speaker-avatar speaker-avatar--small"
@@ -661,6 +724,7 @@ onUnmounted(() => {
         v-for="stage in visibleAltStages"
         :key="stage.slug"
         class="stage-tile"
+        :ref="(el) => setAltRef(el as HTMLElement | null, stage.slug)"
       >
         <!-- Stage name always top -->
         <p class="stage-name">
@@ -715,7 +779,7 @@ onUnmounted(() => {
         </p>
 
         <!-- Speakers — always present, empty when no talk -->
-        <!-- Images only shown for single speaker; multiple speakers → names only -->
+        <!-- Images hidden when tile overflows (clipping detection) -->
         <div class="stage-speakers">
           <template v-if="getAltStageTalk(stage.slug) && (getAltStageTalk(stage.slug) as any).talk.speakerObjects.length">
             <div
@@ -724,7 +788,7 @@ onUnmounted(() => {
               class="stage-speaker-item"
             >
               <NuxtImg
-                v-if="sp.image && (getAltStageTalk(stage.slug) as any).talk.speakerObjects.length === 1"
+                v-if="sp.image && !hideAltImages[stage.slug]"
                 :src="sp.image"
                 :alt="sp.name"
                 class="stage-avatar"
