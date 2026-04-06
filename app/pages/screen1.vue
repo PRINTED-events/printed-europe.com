@@ -627,7 +627,7 @@ onUnmounted(() => {
           class="speaker-row"
         >
           <div
-            v-for="speaker in currentTalk.speakerObjects"
+            v-for="speaker in currentTalk.speakerObjects.slice(0, 4)"
             :key="speaker.slug"
             class="speaker-item"
           >
@@ -645,6 +645,10 @@ onUnmounted(() => {
               >{{ speaker.description }}</span>
             </div>
           </div>
+          <span
+            v-if="currentTalk.speakerObjects.length > 4"
+            class="speaker-more"
+          >und {{ currentTalk.speakerObjects.length - 4 }} weitere...</span>
         </div>
 
         <!-- Progress bar pinned to bottom -->
@@ -695,7 +699,7 @@ onUnmounted(() => {
           class="speaker-row speaker-row--compact"
         >
           <div
-            v-for="speaker in nextTalk.speakerObjects"
+            v-for="speaker in nextTalk.speakerObjects.slice(0, 3)"
             :key="speaker.slug"
             class="speaker-item"
           >
@@ -713,6 +717,10 @@ onUnmounted(() => {
               >{{ speaker.company }}</span>
             </div>
           </div>
+          <span
+            v-if="nextTalk.speakerObjects.length > 3"
+            class="speaker-more"
+          >und {{ nextTalk.speakerObjects.length - 3 }} weitere...</span>
         </div>
       </div>
     </main>
@@ -1251,20 +1259,20 @@ onUnmounted(() => {
 /* ── Speaker ────────────────────────────────────────────────── */
 .speaker-row {
   display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  container-type: inline-size;
-}
-
-/* When the tile is narrow (portrait/stacked): column layout */
-@container (max-width: 540px) {
-  .speaker-row {
-    flex-direction: column;
-  }
+  flex-direction: column;
+  gap: 14px;
 }
 
 .speaker-row--compact {
   margin-top: 12px;
+  gap: 10px;
+}
+
+.speaker-more {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.3);
+  font-style: italic;
+  margin-top: 2px;
 }
 
 .speaker-item {
