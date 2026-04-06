@@ -778,8 +778,8 @@ onUnmounted(() => {
 
 .screen-root {
   height: calc(100dvh / var(--font-scale, 1));
-  display: grid;
-  grid-template-rows: 88px 1fr 360px;
+  display: flex;
+  flex-direction: column;
   background: #080808;
   color: #fff;
   font-family: 'Public Sans', sans-serif;
@@ -930,6 +930,8 @@ onUnmounted(() => {
 
 /* ── Header ─────────────────────────────────────────────────── */
 .screen-header {
+  flex-shrink: 0;
+  height: 88px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -969,12 +971,8 @@ onUnmounted(() => {
 }
 
 /* ── Empty main stage ───────────────────────────────────────── */
-.screen-root--empty {
-  grid-template-rows: 88px auto 1fr;
-}
-
-
 .screen-main-empty {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -991,6 +989,7 @@ onUnmounted(() => {
 
 /* ── Main grid ──────────────────────────────────────────────── */
 .screen-main {
+  flex: 1;
   display: grid;
   grid-template-columns: 1fr 440px;
   gap: 16px;
@@ -1348,10 +1347,11 @@ onUnmounted(() => {
 
 /* ── Alt stages row ─────────────────────────────────────────── */
 .stages-row {
+  flex-shrink: 0;
+  height: 360px;
   display: flex;
   gap: 14px;
   padding: 0 24px 20px;
-  height: 100%;
   align-items: stretch;
 }
 
