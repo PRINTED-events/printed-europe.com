@@ -44,8 +44,6 @@ const items = computed(() => [
     </template>
 
     <template #right>
-      <UColorModeButton />
-
       <UButton
         aria-label="Buy tickets"
         class="lg:hidden"
