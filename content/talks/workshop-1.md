@@ -1,14 +1,13 @@
 ---
+title: Workshop 1
 slug: workshop-1
-title: 'Advanced Klipper: Input Shaping & Resonance Compensation'
-type: workshop
-dateTime: '2026-09-26T07:00:00.000Z'
-duration: 90
-speakers:
-  - adrianluben
-  - bigbangbash
-  - irenaheuzeroth
-stage: workshop-space-1
+dateTime: '2026-09-26T10:30:00.000Z'
+description: ''
+duration: 60
 resources: []
+speakers:
+  - ''
+stage: workshop-space-1
+type: Workshop
 ---
-Take Klipper further: ADXL345 accelerometer setup, resonance compensation profiles, and macro scripting for automated workflows.
+
