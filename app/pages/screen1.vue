@@ -3,10 +3,9 @@ import { DateTime } from 'luxon'
 
 definePageMeta({ layout: false })
 
-// Force dark mode, restore on leave
+// Force dark mode globally
 const colorMode = useColorMode()
 onMounted(() => { colorMode.value = 'dark' })
-onUnmounted(() => { colorMode.preference = 'system' })
 
 const appConfig = useAppConfig()
 const timeZone = appConfig.general?.timeZone || 'UTC'

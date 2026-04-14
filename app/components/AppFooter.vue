@@ -202,7 +202,6 @@ function navigateToAdmin() {
         variant="ghost"
       />
 
-      <UColorModeButton />
     </template>
   </UFooter>
 </template>
