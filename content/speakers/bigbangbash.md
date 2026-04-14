@@ -3,7 +3,7 @@ title: BigBangBash
 company: Company
 description: Content Creator, Entrepreneur
 featured: true
-image: /speaker/BigBangBash.jpeg
+image: /speaker/bigbangbash.jpeg
 name: BigBangBash
 seo:
   title: BigBangBash

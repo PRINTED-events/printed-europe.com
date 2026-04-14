@@ -5,7 +5,7 @@ slug: adrianluben
 company: Marsgizmo
 description: Founder and CEO of Marsgizmo
 featured: true
-image: /speaker/AdrianLuben.jpg
+image: /speaker/adrianluben.jpg
 navigation:
   title: Adrian Luben
 socialMedia:

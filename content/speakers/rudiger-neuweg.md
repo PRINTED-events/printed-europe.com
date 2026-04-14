@@ -3,7 +3,7 @@ title: Rüdiger Neuweg
 company: Snapmaker Ambassador
 description: Snapmaker Ambassador
 featured: true
-image: /speaker/rudigerneuweg.jpg
+image: /speaker/ruedigerneuweg.jpg
 name: Rüdiger Neuweg
 navigation:
   title: Rüdiger Neuweg

@@ -2,7 +2,7 @@
 title: Janos Kehl
 company: PRINTED events
 featured: false
-image: /speaker/JanosKehl.jpg
+image: /speaker/janos-kehl.jpg
 name: Janos Kehl
 navigation:
   title: Janos Kehl
