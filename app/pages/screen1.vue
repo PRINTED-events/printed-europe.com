@@ -619,7 +619,7 @@ onUnmounted(() => {
     <div :class="['screen-root', mainStageEmpty && 'screen-root--empty']" :style="{ '--font-scale': fontScale }">
 
     <!-- ── Header bar ──────────────────────────────────────── -->
-    <header class="screen-header">
+    <header :class="['screen-header', showSponsorBar && 'screen-header--sponsor']">
       <button
         class="logo-btn"
         aria-label="Open settings"
@@ -631,6 +631,27 @@ onUnmounted(() => {
           class="logo-img"
         />
       </button>
+
+      <template v-if="showSponsorBar">
+        <div class="header-sponsor-block">
+          <span class="header-stage-name">{{ mainStageName }}</span>
+          <span class="header-sponsor-label">Sponsored by</span>
+        </div>
+        <div class="header-sponsor-logo">
+          <img
+            v-if="sponsorBarLogoUrl"
+            :src="sponsorBarLogoUrl"
+            alt="Sponsor"
+          >
+          <div
+            v-else
+            class="header-sponsor-placeholder"
+          >
+            <UIcon name="i-lucide-image" />
+          </div>
+        </div>
+      </template>
+
       <span class="clock-time">{{ clockDisplay }}</span>
     </header>
 
@@ -899,33 +920,6 @@ onUnmounted(() => {
         </div>
       </div>
     </footer>
-    <!-- ── Sponsor Bar overlay ──────────────────────────────── -->
-    <Transition name="fade">
-      <div
-        v-if="showSponsorBar"
-        class="sponsor-bar"
-      >
-        <div class="sponsor-bar-left">
-          <span class="sponsor-bar-stage">{{ mainStageName }}</span>
-          <span class="sponsor-bar-label">Sponsor bei:</span>
-        </div>
-        <div class="sponsor-bar-right">
-          <img
-            v-if="sponsorBarLogoUrl"
-            :src="sponsorBarLogoUrl"
-            alt="Sponsor"
-            class="sponsor-bar-logo"
-          >
-          <div
-            v-else
-            class="sponsor-bar-logo-placeholder"
-          >
-            <UIcon name="i-lucide-image" style="font-size:2.5rem; opacity:0.3" />
-          </div>
-        </div>
-      </div>
-    </Transition>
-
     </div><!-- /screen-root -->
   </div><!-- /screen-outer -->
 </template>
@@ -1106,6 +1100,67 @@ onUnmounted(() => {
   padding: 0 32px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   background: rgba(255, 255, 255, 0.02);
+  transition: height 0.3s ease;
+}
+
+.screen-header--sponsor {
+  height: 110px;
+}
+
+.header-sponsor-block {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 40px;
+  min-width: 0;
+}
+
+.header-stage-name {
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header-sponsor-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.header-sponsor-logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+  max-width: 240px;
+  padding-right: 32px;
+}
+
+.header-sponsor-logo img {
+  max-height: 70px;
+  max-width: 240px;
+  object-fit: contain;
+}
+
+.header-sponsor-placeholder {
+  width: 160px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  font-size: 1.8rem;
+  color: rgba(255, 255, 255, 0.2);
 }
 
 .logo-btn {
@@ -1753,75 +1808,6 @@ onUnmounted(() => {
   opacity: 0;
 }
 
-/* ── Sponsor Bar ─────────────────────────────────────────────── */
-.sponsor-bar {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 360px;
-  height: 160px;
-  z-index: 20;
-  background: rgba(8, 8, 8, 0.93);
-  border-top: 3px solid rgba(255, 145, 77, 0.55);
-  border-bottom: 3px solid rgba(255, 145, 77, 0.55);
-  backdrop-filter: blur(12px);
-  display: flex;
-  align-items: center;
-  padding: 0 48px;
-  gap: 40px;
-}
-
-.sponsor-bar-left {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  min-width: 0;
-}
-
-.sponsor-bar-stage {
-  font-size: clamp(2.8rem, 5vw, 5rem);
-  font-weight: 900;
-  line-height: 1;
-  color: #fff;
-  letter-spacing: -0.02em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.sponsor-bar-label {
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  color: rgba(255, 255, 255, 0.45);
-  text-transform: uppercase;
-}
-
-.sponsor-bar-right {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 320px;
-  height: 120px;
-}
-
-.sponsor-bar-logo {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-
-.sponsor-bar-logo-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px dashed rgba(255, 255, 255, 0.12);
-  border-radius: 12px;
-}
 
 /* ── Config upload button ────────────────────────────────────── */
 .config-btn--active {
