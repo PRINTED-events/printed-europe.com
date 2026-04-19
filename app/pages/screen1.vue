@@ -635,9 +635,9 @@ onUnmounted(() => {
       <template v-if="showSponsorBar">
         <div class="header-sponsor-block">
           <span class="header-stage-name">{{ mainStageName }}</span>
-          <span class="header-sponsor-label">Sponsored by</span>
         </div>
         <div class="header-sponsor-logo">
+          <span class="header-sponsor-label">Sponsored by</span>
           <img
             v-if="sponsorBarLogoUrl"
             :src="sponsorBarLogoUrl"
@@ -1138,16 +1138,16 @@ onUnmounted(() => {
 .header-sponsor-logo {
   flex-shrink: 0;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  gap: 14px;
   height: 70px;
-  max-width: 240px;
   padding-right: 32px;
 }
 
 .header-sponsor-logo img {
-  max-height: 70px;
-  max-width: 240px;
+  max-height: 60px;
+  max-width: 200px;
   object-fit: contain;
 }
 
