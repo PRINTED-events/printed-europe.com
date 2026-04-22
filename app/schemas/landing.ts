@@ -34,6 +34,11 @@ export const landingSchema = createBaseWithSeoSchema().extend({
       }),
 
       createLandingBlockBaseSchema().extend({
+        component: z.literal('AppLandingFloorplan'),
+        image: createImageSchema().optional(),
+      }),
+
+      createLandingBlockBaseSchema().extend({
         component: z.literal('AppLandingGallery'),
         images: z.array(createImageSchema()),
       }),
