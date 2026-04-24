@@ -38,8 +38,3 @@ Beyond his YouTube channel, Stefan is a respected voice in the industry, contrib
 - The physics and chemistry of advanced filaments
 - Data-driven decision making for functional design
 """
-
-# Datei speichern
-file_name = "stefan-hermann-speaker-bio-v2.md"
-with open(file_name, "w", encoding="utf-8") as f:
-    f.write(markdown_content)
