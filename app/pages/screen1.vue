@@ -337,11 +337,11 @@ async function toggleFullscreen() {
   scheduleHide()
 }
 
-// ── sessionStorage persistence ────────────────────────────────
+// ── localStorage persistence ────────────────────────────────
 function loadSettings() {
-  if (typeof sessionStorage === 'undefined') return
+  if (typeof localStorage === 'undefined') return
   try {
-    const raw = sessionStorage.getItem('screen1-settings')
+    const raw = localStorage.getItem('screen1-settings')
     if (!raw) return
     const p = JSON.parse(raw)
     if (p.mainStageSlug) mainStageSlug.value = p.mainStageSlug
@@ -358,8 +358,8 @@ function loadSettings() {
 }
 
 function saveSettings() {
-  if (typeof sessionStorage === 'undefined') return
-  sessionStorage.setItem('screen1-settings', JSON.stringify({
+  if (typeof localStorage === 'undefined') return
+  localStorage.setItem('screen1-settings', JSON.stringify({
     mainStageSlug: mainStageSlug.value,
     autoMode: autoMode.value,
     manualDate: manualDate.value,
