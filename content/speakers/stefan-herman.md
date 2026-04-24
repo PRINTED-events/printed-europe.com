@@ -13,6 +13,10 @@ socialMedia:
     description: YouTube
   - url: 'https://www.instagram.com/cnckitchenyt/'
     description: Instagram
+  - url: 'https://www.cnckitchen.com'
+    description: Website
+  - url: 'https://x.com/CNC_Kitchen'
+    description: Twitter / X
 ---
 ## Engineering the Truth. One Test at a Time.
 
