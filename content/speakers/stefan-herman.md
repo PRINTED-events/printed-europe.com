@@ -10,9 +10,7 @@ navigation:
   title: Stefan Herman
 socialMedia:
   - url: 'https://www.youtube.com/@CNCKitchen'
-    description: Youtube
-  - url: 'https://www.youtube.com/@CNCKitchen'
-    description: Twitter
+    description: YouTube
   - url: 'https://www.instagram.com/cnckitchenyt/'
     description: Instagram
 ---
