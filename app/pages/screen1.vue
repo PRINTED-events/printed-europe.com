@@ -3,10 +3,9 @@ import { DateTime } from 'luxon'
 
 definePageMeta({ layout: false })
 
-// Force dark mode, restore on leave
+// Force dark mode globally
 const colorMode = useColorMode()
 onMounted(() => { colorMode.value = 'dark' })
-onUnmounted(() => { colorMode.preference = 'system' })
 
 const appConfig = useAppConfig()
 const timeZone = appConfig.general?.timeZone || 'UTC'
@@ -153,6 +152,25 @@ const talkProgress = computed(() => {
 
 // ── Font scale ────────────────────────────────────────────────
 const fontScale = ref(1.0)
+
+// ── Sponsor bar ───────────────────────────────────────────────
+const showSponsorBar = ref(false)
+const sponsorBarLogoUrl = ref('')
+
+const mainStageName = computed(
+  () => stages.value?.find(s => s.slug === mainStageSlug.value)?.name ?? mainStageSlug.value,
+)
+
+function onSponsorLogoUpload(event: Event) {
+  const file = (event.target as HTMLInputElement).files?.[0]
+  if (!file) return
+  const reader = new FileReader()
+  reader.onload = (e) => {
+    sponsorBarLogoUrl.value = e.target?.result as string
+    saveSettings()
+  }
+  reader.readAsDataURL(file)
+}
 
 // ── Clipping detection (hide images when tile overflows) ──────
 const currentTileRef = ref<HTMLElement | null>(null)
@@ -319,11 +337,11 @@ async function toggleFullscreen() {
   scheduleHide()
 }
 
-// ── sessionStorage persistence ────────────────────────────────
+// ── localStorage persistence ────────────────────────────────
 function loadSettings() {
-  if (typeof sessionStorage === 'undefined') return
+  if (typeof localStorage === 'undefined') return
   try {
-    const raw = sessionStorage.getItem('screen1-settings')
+    const raw = localStorage.getItem('screen1-settings')
     if (!raw) return
     const p = JSON.parse(raw)
     if (p.mainStageSlug) mainStageSlug.value = p.mainStageSlug
@@ -333,13 +351,15 @@ function loadSettings() {
     if (Array.isArray(p.hiddenAltSlugs)) hiddenAltSlugs.value = new Set(p.hiddenAltSlugs)
     if (p.qrUrl) qrUrl.value = p.qrUrl
     if (typeof p.fontScale === 'number') fontScale.value = p.fontScale
+    if (typeof p.showSponsorBar === 'boolean') showSponsorBar.value = p.showSponsorBar
+    if (p.sponsorBarLogoUrl) sponsorBarLogoUrl.value = p.sponsorBarLogoUrl
   }
   catch {}
 }
 
 function saveSettings() {
-  if (typeof sessionStorage === 'undefined') return
-  sessionStorage.setItem('screen1-settings', JSON.stringify({
+  if (typeof localStorage === 'undefined') return
+  localStorage.setItem('screen1-settings', JSON.stringify({
     mainStageSlug: mainStageSlug.value,
     autoMode: autoMode.value,
     manualDate: manualDate.value,
@@ -347,6 +367,8 @@ function saveSettings() {
     hiddenAltSlugs: [...hiddenAltSlugs.value],
     qrUrl: qrUrl.value,
     fontScale: fontScale.value,
+    showSponsorBar: showSponsorBar.value,
+    sponsorBarLogoUrl: sponsorBarLogoUrl.value,
   }))
 }
 
@@ -368,7 +390,7 @@ function fmtDayLabel(iso: string): string {
   return DateTime.fromISO(iso).setLocale('en').toFormat('EEE, d. MMM')
 }
 
-watch([mainStageSlug, autoMode, manualDate, fontScale], saveSettings)
+watch([mainStageSlug, autoMode, manualDate, fontScale, showSponsorBar], saveSettings)
 
 onMounted(() => {
   loadSettings()
@@ -546,6 +568,49 @@ onUnmounted(() => {
               </button>
             </div>
           </div>
+
+          <!-- Sponsor Bar -->
+          <div class="config-section">
+            <p class="config-section-label">
+              Sponsor Bar
+            </p>
+            <button
+              :class="['config-btn', showSponsorBar && 'config-btn--active']"
+              @click="showSponsorBar = !showSponsorBar; saveSettings(); scheduleHide()"
+            >
+              <UIcon
+                :name="showSponsorBar ? 'i-lucide-eye' : 'i-lucide-eye-off'"
+                class="config-btn-icon"
+              />
+              {{ showSponsorBar ? 'Eingeblendet' : 'Ausgeblendet' }}
+            </button>
+            <div class="config-time-row" style="margin-top: 8px">
+              <label class="config-upload-btn" @click.stop>
+                <UIcon name="i-lucide-image" class="config-btn-icon" />
+                Logo hochladen
+                <input
+                  type="file"
+                  accept="image/*"
+                  style="display:none"
+                  @change="onSponsorLogoUpload"
+                  @click.stop
+                >
+              </label>
+              <button
+                v-if="sponsorBarLogoUrl"
+                class="config-date-btn"
+                @click="sponsorBarLogoUrl = ''; saveSettings()"
+              >
+                Clear
+              </button>
+            </div>
+            <img
+              v-if="sponsorBarLogoUrl"
+              :src="sponsorBarLogoUrl"
+              alt="Sponsor logo preview"
+              class="config-logo-preview"
+            >
+          </div>
         </div>
       </div>
     </Transition>
@@ -554,7 +619,7 @@ onUnmounted(() => {
     <div :class="['screen-root', mainStageEmpty && 'screen-root--empty']" :style="{ '--font-scale': fontScale }">
 
     <!-- ── Header bar ──────────────────────────────────────── -->
-    <header class="screen-header">
+    <header :class="['screen-header', showSponsorBar && 'screen-header--sponsor']">
       <button
         class="logo-btn"
         aria-label="Open settings"
@@ -566,6 +631,27 @@ onUnmounted(() => {
           class="logo-img"
         />
       </button>
+
+      <template v-if="showSponsorBar">
+        <div class="header-sponsor-block">
+          <span class="header-stage-name">{{ mainStageName }}</span>
+        </div>
+        <div class="header-sponsor-logo">
+          <span class="header-sponsor-label">Sponsored by</span>
+          <img
+            v-if="sponsorBarLogoUrl"
+            :src="sponsorBarLogoUrl"
+            alt="Sponsor"
+          >
+          <div
+            v-else
+            class="header-sponsor-placeholder"
+          >
+            <UIcon name="i-lucide-image" />
+          </div>
+        </div>
+      </template>
+
       <span class="clock-time">{{ clockDisplay }}</span>
     </header>
 
@@ -859,6 +945,7 @@ onUnmounted(() => {
   color: #fff;
   font-family: 'Public Sans', sans-serif;
   overflow: hidden;
+  position: relative;
 }
 
 /* ── Config overlay ─────────────────────────────────────────── */
@@ -1013,6 +1100,67 @@ onUnmounted(() => {
   padding: 0 32px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   background: rgba(255, 255, 255, 0.02);
+  transition: height 0.3s ease;
+}
+
+.screen-header--sponsor {
+  height: 110px;
+}
+
+.header-sponsor-block {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 40px;
+  min-width: 0;
+}
+
+.header-stage-name {
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header-sponsor-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.header-sponsor-logo {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  height: 70px;
+  padding-right: 32px;
+}
+
+.header-sponsor-logo img {
+  max-height: 60px;
+  max-width: 200px;
+  object-fit: contain;
+}
+
+.header-sponsor-placeholder {
+  width: 160px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  font-size: 1.8rem;
+  color: rgba(255, 255, 255, 0.2);
 }
 
 .logo-btn {
@@ -1658,5 +1806,44 @@ onUnmounted(() => {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+
+/* ── Config upload button ────────────────────────────────────── */
+.config-btn--active {
+  background: rgba(255, 145, 77, 0.15);
+  border-color: rgba(255, 145, 77, 0.4);
+  color: #ff914d;
+}
+
+.config-upload-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.config-upload-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.config-logo-preview {
+  margin-top: 8px;
+  max-width: 100%;
+  max-height: 60px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 </style>

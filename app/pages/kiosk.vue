@@ -5,7 +5,6 @@ definePageMeta({ layout: false })
 
 const colorMode = useColorMode()
 onMounted(() => { colorMode.value = 'dark' })
-onUnmounted(() => { colorMode.preference = 'system' })
 
 const appConfig = useAppConfig()
 const timeZone = appConfig.general?.timeZone || 'UTC'

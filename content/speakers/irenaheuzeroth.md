@@ -3,7 +3,7 @@ title: Irena Heuzeroth
 description: Award-winning additive manufacturing education expert
 company: SKZ- Das Kunststoff Zentrum
 featured: true
-image: /speaker/irena-heuzeroth.jpg
+image: /speaker/irenaheuzeroth.jpg
 name: Irena Heuzeroth
 navigation:
   title: Irena Heuzeroth

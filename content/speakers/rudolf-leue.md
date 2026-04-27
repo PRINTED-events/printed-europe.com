@@ -3,7 +3,7 @@ title: Rudolf Leue
 company: Recycling Fabrik GmbH
 description: Co-founder und CEO of Recycling Fabrik GmbH
 featured: true
-image: /speaker/RudolfLeue.jpg
+image: /speaker/rudolfleue.jpg
 name: Rudolf Leue
 navigation:
   title: Rudolf Leue

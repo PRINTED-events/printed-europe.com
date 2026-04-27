@@ -99,6 +99,13 @@ blocks:
       - title: After Party
         description: Its all about community and meeting like-minded people. A huge part of it is to have fun together and socialize. Be part and enjoy our after-parties and evening events.
         icon: i-lucide-party-popper
+  - component: AppLandingFloorplan
+    title: Find your way around.
+    description: Overview of the venue layout for PRINTED Hub 2026.
+    headline: Venue Map
+    image:
+      src: /hub26_floorplan_v2.png
+      alt: PRINTED Hub 2026 Venue Floorplan
   - component: AppLandingSponsors
     title: Those who make it all possible!
     description: Thanks to our sponsors & Partners.
