@@ -2,7 +2,7 @@ title: Home
 blocks:
   - component: AppLandingHero
     title: PRINTED Hub
-    description: 25th and 26th September 2026 – Rüdesheim (near Frankfurt)
+    description: 30th August 2026 – Rüdesheim (near Frankfurt)
     headline: Get ready for 2 days of workshops, content and community
     links:
       - label: Buy Ticket
@@ -26,7 +26,7 @@ blocks:
     headline: Experience the most special event for 3D printing in europe!
     items:
       - icon: i-lucide-calendar
-        text: 25.-26. Sep 2026
+        text: 30. Aug 2026
         label: Date
       - icon: i-lucide-map-pin
         text: Asbachgasse, Rüdesheim am Rhein
