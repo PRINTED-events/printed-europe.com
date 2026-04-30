@@ -1,6 +1,16 @@
 <script setup lang="ts">
 const route = useRoute()
 
+const pastEvents = [
+  {
+    label: 'PRINTED Hub 2025',
+    description: 'September 2025 · Rüdesheim',
+    icon: 'i-lucide-archive',
+    to: 'https://hub25.printed-europe.com',
+    target: '_blank',
+  },
+]
+
 const items = computed(() => [
   {
     label: 'Schedule',
@@ -21,6 +31,11 @@ const items = computed(() => [
     label: 'FAQ',
     to: '/faq',
     active: route.path.startsWith('/faq'),
+  },
+  {
+    label: 'Past Events',
+    icon: 'i-lucide-history',
+    children: pastEvents,
   },
 ])
 </script>
