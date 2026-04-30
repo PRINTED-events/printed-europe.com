@@ -5,7 +5,6 @@ const pastEvents = [
   {
     label: 'PRINTED Hub 2025',
     description: 'September 2025 · Rüdesheim',
-    icon: 'i-lucide-archive',
     to: 'https://hub25.printed-europe.com',
     target: '_blank',
   },
@@ -34,7 +33,6 @@ const items = computed(() => [
   },
   {
     label: 'Past Events',
-    icon: 'i-lucide-history',
     children: pastEvents,
   },
 ])
