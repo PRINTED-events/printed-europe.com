@@ -1,0 +1,15 @@
+shellEmulator: true
+trustPolicy: no-downgrade
+trustPolicyIgnoreAfter: 10080
+patchedDependencies:
+  nuxt-studio@1.6.0: patches/nuxt-studio.patch
+allowBuilds:
+  '@parcel/watcher': true
+  core-js-pure: false
+  dtrace-provider: false
+  esbuild: true
+  protobufjs: false
+  re2: false
+  sharp: false
+  unrs-resolver: false
+  vue-demi: false

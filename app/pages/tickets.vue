@@ -5,7 +5,7 @@ const { data: tickets } = await useAsyncData('tickets-all', () => queryCollectio
 
 const seoMetadata = extractSeoMetadata({
   title: 'Tickets',
-  description: 'Purchase your ticket to join the conference here. Please keep in mind, that PRINTED Hub is organized in mainly german. We do have international speakers and workshops though. We always have someone near to translate if needed.',
+  description: 'Purchase your ticket to join the conference.',
 })
 // const { title, description } = seoMetadata
 

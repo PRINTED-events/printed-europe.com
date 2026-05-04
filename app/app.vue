@@ -14,7 +14,7 @@ useHead(() => ({
   link: [
     {
       rel: 'icon',
-      // href: '/favicon.svg',
+      // href: '/assets/favicon.svg',
       href: autoSwitchOnColorMode({
         dark: appConfig.general?.favicon?.dark,
         light: appConfig.general?.favicon?.light,
@@ -39,6 +39,7 @@ useSeoMeta({
   <UApp>
     <NuxtLoadingIndicator color="var(--ui-primary)" />
     <NuxtRouteAnnouncer />
+    <UToaster />
 
     <NuxtLayout>
       <NuxtPage />
