@@ -80,23 +80,26 @@ const effectiveOrientation = computed(() => hasMedia.value ? 'horizontal' as con
       </div>
       <div
         v-if="logos?.length"
-        class="flex flex-wrap items-center gap-6"
+        class="grid grid-cols-2 gap-3"
+        :class="logos.length >= 3 ? 'sm:grid-cols-3' : ''"
       >
-        <a
+        <UPageCard
           v-for="logo in logos"
           :key="logo.src"
-          :href="logo.url"
-          rel="noopener noreferrer"
-          target="_blank"
-          class="block"
+          class="flex h-20 items-center justify-center p-3"
+          :rel="logo.url ? 'noopener noreferrer' : undefined"
+          spotlight
+          :target="logo.url ? '_blank' : undefined"
+          :to="logo.url"
+          variant="subtle"
         >
           <NuxtImg
             :alt="logo.alt ?? ''"
-            class="h-12 w-auto object-contain"
+            class="mx-auto h-10 w-full object-contain"
             loading="lazy"
             :src="logo.src"
           />
-        </a>
+        </UPageCard>
       </div>
     </div>
   </UPageSection>
