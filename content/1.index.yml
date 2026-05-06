@@ -106,6 +106,35 @@ blocks:
     image:
       src: /hub26_floorplan_v2.png
       alt: PRINTED Hub 2026 Venue Floorplan
+  - component: AppLandingFeatures
+    title: What's waiting for you inside
+    description: Every corner of Asbachgasse has been designed with makers in mind.
+    headline: Venue Areas
+    items:
+      - title: Main Stage
+        description: The heart of the event. Inspiring talks from professionals, companies, and creators – recorded and published after the event.
+        icon: i-lucide-mic
+      - title: Workshops
+        description: Two dedicated workshop spaces for hands-on learning. From 3D design to hardware hacking – for beginners and experienced makers alike.
+        icon: i-lucide-wrench
+      - title: Community Showcase
+        description: This is your space. Show your projects, discoveries, and passions to the community – apply for your spot (applications open soon).
+        icon: i-lucide-layout-grid
+      - title: Community Hangout
+        description: The place where connections happen. Sit down, start a conversation, and find your next collaborator or project partner.
+        icon: i-lucide-coffee
+      - title: Sponsor Booths
+        description: Discover the latest products and solutions from our sponsors. Get hands-on time with new hardware and talk directly to the teams behind it.
+        icon: i-lucide-store
+      - title: CAD Corner
+        description: Design, iterate, and create together. Bring your laptop and join fellow designers in a dedicated space for all things CAD and 3D modeling.
+        icon: i-lucide-box
+      - title: Fun & Games
+        description: Because making should be fun. Take a break, challenge someone, and enjoy the lighter side of the maker community.
+        icon: i-lucide-gamepad-2
+      - title: Food & Drinks
+        description: Fuel up and keep the conversations going. Good food, good drinks – right in the heart of the venue.
+        icon: i-lucide-utensils
   - component: AppLandingSponsors
     title: Those who make it all possible!
     description: Thanks to our sponsors & Partners.
