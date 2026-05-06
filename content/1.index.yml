@@ -117,7 +117,7 @@ blocks:
       - Recorded and published after the event
       - Live Q&A sessions with every speaker
     image:
-      src: /venues/main-stage/image.jpg
+      src: /venues/main-stage/printedhub25-053.jpg
       alt: Main Stage at PRINTED Hub
     links:
       - label: View Schedule
@@ -138,7 +138,7 @@ blocks:
       - Pick up your exclusive cotton bag
       - Browse the merch shop
     image:
-      src: /venues/1-info-point/image.jpg
+      src: /venues/1-info-point/printedhub25-029.jpg
       alt: Info Point at PRINTED Hub
 
   - component: AppLandingVenueArea
@@ -148,9 +148,6 @@ blocks:
     items:
       - "Thangs × Multibuild: Get creative and win a competition!"
       - "Snapmaker: Discover the latest in desktop manufacturing"
-    image:
-      src: /venues/2-gold-sponsor-booths/image.jpg
-      alt: Gold Sponsor Booths at PRINTED Hub
     logos:
       - src: /venues/2-gold-sponsor-booths/logo-multibuild.svg
         alt: Multibuild
@@ -169,7 +166,7 @@ blocks:
       - Get inspired and spark new ideas
       - Connect directly with the creators
     image:
-      src: /venues/3-community-showcase/image.jpg
+      src: /venues/3-community-showcase/printedhub25-010.jpg
       alt: Community Showcase at PRINTED Hub
 
   - component: AppLandingVenueArea
@@ -181,9 +178,6 @@ blocks:
       - RecyclingFabrik stand
       - Workshop space for sustainability topics
       - Proservation – Packaging with purpose & Podcast Booth
-    image:
-      src: /venues/4-recycling-corner/image.jpg
-      alt: Recycling Corner at PRINTED Hub
     logos:
       - src: /venues/4-recycling-corner/logo-recyclebar.png
         alt: RecycleBar
@@ -202,9 +196,6 @@ blocks:
       - Connect with other attendees
       - Food & drinks on site
       - Transforms into workshop space on Friday
-    image:
-      src: /venues/5-community-hangout/image.jpg
-      alt: Community Hangout at PRINTED Hub
 
   - component: AppLandingVenueArea
     headline: "6 · Bar"
@@ -215,9 +206,6 @@ blocks:
       - Unlimited drinks sponsored by Jukebox.at
       - Cookies by Kittycatcakes
       - Snacks & more
-    image:
-      src: /venues/6-bar/image.jpg
-      alt: Bar at PRINTED Hub
     logos:
       - src: /venues/6-bar/logo-jukebox.png
         alt: Jukebox.at
@@ -230,9 +218,6 @@ blocks:
     items:
       - Classic board games
       - Community-designed 3D printed games
-    image:
-      src: /venues/7-fun-and-games/image.jpg
-      alt: Fun & Games at PRINTED Hub
 
   - component: AppLandingVenueArea
     headline: "8 · Sponsor Booths"
@@ -243,9 +228,6 @@ blocks:
       - SKZ – Plastics technology & testing
       - PlayGlue – Creative building systems
       - Creality – One of the world's most popular 3D printer brands
-    image:
-      src: /venues/8-sponsor-booths/image.jpg
-      alt: Sponsor Booths at PRINTED Hub
     logos:
       - src: /venues/8-sponsor-booths/logo-skz.png
         alt: SKZ
@@ -264,9 +246,6 @@ blocks:
       - 15 high-performance CAD workstations
       - Try 3Dconnexion SpaceMouse controllers hands-on
       - Join or run impromptu CAD sessions
-    image:
-      src: /venues/9-cad-corner/image.jpg
-      alt: CAD Corner at PRINTED Hub
     logos:
       - src: /venues/9-cad-corner/logo-thinkstore24.png
         alt: Thinkstore24
@@ -283,7 +262,7 @@ blocks:
       - Hardware workshop by Rüdiger
       - Snapmaker stand & live demos
     image:
-      src: /venues/10-hardware-space/image.jpg
+      src: /venues/10-hardware-space/printedhub25-009.jpg
       alt: Hardware Space at PRINTED Hub
     logos:
       - src: /venues/10-hardware-space/logo-snapmaker.png
@@ -297,9 +276,6 @@ blocks:
     items:
       - Bees Restaurant – Modern cuisine in a relaxed atmosphere
       - Rheinweinwelt – Regional wine culture & food
-    image:
-      src: /venues/restaurant/image.jpg
-      alt: Restaurant at Asbachgasse
     logos:
       - src: /venues/restaurant/logo-bees.png
         alt: Bees Restaurant
