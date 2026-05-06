@@ -104,7 +104,7 @@ blocks:
     description: Overview of the venue layout for PRINTED Hub 2026.
     headline: Venue Map
     image:
-      src: /hub26_floorplan_v2.png
+      src: /hub26_floorplan_v3.png
       alt: PRINTED Hub 2026 Venue Floorplan
   # ── Venue Areas ─────────────────────────────────────────────────────────────
   # Bilder: public/venues/[bereich]/image.jpg  |  Logos: public/venues/[bereich]/logo-[name].png
@@ -303,19 +303,6 @@ blocks:
       - src: /venues/restaurant/RWW_white.png
         alt: Rheinweinwelt
         url: https://www.rheinweinwelt.de/en/
-    links:
-      - label: Bees Restaurant
-        to: https://www.beesrestaurant.de/en
-        target: _blank
-        icon: i-lucide-external-link
-        variant: subtle
-        size: lg
-      - label: Rheinweinwelt
-        to: https://www.rheinweinwelt.de/en/
-        target: _blank
-        icon: i-lucide-external-link
-        variant: subtle
-        size: lg
   # ─────────────────────────────────────────────────────────────────────────────
   - component: AppLandingSponsors
     title: Those who make it all possible!
