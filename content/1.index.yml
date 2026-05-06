@@ -148,11 +148,9 @@ blocks:
     items:
       - "Thangs × Multibuild: Get creative and win a competition!"
       - "Snapmaker: Discover the latest in desktop manufacturing"
-    images:
-      - src: /venues/2-gold-sponsor-booths/multibin-learning-pack-1131029_1.jpg
-        alt: Multibuild Products
-      - src: /venues/2-gold-sponsor-booths/Thangs_mockup.png
-        alt: Thangs x Multibuild Competition
+    image:
+      src: /venues/2-gold-sponsor-booths/multibuild-products.jpg
+      alt: Multibuild Products
     logos:
       - src: /venues/2-gold-sponsor-booths/logo-multibuild.png
         alt: Multibuild
