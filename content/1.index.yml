@@ -148,8 +148,11 @@ blocks:
     items:
       - "Thangs × Multibuild: Get creative and win a competition!"
       - "Snapmaker: Discover the latest in desktop manufacturing"
+    image:
+      src: /venues/2-gold-sponsor-booths/Thangs_mockup.png
+      alt: Thangs x Multibuild Competition
     logos:
-      - src: /venues/2-gold-sponsor-booths/logo-multibuild.svg
+      - src: /venues/2-gold-sponsor-booths/logo-multibuild.png
         alt: Multibuild
         url: https://multibuild.com
       - src: /venues/2-gold-sponsor-booths/logo-snapmaker.png
@@ -178,12 +181,13 @@ blocks:
       - RecyclingFabrik stand
       - Workshop space for sustainability topics
       - Proservation – Packaging with purpose & Podcast Booth
+    image:
+      src: /venues/4-recycling-corner/printedhub25-044.jpg
+      alt: Recycling Corner at PRINTED Hub
     logos:
-      - src: /venues/4-recycling-corner/logo-recyclebar.png
-        alt: RecycleBar
-      - src: /venues/4-recycling-corner/logo-recyclingfabrik.png
+      - src: /venues/4-recycling-corner/recyclingfabrik.png
         alt: RecyclingFabrik
-      - src: /venues/4-recycling-corner/logo-proservation.png
+      - src: /venues/4-recycling-corner/Proservation_white.png
         alt: Proservation
         url: https://proservation.eu/en/proservation-packaging-with-reason
 
@@ -196,6 +200,9 @@ blocks:
       - Connect with other attendees
       - Food & drinks on site
       - Transforms into workshop space on Friday
+    image:
+      src: /venues/5-community-hangout/printedhub25-090.jpg
+      alt: Community Hangout at PRINTED Hub
 
   - component: AppLandingVenueArea
     headline: "6 · Bar"
@@ -206,8 +213,11 @@ blocks:
       - Unlimited drinks sponsored by Jukebox.at
       - Cookies by Kittycatcakes
       - Snacks & more
+    image:
+      src: /venues/6-bar/printedhub25-013.jpg
+      alt: Bar at PRINTED Hub
     logos:
-      - src: /venues/6-bar/logo-jukebox.png
+      - src: /venues/6-bar/Juicebox.png
         alt: Jukebox.at
         url: https://jukebox.at
 
@@ -218,6 +228,9 @@ blocks:
     items:
       - Classic board games
       - Community-designed 3D printed games
+    image:
+      src: /venues/7-fun-and-games/printedhub25-025.jpg
+      alt: Fun & Games at PRINTED Hub
 
   - component: AppLandingVenueArea
     headline: "8 · Sponsor Booths"
