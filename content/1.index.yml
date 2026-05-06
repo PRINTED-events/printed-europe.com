@@ -172,9 +172,9 @@ blocks:
       - src: /venues/2-gold-sponsor-booths/logo-multibuild.png
         alt: Multibuild
         url: https://multibuild.com
-      - src: /sponsors/snapmaker.png
-        alt: Snapmaker
-        url: https://snapmaker.com
+      - src: /sponsors/Thangs_mockup.png
+        alt: Thangs
+        url: https://thangs.com
 
   - component: AppLandingVenueArea
     headline: "3 · Community Showcase"
