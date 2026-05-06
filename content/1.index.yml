@@ -133,9 +133,11 @@ blocks:
       - Talks & presentations from 30+ speakers
       - Recorded and published after the event
       - Live Q&A sessions with every speaker
-    image:
-      src: /venues/main-stage/printedhub25-053.jpg
-      alt: Main Stage at PRINTED Hub
+    images:
+      - src: /venues/main-stage/printedhub25-053.jpg
+        alt: Main Stage at PRINTED Hub
+      - src: /venues/main-stage/printedhub25-031.jpg
+        alt: Main Stage at PRINTED Hub
     links:
       - label: View Schedule
         to: /schedule
@@ -254,9 +256,13 @@ blocks:
     items:
       - Classic board games
       - Community-designed 3D printed games
-    image:
-      src: /venues/7-fun-and-games/printedhub25-025.jpg
-      alt: Fun & Games at PRINTED Hub
+    images:
+      - src: /venues/7-fun-and-games/printedhub25-025.jpg
+        alt: Fun & Games at PRINTED Hub
+      - src: /venues/7-fun-and-games/printedhub25-043.jpg
+        alt: Fun & Games at PRINTED Hub
+      - src: /venues/7-fun-and-games/printedhub25-045.jpg
+        alt: Fun & Games at PRINTED Hub
 
   - component: AppLandingVenueArea
     headline: "8 · Sponsor Booths"
@@ -267,6 +273,11 @@ blocks:
       - SKZ – Plastics technology & testing
       - PlayGlue – Creative building systems
       - Creality – One of the world's most popular 3D printer brands
+    images:
+      - src: /venues/8-sponsor-booths/printedhub25-037.jpg
+        alt: Sponsor Booths at PRINTED Hub
+      - src: /venues/8-sponsor-booths/printedhub25-038.jpg
+        alt: Sponsor Booths at PRINTED Hub
     logos:
       - src: /venues/8-sponsor-booths/logo-skz.png
         alt: SKZ
@@ -282,6 +293,15 @@ blocks:
       - 15 high-performance CAD workstations
       - Try 3Dconnexion SpaceMouse controllers hands-on
       - Join or run impromptu CAD sessions
+    image:
+      src: /venues/9-cad-corner/spacemouse-compact.jpg
+      alt: 3Dconnexion SpaceMouse at PRINTED Hub
+    logos:
+      - src: /venues/9-cad-corner/ThinkStore24_Logo_white.png
+        alt: Thinkstore24
+      - src: /venues/9-cad-corner/3dconnexion_logo_white.png
+        alt: 3Dconnexion
+        url: https://3dconnexion.com
 
   - component: AppLandingVenueArea
     headline: "10 · Hardware Space"
@@ -291,9 +311,11 @@ blocks:
     items:
       - Hardware workshop by Rüdiger
       - Snapmaker stand & live demos
-    image:
-      src: /venues/10-hardware-space/printedhub25-009.jpg
-      alt: Hardware Space at PRINTED Hub
+    images:
+      - src: /venues/10-hardware-space/printedhub25-009.jpg
+        alt: Hardware Space at PRINTED Hub
+      - src: /venues/10-hardware-space/printedhub25-014.jpg
+        alt: Hardware Space at PRINTED Hub
     logos:
       - src: /venues/10-hardware-space/logo-snapmaker.png
         alt: Snapmaker
