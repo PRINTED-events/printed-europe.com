@@ -214,16 +214,18 @@ blocks:
 
   - component: AppLandingVenueArea
     headline: "6 · Bar"
-    title: Drinks on us – thanks to Jukebox.at.
-    description: Keep your energy up with unlimited drinks from Jukebox.at, plus sweet treats from Kittycatcakes and plenty of snacks throughout the day.
+    title: Drinks on us – thanks to JuiceBox.
+    description: Keep your energy up with unlimited drinks from JuiceBox, plus sweet treats from Kittycatcakes and plenty of snacks throughout the day.
     reverse: true
     items:
-      - Unlimited drinks sponsored by Jukebox.at
+      - Unlimited drinks sponsored by JuiceBox
       - Cookies by Kittycatcakes
       - Snacks & more
-    image:
-      src: /venues/6-bar/printedhub25-013.jpg
-      alt: Bar at PRINTED Hub
+    images:
+      - src: /venues/6-bar/printedhub25-013.jpg
+        alt: Bar at PRINTED Hub
+      - src: /venues/6-bar/juicebox-product.jpeg
+        alt: JuiceBox drinks
     logos:
       - src: /venues/6-bar/Juicebox.png
         alt: JuiceBox
