@@ -37,24 +37,40 @@ blocks:
       - icon: i-lucide-mic-2
         text: 30+ Speakers
         label: Content
-  - component: AppLandingSection
-    title: Where ideas happen.
-    description: Join us for an unforgettable experience.
-    headline: Printed Events
-    orientation: horizontal
-    features:
-      - title: Experts
-        description: Our business professionals give valuable insights on how companies in 3D printing and 3D design work. Learn about new products and be the first to try out new stuff.
-        icon: i-lucide-users
-      - title: Networking
-        description: Connecting with like-minded people is a key outcome of printed events. Our ain goal is to connect the right people to each other.
-        icon: i-lucide-contact
-      - title: Workshops
-        description: Learn from others. No matter if you just start or are experienced. From 3D printing to designing and devloping new products. From Hardware to software.
-        icon: i-lucide-wrench
+  # [HIDDEN] AppLandingSection "Where ideas happen" – superseded by venue area sections
+  # - component: AppLandingSection
+  #   title: Where ideas happen.
+  #   description: Join us for an unforgettable experience.
+  #   headline: Printed Events
+  #   orientation: horizontal
+  #   features:
+  #     - title: Experts
+  #       description: Our business professionals give valuable insights on how companies in 3D printing and 3D design work. Learn about new products and be the first to try out new stuff.
+  #       icon: i-lucide-users
+  #     - title: Networking
+  #       description: Connecting with like-minded people is a key outcome of printed events. Our ain goal is to connect the right people to each other.
+  #       icon: i-lucide-contact
+  #     - title: Workshops
+  #       description: Learn from others. No matter if you just start or are experienced. From 3D printing to designing and devloping new products. From Hardware to software.
+  #       icon: i-lucide-wrench
+  #   image:
+  #     src: /eventimages/printedhub25340.jpg
+  #     alt: Glass Print with PVB
+  - component: AppLandingHeroMedia
+    title: Meet like-minded people
+    description: Immerse yourself.
+    headline: Atmosphere
+    overlayOpacity: 0.5
     image:
-      src: /eventimages/printedhub25340.jpg
-      alt: Glass Print with PVB
+      src: /printedhub25317.jpg
+      alt: Event Crowd
+    links:
+      - label: Aftermovie Printed Hub 2025
+        icon: i-lucide-play
+        variant: solid
+        size: lg
+        to: https://www.youtube.com/watch?v=mou_V2jFpBE
+        target: _blank
   - component: AppLandingSpeakers
     title: Those who paved the way...
     description: Here to share their knowledge and experience.
@@ -76,29 +92,30 @@ blocks:
         alt: stageview
       - src: /eventimages/outside1PWC.jpg
         alt: Exhibition Space
-  - component: AppLandingFeatures
-    title: What to expect at PRINTED
-    description: Education, Community and Fun
-    headline: Highlights
-    items:
-      - title: Talks on stage
-        description: Hear from professionals, companies and creators about their visions and experience. All our talks are being recorded and published after the event.
-        icon: i-lucide-mic
-      - title: Workshops
-        description: Af full day full of workshops for beginnners to experienced people in 3D Design and 3D Printing. Learn from the best.
-        icon: i-lucide-code
-      - title: Community projects
-        description: Our "show your stuff" area is again here to give YOU the opportunity to show your projects and passion. Apply for your space (applications open soon)
-        icon: i-lucide-messages-square
-      - title: Networking
-        description: Connect with other attendees. Meet new friends and kearn from each other. Some new ideas formed first at PRINTED events.
-        icon: i-lucide-coffee
-      - title: Sponsors
-        description: Our sponsors make the events possible. They show their products and solutions, give talks and workshops.
-        icon: i-lucide-store
-      - title: After Party
-        description: Its all about community and meeting like-minded people. A huge part of it is to have fun together and socialize. Be part and enjoy our after-parties and evening events.
-        icon: i-lucide-party-popper
+  # [HIDDEN] AppLandingFeatures "Highlights" – superseded by venue area sections
+  # - component: AppLandingFeatures
+  #   title: What to expect at PRINTED
+  #   description: Education, Community and Fun
+  #   headline: Highlights
+  #   items:
+  #     - title: Talks on stage
+  #       description: Hear from professionals, companies and creators about their visions and experience. All our talks are being recorded and published after the event.
+  #       icon: i-lucide-mic
+  #     - title: Workshops
+  #       description: Af full day full of workshops for beginnners to experienced people in 3D Design and 3D Printing. Learn from the best.
+  #       icon: i-lucide-code
+  #     - title: Community projects
+  #       description: Our "show your stuff" area is again here to give YOU the opportunity to show your projects and passion. Apply for your space (applications open soon)
+  #       icon: i-lucide-messages-square
+  #     - title: Networking
+  #       description: Connect with other attendees. Meet new friends and kearn from each other. Some new ideas formed first at PRINTED events.
+  #       icon: i-lucide-coffee
+  #     - title: Sponsors
+  #       description: Our sponsors make the events possible. They show their products and solutions, give talks and workshops.
+  #       icon: i-lucide-store
+  #     - title: After Party
+  #       description: Its all about community and meeting like-minded people. A huge part of it is to have fun together and socialize. Be part and enjoy our after-parties and evening events.
+  #       icon: i-lucide-party-popper
   - component: AppLandingFloorplan
     title: Find your way around.
     description: Overview of the venue layout for PRINTED Hub 2026.
@@ -308,18 +325,19 @@ blocks:
     headline: Sponsors
     showViewAll: true
     viewAllLink: /faq/sponsors
-  - component: AppLandingHeroMedia
-    title: Meet like-minded people
-    description: Immerse yourself.
-    headline: Atmosphere
-    overlayOpacity: 0.5
-    image:
-      src: /printedhub25317.jpg
-      alt: Event Crowd
-    links:
-      - label: Aftermovie Printed Hub 2025
-        icon: i-lucide-play
-        variant: solid
-        size: lg
-        to: https://www.youtube.com/watch?v=mou_V2jFpBE
-        target: _blank
+  # [HIDDEN] Duplicate AppLandingHeroMedia – moved to after MetaInfo above
+  # - component: AppLandingHeroMedia
+  #   title: Meet like-minded people
+  #   description: Immerse yourself.
+  #   headline: Atmosphere
+  #   overlayOpacity: 0.5
+  #   image:
+  #     src: /printedhub25317.jpg
+  #     alt: Event Crowd
+  #   links:
+  #     - label: Aftermovie Printed Hub 2025
+  #       icon: i-lucide-play
+  #       variant: solid
+  #       size: lg
+  #       to: https://www.youtube.com/watch?v=mou_V2jFpBE
+  #       target: _blank
