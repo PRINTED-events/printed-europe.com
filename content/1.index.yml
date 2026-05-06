@@ -106,35 +106,160 @@ blocks:
     image:
       src: /hub26_floorplan_v2.png
       alt: PRINTED Hub 2026 Venue Floorplan
-  - component: AppLandingFeatures
-    title: What's waiting for you inside
-    description: Every corner of Asbachgasse has been designed with makers in mind.
-    headline: Venue Areas
+  # ── Venue Areas ─────────────────────────────────────────────────────────────
+  - component: AppLandingVenueArea
+    headline: Main Stage
+    title: Where inspiration takes the spotlight.
+    description: The heart of PRINTED Hub – two days of talks, presentations, and panels from the sharpest minds in 3D printing and making. All talks are recorded and published after the event.
     items:
-      - title: Main Stage
-        description: The heart of the event. Inspiring talks from professionals, companies, and creators – recorded and published after the event.
-        icon: i-lucide-mic
-      - title: Workshops
-        description: Two dedicated workshop spaces for hands-on learning. From 3D design to hardware hacking – for beginners and experienced makers alike.
-        icon: i-lucide-wrench
-      - title: Community Showcase
-        description: This is your space. Show your projects, discoveries, and passions to the community – apply for your spot (applications open soon).
-        icon: i-lucide-layout-grid
-      - title: Community Hangout
-        description: The place where connections happen. Sit down, start a conversation, and find your next collaborator or project partner.
-        icon: i-lucide-coffee
-      - title: Sponsor Booths
-        description: Discover the latest products and solutions from our sponsors. Get hands-on time with new hardware and talk directly to the teams behind it.
-        icon: i-lucide-store
-      - title: CAD Corner
-        description: Design, iterate, and create together. Bring your laptop and join fellow designers in a dedicated space for all things CAD and 3D modeling.
-        icon: i-lucide-box
-      - title: Fun & Games
-        description: Because making should be fun. Take a break, challenge someone, and enjoy the lighter side of the maker community.
-        icon: i-lucide-gamepad-2
-      - title: Food & Drinks
-        description: Fuel up and keep the conversations going. Good food, good drinks – right in the heart of the venue.
-        icon: i-lucide-utensils
+      - Talks & presentations from 30+ speakers
+      - Recorded and published after the event
+      - Live Q&A sessions with every speaker
+    image:
+      src: /eventimages/stage1.jpg
+      alt: Main Stage at PRINTED Hub
+    links:
+      - label: View Schedule
+        to: /schedule
+        icon: i-lucide-calendar
+        variant: subtle
+        size: lg
+
+  - component: AppLandingVenueArea
+    headline: "1 · Info Point"
+    title: Your first stop at the Hub.
+    description: Start here – check in, get your badge, and grab everything you need to make the most of two days at PRINTED Hub.
+    reverse: true
+    items:
+      - Ask any question – our team is here to help
+      - Check in & collect your badge
+      - Store your luggage
+      - Pick up your exclusive cotton bag
+      - Browse the merch shop
+
+  - component: AppLandingVenueArea
+    headline: "2 · Gold Sponsor Booths"
+    title: Meet the innovators behind the machines.
+    description: Get hands-on with the latest hardware, meet the teams, and enter a creative competition for a chance to win.
+    items:
+      - "Thangs × Multibuild: Get creative and win a competition!"
+      - "Snapmaker: Discover the latest in desktop manufacturing"
+    logos:
+      - src: /sponsors/MultiBuild-Mono-White.svg
+        alt: Multibuild
+        url: https://multibuild.com
+      - src: /sponsors/snapmaker.png
+        alt: Snapmaker
+        url: https://snapmaker.com
+
+  - component: AppLandingVenueArea
+    headline: "3 · Community Showcase"
+    title: Show what you've made. Be amazed by others.
+    description: The maker gallery at the heart of PRINTED Hub – community members bring their finest creations and connect directly with like-minded people.
+    reverse: true
+    items:
+      - Community members present their special projects
+      - Get inspired and spark new ideas
+      - Connect directly with the creators
+    image:
+      src: /eventimages/printedhub25340.jpg
+      alt: Community Showcase at PRINTED Hub
+
+  - component: AppLandingVenueArea
+    headline: "4 · Recycling Corner"
+    title: Making with a conscience.
+    description: Sustainability in action – discover how the maker community is pioneering responsible production, circular design, and eco-friendly materials.
+    items:
+      - RecycleBar – filament recycling in practice
+      - RecyclingFabrik stand
+      - Workshop space for sustainability topics
+      - Proservation – Packaging with purpose & Podcast Booth
+
+  - component: AppLandingVenueArea
+    headline: "5 · Community Hangout"
+    title: The best ideas start with a good conversation.
+    description: Relax, sit down, meet someone new. On Friday this space transforms into an additional workshop area – versatile and always buzzing.
+    items:
+      - Relax & recharge between sessions
+      - Connect with other attendees
+      - Food & drinks on site
+      - Transforms into workshop space on Friday
+
+  - component: AppLandingVenueArea
+    headline: "6 · Bar"
+    title: Drinks on us – thanks to Jukebox.at.
+    description: Keep your energy up with unlimited drinks from Jukebox.at, plus sweet treats from Kittycatcakes and plenty of snacks throughout the day.
+    reverse: true
+    items:
+      - Unlimited drinks sponsored by Jukebox.at
+      - Cookies by Kittycatcakes
+      - Snacks & more
+
+  - component: AppLandingVenueArea
+    headline: "7 · Fun & Games"
+    title: Because making should be fun.
+    description: Take a break between sessions and challenge someone to a game. Featuring classic board games and – of course – games designed and 3D printed by the community.
+    items:
+      - Classic board games
+      - Community-designed 3D printed games
+
+  - component: AppLandingVenueArea
+    headline: "8 · Sponsor Booths"
+    title: Discover what's powering the maker world.
+    description: Meet our sponsors face to face, test their products, and learn about the solutions shaping the future of making and manufacturing.
+    reverse: true
+    items:
+      - SKZ – Plastics technology & testing
+      - PlayGlue – Creative building systems
+      - Creality – One of the world's most popular 3D printer brands
+    logos:
+      - src: /sponsors/skz.png
+        alt: SKZ
+        url: https://www.skz.de
+
+  - component: AppLandingVenueArea
+    headline: "9 · CAD Corner"
+    title: Design, model, iterate – right here at the event.
+    description: Brought to you by Thinkstore24, the CAD Corner gives you dedicated hardware and professional input devices to dive deep into 3D design.
+    items:
+      - 15 high-performance CAD workstations
+      - Try 3Dconnexion SpaceMouse controllers hands-on
+      - Join or run impromptu CAD sessions
+
+  - component: AppLandingVenueArea
+    headline: "10 · Hardware Space"
+    title: Where hardware gets serious.
+    description: Powered by Snapmaker, this dedicated space hosts Rüdiger's popular hardware workshop and gives you direct access to cutting-edge machines.
+    reverse: true
+    items:
+      - Hardware workshop by Rüdiger
+      - Snapmaker stand & live demos
+    logos:
+      - src: /sponsors/snapmaker.png
+        alt: Snapmaker
+        url: https://snapmaker.com
+
+  - component: AppLandingVenueArea
+    headline: Restaurant
+    title: Two great restaurants, right at the venue.
+    description: Enjoy delicious food without leaving Asbachgasse – two partner restaurants are ready to welcome you during and after the event.
+    items:
+      - Bees Restaurant – Modern cuisine in a relaxed atmosphere
+      - Rheinweinwelt – Regional wine culture & food
+    links:
+      - label: Bees Restaurant
+        to: https://www.beesrestaurant.de/en
+        target: _blank
+        icon: i-lucide-external-link
+        variant: subtle
+        size: lg
+      - label: Rheinweinwelt
+        to: https://www.rheinweinwelt.de/en/
+        target: _blank
+        icon: i-lucide-external-link
+        variant: subtle
+        size: lg
+  # ─────────────────────────────────────────────────────────────────────────────
   - component: AppLandingSponsors
     title: Those who make it all possible!
     description: Thanks to our sponsors & Partners.

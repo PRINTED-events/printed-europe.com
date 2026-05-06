@@ -16,6 +16,7 @@ import {
   AppLandingSpeakers,
   AppLandingSponsors,
   AppLandingTestimonials,
+  AppLandingVenueArea,
 } from '#components'
 import { isNil } from 'lodash-es'
 
@@ -36,6 +37,7 @@ const componentsMap: Record<string, Component> = {
   AppLandingSpeakers,
   AppLandingSponsors,
   AppLandingTestimonials,
+  AppLandingVenueArea,
 }
 
 const { extractSeoMetadata, getSeoMetaBase } = useSeo()
