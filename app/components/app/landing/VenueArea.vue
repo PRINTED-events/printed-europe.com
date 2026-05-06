@@ -28,8 +28,8 @@ const props = defineProps<{
   }[]
 }>()
 
-const hasMedia = computed(() => !!(props.image || props.images?.length || props.logos?.length))
-const effectiveOrientation = computed(() => hasMedia.value ? 'horizontal' as const : 'vertical' as const)
+const hasImage = computed(() => !!(props.image || props.images?.length))
+const effectiveOrientation = computed(() => hasImage.value ? 'horizontal' as const : 'vertical' as const)
 </script>
 
 <template>
@@ -38,24 +38,50 @@ const effectiveOrientation = computed(() => hasMedia.value ? 'horizontal' as con
     :headline="headline"
     :links="links"
     :orientation="effectiveOrientation"
-    :reverse="hasMedia ? reverse : false"
+    :reverse="hasImage ? reverse : false"
     :title="title"
   >
-    <template v-if="items?.length" #features>
-      <li
-        v-for="item in items"
-        :key="item"
-        class="flex items-start gap-2"
+    <template #body>
+      <ul v-if="items?.length" class="space-y-2">
+        <li
+          v-for="item in items"
+          :key="item"
+          class="flex items-start gap-2"
+        >
+          <UIcon
+            class="mt-0.5 shrink-0 text-primary"
+            name="i-lucide-arrow-right"
+          />
+          <span class="text-muted">{{ item }}</span>
+        </li>
+      </ul>
+
+      <div
+        v-if="logos?.length"
+        class="grid grid-cols-2 gap-3 mt-6"
+        :class="logos.length >= 3 ? 'sm:grid-cols-3' : ''"
       >
-        <UIcon
-          class="mt-0.5 shrink-0 text-primary"
-          name="i-lucide-arrow-right"
-        />
-        <span class="text-muted">{{ item }}</span>
-      </li>
+        <UPageCard
+          v-for="logo in logos"
+          :key="logo.src"
+          class="flex h-20 items-center justify-center p-3"
+          :rel="logo.url ? 'noopener noreferrer' : undefined"
+          spotlight
+          :target="logo.url ? '_blank' : undefined"
+          :to="logo.url"
+          variant="subtle"
+        >
+          <NuxtImg
+            :alt="logo.alt ?? ''"
+            class="mx-auto h-10 w-full object-contain"
+            loading="lazy"
+            :src="logo.src"
+          />
+        </UPageCard>
+      </div>
     </template>
 
-    <div v-if="hasMedia" class="flex flex-col gap-6">
+    <div v-if="image || images?.length" class="flex flex-col gap-2">
       <NuxtImg
         v-if="image && !images?.length"
         :alt="image.alt ?? title ?? ''"
@@ -77,29 +103,6 @@ const effectiveOrientation = computed(() => hasMedia.value ? 'horizontal' as con
           loading="lazy"
           :src="img.src"
         />
-      </div>
-      <div
-        v-if="logos?.length"
-        class="grid grid-cols-2 gap-3"
-        :class="logos.length >= 3 ? 'sm:grid-cols-3' : ''"
-      >
-        <UPageCard
-          v-for="logo in logos"
-          :key="logo.src"
-          class="flex h-20 items-center justify-center p-3"
-          :rel="logo.url ? 'noopener noreferrer' : undefined"
-          spotlight
-          :target="logo.url ? '_blank' : undefined"
-          :to="logo.url"
-          variant="subtle"
-        >
-          <NuxtImg
-            :alt="logo.alt ?? ''"
-            class="mx-auto h-10 w-full object-contain"
-            loading="lazy"
-            :src="logo.src"
-          />
-        </UPageCard>
       </div>
     </div>
   </UPageSection>
