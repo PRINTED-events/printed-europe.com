@@ -87,9 +87,10 @@ useSeoMeta({
 })
 
 defineOgImageComponent('DefaultSatori', {
-  headline: 'Home',
-  title: seoMetadata.title,
-  description: seoMetadata.description,
+  headline: '25. – 26. September 2026 · Rüdesheim',
+  title: 'PRINTED Hub 2026',
+  description: '2 days of workshops, talks and community – the most special event for 3D printing in Europe.',
+  image: '/printedhub25317.jpg',
 })
 </script>
 
