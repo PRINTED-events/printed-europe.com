@@ -148,14 +148,16 @@ blocks:
     items:
       - "Thangs × Multibuild: Get creative and win a competition!"
       - "Snapmaker: Discover the latest in desktop manufacturing"
-    image:
-      src: /venues/2-gold-sponsor-booths/Thangs_mockup.png
-      alt: Thangs x Multibuild Competition
+    images:
+      - src: /venues/2-gold-sponsor-booths/multibin-learning-pack-1131029_1.jpg
+        alt: Multibuild Products
+      - src: /venues/2-gold-sponsor-booths/Thangs_mockup.png
+        alt: Thangs x Multibuild Competition
     logos:
       - src: /venues/2-gold-sponsor-booths/logo-multibuild.png
         alt: Multibuild
         url: https://multibuild.com
-      - src: /venues/2-gold-sponsor-booths/logo-snapmaker.png
+      - src: /sponsors/snapmaker.png
         alt: Snapmaker
         url: https://snapmaker.com
 
@@ -225,6 +227,8 @@ blocks:
     logos:
       - src: /venues/6-bar/Juicebox.png
         alt: JuiceBox
+      - src: /venues/6-bar/KCC_logo_color_square.png
+        alt: Kittycatcakes
 
   - component: AppLandingVenueArea
     headline: "7 · Fun & Games"
@@ -250,11 +254,8 @@ blocks:
       - src: /venues/8-sponsor-booths/logo-skz.png
         alt: SKZ
         url: https://www.skz.de
-      - src: /venues/8-sponsor-booths/logo-playgue.png
+      - src: /venues/8-sponsor-booths/PLA-Y-3D.png
         alt: PlayGlue
-      - src: /venues/8-sponsor-booths/logo-creality.png
-        alt: Creality
-        url: https://creality.com
 
   - component: AppLandingVenueArea
     headline: "9 · CAD Corner"
@@ -264,12 +265,6 @@ blocks:
       - 15 high-performance CAD workstations
       - Try 3Dconnexion SpaceMouse controllers hands-on
       - Join or run impromptu CAD sessions
-    logos:
-      - src: /venues/9-cad-corner/logo-thinkstore24.png
-        alt: Thinkstore24
-      - src: /venues/9-cad-corner/logo-3dconnexion.png
-        alt: 3Dconnexion
-        url: https://3dconnexion.com
 
   - component: AppLandingVenueArea
     headline: "10 · Hardware Space"
@@ -294,11 +289,14 @@ blocks:
     items:
       - Bees Restaurant – Modern cuisine in a relaxed atmosphere
       - Rheinweinwelt – Regional wine culture & food
+    image:
+      src: /venues/6-bar/NEU_summer-dream_ORIGINAL_Kopie_885201d1-c09b-4b04-8665-6688c987ba31.webp.jpeg
+      alt: Restaurant at Asbachgasse
     logos:
-      - src: /venues/restaurant/logo-bees.png
+      - src: /venues/6-bar/BeeslogoCombined.png
         alt: Bees Restaurant
         url: https://www.beesrestaurant.de/en
-      - src: /venues/restaurant/logo-rheinweinwelt.png
+      - src: /venues/6-bar/RWW_white.png
         alt: Rheinweinwelt
         url: https://www.rheinweinwelt.de/en/
     links:
