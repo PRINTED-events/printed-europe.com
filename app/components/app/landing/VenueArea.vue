@@ -9,6 +9,10 @@ const props = defineProps<{
     src: string
     alt?: string
   }
+  images?: {
+    src: string
+    alt?: string
+  }[]
   logos?: {
     src: string
     alt?: string
@@ -24,7 +28,7 @@ const props = defineProps<{
   }[]
 }>()
 
-const hasMedia = computed(() => !!(props.image || props.logos?.length))
+const hasMedia = computed(() => !!(props.image || props.images?.length || props.logos?.length))
 const effectiveOrientation = computed(() => hasMedia.value ? 'horizontal' as const : 'vertical' as const)
 </script>
 
@@ -53,12 +57,27 @@ const effectiveOrientation = computed(() => hasMedia.value ? 'horizontal' as con
 
     <div v-if="hasMedia" class="flex flex-col gap-6">
       <NuxtImg
-        v-if="image"
+        v-if="image && !images?.length"
         :alt="image.alt ?? title ?? ''"
         class="w-full rounded-xl shadow-lg object-cover"
         loading="lazy"
         :src="image.src"
       />
+      <div
+        v-if="images?.length"
+        class="grid gap-2"
+        :class="images.length > 1 ? 'grid-cols-2' : 'grid-cols-1'"
+      >
+        <NuxtImg
+          v-for="(img, i) in images"
+          :key="img.src"
+          :alt="img.alt ?? title ?? ''"
+          class="w-full rounded-xl shadow-lg object-cover aspect-square"
+          :class="images.length % 2 !== 0 && i === images.length - 1 ? 'col-span-2 aspect-video' : ''"
+          loading="lazy"
+          :src="img.src"
+        />
+      </div>
       <div
         v-if="logos?.length"
         class="flex flex-wrap items-center gap-6"

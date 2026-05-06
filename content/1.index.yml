@@ -168,9 +168,15 @@ blocks:
       - Community members present their special projects
       - Get inspired and spark new ideas
       - Connect directly with the creators
-    image:
-      src: /venues/3-community-showcase/printedhub25-010.jpg
-      alt: Community Showcase at PRINTED Hub
+    images:
+      - src: /venues/3-community-showcase/printedhub25-010.jpg
+        alt: Community Showcase
+      - src: /venues/3-community-showcase/printedhub25-011.jpg
+        alt: Community Showcase
+      - src: /venues/3-community-showcase/printedhub25-021.jpg
+        alt: Community Showcase
+      - src: /venues/3-community-showcase/printedhub25-027.jpg
+        alt: Community Showcase
 
   - component: AppLandingVenueArea
     headline: "4 · Recycling Corner"
@@ -218,8 +224,7 @@ blocks:
       alt: Bar at PRINTED Hub
     logos:
       - src: /venues/6-bar/Juicebox.png
-        alt: Jukebox.at
-        url: https://jukebox.at
+        alt: JuiceBox
 
   - component: AppLandingVenueArea
     headline: "7 · Fun & Games"
