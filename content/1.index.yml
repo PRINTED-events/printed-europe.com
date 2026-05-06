@@ -107,6 +107,7 @@ blocks:
       src: /hub26_floorplan_v2.png
       alt: PRINTED Hub 2026 Venue Floorplan
   # ── Venue Areas ─────────────────────────────────────────────────────────────
+  # Bilder: public/venues/[bereich]/image.jpg  |  Logos: public/venues/[bereich]/logo-[name].png
   - component: AppLandingVenueArea
     headline: Main Stage
     title: Where inspiration takes the spotlight.
@@ -116,7 +117,7 @@ blocks:
       - Recorded and published after the event
       - Live Q&A sessions with every speaker
     image:
-      src: /eventimages/stage1.jpg
+      src: /venues/main-stage/image.jpg
       alt: Main Stage at PRINTED Hub
     links:
       - label: View Schedule
@@ -136,6 +137,9 @@ blocks:
       - Store your luggage
       - Pick up your exclusive cotton bag
       - Browse the merch shop
+    image:
+      src: /venues/1-info-point/image.jpg
+      alt: Info Point at PRINTED Hub
 
   - component: AppLandingVenueArea
     headline: "2 · Gold Sponsor Booths"
@@ -144,11 +148,14 @@ blocks:
     items:
       - "Thangs × Multibuild: Get creative and win a competition!"
       - "Snapmaker: Discover the latest in desktop manufacturing"
+    image:
+      src: /venues/2-gold-sponsor-booths/image.jpg
+      alt: Gold Sponsor Booths at PRINTED Hub
     logos:
-      - src: /sponsors/MultiBuild-Mono-White.svg
+      - src: /venues/2-gold-sponsor-booths/logo-multibuild.svg
         alt: Multibuild
         url: https://multibuild.com
-      - src: /sponsors/snapmaker.png
+      - src: /venues/2-gold-sponsor-booths/logo-snapmaker.png
         alt: Snapmaker
         url: https://snapmaker.com
 
@@ -162,7 +169,7 @@ blocks:
       - Get inspired and spark new ideas
       - Connect directly with the creators
     image:
-      src: /eventimages/printedhub25340.jpg
+      src: /venues/3-community-showcase/image.jpg
       alt: Community Showcase at PRINTED Hub
 
   - component: AppLandingVenueArea
@@ -174,6 +181,17 @@ blocks:
       - RecyclingFabrik stand
       - Workshop space for sustainability topics
       - Proservation – Packaging with purpose & Podcast Booth
+    image:
+      src: /venues/4-recycling-corner/image.jpg
+      alt: Recycling Corner at PRINTED Hub
+    logos:
+      - src: /venues/4-recycling-corner/logo-recyclebar.png
+        alt: RecycleBar
+      - src: /venues/4-recycling-corner/logo-recyclingfabrik.png
+        alt: RecyclingFabrik
+      - src: /venues/4-recycling-corner/logo-proservation.png
+        alt: Proservation
+        url: https://proservation.eu/en/proservation-packaging-with-reason
 
   - component: AppLandingVenueArea
     headline: "5 · Community Hangout"
@@ -184,6 +202,9 @@ blocks:
       - Connect with other attendees
       - Food & drinks on site
       - Transforms into workshop space on Friday
+    image:
+      src: /venues/5-community-hangout/image.jpg
+      alt: Community Hangout at PRINTED Hub
 
   - component: AppLandingVenueArea
     headline: "6 · Bar"
@@ -194,6 +215,13 @@ blocks:
       - Unlimited drinks sponsored by Jukebox.at
       - Cookies by Kittycatcakes
       - Snacks & more
+    image:
+      src: /venues/6-bar/image.jpg
+      alt: Bar at PRINTED Hub
+    logos:
+      - src: /venues/6-bar/logo-jukebox.png
+        alt: Jukebox.at
+        url: https://jukebox.at
 
   - component: AppLandingVenueArea
     headline: "7 · Fun & Games"
@@ -202,6 +230,9 @@ blocks:
     items:
       - Classic board games
       - Community-designed 3D printed games
+    image:
+      src: /venues/7-fun-and-games/image.jpg
+      alt: Fun & Games at PRINTED Hub
 
   - component: AppLandingVenueArea
     headline: "8 · Sponsor Booths"
@@ -212,10 +243,18 @@ blocks:
       - SKZ – Plastics technology & testing
       - PlayGlue – Creative building systems
       - Creality – One of the world's most popular 3D printer brands
+    image:
+      src: /venues/8-sponsor-booths/image.jpg
+      alt: Sponsor Booths at PRINTED Hub
     logos:
-      - src: /sponsors/skz.png
+      - src: /venues/8-sponsor-booths/logo-skz.png
         alt: SKZ
         url: https://www.skz.de
+      - src: /venues/8-sponsor-booths/logo-playgue.png
+        alt: PlayGlue
+      - src: /venues/8-sponsor-booths/logo-creality.png
+        alt: Creality
+        url: https://creality.com
 
   - component: AppLandingVenueArea
     headline: "9 · CAD Corner"
@@ -225,6 +264,15 @@ blocks:
       - 15 high-performance CAD workstations
       - Try 3Dconnexion SpaceMouse controllers hands-on
       - Join or run impromptu CAD sessions
+    image:
+      src: /venues/9-cad-corner/image.jpg
+      alt: CAD Corner at PRINTED Hub
+    logos:
+      - src: /venues/9-cad-corner/logo-thinkstore24.png
+        alt: Thinkstore24
+      - src: /venues/9-cad-corner/logo-3dconnexion.png
+        alt: 3Dconnexion
+        url: https://3dconnexion.com
 
   - component: AppLandingVenueArea
     headline: "10 · Hardware Space"
@@ -234,8 +282,11 @@ blocks:
     items:
       - Hardware workshop by Rüdiger
       - Snapmaker stand & live demos
+    image:
+      src: /venues/10-hardware-space/image.jpg
+      alt: Hardware Space at PRINTED Hub
     logos:
-      - src: /sponsors/snapmaker.png
+      - src: /venues/10-hardware-space/logo-snapmaker.png
         alt: Snapmaker
         url: https://snapmaker.com
 
@@ -246,6 +297,16 @@ blocks:
     items:
       - Bees Restaurant – Modern cuisine in a relaxed atmosphere
       - Rheinweinwelt – Regional wine culture & food
+    image:
+      src: /venues/restaurant/image.jpg
+      alt: Restaurant at Asbachgasse
+    logos:
+      - src: /venues/restaurant/logo-bees.png
+        alt: Bees Restaurant
+        url: https://www.beesrestaurant.de/en
+      - src: /venues/restaurant/logo-rheinweinwelt.png
+        alt: Rheinweinwelt
+        url: https://www.rheinweinwelt.de/en/
     links:
       - label: Bees Restaurant
         to: https://www.beesrestaurant.de/en
