@@ -1,12 +1,11 @@
 ---
 title: Workshop Block 2
 slug: edu-ws4-b2
-dateTime: '2026-09-25T09:30:00.000Z'
+dateTime: '2026-09-25T10:30:00.000Z'
 description: ''
 duration: 45
 resources: []
-speakers:
-  - adrianluben
+speakers: []
 stage: workshop-space-4
 type: Workshop
 ---

@@ -1,12 +1,12 @@
 ---
 title: Workshop Block 5
 slug: edu-ws3-b5
-dateTime: '2026-09-25T14:00:00.000Z'
+dateTime: '2026-09-25T15:00:00.000Z'
 description: ''
 duration: 45
 resources: []
 speakers:
-  - rudolf-leue
+  - gazzaladra
 stage: workshop-space-3
 type: Workshop
 ---
