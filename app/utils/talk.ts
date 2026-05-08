@@ -51,5 +51,5 @@ export const talkTypeStyles: Record<string, TalkTypeStyle> = {
 }
 
 export function getTalkTypeStyle(type: string): TalkTypeStyle {
-  return talkTypeStyles[type] ?? talkTypeStyles.talk!
+  return talkTypeStyles[type.toLowerCase()] ?? talkTypeStyles.talk!
 }
