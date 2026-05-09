@@ -277,6 +277,10 @@ function getTalkHeight(talk: any) {
 function isCompact(talk: any) {
   return getTalkHeight(talk) < 58
 }
+
+function showAvatar(talk: any) {
+  return getTalkHeight(talk) >= 92
+}
 </script>
 
 <template>
@@ -454,21 +458,23 @@ function isCompact(talk: any) {
                   </div>
                 </template>
 
-                <!-- Speaker avatars (only in normal mode) -->
+                <!-- Speaker section (only in normal mode) -->
                 <div v-if="!isCompact(talk) && talk.speakers?.some((s: any) => s.slug)" class="talk-speakers">
-                  <div class="avatar-stack">
-                    <NuxtImg
-                      v-for="(sp, i) in talk.speakers.filter((s: any) => s.image).slice(0, 6)"
-                      :key="sp.slug"
-                      :src="sp.image"
-                      :alt="sp.name"
-                      :title="sp.name"
-                      class="avatar"
-                      :style="{ zIndex: 6 - i }"
-                      width="34"
-                      height="34"
-                    />
-                  </div>
+                  <template v-if="showAvatar(talk)">
+                    <div class="avatar-stack">
+                      <NuxtImg
+                        v-for="(sp, i) in talk.speakers.filter((s: any) => s.image).slice(0, 6)"
+                        :key="sp.slug"
+                        :src="sp.image"
+                        :alt="sp.name"
+                        :title="sp.name"
+                        class="avatar"
+                        :style="{ zIndex: 6 - i }"
+                        width="34"
+                        height="34"
+                      />
+                    </div>
+                  </template>
                   <span v-if="talk.speakers.filter((s: any) => s.slug).length === 1" class="speaker-solo-name">
                     {{ talk.speakers[0]?.name }}
                   </span>
