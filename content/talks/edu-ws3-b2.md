@@ -6,7 +6,8 @@ description: ''
 duration: 45
 resources: []
 speakers:
-  - rudolf-leue
+  - rudolfleue
 stage: workshop-space-3
 type: Workshop
 ---
+

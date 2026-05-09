@@ -6,7 +6,8 @@ description: ''
 duration: 45
 resources: []
 speakers:
-  - rudiger-neuweg
+  - rüdigerneuweg
 stage: workshop-space-1
 type: Workshop
 ---
+
