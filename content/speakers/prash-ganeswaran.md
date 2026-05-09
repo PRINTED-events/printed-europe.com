@@ -1,20 +1,19 @@
 ---
-slug: prash-ganeswaran
+title: Prashanthan Ganeswaran
 name: Prashanthan Ganeswaran
-description: 3D Print Animation Creator (prash makes)
+slug: prash-ganeswaran
 company: prash makes
-featured: false
+description: 3D Print Animation Creator (prash makes)
+featured: true
 image: /speaker/PrashMakes-384x467.jpg
+navigation:
+  title: Prashanthan Ganeswaran
 socialMedia:
-  - url: https://www.youtube.com/@prashmakes
+  - url: 'https://www.youtube.com/@prashmakes'
     description: YouTube
-    icon: i-simple-icons-youtube
-  - url: https://www.instagram.com/prash.makes/
+  - url: 'https://www.instagram.com/prash.makes/'
     description: Instagram
-    icon: i-mdi-instagram
-  - url: https://www.linkedin.com/in/itsprash/
+  - url: 'https://www.linkedin.com/in/itsprash/'
     description: LinkedIn
-    icon: i-mdi-linkedin
 ---
-
 Prashanthan Ganeswaran, known as Prash, is a creative engineer and 3D artist who has pioneered a new animation medium using 3D print timelapses. He combines engineering precision with artistic vision to create mesmerising animations that document the 3D printing process itself as the art form.
