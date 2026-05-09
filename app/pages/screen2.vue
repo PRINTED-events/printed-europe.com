@@ -817,7 +817,7 @@ function showAvatar(talk: any) {
   border: 1px solid;
   border-radius: 8px;
   overflow: hidden;
-  padding: 5px 8px;
+  padding: 5px 8px 8px;
   display: flex;
   flex-direction: column;
   gap: 2px;
