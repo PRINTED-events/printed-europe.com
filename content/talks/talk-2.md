@@ -1,7 +1,7 @@
 ---
 title: Talk 2
 slug: talk-2
-dateTime: '2026-09-26T10:00:00.000Z'
+dateTime: '2026-09-26T08:00:00.000Z'
 description: ''
 duration: 20
 resources: []
