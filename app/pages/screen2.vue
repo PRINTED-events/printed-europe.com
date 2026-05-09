@@ -269,6 +269,14 @@ function talkStyle(type: string) {
 function typeLabel(type: string) {
   return (type || '').split('-').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
 }
+
+function getTalkHeight(talk: any) {
+  return Math.max((talk.duration / 60) * hourH.value, 28)
+}
+
+function isCompact(talk: any) {
+  return getTalkHeight(talk) < 58
+}
 </script>
 
 <template>
@@ -429,14 +437,25 @@ function typeLabel(type: string) {
                   borderColor: talkStyle(talk.type).border,
                 }"
               >
-                <div class="talk-title">{{ talk.title }}</div>
-                <div class="talk-meta">
-                  <span class="talk-type" :style="{ color: talkStyle(talk.type).accent }">{{ typeLabel(talk.type) }}</span>
-                  <span class="talk-time">{{ talk.start.toFormat('HH:mm') }} · {{ talk.duration }} min</span>
-                </div>
+                <!-- Compact: only title + time inline -->
+                <template v-if="isCompact(talk)">
+                  <div class="talk-title talk-title--compact">
+                    {{ talk.title }}
+                    <span class="talk-time talk-time--inline">· {{ talk.start.toFormat('HH:mm') }}</span>
+                  </div>
+                </template>
 
-                <!-- Speaker avatars -->
-                <div v-if="talk.speakers?.some((s: any) => s.slug)" class="talk-speakers">
+                <!-- Normal: title + type badge + time + speakers -->
+                <template v-else>
+                  <div class="talk-title">{{ talk.title }}</div>
+                  <div class="talk-meta">
+                    <span class="talk-type" :style="{ color: talkStyle(talk.type).accent }">{{ typeLabel(talk.type) }}</span>
+                    <span class="talk-time">{{ talk.start.toFormat('HH:mm') }} · {{ talk.duration }} min</span>
+                  </div>
+                </template>
+
+                <!-- Speaker avatars (only in normal mode) -->
+                <div v-if="!isCompact(talk) && talk.speakers?.some((s: any) => s.slug)" class="talk-speakers">
                   <div class="avatar-stack">
                     <NuxtImg
                       v-for="(sp, i) in talk.speakers.filter((s: any) => s.image).slice(0, 6)"
@@ -825,6 +844,22 @@ function typeLabel(type: string) {
   font-size: calc(9px * v-bind(fontScale));
   color: rgba(255,255,255,0.38);
   font-variant-numeric: tabular-nums;
+}
+.talk-title--compact {
+  -webkit-line-clamp: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.talk-time--inline {
+  font-size: calc(9px * v-bind(fontScale));
+  font-weight: 500;
+  color: rgba(255,255,255,0.35);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
 }
 
 /* Speaker avatars */
