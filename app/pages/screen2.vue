@@ -449,13 +449,13 @@ function showAvatar(talk: any) {
                   </div>
                 </template>
 
-                <!-- Normal: title + type badge + time + speakers -->
+                <!-- Normal: type + time on top, title below -->
                 <template v-else>
-                  <div class="talk-title">{{ talk.title }}</div>
                   <div class="talk-meta">
                     <span class="talk-type" :style="{ color: talkStyle(talk.type).accent }">{{ typeLabel(talk.type) }}</span>
                     <span class="talk-time">{{ talk.start.toFormat('HH:mm') }} · {{ talk.duration }} min</span>
                   </div>
+                  <div class="talk-title">{{ talk.title }}</div>
                 </template>
 
                 <!-- Speaker section (only in normal mode) -->
