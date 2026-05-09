@@ -98,6 +98,7 @@ export default defineNuxtConfig({
   },
 
   studio: { // for `nuxt-studio`
+    dev: true, // enable local filesystem editing when running nuxt dev
     route: '/_admin', // default: `/_studio`
     repository: {
       provider: customConfig.nuxtStudio.repository.provider,
