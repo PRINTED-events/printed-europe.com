@@ -3,10 +3,6 @@ const route = useRoute()
 
 const allEvents = [
   {
-    label: 'PRINTED Hub 2026',
-    description: 'Sep 2026 · Rüdesheim · Current event',
-  },
-  {
     label: 'PRINTED Hub 2025',
     description: 'Sep 2025 · Rüdesheim',
     to: 'https://hub25.printed-europe.com',
