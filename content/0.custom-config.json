@@ -51,7 +51,7 @@
       "light": "/printed-pd-02.png"
     },
     "siteUrl": "https://printed-europe.com",
-    "timeZone": "UTC"
+    "timeZone": "Europe/Berlin"
   },
   "nuxtStudio": {
     "i18n": {
