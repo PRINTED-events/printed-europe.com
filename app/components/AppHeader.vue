@@ -12,6 +12,11 @@ const allEvents = [
     label: 'PWC 2027',
     description: 'Coming soon',
   },
+  {
+    label: 'About Printed Events',
+    to: 'https://printed-events.com',
+    target: '_blank',
+  },
 ]
 
 const items = computed(() => [
