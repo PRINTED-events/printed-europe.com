@@ -1,9 +1,9 @@
 ---
-title: Workshop 3
-slug: workshop-3
-dateTime: '2026-09-26T13:00:00.000Z'
+title: Workshop Block 2
+slug: edu-ws3-b2
+dateTime: '2026-09-25T08:30:00.000Z'
 description: ''
-duration: 60
+duration: 45
 resources: []
 speakers:
   - ''

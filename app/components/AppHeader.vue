@@ -3,14 +3,19 @@ const route = useRoute()
 
 const allEvents = [
   {
-    label: 'PRINTED Hub 2025',
+    label: 'PRINTED Hub',
     description: 'Sep 2025 · Rüdesheim',
     to: 'https://hub25.printed-europe.com',
     target: '_blank',
   },
   {
-    label: 'PWC 2027',
-    description: 'Coming soon',
+    label: 'PRINTED Worldconference',
+    description: 'Mai 2027 · Amsterdam',
+  },
+  {
+    label: 'About Printed Events',
+    to: 'https://printed-events.com',
+    target: '_blank',
   },
 ]
 
