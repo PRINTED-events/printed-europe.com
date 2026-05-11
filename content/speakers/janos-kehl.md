@@ -16,6 +16,6 @@ socialMedia:
     description: TikTok Kanal
   - url: https://www.instagram.com/printedeurope/
     description: Instagram Profil
-  - url: https://www.linkedin.com/company/104095382/admin/dashboard/
+  - url: https://www.linkedin.com/company/104095382/
     description: Linkedin Profil
 ---
