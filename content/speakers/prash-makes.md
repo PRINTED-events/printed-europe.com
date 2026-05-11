@@ -4,7 +4,7 @@ name: Prashanthan Ganeswaran
 slug: prash-makes
 company: prash makes
 description: 3D Print Animation Creator
-featured: false
+featured: true
 image: /speaker/prash-makes.jpg
 navigation:
   title: Prash Makes

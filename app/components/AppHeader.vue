@@ -5,8 +5,6 @@ const allEvents = [
   {
     label: 'PRINTED Hub 2026',
     description: 'Sep 2026 · Rüdesheim · Current event',
-    to: 'https://printed-europe.com',
-    target: '_blank',
   },
   {
     label: 'PRINTED Hub 2025',
