@@ -6,7 +6,8 @@ description: ''
 duration: 45
 resources: []
 speakers:
-  - gazzaladra
+  - ''
 stage: workshop-space-3
 type: Workshop
 ---
+
