@@ -1,6 +1,6 @@
 ---
 title: 'The Handmade Illusion: Psychologie des Verliebtseins in Kunststoff'
-slug: the-handmade-illusion-psychologie-des-verliebtseins-in-kunststoff
+slug: the-handmade-illusion-psychologie-des-verliebtseins-in-kunststoff_3
 dateTime: '2026-09-26T12:30:00.000Z'
 description: ''
 duration: 20
