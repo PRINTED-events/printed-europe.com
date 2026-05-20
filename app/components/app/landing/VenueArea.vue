@@ -5,6 +5,7 @@ const props = defineProps<{
   headline?: string
   reverse?: boolean
   items?: string[]
+  talksStage?: string
   image?: {
     src: string
     alt?: string
@@ -27,6 +28,26 @@ const props = defineProps<{
     size?: string
   }[]
 }>()
+
+const { data: stageTalks } = await useAsyncData(
+  `venue-talks-${props.talksStage}`,
+  () => props.talksStage
+    ? queryCollection('talks')
+        .where('stage', '=', props.talksStage)
+        .order('dateTime', 'ASC')
+        .all()
+    : Promise.resolve([]),
+)
+
+const uniqueTalks = computed(() => {
+  if (!stageTalks.value?.length) return []
+  const seen = new Set<string>()
+  return stageTalks.value.filter((t: any) => {
+    if (seen.has(t.title)) return false
+    seen.add(t.title)
+    return true
+  })
+})
 
 const hasImage = computed(() => !!(props.image || props.images?.length))
 const effectiveOrientation = computed(() => hasImage.value ? 'horizontal' as const : 'vertical' as const)
@@ -55,6 +76,23 @@ const effectiveOrientation = computed(() => hasImage.value ? 'horizontal' as con
           <span class="text-muted">{{ item }}</span>
         </li>
       </ul>
+
+      <div v-if="uniqueTalks.length" class="mt-4 space-y-2">
+        <p class="text-xs font-semibold uppercase tracking-wider text-muted">Workshops & Talks</p>
+        <ul class="space-y-1.5">
+          <li
+            v-for="talk in uniqueTalks"
+            :key="(talk as any).slug"
+            class="flex items-start gap-2"
+          >
+            <UIcon
+              class="mt-0.5 shrink-0 text-teal-500"
+              name="i-lucide-calendar-check"
+            />
+            <span class="text-sm text-muted">{{ (talk as any).title }}</span>
+          </li>
+        </ul>
+      </div>
 
       <div
         v-if="logos?.length"

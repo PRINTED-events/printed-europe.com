@@ -201,6 +201,7 @@ blocks:
     headline: "4 · Recycling Corner"
     title: Making with a conscience.
     description: Sustainability in action – discover how the maker community is pioneering responsible production, circular design, and eco-friendly materials.
+    talksStage: workshop-space-3
     items:
       - RecycleBar – filament recycling in practice
       - RecyclingFabrik stand
@@ -289,6 +290,7 @@ blocks:
     headline: "9 · CAD Corner"
     title: Design, model, iterate – right here at the event.
     description: Brought to you by Thinkstore24, the CAD Corner gives you dedicated hardware and professional input devices to dive deep into 3D design.
+    talksStage: workshop-space-2
     items:
       - 15 high-performance CAD workstations
       - Try 3Dconnexion SpaceMouse controllers hands-on
@@ -307,6 +309,7 @@ blocks:
     headline: "10 · Hardware Space"
     title: Where hardware gets serious.
     description: Powered by Snapmaker, this dedicated space hosts Rüdiger's popular hardware workshop and gives you direct access to cutting-edge machines.
+    talksStage: workshop-space-1
     reverse: true
     items:
       - Hardware workshop by Rüdiger
