@@ -1,6 +1,25 @@
 <script setup lang="ts">
 const route = useRoute()
 
+const allEvents = [
+  {
+    label: 'PRINTED Hub 2026',
+    description: 'Sep 2026 · Rüdesheim · Current event',
+    to: 'https://printed-europe.com',
+    target: '_blank',
+  },
+  {
+    label: 'PRINTED Hub 2025',
+    description: 'Sep 2025 · Rüdesheim',
+    to: 'https://hub25.printed-europe.com',
+    target: '_blank',
+  },
+  {
+    label: 'PWC 2027',
+    description: 'Coming soon',
+  },
+]
+
 const items = computed(() => [
   {
     label: 'Schedule',
@@ -22,6 +41,10 @@ const items = computed(() => [
     to: '/faq',
     active: route.path.startsWith('/faq'),
   },
+  {
+    label: 'Events',
+    children: allEvents,
+  },
 ])
 </script>
 
@@ -38,6 +61,7 @@ const items = computed(() => [
 
       <UNavigationMenu
         class="hidden lg:inline-flex"
+        content-orientation="vertical"
         :items="items"
         variant="link"
       />

@@ -50,6 +50,7 @@
       "dark": "/printed-pd-02.png",
       "light": "/printed-pd-02.png"
     },
+    "colorMode": "dark-only",
     "siteUrl": "https://printed-europe.com",
     "timeZone": "Europe/Berlin"
   },

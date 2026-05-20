@@ -31,6 +31,7 @@ export const customConfigSchema = z.object({
     conferenceFoundingYear: z.number().default(new Date().getFullYear()),
     timeZone: z.string().default('UTC'),
     siteUrl: z.url().min(1),
+    colorMode: z.enum(['both', 'light-only', 'dark-only']).default('both'),
     logo: z.object({
       light: z.string().min(1),
       dark: z.string().min(1),
@@ -94,21 +95,25 @@ export const customConfigSchema = z.object({
       neutral: z.enum(['gray', 'neutral', 'slate', 'stone', 'zinc']).default('slate'),
     }),
     icons: z.object({
-      search: z.string().default('i-lucide-search'),
-      dark: z.string().default('i-lucide-moon'),
-      light: z.string().default('i-lucide-sun'),
-      external: z.string().default('i-lucide-external-link'),
-      chevron: z.string().default('i-lucide-chevron-down'),
-      hash: z.string().default('i-lucide-hash'),
+      search: z.string().default('lucide:search'),
+      dark: z.string().default('lucide:moon'),
+      light: z.string().default('lucide:sun'),
+      external: z.string().default('lucide:external-link'),
+      chevron: z.string().default('lucide:chevron-down'),
+      hash: z.string().default('lucide:hash'),
     }).default({
-      search: 'i-lucide-search',
-      dark: 'i-lucide-moon',
-      light: 'i-lucide-sun',
-      external: 'i-lucide-external-link',
-      chevron: 'i-lucide-chevron-down',
-      hash: 'i-lucide-hash',
+      search: 'lucide:search',
+      dark: 'lucide:moon',
+      light: 'lucide:sun',
+      external: 'lucide:external-link',
+      chevron: 'lucide:chevron-down',
+      hash: 'lucide:hash',
     }),
-  }),
+  }).optional(),
+
+  nuxtContent: z.object({
+    syntaxHighlighting: z.boolean().default(false),
+  }).optional(),
 
   ogImage: z.object({
     bgLight: z.string().regex(/^#(?:[0-9a-f]{3}){1,2}$/i, 'Use a valid hex color').default('#ffffff'),

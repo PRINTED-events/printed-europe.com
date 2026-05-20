@@ -9,6 +9,13 @@ export const customConfigSchema = z.object({
       + 'You must restart the development server or rebuild the application to see your changes.',
   }),
 
+  _warningIcons: property(z.object({}).readonly()).editor({
+    // @ts-expect-error `description` is custom and patched in `nuxt-studio`
+    description: '⚠️ ICON NOTE: New icon names that are not used anywhere in project files yet can be missing '
+      + 'in Nuxt Studio live preview until the next rebuild and redeploy. A missing preview icon does not '
+      + 'mean the icon will fail after deployment.',
+  }),
+
   general: property(z.object({
     conferenceName: property(z.string().min(1)).editor({
       // @ts-expect-error `description` is custom and patched in `nuxt-studio`
@@ -26,6 +33,10 @@ export const customConfigSchema = z.object({
     siteUrl: property(z.url().min(1)).editor({
       // @ts-expect-error `description` is custom and patched in `nuxt-studio`
       description: 'The public URL of the website (e.g. `https://my-conference.com`).',
+    }),
+    colorMode: property(z.enum(['both', 'light-only', 'dark-only']).default('both')).editor({
+      // @ts-expect-error `description` is custom and patched in `nuxt-studio`
+      description: 'Color mode behavior for the website: allow switching (`both`) or lock it to one mode.',
     }),
     logo: property(z.object({
       light: property(z.string().min(1)).editor({
@@ -194,32 +205,32 @@ export const customConfigSchema = z.object({
         + ' because you can use default CSS syntax here and the file is imported automatically.',
     }),
     icons: property(z.object({
-      search: property(z.string().default('i-lucide-search')).editor({
+      search: property(z.string().default('lucide:search')).editor({
         input: 'icon',
         // @ts-expect-error `description` is custom and patched in `nuxt-studio`
         description: 'Icon to display in the search bar.',
       }),
-      dark: property(z.string().default('i-lucide-moon')).editor({
+      dark: property(z.string().default('lucide:moon')).editor({
         input: 'icon',
         // @ts-expect-error `description` is custom and patched in `nuxt-studio`
         description: 'Icon of color mode button for dark mode.',
       }),
-      light: property(z.string().default('i-lucide-sun')).editor({
+      light: property(z.string().default('lucide:sun')).editor({
         input: 'icon',
         // @ts-expect-error `description` is custom and patched in `nuxt-studio`
         description: 'Icon of color mode button for light mode.',
       }),
-      external: property(z.string().default('i-lucide-external-link')).editor({
+      external: property(z.string().default('lucide:external-link')).editor({
         input: 'icon',
         // @ts-expect-error `description` is custom and patched in `nuxt-studio`
         description: 'Icon for external link.',
       }),
-      chevron: property(z.string().default('i-lucide-chevron-down')).editor({
+      chevron: property(z.string().default('lucide:chevron-down')).editor({
         input: 'icon',
         // @ts-expect-error `description` is custom and patched in `nuxt-studio`
         description: 'Icon for chevron.',
       }),
-      hash: property(z.string().default('i-lucide-hash')).editor({
+      hash: property(z.string().default('lucide:hash')).editor({
         input: 'icon',
         // @ts-expect-error `description` is custom and patched in `nuxt-studio`
         description: 'Icon for hash anchors.',
@@ -228,9 +239,19 @@ export const customConfigSchema = z.object({
       // @ts-expect-error `description` is custom and patched in `nuxt-studio`
       description: 'Icons used across the UI.',
     }),
-  })).editor({
+  }).optional()).editor({
     // @ts-expect-error `description` is custom and patched in `nuxt-studio`
     description: 'NuxtUI Customization.',
+  }),
+
+  nuxtContent: property(z.object({
+    syntaxHighlighting: property(z.boolean().default(false)).editor({
+      // @ts-expect-error `description` is custom and patched in `nuxt-studio`
+      description: 'Enable syntax highlighting for Markdown code blocks. Keep this disabled to reduce bundle size.',
+    }),
+  }).optional()).editor({
+    // @ts-expect-error `description` is custom and patched in `nuxt-studio`
+    description: 'Nuxt Content customization.',
   }),
 
   ogImage: property(z.object({

@@ -1,46 +1,75 @@
 {
   "name": "printed-europe",
+  "isQuickConfTemplate": true,
   "type": "module",
-  "version": "1.1.0",
-  "packageManager": "pnpm@10.8.1+sha512.c50088ba998c67b8ca8c99df8a5e02fd2ae2e2b29aaf238feaa9e124248d3f48f9fb6db2424949ff901cffbb5e0f0cc1ad6aedb602cd29450751d11c35023677",
-  "description": "",
-  "author": "",
-  "contributors": [],
+  "version": "1.3.0-rc.0",
+  "packageManager": "pnpm@10.33.0",
+  "description": "This is a template for quickly setting up a new Conference or Meetup website with various functionalities.",
+  "author": "Thorsten Seyschab <business@todde.tv> (https://todde.tv/)",
+  "contributors": [
+    {
+      "name": "Thorsten Seyschab",
+      "email": "business@todde.tv",
+      "url": "https://todde.tv/"
+    }
+  ],
   "license": "SEE LICENSE IN LICENSE.md",
-  "repository": {},
-  "bugs": {},
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toddeTV/quick-conf.git"
+  },
+  "bugs": {
+    "url": "https://github.com/toddeTV/quick-conf/issues"
+  },
+  "keywords": [
+    "conference",
+    "conferences",
+    "nuxt",
+    "nuxt3",
+    "nuxt4",
+    "nuxtjs",
+    "template",
+    "typescript",
+    "vite",
+    "vue",
+    "vuejs",
+    "web",
+    "website"
+  ],
   "engines": {
-    "node": "22.x",
+    "node": "24.x",
     "pnpm": "10.x"
   },
   "scripts": {
     "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 nuxt build",
     "dev": "nuxt dev",
     "dev:preset": "nuxt dev --port 3000 --public",
-    "fix:lint": "run-s \"test:lint --fix\"",
+    "fix": "run-s \"fix:*\"",
+    "fix:lint-format": "run-s \"test:lint-format --fix\"",
     "generate": "cross-env NODE_OPTIONS=--max-old-space-size=8192 nuxt generate",
     "nuxi": "nuxi",
     "nuxt": "nuxt",
     "postinstall": "nuxt prepare",
     "preview": "nuxt preview",
     "reset": "rimraf node_modules .nuxt .output dist .data",
-    "test": "run-s test:*",
-    "test:lint": "eslint .",
+    "test": "run-s \"test:*\"",
+    "test:lint-format": "eslint .",
     "test:renovate": "renovate-config-validator",
-    "test:types": "nuxt typecheck"
+    "test:types": "nuxt typecheck",
+    "vercel:node-check": "node -e \"const major=Number(process.versions.node.split('.')[0]);if(major!==24){console.error('Node 24.x is required for Vercel builds.');console.error('Set your Vercel Project Node.js Version to 24.x and redeploy.');process.exit(1)}\"",
+    "vercel:install": "pnpm run vercel:node-check && pnpm i --frozen-lockfile --prefer-offline",
+    "vercel:build": "pnpm run vercel:node-check && pnpm run build"
   },
   "dependencies": {
-    "nuxt": "~4.3.0",
-    "vue": "~3.5.27"
+    "nuxt": "~4.3.1",
+    "vue": "~3.5.32"
   },
   "devDependencies": {
     "@antfu/eslint-config": "~7.2.0",
-    "@iconify-json/lucide": "~1.2.87",
+    "@iconify-json/lucide": "~1.2.102",
     "@iconify-json/mdi": "~1.2.3",
-    "@iconify-json/noto": "~1.2.7",
-    "@iconify-json/simple-icons": "~1.2.68",
-    "@nuxt/content": "~3.11.0",
+    "@iconify-json/simple-icons": "~1.2.77",
+    "@nuxt/content": "~3.11.2",
     "@nuxt/eslint": "~1.13.0",
     "@nuxt/image": "~2.0.0",
     "@nuxt/scripts": "~0.13.2",
@@ -48,40 +77,23 @@
     "@nuxtjs/seo": "~3.4.0",
     "@types/lodash-es": "~4.17.12",
     "@types/luxon": "~3.7.1",
+    "@types/qrcode": "~1.5.6",
     "@types/youtube": "~0.1.2",
-    "@unhead/vue": "~2.0.3",
-    "better-sqlite3": "~12.6.2",
+    "@unhead/vue": "~2.0.19",
     "cross-env": "~10.1.0",
-    "eslint": "~9.39.2",
+    "eslint": "~9.39.4",
     "eslint-plugin-format": "~1.3.1",
     "lodash-es": "~4.17.23",
     "luxon": "~3.7.2",
     "npm-run-all2": "~8.0.4",
     "nuxi": "~3.32.0",
-    "nuxt-studio": "~1.2.0",
-    "renovate": "~42.92.13",
-    "rimraf": "~6.1.2",
+    "nuxt-studio": "1.6.0",
+    "qrcode": "~1.5.4",
+    "renovate": "~42.92.14",
+    "rimraf": "~6.1.3",
     "typescript": "~5.9.3",
     "vue-router": "~4.6.4",
-    "vue-tsc": "~3.2.4",
+    "vue-tsc": "~3.2.6",
     "zod": "~4.3.6"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@parcel/watcher",
-      "@tailwindcss/oxide",
-      "better-sqlite3",
-      "core-js-pure",
-      "dtrace-provider",
-      "esbuild",
-      "protobufjs",
-      "re2",
-      "sharp",
-      "unrs-resolver",
-      "vue-demi"
-    ],
-    "patchedDependencies": {
-      "nuxt-studio": "patches/nuxt-studio.patch"
-    }
   }
 }
