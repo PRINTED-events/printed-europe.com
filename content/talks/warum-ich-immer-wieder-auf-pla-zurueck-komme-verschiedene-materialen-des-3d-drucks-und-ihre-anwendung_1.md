@@ -1,7 +1,10 @@
 ---
-title: Warum ich immer wieder auf PLA zurück komme
-slug: warum-ich-immer-wieder-auf-pla-zurueck-komme_2
-dateTime: '2026-09-25T14:00:00.000Z'
+title: >-
+  Warum ich immer wieder auf PLA zurück komme - verschiedene Materialen des 3D
+  Drucks und ihre Anwendung
+slug: >-
+  warum-ich-immer-wieder-auf-pla-zurueck-komme-verschiedene-materialen-des-3d-drucks-und-ihre-anwendung_1
+dateTime: '2026-09-25T13:00:00.000Z'
 description: ''
 duration: 45
 resources: []
