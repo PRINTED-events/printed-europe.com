@@ -10,6 +10,12 @@ const allEvents = [
   },
   {
     label: 'PRINTED Worldconference',
+    description: 'May 2025 · Amsterdam',
+    to: 'https://pwc25.printed-europe.com',
+    target: '_blank',
+  },
+  {
+    label: 'PRINTED Worldconference',
     description: 'Mai 2027 · Amsterdam',
   },
   {

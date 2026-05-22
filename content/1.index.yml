@@ -5,21 +5,13 @@ blocks:
     description: 25th and 26th September 2026 – Rüdesheim (near Frankfurt)
     headline: Get ready for 2 days of workshops, content and community
     links:
-      - label: Buy Ticket
-        icon: i-lucide-calendar
-        trailing: false
-        color: neutral
-        variant: subtle
-        size: xl
-        to: /tickets
-      - label: Vote for Printed 2027
-        icon: i-lucide-vote
+      - label: Buy Tickets
+        icon: i-lucide-ticket
         trailing: false
         color: primary
-        variant: subtle
+        variant: solid
         size: xl
-        to: https://2de1x8.share-eu1.hsforms.com/2sX5T9vJOSQCoIx-r8TnjSQ
-        target: _blank
+        to: /tickets
   - component: AppLandingMetaInfo
     title: Learn. Network. Create.
     description: null
@@ -37,6 +29,22 @@ blocks:
       - icon: i-lucide-mic-2
         text: 30+ Speakers
         label: Content
+  - component: AppLandingLogoGrid
+    headline: Sponsors
+    title: Powering the PRINTED Hub experience.
+    logos:
+      - src: /sponsors/MultiBuild-onblack.png
+        alt: Multibuild
+        url: https://multibuild.io
+      - src: /sponsors/skz-das-kunststoff-zentrum.png
+        alt: SKZ – Das Kunststoff-Zentrum
+        url: https://www.skz.de
+      - src: /sponsors/recycklingfabrik.png
+        alt: RecyclingFabrik
+        url: https://www.recyclingfabrik.com/
+      - src: /sponsors/pla-y-3d.png
+        alt: PLA-Y-Glue
+        url: https://www.pla-y-3d.com/en
   - component: AppLandingSection
     title: Where ideas happen.
     description: Join us for an unforgettable experience.
@@ -106,12 +114,14 @@ blocks:
     image:
       src: /hub26_floorplan_v2.png
       alt: PRINTED Hub 2026 Venue Floorplan
-  - component: AppLandingSponsors
-    title: Those who make it all possible!
-    description: Thanks to our sponsors & Partners.
-    headline: Sponsors
-    showViewAll: true
-    viewAllLink: /faq/sponsors
+  - component: AppLandingSponsorMarquee
+    headline: Sponsors & Partners
+    title: Those who make PRINTED possible!
+    description: Sponsors & Partners we already worked with.
+    direction: left
+    speed: 50
+    gap: 80
+    imageHeight: 48
   - component: AppLandingHeroMedia
     title: Meet like-minded people
     description: Immerse yourself.

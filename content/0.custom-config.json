@@ -18,7 +18,7 @@
           {
             "name": "PRINTED events",
             "url": "https://www.youtube.com/@printed-europe",
-            "icon": "i-tabler-brand-youtube-filled"
+            "icon": "i-mdi-youtube"
           },
           {
             "name": "PRINTED events",
@@ -33,7 +33,7 @@
           {
             "name": "printedeurope",
             "url": "https://www.tiktok.com/@printedeurope",
-            "icon": "i-ic-baseline-tiktok"
+            "icon": "i-simple-icons-tiktok"
           }
         ]
       }
@@ -50,6 +50,7 @@
       "dark": "/printed-pd-02.png",
       "light": "/printed-pd-02.png"
     },
+    "colorMode": "dark-only",
     "siteUrl": "https://printed-europe.com",
     "timeZone": "Europe/Berlin"
   },

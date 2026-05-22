@@ -100,6 +100,7 @@ export const landingSchema = createBaseWithSeoSchema().extend({
         direction: z.enum(['left', 'right']).default('left'),
         speed: z.number().default(20),
         gap: z.number().default(0),
+        imageHeight: z.number().optional(),
       }),
 
       createLandingBlockBaseSchema().extend({
@@ -146,6 +147,23 @@ export const landingSchema = createBaseWithSeoSchema().extend({
 
       createLandingBlockBaseSchema().extend({
         component: z.literal('AppLandingSpeakers'),
+      }),
+
+      createLandingBlockBaseSchema().extend({
+        component: z.literal('AppLandingLogoGrid'),
+        logos: z.array(z.object({
+          src: z.string().min(1),
+          alt: z.string().optional(),
+          url: z.string().optional(),
+        })),
+      }),
+
+      createLandingBlockBaseSchema().extend({
+        component: z.literal('AppLandingSponsorMarquee'),
+        direction: z.enum(['left', 'right']).default('left'),
+        speed: z.number().optional(),
+        gap: z.number().optional(),
+        imageHeight: z.number().optional(),
       }),
 
       createLandingBlockBaseSchema().extend({
