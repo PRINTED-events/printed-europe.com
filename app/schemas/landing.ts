@@ -100,6 +100,7 @@ export const landingSchema = createBaseWithSeoSchema().extend({
         direction: z.enum(['left', 'right']).default('left'),
         speed: z.number().default(20),
         gap: z.number().default(0),
+        imageHeight: z.number().optional(),
       }),
 
       createLandingBlockBaseSchema().extend({

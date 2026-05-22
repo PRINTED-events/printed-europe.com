@@ -33,6 +33,7 @@ blocks:
     direction: left
     speed: 30
     gap: 60
+    imageHeight: 48
     images:
       - src: /sponsors/MultiBuild-onblack.png
         alt: Multibuild

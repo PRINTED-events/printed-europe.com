@@ -13,15 +13,18 @@ const props = withDefaults(defineProps<{
   direction?: 'left' | 'right'
   speed?: number // duration in seconds
   gap?: number // gap in px
+  imageHeight?: number // height in px, defaults to 128
 }>(), {
   direction: 'left',
   speed: 20,
   gap: 0,
+  imageHeight: 128,
 })
 
 const style = computed(() => ({
   '--marquee-duration': `${props.speed}s`,
   '--marquee-gap': `${props.gap}px`,
+  '--marquee-img-height': `${props.imageHeight}px`,
 }))
 </script>
 
@@ -35,7 +38,7 @@ const style = computed(() => ({
         v-for="(image, index) in images"
         :key="index"
         :alt="image.alt"
-        class="max-w-none h-32 object-contain"
+        class="max-w-none object-contain" :style="{ height: 'var(--marquee-img-height)' }"
         :loading="image.loading"
         :sizes="image.sizes"
         :src="image.src"
@@ -51,7 +54,7 @@ const style = computed(() => ({
         v-for="(image, index) in images"
         :key="`clone-${index}`"
         :alt="image.alt"
-        class="max-w-none h-32 object-contain"
+        class="max-w-none object-contain" :style="{ height: 'var(--marquee-img-height)' }"
         :loading="image.loading"
         :sizes="image.sizes"
         :src="image.src"
