@@ -5,21 +5,13 @@ blocks:
     description: 25th and 26th September 2026 – Rüdesheim (near Frankfurt)
     headline: Get ready for 2 days of workshops, content and community
     links:
-      - label: Buy Ticket
-        icon: i-lucide-calendar
-        trailing: false
-        color: neutral
-        variant: subtle
-        size: xl
-        to: /tickets
-      - label: Vote for Printed 2027
-        icon: i-lucide-vote
+      - label: Buy Tickets
+        icon: i-lucide-ticket
         trailing: false
         color: primary
-        variant: subtle
+        variant: solid
         size: xl
-        to: https://2de1x8.share-eu1.hsforms.com/2sX5T9vJOSQCoIx-r8TnjSQ
-        target: _blank
+        to: /tickets
   - component: AppLandingMetaInfo
     title: Learn. Network. Create.
     description: null
@@ -37,6 +29,27 @@ blocks:
       - icon: i-lucide-mic-2
         text: 30+ Speakers
         label: Content
+  - component: AppLandingMarquee
+    direction: left
+    speed: 30
+    gap: 60
+    images:
+      - src: /sponsors/MultiBuild-onblack.png
+        alt: Multibuild
+      - src: /sponsors/skz.png
+        alt: SKZ
+      - src: /sponsors/recycklingfabrik.png
+        alt: RecyclingFabrik
+      - src: /sponsors/pla-y-3d.png
+        alt: PLA-Y-Glue
+      - src: /sponsors/MultiBuild-onblack.png
+        alt: Multibuild
+      - src: /sponsors/skz.png
+        alt: SKZ
+      - src: /sponsors/recycklingfabrik.png
+        alt: RecyclingFabrik
+      - src: /sponsors/pla-y-3d.png
+        alt: PLA-Y-Glue
   - component: AppLandingSection
     title: Where ideas happen.
     description: Join us for an unforgettable experience.
@@ -107,7 +120,7 @@ blocks:
       src: /hub26_floorplan_v2.png
       alt: PRINTED Hub 2026 Venue Floorplan
   - component: AppLandingSponsors
-    title: Those who make it all possible!
+    title: Those who make PRINTED possible!
     description: Thanks to our sponsors & Partners.
     headline: Sponsors
     showViewAll: true
