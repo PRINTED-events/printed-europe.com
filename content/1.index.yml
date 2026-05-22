@@ -30,7 +30,7 @@ blocks:
         text: 30+ Speakers
         label: Content
   - component: AppLandingLogoGrid
-    headline: Gold Sponsors
+    headline: Sponsors
     title: Powering the PRINTED Hub experience.
     logos:
       - src: /sponsors/MultiBuild-onblack.png

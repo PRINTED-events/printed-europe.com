@@ -26,13 +26,25 @@ const style = computed(() => ({
 </script>
 
 <template>
-  <UPageSection
-    v-if="sponsors?.length"
-    :description="description"
-    :headline="headline"
-    :title="title"
-  >
-    <div class="relative flex overflow-hidden" :style="style">
+  <section v-if="sponsors?.length" class="relative isolate py-16 sm:py-24 lg:py-32">
+    <!-- Centered header -->
+    <div
+      v-if="headline || title || description"
+      class="w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8 text-center mb-10"
+    >
+      <p v-if="headline" class="mb-3 font-semibold text-sm text-primary">
+        {{ headline }}
+      </p>
+      <h2 v-if="title" class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-highlighted">
+        {{ title }}
+      </h2>
+      <p v-if="description" class="mt-6 text-base sm:text-lg text-muted">
+        {{ description }}
+      </p>
+    </div>
+
+    <!-- Full-width scrolling band -->
+    <div class="relative flex overflow-hidden py-4" :style="style">
       <div
         class="flex shrink-0 items-center justify-start gap-(--marquee-gap) animate-marquee"
         :class="{ 'animate-marquee-reverse': direction === 'right' }"
@@ -63,7 +75,7 @@ const style = computed(() => ({
         />
       </div>
     </div>
-  </UPageSection>
+  </section>
 </template>
 
 <style scoped>
