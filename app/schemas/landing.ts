@@ -150,6 +150,23 @@ export const landingSchema = createBaseWithSeoSchema().extend({
       }),
 
       createLandingBlockBaseSchema().extend({
+        component: z.literal('AppLandingLogoGrid'),
+        logos: z.array(z.object({
+          src: z.string().min(1),
+          alt: z.string().optional(),
+          url: z.string().optional(),
+        })),
+      }),
+
+      createLandingBlockBaseSchema().extend({
+        component: z.literal('AppLandingSponsorMarquee'),
+        direction: z.enum(['left', 'right']).default('left'),
+        speed: z.number().optional(),
+        gap: z.number().optional(),
+        imageHeight: z.number().optional(),
+      }),
+
+      createLandingBlockBaseSchema().extend({
         component: z.literal('AppLandingSponsors'),
         showViewAll: property(z.boolean().default(false)).editor({
           // @ts-expect-error `description` is custom and patched in `nuxt-studio`

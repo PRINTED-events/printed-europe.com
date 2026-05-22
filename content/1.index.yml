@@ -29,28 +29,22 @@ blocks:
       - icon: i-lucide-mic-2
         text: 30+ Speakers
         label: Content
-  - component: AppLandingMarquee
-    direction: left
-    speed: 30
-    gap: 60
-    imageHeight: 48
-    images:
+  - component: AppLandingLogoGrid
+    headline: Gold Sponsors
+    title: Powering the PRINTED Hub experience.
+    logos:
       - src: /sponsors/MultiBuild-onblack.png
         alt: Multibuild
-      - src: /sponsors/skz.png
-        alt: SKZ
+        url: https://multibuild.io
+      - src: /sponsors/skz-das-kunststoff-zentrum.png
+        alt: SKZ – Das Kunststoff-Zentrum
+        url: https://www.skz.de
       - src: /sponsors/recycklingfabrik.png
         alt: RecyclingFabrik
+        url: https://www.recyclingfabrik.com/
       - src: /sponsors/pla-y-3d.png
         alt: PLA-Y-Glue
-      - src: /sponsors/MultiBuild-onblack.png
-        alt: Multibuild
-      - src: /sponsors/skz.png
-        alt: SKZ
-      - src: /sponsors/recycklingfabrik.png
-        alt: RecyclingFabrik
-      - src: /sponsors/pla-y-3d.png
-        alt: PLA-Y-Glue
+        url: https://www.pla-y-3d.com/en
   - component: AppLandingSection
     title: Where ideas happen.
     description: Join us for an unforgettable experience.
@@ -120,12 +114,14 @@ blocks:
     image:
       src: /hub26_floorplan_v2.png
       alt: PRINTED Hub 2026 Venue Floorplan
-  - component: AppLandingSponsors
+  - component: AppLandingSponsorMarquee
+    headline: Sponsors & Partners
     title: Those who make PRINTED possible!
-    description: Thanks to our sponsors & Partners.
-    headline: Sponsors
-    showViewAll: true
-    viewAllLink: /faq/sponsors
+    description: Sponsors & Partners we already worked with.
+    direction: left
+    speed: 50
+    gap: 80
+    imageHeight: 48
   - component: AppLandingHeroMedia
     title: Meet like-minded people
     description: Immerse yourself.
