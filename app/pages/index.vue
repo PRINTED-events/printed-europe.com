@@ -86,12 +86,9 @@ const seoMetadata = extractSeoMetadata(page.value)
 
 useSeoMeta({
   ...getSeoMetaBase(seoMetadata),
-})
-
-defineOgImageComponent('DefaultSatori', {
-  headline: 'Home',
-  title: seoMetadata.title,
-  description: seoMetadata.description,
+  ogImage: '/og-image.jpg',
+  twitterImage: '/og-image.jpg',
+  twitterCard: 'summary_large_image',
 })
 </script>
 
