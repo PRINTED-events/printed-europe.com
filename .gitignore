@@ -16,24 +16,15 @@ logs
 # Misc
 .DS_Store
 .fleet
-.idea
 
 # Local env files
 .env
 .env.*
 !.env.example
 
-# only specific files in `.vscode`
-.vscode/*
-!.vscode/settings.json
-!.vscode/extensions.json
-
-# only specific files in `.github`
-.github/*
-!.github/actions/
-!.github/workflows/
-!.github/dependabot.yml
-!.github/FUNDING.yml
-
-# Ignore `*.psd` files in `/docs/assets`
-/docs/assets/**/*.psd
+# no IDE and LLM/AI settings
+.claude
+CLAUDE.md
+.cursor
+.vscode
+.idea
