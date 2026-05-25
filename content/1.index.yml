@@ -149,8 +149,6 @@ blocks:
     headline: "2 · Gold Sponsor Booths"
     title: Meet the innovators behind the machines.
     description: Get hands-on with the latest hardware, meet the teams, and enter a creative competition for a chance to win.
-    items:
-      - "Snapmaker: Discover the latest in desktop manufacturing"
     image:
       src: /venues/2-gold-sponsor-booths/multibuild-products.jpg
       alt: Multibuild Products
@@ -183,7 +181,7 @@ blocks:
     talksStage: workshop-space-3
     items:
       - RecycleBar – filament recycling in practice
-      - RecyclingFabrik stand
+      - RecyclingFabrik booth
       - Workshop space for sustainability topics
     image:
       src: /venues/4-recycling-corner/printedhub25-044.jpg
@@ -191,6 +189,102 @@ blocks:
     logos:
       - src: /venues/4-recycling-corner/recyclingfabrik.png
         alt: RecyclingFabrik
+  - component: AppLandingVenueArea
+    headline: "5 · Community Hangout"
+    title: The best ideas start with a good conversation.
+    description: Relax, sit down, meet someone new. On Friday this space transforms into an additional workshop area – versatile and always buzzing.
+    reverse: true
+    items:
+      - Relax & recharge between sessions
+      - Connect with other attendees
+      - Food & drinks on site
+      - Transforms into workshop space on Friday
+    image:
+      src: /venues/5-community-hangout/printedhub25-090.jpg
+      alt: Community Hangout at PRINTED Hub
+  - component: AppLandingVenueArea
+    headline: "6 · Bar"
+    title: Drinks, snacks & sweet treats.
+    description: Keep your energy up with drinks, plus sweet treats from Kittycatcakes and plenty of snacks throughout the day.
+    items:
+      - Cookies by Kittycatcakes
+      - Snacks & more
+    image:
+      src: /venues/6-bar/printedhub25-013.jpg
+      alt: Bar at PRINTED Hub
+    logos:
+      - src: /venues/6-bar/KCC_logo_color_square.png
+        alt: Kittycatcakes
+  - component: AppLandingVenueArea
+    headline: "7 · Fun & Games"
+    title: Because making should be fun.
+    description: Take a break between sessions and challenge someone to a game. Featuring classic board games and – of course – games designed and 3D printed by the community.
+    reverse: true
+    items:
+      - Classic board games
+      - Community-designed 3D printed games
+    images:
+      - src: /venues/7-fun-and-games/printedhub25-025.jpg
+        alt: Fun & Games at PRINTED Hub
+      - src: /venues/7-fun-and-games/printedhub25-043.jpg
+        alt: Fun & Games at PRINTED Hub
+      - src: /venues/7-fun-and-games/printedhub25-045.jpg
+        alt: Fun & Games at PRINTED Hub
+  - component: AppLandingVenueArea
+    headline: "8 · Sponsor Booths"
+    title: Discover what's powering the maker world.
+    description: Meet our sponsors face to face, test their products, and learn about the solutions shaping the future of making and manufacturing.
+    items:
+      - SKZ – Plastics technology & testing
+      - PlayGlue – Creative building systems
+    images:
+      - src: /venues/8-sponsor-booths/printedhub25-037.jpg
+        alt: Sponsor Booths at PRINTED Hub
+      - src: /venues/8-sponsor-booths/printedhub25-038.jpg
+        alt: Sponsor Booths at PRINTED Hub
+    logos:
+      - src: /venues/8-sponsor-booths/logo-skz.png
+        alt: SKZ
+        url: https://www.skz.de
+      - src: /venues/8-sponsor-booths/PLA-Y-3D.png
+        alt: PlayGlue
+  - component: AppLandingVenueArea
+    headline: "9 · Hardware Space"
+    title: Where hardware gets serious.
+    description: Powered by Snapmaker, this dedicated space hosts Rüdiger's popular hardware workshop and gives you direct access to cutting-edge machines.
+    talksStage: workshop-space-1
+    reverse: true
+    items:
+      - Hardware workshop by Rüdiger
+      - Snapmaker booth & live demos
+    images:
+      - src: /venues/10-hardware-space/printedhub25-009.jpg
+        alt: Hardware Space at PRINTED Hub
+      - src: /venues/10-hardware-space/printedhub25-014.jpg
+        alt: Hardware Space at PRINTED Hub
+    logos:
+      - src: /venues/10-hardware-space/logo-snapmaker.png
+        alt: Snapmaker
+        url: https://snapmaker.com
+  - component: AppLandingVenueArea
+    headline: Restaurant
+    title: Two great restaurants, right at the venue.
+    description: Enjoy delicious food without leaving Asbachgasse – two partner restaurants are ready to welcome you during and after the event.
+    items:
+      - Bees Restaurant – Modern cuisine in a relaxed atmosphere
+      - Rheinweinwelt – Regional wine culture & food
+    images:
+      - src: /venues/restaurant/bees-essen-5.jpeg
+        alt: Bees Restaurant
+      - src: /venues/restaurant/2025-galerie-rheinweinwelt-impressionen-13-e5fa49ce.jpg
+        alt: Rheinweinwelt
+    logos:
+      - src: /venues/restaurant/BeeslogoCombined.png
+        alt: Bees Restaurant
+        url: https://www.beesrestaurant.de/en
+      - src: /venues/restaurant/RWW_white.png
+        alt: Rheinweinwelt
+        url: https://www.rheinweinwelt.de/en/
   - component: AppLandingSponsorMarquee
     headline: Sponsors & Partners
     title: Those who make PRINTED possible!
