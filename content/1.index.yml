@@ -114,6 +114,23 @@ blocks:
     image:
       src: /hub26_floorplan_v2.png
       alt: PRINTED Hub 2026 Venue Floorplan
+  - component: AppLandingVenueArea
+    headline: Main Stage
+    title: Where inspiration takes the spotlight.
+    description: The heart of PRINTED Hub – two days of talks, presentations, and panels from the sharpest minds in 3D printing and making. All talks are recorded and published after the event.
+    items:
+      - Talks & presentations from 30+ speakers
+      - Recorded and published after the event
+      - Live Q&A sessions with every speaker
+    image:
+      src: /venues/main-stage/printedhub25-053.jpg
+      alt: Main Stage at PRINTED Hub
+    links:
+      - label: View Schedule
+        to: /schedule
+        icon: i-lucide-calendar
+        variant: subtle
+        size: lg
   - component: AppLandingSponsorMarquee
     headline: Sponsors & Partners
     title: Those who make PRINTED possible!

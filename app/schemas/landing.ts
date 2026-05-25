@@ -44,6 +44,21 @@ export const landingSchema = createBaseWithSeoSchema().extend({
       }),
 
       createLandingBlockBaseSchema().extend({
+        component: z.literal('AppLandingVenueArea'),
+        reverse: z.boolean().optional(),
+        items: z.array(z.string()).optional(),
+        talksStage: z.string().optional(),
+        image: createImageSchema().optional(),
+        images: z.array(createImageSchema()).optional(),
+        logos: z.array(z.object({
+          src: z.string().min(1),
+          alt: z.string().optional(),
+          url: z.string().optional(),
+        })).optional(),
+        links: z.array(createLinkSchema()).optional(),
+      }),
+
+      createLandingBlockBaseSchema().extend({
         component: z.literal('AppLandingHero'),
         links: z.array(createLinkSchema()).optional(),
       }),
