@@ -249,7 +249,7 @@ blocks:
       - src: /venues/8-sponsor-booths/PLA-Y-3D.png
         alt: PlayGlue
   - component: AppLandingVenueArea
-    headline: "9 · Hardware Space"
+    headline: "10 · Hardware Space"
     title: Where hardware gets serious.
     description: Powered by Snapmaker, this dedicated space hosts Rüdiger's popular hardware workshop and gives you direct access to cutting-edge machines.
     talksStage: workshop-space-1
