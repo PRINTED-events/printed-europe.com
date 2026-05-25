@@ -3,7 +3,7 @@ button:
   label: Buy ticket
   to: https://ti.to/printed-europe/printed-hub-2026
   target: _blank
-description: The communiity day will be the best way to connect, meet like minded people and talk with your favorite creators and companies. Experience new projects from creative minds in 3d printing and enjoy your day.
+description: The community day will be the best way to connect, meet like minded people and talk with your favorite creators and companies. Experience new projects from creative minds in 3d printing and enjoy your day.
 discount: € 39,-
 features:
   - Entry
@@ -11,4 +11,4 @@ features:
   - enter the community giveaway
 price: € 69,-
 scale: false
-slug: sample-ticket
+slug: community-day-ticket

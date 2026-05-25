@@ -24,10 +24,10 @@ blocks:
         text: Asbachgasse, Rüdesheim am Rhein
         label: Location
       - icon: i-lucide-users
-        text: 200+
+        text: 400+
         label: Capacity
       - icon: i-lucide-mic-2
-        text: 30+ Speakers
+        text: 15+ Speakers
         label: Content
   - component: AppLandingLogoGrid
     headline: Sponsors
@@ -58,7 +58,7 @@ blocks:
         description: Connecting with like-minded people is a key outcome of printed events. Our ain goal is to connect the right people to each other.
         icon: i-lucide-contact
       - title: Workshops
-        description: Learn from others. No matter if you just start or are experienced. From 3D printing to designing and devloping new products. From Hardware to software.
+        description: Learn from others. No matter if you just start or are experienced. From 3D printing to designing and developing new products. From Hardware to software.
         icon: i-lucide-wrench
     image:
       src: /eventimages/printedhub25340.jpg
@@ -93,13 +93,13 @@ blocks:
         description: Hear from professionals, companies and creators about their visions and experience. All our talks are being recorded and published after the event.
         icon: i-lucide-mic
       - title: Workshops
-        description: Af full day full of workshops for beginnners to experienced people in 3D Design and 3D Printing. Learn from the best.
+        description: A full day full of workshops for beginners to experienced people in 3D Design and 3D Printing. Learn from the best.
         icon: i-lucide-code
       - title: Community projects
-        description: Our "show your stuff" area is again here to give YOU the opportunity to show your projects and passion. Apply for your space (applications open soon)
+        description: Our "show your stuff" area is here to give YOU the opportunity to show your projects and passion. Get your ticket and email us if you've got something to show!
         icon: i-lucide-messages-square
       - title: Networking
-        description: Connect with other attendees. Meet new friends and kearn from each other. Some new ideas formed first at PRINTED events.
+        description: Connect with other attendees. Meet new friends and learn from each other. Some new ideas formed first at PRINTED events.
         icon: i-lucide-coffee
       - title: Sponsors
         description: Our sponsors make the events possible. They show their products and solutions, give talks and workshops.
@@ -155,7 +155,7 @@ blocks:
     logos:
       - src: /venues/2-gold-sponsor-booths/logo-multibuild.png
         alt: Multibuild
-        url: https://multibuild.com
+        url: https://multibuild.io
   - component: AppLandingVenueArea
     headline: "3 · Community Showcase"
     title: Show what you've made. Be amazed by others.
