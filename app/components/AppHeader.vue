@@ -54,7 +54,7 @@ const items = computed(() => [
 </script>
 
 <template>
-  <UHeader class="header-hero-bg" mode="slideover">
+  <UHeader class="!bg-transparent backdrop-blur-none border-transparent" mode="slideover">
     <template #left>
       <ULink
         aria-label="Home"
@@ -129,9 +129,3 @@ const items = computed(() => [
   </UHeader>
 </template>
 
-<style>
-.header-hero-bg {
-  background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.75)),
-    url('/printedhub25-098.jpg') center top / cover no-repeat !important;
-}
-</style>
