@@ -119,7 +119,7 @@ blocks:
     title: Where inspiration takes the spotlight.
     description: The heart of PRINTED Hub – two days of talks, presentations, and panels from the sharpest minds in 3D printing and making. All talks are recorded and published after the event.
     items:
-      - Talks & presentations from 30+ speakers
+      - Talks & presentations from 15+ speakers
       - Recorded and published after the event
       - Live Q&A sessions with every speaker
     image:
@@ -131,6 +131,20 @@ blocks:
         icon: i-lucide-calendar
         variant: subtle
         size: lg
+  - component: AppLandingVenueArea
+    headline: "1 · Info Point"
+    title: Your first stop at the Hub.
+    description: Start here – check in, get your badge, and grab everything you need to make the most of two days at PRINTED Hub.
+    reverse: true
+    items:
+      - Ask any question – our team is here to help
+      - Check in & collect your badge
+      - Store your luggage
+      - Pick up your exclusive cotton bag
+      - Browse the merch shop
+    image:
+      src: /venues/Entry_Gemini.png
+      alt: Info Point at PRINTED Hub
   - component: AppLandingSponsorMarquee
     headline: Sponsors & Partners
     title: Those who make PRINTED possible!
