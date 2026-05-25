@@ -16,7 +16,8 @@ const allEvents = [
   },
   {
     label: 'PRINTED Worldconference',
-    description: 'Mai 2027 · Amsterdam',
+    description: 'May 2027 · Amsterdam – Coming Soon',
+    disabled: true,
   },
   {
     label: 'About Printed Events',
