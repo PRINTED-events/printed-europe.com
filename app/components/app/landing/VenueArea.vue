@@ -89,7 +89,12 @@ const effectiveOrientation = computed(() => hasImage.value ? 'horizontal' as con
               class="mt-0.5 shrink-0 text-teal-500"
               name="i-lucide-calendar-check"
             />
-            <span class="text-sm text-muted">{{ (talk as any).title }}</span>
+            <NuxtLink
+              class="text-sm text-muted hover:text-primary transition-colors"
+              :to="`/talks/${(talk as any).slug}`"
+            >
+              {{ (talk as any).title }}
+            </NuxtLink>
           </li>
         </ul>
       </div>
