@@ -40,7 +40,7 @@ blocks:
         alt: SKZ – Das Kunststoff-Zentrum
         url: https://www.skz.de
       - src: /sponsors/recycklingfabrik.png
-        alt: RecyclingFabrik
+        alt: Recycling Fabrik
         url: https://www.recyclingfabrik.com/
       - src: /sponsors/pla-y-3d.png
         alt: PLA-Y-Glue
@@ -181,14 +181,14 @@ blocks:
     talksStage: workshop-space-3
     items:
       - RecycleBar – filament recycling in practice
-      - RecyclingFabrik booth
+      - Recycling Fabrik booth
       - Workshop space for sustainability topics
     image:
       src: /venues/4-recycling-corner/printedhub25-044.jpg
       alt: Recycling Corner at PRINTED Hub
     logos:
       - src: /venues/4-recycling-corner/recyclingfabrik.png
-        alt: RecyclingFabrik
+        alt: Recycling Fabrik
   - component: AppLandingVenueArea
     headline: "5 · Community Hangout"
     title: The best ideas start with a good conversation.
