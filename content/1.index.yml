@@ -145,6 +145,52 @@ blocks:
     image:
       src: /venues/Entry_Gemini.png
       alt: Info Point at PRINTED Hub
+  - component: AppLandingVenueArea
+    headline: "2 · Gold Sponsor Booths"
+    title: Meet the innovators behind the machines.
+    description: Get hands-on with the latest hardware, meet the teams, and enter a creative competition for a chance to win.
+    items:
+      - "Snapmaker: Discover the latest in desktop manufacturing"
+    image:
+      src: /venues/2-gold-sponsor-booths/multibuild-products.jpg
+      alt: Multibuild Products
+    logos:
+      - src: /venues/2-gold-sponsor-booths/logo-multibuild.png
+        alt: Multibuild
+        url: https://multibuild.com
+  - component: AppLandingVenueArea
+    headline: "3 · Community Showcase"
+    title: Show what you've made. Be amazed by others.
+    description: The maker gallery at the heart of PRINTED Hub – community members bring their finest creations and connect directly with like-minded people.
+    reverse: true
+    items:
+      - Community members present their special projects
+      - Get inspired and spark new ideas
+      - Connect directly with the creators
+    images:
+      - src: /venues/3-community-showcase/printedhub25-010.jpg
+        alt: Community Showcase
+      - src: /venues/3-community-showcase/printedhub25-011.jpg
+        alt: Community Showcase
+      - src: /venues/3-community-showcase/printedhub25-021.jpg
+        alt: Community Showcase
+      - src: /venues/3-community-showcase/printedhub25-027.jpg
+        alt: Community Showcase
+  - component: AppLandingVenueArea
+    headline: "4 · Recycling Corner"
+    title: Making with a conscience.
+    description: Sustainability in action – discover how the maker community is pioneering responsible production, circular design, and eco-friendly materials.
+    talksStage: workshop-space-3
+    items:
+      - RecycleBar – filament recycling in practice
+      - RecyclingFabrik stand
+      - Workshop space for sustainability topics
+    image:
+      src: /venues/4-recycling-corner/printedhub25-044.jpg
+      alt: Recycling Corner at PRINTED Hub
+    logos:
+      - src: /venues/4-recycling-corner/recyclingfabrik.png
+        alt: RecyclingFabrik
   - component: AppLandingSponsorMarquee
     headline: Sponsors & Partners
     title: Those who make PRINTED possible!
