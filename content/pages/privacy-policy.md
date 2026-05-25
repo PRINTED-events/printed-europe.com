@@ -6,7 +6,7 @@ title: Privacy Policy
 
 ## 1. Data Controller
 
-Printed Events\
+Printed Events UG (haftungsbeschränkt)\
 Etzenbachermühle 1\
 66894 Käshofen\
 Germany\

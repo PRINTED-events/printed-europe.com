@@ -6,7 +6,7 @@ title: Legal Notice
 
 ## Information according to § 5 TMG
 
-Printed Events\
+Printed Events UG (haftungsbeschränkt)\
 Etzenbachermühle 1\
 66894 Käshofen\
 Germany
@@ -27,7 +27,7 @@ HRB 33424 · Amtsgericht Zweibrücken
 
 ## Responsible for content according to § 55 Abs. 2 RStV
 
-Printed Events\
+Printed Events UG (haftungsbeschränkt)\
 Etzenbachermühle 1\
 66894 Käshofen
 
