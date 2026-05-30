@@ -35,7 +35,7 @@ defineProps<{
 
 <style>
 .hero-with-bg {
-  background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.85)),
+  background: radial-gradient(ellipse at center, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.4) 80%),
     url('/venues/3-community-showcase/printedhub25-011.jpg') center top / cover no-repeat !important;
 }
 </style>
