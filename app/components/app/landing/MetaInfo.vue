@@ -16,7 +16,7 @@ defineProps<{
 <template>
   <div class="meta-info-with-bg">
     <UPageSection
-      :class="{ 'md:-my-[70px] relative z-10': height === 'small' }"
+      :class="['meta-info-section', { 'md:-my-[70px] relative z-10': height === 'small' }]"
       :description="description"
       :headline="headline"
       :title="title"
@@ -58,5 +58,21 @@ defineProps<{
 }
 .meta-info-with-bg p {
   color: rgb(212, 212, 216);
+}
+.meta-info-section {
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important;
+}
+@media (min-width: 640px) {
+  .meta-info-section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+}
+@media (min-width: 1024px) {
+  .meta-info-section {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
 }
 </style>
