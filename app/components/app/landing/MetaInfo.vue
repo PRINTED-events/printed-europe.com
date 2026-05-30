@@ -59,20 +59,18 @@ defineProps<{
 .meta-info-with-bg p {
   color: rgb(212, 212, 216);
 }
-.meta-info-section {
-  padding-top: 2rem !important;
-  padding-bottom: 2rem !important;
-}
-@media (min-width: 640px) {
-  .meta-info-section {
-    padding-top: 3rem !important;
-    padding-bottom: 3rem !important;
-  }
+.meta-info-with-bg > *,
+.meta-info-with-bg > * > [class*="py-"],
+.meta-info-with-bg .meta-info-section {
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
 }
 @media (min-width: 1024px) {
-  .meta-info-section {
-    padding-top: 4rem !important;
-    padding-bottom: 4rem !important;
+  .meta-info-with-bg > *,
+  .meta-info-with-bg > * > [class*="py-"],
+  .meta-info-with-bg .meta-info-section {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
   }
 }
 </style>
