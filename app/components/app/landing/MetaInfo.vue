@@ -50,8 +50,8 @@ defineProps<{
 
 <style>
 .meta-info-with-bg {
-  background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)),
-    url('/venues/3-community-showcase/printedhub25-011.jpg') center / cover no-repeat;
+  background: linear-gradient(rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.92)),
+    url('/venues/3-community-showcase/printedhub25-011.jpg') center top / cover no-repeat;
 }
 .meta-info-with-bg :is(h1, h2, h3, h4) {
   color: white;
