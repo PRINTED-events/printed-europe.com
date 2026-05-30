@@ -39,10 +39,10 @@ More than just a venue, Asbachgasse is a space where brands and people connect n
 
 **Address**
 
-*Asbachgasse :br
-Am Rottland 6 :br
-65385 Rüdesheim am Rhein :br
-Germany*
+Asbachgasse\
+Am Rottland 6\
+65385 Rüdesheim am Rhein\
+Germany
 
 **By Car**
 

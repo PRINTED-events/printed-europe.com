@@ -24,10 +24,10 @@ blocks:
         text: Asbachgasse, Rüdesheim am Rhein
         label: Location
       - icon: i-lucide-users
-        text: 200+
+        text: 400+
         label: Capacity
       - icon: i-lucide-mic-2
-        text: 30+ Speakers
+        text: 15+ Speakers
         label: Content
   - component: AppLandingLogoGrid
     headline: Sponsors
@@ -40,7 +40,7 @@ blocks:
         alt: SKZ – Das Kunststoff-Zentrum
         url: https://www.skz.de
       - src: /sponsors/recycklingfabrik.png
-        alt: RecyclingFabrik
+        alt: Recycling Fabrik
         url: https://www.recyclingfabrik.com/
       - src: /sponsors/pla-y-3d.png
         alt: PLA-Y-Glue
@@ -58,7 +58,7 @@ blocks:
         description: Connecting with like-minded people is a key outcome of printed events. Our ain goal is to connect the right people to each other.
         icon: i-lucide-contact
       - title: Workshops
-        description: Learn from others. No matter if you just start or are experienced. From 3D printing to designing and devloping new products. From Hardware to software.
+        description: Learn from others. No matter if you just start or are experienced. From 3D printing to designing and developing new products. From Hardware to software.
         icon: i-lucide-wrench
     image:
       src: /eventimages/printedhub25340.jpg
@@ -93,13 +93,13 @@ blocks:
         description: Hear from professionals, companies and creators about their visions and experience. All our talks are being recorded and published after the event.
         icon: i-lucide-mic
       - title: Workshops
-        description: Af full day full of workshops for beginnners to experienced people in 3D Design and 3D Printing. Learn from the best.
+        description: A full day full of workshops for beginners to experienced people in 3D Design and 3D Printing. Learn from the best.
         icon: i-lucide-code
       - title: Community projects
-        description: Our "show your stuff" area is again here to give YOU the opportunity to show your projects and passion. Apply for your space (applications open soon)
+        description: Our "show your stuff" area is here to give YOU the opportunity to show your projects and passion. Get your ticket and email us if you've got something to show!
         icon: i-lucide-messages-square
       - title: Networking
-        description: Connect with other attendees. Meet new friends and kearn from each other. Some new ideas formed first at PRINTED events.
+        description: Connect with other attendees. Meet new friends and learn from each other. Some new ideas formed first at PRINTED events.
         icon: i-lucide-coffee
       - title: Sponsors
         description: Our sponsors make the events possible. They show their products and solutions, give talks and workshops.
@@ -114,6 +114,177 @@ blocks:
     image:
       src: /hub26_floorplan_v2.png
       alt: PRINTED Hub 2026 Venue Floorplan
+  - component: AppLandingVenueArea
+    headline: Main Stage
+    title: Where inspiration takes the spotlight.
+    description: The heart of PRINTED Hub – two days of talks, presentations, and panels from the sharpest minds in 3D printing and making. All talks are recorded and published after the event.
+    items:
+      - Talks & presentations from 15+ speakers
+      - Recorded and published after the event
+      - Live Q&A sessions with every speaker
+    image:
+      src: /venues/main-stage/printedhub25-053.jpg
+      alt: Main Stage at PRINTED Hub
+    links:
+      - label: View Schedule
+        to: /schedule
+        icon: i-lucide-calendar
+        variant: subtle
+        size: lg
+  - component: AppLandingVenueArea
+    headline: "1 · Info Point"
+    title: Your first stop at the Hub.
+    description: Start here – check in, get your badge, and grab everything you need to make the most of two days at PRINTED Hub.
+    reverse: true
+    items:
+      - Ask any question – our team is here to help
+      - Check in & collect your badge
+      - Store your luggage
+      - Pick up your exclusive cotton bag
+      - Browse the merch shop
+    image:
+      src: /venues/Entry_Gemini.png
+      alt: Info Point at PRINTED Hub
+  - component: AppLandingVenueArea
+    headline: "2 · Gold Sponsor Booths"
+    title: Meet the innovators behind the machines.
+    description: Get hands-on with the latest hardware, meet the teams, and enter a creative competition for a chance to win.
+    image:
+      src: /venues/2-gold-sponsor-booths/multibuild-products.jpg
+      alt: Multibuild Products
+    logos:
+      - src: /venues/2-gold-sponsor-booths/logo-multibuild.png
+        alt: Multibuild
+        url: https://multibuild.io
+  - component: AppLandingVenueArea
+    headline: "3 · Community Showcase"
+    title: Show what you've made. Be amazed by others.
+    description: The maker gallery at the heart of PRINTED Hub – community members bring their finest creations and connect directly with like-minded people.
+    reverse: true
+    items:
+      - Community members present their special projects
+      - Get inspired and spark new ideas
+      - Connect directly with the creators
+    images:
+      - src: /venues/3-community-showcase/printedhub25-010.jpg
+        alt: Community Showcase
+      - src: /venues/3-community-showcase/printedhub25-011.jpg
+        alt: Community Showcase
+      - src: /venues/3-community-showcase/printedhub25-021.jpg
+        alt: Community Showcase
+      - src: /venues/3-community-showcase/printedhub25-027.jpg
+        alt: Community Showcase
+  - component: AppLandingVenueArea
+    headline: "4 · Recycling Corner"
+    title: Making with a conscience.
+    description: Sustainability in action – discover how the maker community is pioneering responsible production, circular design, and eco-friendly materials.
+    talksStage: workshop-space-3
+    items:
+      - RecycleBar – filament recycling in practice
+      - Recycling Fabrik booth
+      - Workshop space for sustainability topics
+    image:
+      src: /venues/4-recycling-corner/printedhub25-044.jpg
+      alt: Recycling Corner at PRINTED Hub
+    logos:
+      - src: /venues/4-recycling-corner/recyclingfabrik.png
+        alt: Recycling Fabrik
+  - component: AppLandingVenueArea
+    headline: "5 · Community Hangout"
+    title: The best ideas start with a good conversation.
+    description: Relax, sit down, meet someone new. On Friday this space transforms into an additional workshop area – versatile and always buzzing.
+    reverse: true
+    items:
+      - Relax & recharge between sessions
+      - Connect with other attendees
+      - Food & drinks on site
+      - Transforms into workshop space on Friday
+    image:
+      src: /venues/5-community-hangout/printedhub25-090.jpg
+      alt: Community Hangout at PRINTED Hub
+  - component: AppLandingVenueArea
+    headline: "6 · Bar"
+    title: Drinks, snacks & sweet treats.
+    description: Keep your energy up with drinks, plus sweet treats from Kittycatcakes and plenty of snacks throughout the day.
+    items:
+      - Cookies by Kittycatcakes
+      - Snacks & more
+    image:
+      src: /venues/6-bar/printedhub25-013.jpg
+      alt: Bar at PRINTED Hub
+    logos:
+      - src: /venues/6-bar/KCC_logo_color_square.png
+        alt: Kittycatcakes
+  - component: AppLandingVenueArea
+    headline: "7 · Fun & Games"
+    title: Because making should be fun.
+    description: Take a break between sessions and challenge someone to a game. Featuring classic board games and – of course – games designed and 3D printed by the community.
+    reverse: true
+    items:
+      - Classic board games
+      - Community-designed 3D printed games
+    images:
+      - src: /venues/7-fun-and-games/printedhub25-025.jpg
+        alt: Fun & Games at PRINTED Hub
+      - src: /venues/7-fun-and-games/printedhub25-043.jpg
+        alt: Fun & Games at PRINTED Hub
+      - src: /venues/7-fun-and-games/printedhub25-045.jpg
+        alt: Fun & Games at PRINTED Hub
+  - component: AppLandingVenueArea
+    headline: "8 · Sponsor Booths"
+    title: Discover what's powering the maker world.
+    description: Meet our sponsors face to face, test their products, and learn about the solutions shaping the future of making and manufacturing.
+    items:
+      - SKZ – Plastics technology & testing
+      - PlayGlue – Creative building systems
+    images:
+      - src: /venues/8-sponsor-booths/printedhub25-037.jpg
+        alt: Sponsor Booths at PRINTED Hub
+      - src: /venues/8-sponsor-booths/printedhub25-038.jpg
+        alt: Sponsor Booths at PRINTED Hub
+    logos:
+      - src: /venues/8-sponsor-booths/logo-skz.png
+        alt: SKZ
+        url: https://www.skz.de
+      - src: /venues/8-sponsor-booths/PLA-Y-3D.png
+        alt: PlayGlue
+  - component: AppLandingVenueArea
+    headline: "10 · Hardware Space"
+    title: Where hardware gets serious.
+    description: Powered by Snapmaker, this dedicated space hosts Rüdiger's popular hardware workshop and gives you direct access to cutting-edge machines.
+    talksStage: workshop-space-1
+    reverse: true
+    items:
+      - Hardware workshop by Rüdiger
+      - Snapmaker booth & live demos
+    images:
+      - src: /venues/10-hardware-space/printedhub25-009.jpg
+        alt: Hardware Space at PRINTED Hub
+      - src: /venues/10-hardware-space/printedhub25-014.jpg
+        alt: Hardware Space at PRINTED Hub
+    logos:
+      - src: /venues/10-hardware-space/logo-snapmaker.png
+        alt: Snapmaker
+        url: https://snapmaker.com
+  - component: AppLandingVenueArea
+    headline: Restaurant
+    title: Two great restaurants, right at the venue.
+    description: Enjoy delicious food without leaving Asbachgasse – two partner restaurants are ready to welcome you during and after the event.
+    items:
+      - Bees Restaurant – Modern cuisine in a relaxed atmosphere
+      - Rheinweinwelt – Regional wine culture & food
+    images:
+      - src: /venues/restaurant/bees-essen-5.jpeg
+        alt: Bees Restaurant
+      - src: /venues/restaurant/2025-galerie-rheinweinwelt-impressionen-13-e5fa49ce.jpg
+        alt: Rheinweinwelt
+    logos:
+      - src: /venues/restaurant/BeeslogoCombined.png
+        alt: Bees Restaurant
+        url: https://www.beesrestaurant.de/en
+      - src: /venues/restaurant/RWW_white.png
+        alt: Rheinweinwelt
+        url: https://www.rheinweinwelt.de/en/
   - component: AppLandingSponsorMarquee
     headline: Sponsors & Partners
     title: Those who make PRINTED possible!

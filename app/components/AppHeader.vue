@@ -16,7 +16,8 @@ const allEvents = [
   },
   {
     label: 'PRINTED Worldconference',
-    description: 'Mai 2027 · Amsterdam',
+    description: 'May 2027 · Amsterdam – Coming Soon',
+    disabled: true,
   },
   {
     label: 'About Printed Events',
@@ -54,7 +55,7 @@ const items = computed(() => [
 </script>
 
 <template>
-  <UHeader mode="slideover">
+  <UHeader class="!bg-transparent backdrop-blur-none border-transparent" mode="slideover">
     <template #left>
       <ULink
         aria-label="Home"
@@ -128,3 +129,4 @@ const items = computed(() => [
     </template>
   </UHeader>
 </template>
+
