@@ -5,7 +5,7 @@ slug: robin-eschrich
 company: Tüftlerbox
 description: Plastic industry professional | Maker | Innovator
 featured: false
-image: ''
+image: /speaker/robin-eschrich.jpg
 navigation:
   title: Robin Eschrich
 socialMedia:
