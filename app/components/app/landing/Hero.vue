@@ -12,7 +12,7 @@ defineProps<{
 
 <template>
   <UPageHero
-    class="overflow-hidden"
+    class="overflow-hidden hero-bg"
     :description="description"
     :headline="headline"
     :links="links"
@@ -32,3 +32,10 @@ defineProps<{
     </template>
   </UPageHero>
 </template>
+
+<style>
+.hero-bg {
+  background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.92)),
+    url('/venues/3-community-showcase/printedhub25-011.jpg') center center / cover no-repeat !important;
+}
+</style>

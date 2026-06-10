@@ -55,7 +55,7 @@ const items = computed(() => [
 </script>
 
 <template>
-  <UHeader class="!bg-transparent backdrop-blur-none border-transparent" mode="slideover">
+  <UHeader mode="slideover">
     <template #left>
       <ULink
         aria-label="Home"
