@@ -3,10 +3,10 @@ title: 3D Printing Hardware 101
 slug: edu-ws1-b4
 dateTime: '2026-09-25T12:00:00.000Z'
 description: >-
-  Hotend, extruder, axes, print bed – a 3D printer consists of many components
-  that only bring a printed object to life through their interplay. This
-  workshop explains the most important hardware fundamentals, showcases
-  different machine types, and offers a hands-on introduction.
+  Hotend, Extruder, Achsen, Druckbett – ein 3D-Drucker besteht aus vielen Komponenten,
+  die im Zusammenspiel erst das gedruckte Objekt entstehen lassen. Der Workshop erklärt
+  die wichtigsten Hardware-Grundlagen, zeigt verschiedene Bauarten und vermittelt einen
+  praxisnahen Einstieg.
 duration: 45
 resources: []
 speakers:
