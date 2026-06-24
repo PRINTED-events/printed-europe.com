@@ -107,6 +107,11 @@ defineOgImageComponent('DefaultSatori', {
           </ULink>
         </div>
 
+        <!-- description -->
+        <p v-if="talk.description" class="text-muted text-base leading-relaxed max-w-2xl">
+          {{ talk.description }}
+        </p>
+
         <!-- talk details -->
         <div class="prose dark:prose-invert">
           <ContentRenderer v-if="talk.body" :value="talk" />
