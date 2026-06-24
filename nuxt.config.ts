@@ -59,9 +59,15 @@ export default defineNuxtConfig({
       { code: 'en', language: 'en-US', name: 'English', file: 'en.json' },
       { code: 'de', language: 'de-DE', name: 'Deutsch', file: 'de.json' },
     ],
-    // Never auto-pick the browser language: always start in the default locale
-    // (English) and only change when the user picks a language via the switcher.
-    detectBrowserLanguage: false,
+    // First visit: pick the locale from the browser language (German browsers
+    // start in German, everyone else falls back to English). A manual choice via
+    // the switcher is stored in the cookie and always takes precedence afterwards.
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_locale',
+      redirectOn: 'root',
+      fallbackLocale: 'en',
+    },
   },
 
   runtimeConfig: {
