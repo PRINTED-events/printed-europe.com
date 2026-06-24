@@ -49,7 +49,23 @@ export default defineNuxtConfig({
     'nuxt-studio',
     '@nuxtjs/seo',
     '@nuxt/scripts',
+    '@nuxtjs/i18n',
   ],
+
+  i18n: { // for `@nuxtjs/i18n`
+    strategy: 'no_prefix', // keep URLs unchanged; language is chosen via cookie + switcher
+    defaultLocale: 'en',
+    locales: [
+      { code: 'en', language: 'en-US', name: 'English', file: 'en.json' },
+      { code: 'de', language: 'de-DE', name: 'Deutsch', file: 'de.json' },
+    ],
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_locale',
+      redirectOn: 'root',
+      fallbackLocale: 'en',
+    },
+  },
 
   runtimeConfig: {
     public: {

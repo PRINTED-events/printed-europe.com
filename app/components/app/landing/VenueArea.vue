@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { ButtonProps } from '@nuxt/ui'
+
 const props = defineProps<{
   title?: string
   description?: string
@@ -19,15 +21,10 @@ const props = defineProps<{
     alt?: string
     url?: string
   }[]
-  links?: {
-    label: string
-    to: string
-    icon?: string
-    target?: string
-    variant?: string
-    size?: string
-  }[]
+  links?: ButtonProps[]
 }>()
+
+const { t } = useI18n()
 
 const { data: stageTalks } = await useAsyncData(
   `venue-talks-${props.talksStage}`,
@@ -42,9 +39,9 @@ const { data: stageTalks } = await useAsyncData(
 const uniqueTalks = computed(() => {
   if (!stageTalks.value?.length) return []
   const seen = new Set<string>()
-  return stageTalks.value.filter((t: any) => {
-    if (seen.has(t.title)) return false
-    seen.add(t.title)
+  return stageTalks.value.filter((talk: any) => {
+    if (seen.has(talk.title)) return false
+    seen.add(talk.title)
     return true
   })
 })
@@ -78,7 +75,7 @@ const effectiveOrientation = computed(() => hasImage.value ? 'horizontal' as con
       </ul>
 
       <div v-if="uniqueTalks.length" class="mt-4 space-y-2">
-        <p class="text-xs font-semibold uppercase tracking-wider text-muted">Workshops & Talks</p>
+        <p class="text-xs font-semibold uppercase tracking-wider text-muted">{{ t('landing.workshopsAndTalks') }}</p>
         <ul class="space-y-1.5">
           <li
             v-for="talk in uniqueTalks"

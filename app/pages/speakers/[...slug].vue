@@ -3,6 +3,7 @@ import type { PageAnchor } from '@nuxt/ui'
 import { isNil } from 'lodash-es'
 
 const route = useRoute()
+const { t } = useI18n()
 const { extractSeoMetadata, getSeoMetaBase } = useSeo()
 
 let slug_speaker: string
@@ -54,7 +55,7 @@ useSeoMeta({
 })
 
 defineOgImageComponent('DefaultSatori', {
-  headline: 'Speaker',
+  headline: t('speakerDetail.ogHeadline'),
   title: seoMetadata.title,
   description: seoMetadata.description,
   image: speaker.value.image,
@@ -66,8 +67,8 @@ defineOgImageComponent('DefaultSatori', {
     <UContainer class="pt-3 pb-8">
       <UBreadcrumb
         :items="[
-          { label: 'Home', to: '/' },
-          { label: 'Speakers', to: '/speakers' },
+          { label: t('common.home'), to: '/' },
+          { label: t('speakers.title'), to: '/speakers' },
           { label: speaker.name },
         ]"
       />
@@ -83,7 +84,7 @@ defineOgImageComponent('DefaultSatori', {
             <div>
               <div class="relative aspect-4/3 w-60 -translate-y-8 sm:-translate-y-12 transform">
                 <NuxtImg
-                  :alt="`Picture of ${speaker.name}`"
+                  :alt="t('speakerDetail.pictureAlt', { name: speaker.name })"
                   class="h-full w-full rounded-lg object-cover ring-2 ring-white dark:ring-neutral-900"
                   densities="1x 2x"
                   fit="cover"
@@ -98,7 +99,7 @@ defineOgImageComponent('DefaultSatori', {
             <div class="w-full">
               <UPageHeader
                 :description="speaker.description"
-                headline="Speaker Details"
+                :headline="t('speakerDetail.headline')"
                 :title="speaker.name"
               />
               <!-- <UPageAnchors :links="socialLinks" /> -->
@@ -138,7 +139,7 @@ defineOgImageComponent('DefaultSatori', {
         <!-- talks -->
         <div>
           <ProseH2>
-            Talks & Workshops
+            {{ t('speakerDetail.talksWorkshops') }}
           </ProseH2>
           <template v-if="!isNil(talks) && talks.length > 0">
             <div class="flex flex-col gap-y-4">
@@ -156,7 +157,7 @@ defineOgImageComponent('DefaultSatori', {
           <template v-else>
             <UAlert
               color="neutral"
-              :description="`${speaker.name} currently has no talks or workshops listed.`"
+              :description="t('speakerDetail.noTalks', { name: speaker.name })"
               icon="lucide:info"
               variant="subtle"
             />

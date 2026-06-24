@@ -1,0 +1,81 @@
+{
+  "common": {
+    "comingSoon": "Demnächst",
+    "home": "Start",
+    "resource": "Ressource"
+  },
+  "countdown": {
+    "days": "Tage",
+    "eventEnded": "Event beendet",
+    "hours": "Stunden",
+    "liveNow": "Jetzt live",
+    "minutes": "Minuten",
+    "seconds": "Sekunden"
+  },
+  "faq": {
+    "description": "Häufig gestellte Fragen zu {name}",
+    "ogHeadline": "FAQ",
+    "title": "FAQ"
+  },
+  "footer": {
+    "adminArea": "Admin-Bereich",
+    "contact": "Kontakt",
+    "copyright": "Copyright © {years}. Alle Rechte vorbehalten.",
+    "legalInformation": "Rechtliches",
+    "legalNotice": "Impressum",
+    "privacyPolicy": "Datenschutz",
+    "socialMedia": "Social Media"
+  },
+  "header": {
+    "aboutPrintedEvents": "Über Printed Events",
+    "applyAsSpeaker": "Als Speaker bewerben",
+    "buyTickets": "Tickets kaufen",
+    "buyTicketsAria": "Tickets kaufen",
+    "homeAria": "Startseite"
+  },
+  "landing": {
+    "workshopsAndTalks": "Workshops & Talks"
+  },
+  "nav": {
+    "events": "Events",
+    "faq": "FAQ",
+    "location": "Anfahrt",
+    "schedule": "Programm",
+    "speakers": "Speaker",
+    "tickets": "Tickets"
+  },
+  "schedule": {
+    "checkBack": "Schau später wieder vorbei – das Programm wird laufend aktualisiert.",
+    "description": "Übersicht aller Talks des Events mit Uhrzeit, Speaker und Bühne.",
+    "noStages": "Noch keine Bühnen konfiguriert.",
+    "noTalks": "Noch keine Talks geplant.",
+    "seoDescription": "Programm der Konferenz für {day}",
+    "title": "Programm"
+  },
+  "speakerDetail": {
+    "headline": "Speaker-Details",
+    "noTalks": "{name} hat derzeit keine Talks oder Workshops gelistet.",
+    "ogHeadline": "Speaker",
+    "pictureAlt": "Bild von {name}",
+    "talksWorkshops": "Talks & Workshops"
+  },
+  "speakers": {
+    "description": "Lerne unsere großartigen Speaker kennen und erfahre mehr über ihre Talks.",
+    "ogDescription": "Lerne unsere großartigen Speaker kennen",
+    "title": "Speaker"
+  },
+  "talkDetail": {
+    "dateAt": "{day} um {time} ({timeZone})",
+    "dateTimeTba": "Datum & Uhrzeit folgen",
+    "headline": "Talk-Details",
+    "noSpeakers": "Für diesen Talk sind keine Speaker hinterlegt.",
+    "ogHeadline": "Talk",
+    "presentedBy": "Präsentiert von {names}",
+    "resources": "Ressourcen",
+    "speakers": "Speaker"
+  },
+  "tickets": {
+    "description": "Sichere dir dein Ticket und sei beim Event dabei.",
+    "title": "Tickets"
+  }
+}

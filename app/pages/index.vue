@@ -44,9 +44,22 @@ const componentsMap: Record<string, Component> = {
   AppLandingVenueArea,
 }
 
+const { locale } = useI18n()
 const { extractSeoMetadata, getSeoMetaBase } = useSeo()
 
-const { data: _page } = await useAsyncData('index-first', () => queryCollection('index').first())
+const { data: _page } = await useAsyncData(
+  'index-first',
+  async () => {
+    // Load the landing content for the active locale; fall back to the default
+    // locale (`/`) if a localized variant does not exist yet.
+    const localizedPath = locale.value === 'en' ? '/' : `/${locale.value}`
+    const localized = await queryCollection('index').path(localizedPath).first()
+    if (localized)
+      return localized
+    return await queryCollection('index').path('/').first()
+  },
+  { watch: [locale] },
+)
 
 if (isNil(_page.value)) {
   throw createError({

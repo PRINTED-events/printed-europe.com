@@ -8,6 +8,8 @@ import { version } from '~~/package.json'
  * via Nuxt Studio in this context and rarely change during a session.
  */
 
+const { t } = useI18n()
+
 const appConfig = useAppConfig()
 const footerConfig = appConfig.footer
 const columnsConfig = footerConfig?.footerColumns
@@ -31,11 +33,11 @@ const col2Links = (col2?.links ?? []).filter(link => link.url)
 const hasCol2 = Boolean(col2?.title) || col2Links.length > 0
 
 // --- Column 3 (Legal - Always visible) ---
-const legalLinks = [
-  { label: 'Contact', to: '/contact' },
-  { label: 'Privacy Policy', to: '/privacy-policy' },
-  { label: 'Legal Notice', to: '/legal-notice' },
-]
+const legalLinks = computed(() => [
+  { label: t('footer.contact'), to: '/contact' },
+  { label: t('footer.privacyPolicy'), to: '/privacy-policy' },
+  { label: t('footer.legalNotice'), to: '/legal-notice' },
+])
 
 // --- Column 4 (Socials) ---
 const col4 = columnsConfig?.column4
@@ -54,53 +56,57 @@ const gridClass = (() => {
   return 'md:grid-cols-2 lg:grid-cols-2'
 })()
 
-// create final columns for later usage
-const columns: FooterColumn[] = []
+// create final columns for later usage (computed so labels react to locale changes)
+const columns = computed<FooterColumn[]>(() => {
+  const cols: FooterColumn[] = []
 
-// Column 1
-if (hasCol1) {
-  columns.push({
-    label: col1?.title ?? '',
-    children: col1Links.map(link => ({
-      label: link.name ?? link.url,
-      icon: link.icon,
-      to: link.url,
-      target: isExternalLink(link.url) ? '_blank' : undefined,
-    })),
+  // Column 1
+  if (hasCol1) {
+    cols.push({
+      label: col1?.title ?? '',
+      children: col1Links.map(link => ({
+        label: link.name ?? link.url,
+        icon: link.icon,
+        to: link.url,
+        target: isExternalLink(link.url) ? '_blank' : undefined,
+      })),
+    })
+  }
+
+  // Column 2
+  if (hasCol2) {
+    cols.push({
+      label: col2?.title ?? '',
+      children: col2Links.map(link => ({
+        label: link.name ?? link.url,
+        icon: link.icon,
+        to: link.url,
+        target: isExternalLink(link.url) ? '_blank' : undefined,
+      })),
+    })
+  }
+
+  // Column 3 (Legal)
+  cols.push({
+    label: t('footer.legalInformation'),
+    children: legalLinks.value,
   })
-}
 
-// Column 2
-if (hasCol2) {
-  columns.push({
-    label: col2?.title ?? '',
-    children: col2Links.map(link => ({
-      label: link.name ?? link.url,
-      icon: link.icon,
-      to: link.url,
-      target: isExternalLink(link.url) ? '_blank' : undefined,
-    })),
-  })
-}
+  // Column 4 (Socials)
+  if (hasSocials) {
+    cols.push({
+      label: t('footer.socialMedia'),
+      children: socialLinks.map(social => ({
+        label: social.name ?? social.url,
+        icon: social.icon || getIconForUrl(social.url),
+        to: social.url,
+        target: isExternalLink(social.url) ? '_blank' : undefined,
+      })),
+    })
+  }
 
-// Column 3 (Legal)
-columns.push({
-  label: 'Legal Information',
-  children: legalLinks,
+  return cols
 })
-
-// Column 4 (Socials)
-if (hasSocials) {
-  columns.push({
-    label: 'Social Media',
-    children: socialLinks.map(social => ({
-      label: social.name ?? social.url,
-      icon: social.icon || getIconForUrl(social.url),
-      to: social.url,
-      target: isExternalLink(social.url) ? '_blank' : undefined,
-    })),
-  })
-}
 
 const {
   url: repositoryUrl,
@@ -139,7 +145,7 @@ function navigateToAdmin() {
 
     <template #left>
       <p class="text-muted text-sm">
-        Copyright © {{ yearSpan }}. All rights reserved.
+        {{ t('footer.copyright', { years: yearSpan }) }}
       </p>
     </template>
 
@@ -185,7 +191,7 @@ function navigateToAdmin() {
       <!-- icon="i-lucide-log-in" -->
       <UButton
         v-if="bottomIcons?.showAdminLink"
-        aria-label="Admin Area"
+        :aria-label="t('footer.adminArea')"
         color="neutral"
         icon="i-lucide-log-in"
         variant="ghost"

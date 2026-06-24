@@ -1,7 +1,8 @@
 <script setup lang="ts">
 const route = useRoute()
+const { t } = useI18n()
 
-const allEvents = [
+const allEvents = computed(() => [
   {
     label: 'PRINTED Hub',
     description: 'Sep 2025 · Rüdesheim',
@@ -16,40 +17,40 @@ const allEvents = [
   },
   {
     label: 'PRINTED Worldconference',
-    description: 'May 2027 · Amsterdam – Coming Soon',
+    description: `May 2027 · Amsterdam – ${t('common.comingSoon')}`,
     disabled: true,
   },
   {
-    label: 'About Printed Events',
+    label: t('header.aboutPrintedEvents'),
     to: 'https://printed-events.com',
     target: '_blank',
   },
-]
+])
 
 const items = computed(() => [
   {
-    label: 'Schedule',
+    label: t('nav.schedule'),
     to: '/schedule',
     active: route.path.startsWith('/schedule') || route.path.startsWith('/talks'),
   },
   {
-    label: 'Speakers',
+    label: t('nav.speakers'),
     to: '/speakers',
     active: route.path.startsWith('/speakers'),
   },
   {
-    label: 'Location',
+    label: t('nav.location'),
     to: '/faq/location',
     active: route.path.startsWith('/faq/location'),
   },
   {
-    label: 'FAQ',
+    label: t('nav.faq'),
     to: '/faq',
     active: route.path.startsWith('/faq'),
   },
   {
-    label: 'Events',
-    children: allEvents,
+    label: t('nav.events'),
+    children: allEvents.value,
   },
 ])
 </script>
@@ -58,7 +59,7 @@ const items = computed(() => [
   <UHeader mode="slideover">
     <template #left>
       <ULink
-        aria-label="Home"
+        :aria-label="t('header.homeAria')"
         class="mr-0 md:mr-8"
         to="/"
       >
@@ -74,12 +75,14 @@ const items = computed(() => [
     </template>
 
     <template #right>
+      <AppLanguageSwitcher />
+
       <UButton
-        aria-label="Buy tickets"
+        :aria-label="t('header.buyTicketsAria')"
         class="lg:hidden"
         color="neutral"
         icon="i-lucide-ticket"
-        title="Buy tickets"
+        :title="t('header.buyTicketsAria')"
         to="/tickets"
         variant="ghost"
       />
@@ -87,7 +90,7 @@ const items = computed(() => [
       <UButton
         class="hidden lg:inline-flex"
         color="primary"
-        label="Apply as Speaker"
+        :label="t('header.applyAsSpeaker')"
         to="/faq/cfp"
         variant="outline"
       />
@@ -95,7 +98,7 @@ const items = computed(() => [
       <UButton
         class="hidden lg:inline-flex"
         color="primary"
-        label="Buy Tickets"
+        :label="t('header.buyTickets')"
         to="/tickets"
         variant="solid"
       />
@@ -114,7 +117,7 @@ const items = computed(() => [
         block
         class="mb-3"
         color="primary"
-        label="Buy Tickets"
+        :label="t('header.buyTickets')"
         to="/tickets"
       />
 
@@ -122,10 +125,12 @@ const items = computed(() => [
         block
         class="mb-3"
         color="primary"
-        label="Apply as Speaker"
+        :label="t('header.applyAsSpeaker')"
         to="/faq/cfp"
         variant="subtle"
       />
+
+      <AppLanguageSwitcher class="mt-3" />
     </template>
   </UHeader>
 </template>

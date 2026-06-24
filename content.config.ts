@@ -26,10 +26,14 @@ export default defineContentConfig({
 
     // -------- static pages
 
-    // Home/Landing page
+    // Home/Landing page (root `1.index.yml` = default locale `en` at path `/`,
+    // localized variants live under `<locale>/1.index.yml`, e.g. `de/1.index.yml` at path `/de`)
     index: defineCollection({
       type: 'page',
-      source: '1.index.yml',
+      source: [
+        { include: '1.index.yml' },
+        { include: '*/1.index.yml' },
+      ],
       schema: landingSchema,
     }),
 

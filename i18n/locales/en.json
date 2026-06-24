@@ -1,0 +1,81 @@
+{
+  "common": {
+    "comingSoon": "Coming Soon",
+    "home": "Home",
+    "resource": "Resource"
+  },
+  "countdown": {
+    "days": "days",
+    "eventEnded": "Event Ended",
+    "hours": "hours",
+    "liveNow": "Live Now",
+    "minutes": "minutes",
+    "seconds": "seconds"
+  },
+  "faq": {
+    "description": "Frequently asked questions about {name}",
+    "ogHeadline": "FAQ",
+    "title": "FAQ"
+  },
+  "footer": {
+    "adminArea": "Admin Area",
+    "contact": "Contact",
+    "copyright": "Copyright © {years}. All rights reserved.",
+    "legalInformation": "Legal Information",
+    "legalNotice": "Legal Notice",
+    "privacyPolicy": "Privacy Policy",
+    "socialMedia": "Social Media"
+  },
+  "header": {
+    "aboutPrintedEvents": "About Printed Events",
+    "applyAsSpeaker": "Apply as Speaker",
+    "buyTickets": "Buy Tickets",
+    "buyTicketsAria": "Buy tickets",
+    "homeAria": "Home"
+  },
+  "landing": {
+    "workshopsAndTalks": "Workshops & Talks"
+  },
+  "nav": {
+    "events": "Events",
+    "faq": "FAQ",
+    "location": "Location",
+    "schedule": "Schedule",
+    "speakers": "Speakers",
+    "tickets": "Tickets"
+  },
+  "schedule": {
+    "checkBack": "Check back later for updates to the schedule.",
+    "description": "List of talks for the event with time, speaker and stage information.",
+    "noStages": "No stages configured yet.",
+    "noTalks": "No talks scheduled yet.",
+    "seoDescription": "Conference schedule for {day}",
+    "title": "Schedule"
+  },
+  "speakerDetail": {
+    "headline": "Speaker Details",
+    "noTalks": "{name} currently has no talks or workshops listed.",
+    "ogHeadline": "Speaker",
+    "pictureAlt": "Picture of {name}",
+    "talksWorkshops": "Talks & Workshops"
+  },
+  "speakers": {
+    "description": "Meet our amazing speakers and learn more about their talks.",
+    "ogDescription": "Meet our amazing speakers",
+    "title": "Speakers"
+  },
+  "talkDetail": {
+    "dateAt": "{day} at {time} ({timeZone})",
+    "dateTimeTba": "Date & time TBA",
+    "headline": "Talk Details",
+    "noSpeakers": "There are no speakers listed for this talk.",
+    "ogHeadline": "Talk",
+    "presentedBy": "Presented by {names}",
+    "resources": "Resources",
+    "speakers": "Speakers"
+  },
+  "tickets": {
+    "description": "Purchase your ticket to join the conference.",
+    "title": "Tickets"
+  }
+}

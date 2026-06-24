@@ -11,12 +11,14 @@ const {
   activeTalks,
 } = await useSchedule()
 
+const { t } = useI18n()
+
 // --- SEO ---
 const { extractSeoMetadata, getSeoMetaBase } = useSeo()
 
 const seoMetadata = computed(() => extractSeoMetadata({
-  title: 'Schedule',
-  description: `Conference schedule for ${activeDayISO.value}`,
+  title: t('schedule.title'),
+  description: t('schedule.seoDescription', { day: activeDayISO.value }),
 }))
 
 const meta = computed(() => getSeoMetaBase(seoMetadata.value))
@@ -29,9 +31,9 @@ useSeoMeta({
 })
 
 defineOgImageComponent('DefaultSatori', {
-  headline: 'Schedule',
-  title: 'Schedule',
-  description: `Conference schedule for ${activeDayISO.value}`,
+  headline: t('schedule.title'),
+  title: t('schedule.title'),
+  description: t('schedule.seoDescription', { day: activeDayISO.value }),
 })
 </script>
 
@@ -39,14 +41,14 @@ defineOgImageComponent('DefaultSatori', {
   <UContainer class="pt-3 pb-8">
     <UBreadcrumb
       :items="[
-        { label: 'Home', to: '/' },
-        { label: 'Schedule' },
+        { label: t('common.home'), to: '/' },
+        { label: t('schedule.title') },
       ]"
     />
 
     <UPageHeader
-      description="List of talks for the event with time, speaker and stage information."
-      title="Schedule"
+      :description="t('schedule.description')"
+      :title="t('schedule.title')"
     />
 
     <!-- Day Selector -->
@@ -76,14 +78,14 @@ defineOgImageComponent('DefaultSatori', {
       />
       <div class="text-lg font-medium text-neutral-900 dark:text-white">
         <span v-if="!stages || stages.length === 0">
-          No stages configured yet.
+          {{ t('schedule.noStages') }}
         </span>
         <span v-else>
-          No talks scheduled yet.
+          {{ t('schedule.noTalks') }}
         </span>
       </div>
       <div class="text-neutral-500">
-        Check back later for updates to the schedule.
+        {{ t('schedule.checkBack') }}
       </div>
     </div>
   </UContainer>

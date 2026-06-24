@@ -3,6 +3,7 @@ import { isNil } from 'lodash-es'
 
 const route = useRoute()
 const appConfig = useAppConfig()
+const { t } = useI18n()
 const { extractSeoMetadata, getSeoMetaBase } = useSeo()
 
 // Fetch all FAQ pages for navigation, sorted by order field
@@ -40,8 +41,8 @@ const { data: surround } = await useAsyncData(
 // Build breadcrumb items based on current page
 const breadcrumbItems = computed(() => {
   const items = [
-    { label: 'Home', to: '/' },
-    { label: 'FAQ' },
+    { label: t('common.home'), to: '/' },
+    { label: t('faq.title') },
   ]
 
   // Add current page title if not on the FAQ index
@@ -63,7 +64,7 @@ useSeoMeta({
 })
 
 defineOgImageComponent('DefaultSatori', {
-  headline: 'FAQ',
+  headline: t('faq.ogHeadline'),
   title: seoMetadata.title,
   description: seoMetadata.description,
 })
@@ -76,8 +77,8 @@ defineOgImageComponent('DefaultSatori', {
     />
 
     <UPageHeader
-      :description="`Frequently asked questions about ${appConfig.general.conferenceName}`"
-      title="FAQ"
+      :description="t('faq.description', { name: appConfig.general.conferenceName })"
+      :title="t('faq.title')"
     />
 
     <USeparator />

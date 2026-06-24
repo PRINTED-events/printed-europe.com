@@ -3,6 +3,7 @@ import { DateTime } from 'luxon'
 
 const route = useRoute()
 const appConfig = useAppConfig()
+const { t } = useI18n()
 const { extractSeoMetadata, getSeoMetaBase } = useSeo()
 
 let slug_talk: string
@@ -41,20 +42,20 @@ const [
 
 function formatDateTime(dateTimeStr?: string): string {
   if (!dateTimeStr)
-    return 'Date & time TBA'
+    return t('talkDetail.dateTimeTba')
 
   const date = DateTime.fromISO(dateTimeStr, {
     zone: appConfig.general.timeZone || 'UTC',
   })
   if (!date.isValid) {
-    return 'Date & time TBA'
+    return t('talkDetail.dateTimeTba')
   }
 
   const day = date.toISODate()
   const time = date.toLocaleString(DateTime.TIME_24_SIMPLE)
   const timeZone = date.zoneName
 
-  return `${day} at ${time} (${timeZone})`
+  return t('talkDetail.dateAt', { day, time, timeZone })
 }
 
 const seoMetadata = extractSeoMetadata(talk.value)
@@ -65,10 +66,10 @@ useSeoMeta({
 })
 
 defineOgImageComponent('DefaultSatori', {
-  headline: 'Talk',
+  headline: t('talkDetail.ogHeadline'),
   title: seoMetadata.title,
   description: speakers.value?.length
-    ? `Presented by ${speakers.value.map(s => s.name).join(', ')}`
+    ? t('talkDetail.presentedBy', { names: speakers.value.map(s => s.name).join(', ') })
     : undefined,
 })
 </script>
@@ -78,15 +79,15 @@ defineOgImageComponent('DefaultSatori', {
     <UContainer class="pt-3 pb-8">
       <UBreadcrumb
         :items="[
-          { label: 'Home', to: '/' },
-          { label: 'Schedule', to: '/schedule' },
+          { label: t('common.home'), to: '/' },
+          { label: t('schedule.title'), to: '/schedule' },
           { label: talk.title },
         ]"
       />
 
       <UPageBody>
         <UPageHeader
-          headline="Talk Details"
+          :headline="t('talkDetail.headline')"
           :title="talk.title"
         />
 
@@ -120,7 +121,7 @@ defineOgImageComponent('DefaultSatori', {
         <!-- resources -->
         <div v-if="talk.resources?.length">
           <ProseH2>
-            Resources
+            {{ t('talkDetail.resources') }}
           </ProseH2>
           <div class="flex flex-wrap gap-3">
             <UButton
@@ -128,7 +129,7 @@ defineOgImageComponent('DefaultSatori', {
               :key="resource.url"
               color="neutral"
               :icon="resource.icon || getIconForUrl(resource.url)"
-              :label="resource.description || 'Resource'"
+              :label="resource.description || t('common.resource')"
               target="_blank"
               :to="resource.url"
               variant="subtle"
@@ -139,7 +140,7 @@ defineOgImageComponent('DefaultSatori', {
         <!-- speakers -->
         <div>
           <ProseH2>
-            Speakers
+            {{ t('talkDetail.speakers') }}
           </ProseH2>
           <template v-if="speakers && speakers.length > 0">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-12">
@@ -153,7 +154,7 @@ defineOgImageComponent('DefaultSatori', {
           <template v-else>
             <UAlert
               color="neutral"
-              description="There are no speakers listed for this talk."
+              :description="t('talkDetail.noSpeakers')"
               icon="lucide:info"
               variant="subtle"
             />

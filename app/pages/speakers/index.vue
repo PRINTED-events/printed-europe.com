@@ -1,23 +1,28 @@
 <script setup lang="ts">
+const { t } = useI18n()
 const { extractSeoMetadata, getSeoMetaBase } = useSeo()
 
 const { data: speakers } = await useAsyncData('speakers-all', () =>
   queryCollection('speakers').order('featured', 'DESC').all())
 
-const seoMetadata = extractSeoMetadata({
-  title: 'Speakers',
-  description: 'Meet our amazing speakers and learn more about their talks.',
-})
-const { title, description } = seoMetadata
+const seoMetadata = computed(() => extractSeoMetadata({
+  title: t('speakers.title'),
+  description: t('speakers.description'),
+}))
+
+const meta = computed(() => getSeoMetaBase(seoMetadata.value))
 
 useSeoMeta({
-  ...getSeoMetaBase(seoMetadata),
+  title: () => meta.value.title,
+  ogTitle: () => meta.value.ogTitle,
+  description: () => meta.value.description,
+  ogDescription: () => meta.value.ogDescription,
 })
 
 defineOgImageComponent('DefaultSatori', {
-  headline: 'Speakers',
-  title: 'Speakers',
-  description: 'Meet our amazing speakers',
+  headline: t('speakers.title'),
+  title: t('speakers.title'),
+  description: t('speakers.ogDescription'),
 })
 </script>
 
@@ -26,14 +31,14 @@ defineOgImageComponent('DefaultSatori', {
     <UContainer class="pt-3 pb-8">
       <UBreadcrumb
         :items="[
-          { label: 'Home', to: '/' },
-          { label: 'Speakers' },
+          { label: t('common.home'), to: '/' },
+          { label: t('speakers.title') },
         ]"
       />
 
       <UPageHeader
-        :description="description"
-        :title="title"
+        :description="seoMetadata.description"
+        :title="seoMetadata.title"
       />
 
       <AppSpeakerGrid is-all-speakers :speakers="speakers" />
