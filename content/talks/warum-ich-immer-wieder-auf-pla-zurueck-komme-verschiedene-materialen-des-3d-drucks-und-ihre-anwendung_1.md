@@ -5,7 +5,8 @@ title: >-
 slug: >-
   warum-ich-immer-wieder-auf-pla-zurueck-komme-verschiedene-materialen-des-3d-drucks-und-ihre-anwendung_1
 dateTime: '2026-09-25T13:00:00.000Z'
-description: ''
+description: >-
+  PETG, ABS, TPU und Co. – die Materialauswahl ist riesig, doch am Ende landet Stefan Hermann fast immer wieder beim guten alten PLA. Er geht durch die gängigen Filamente und ihre Tücken und zeigt, warum PLA für die meisten Drucke die pragmatischste Wahl bleibt – und wann sich der Griff zu einer Alternative trotzdem lohnt.
 duration: 45
 resources: []
 speakers:
