@@ -3,7 +3,11 @@ title: Was wäre eine Welt ohne Kunststoffe?
 slug: was-waere-eine-welt-ohne-kunststoffe_2
 dateTime: '2026-09-25T12:00:00.000Z'
 description: >-
-  Kunststoffe sind aus unserem Alltag kaum wegzudenken – aber was würde passieren, wenn es sie nicht gäbe? Irena Heuzeroth vom SKZ beleuchtet die zentrale Rolle von Kunststoffen in Industrie und Gesellschaft, zeigt deren oft unterschätzte Bedeutung und eröffnet eine differenzierte Sicht auf Nachhaltigkeit und den verantwortungsvollen Umgang mit Materialien.
+  Kunststoffe sind so selbstverständlich geworden, dass wir sie kaum noch
+  wahrnehmen – bis man sich fragt: Was würde fehlen, wenn es sie nicht gäbe?
+  Irena Heuzeroth vom SKZ beleuchtet die oft unterschätzte Rolle von Kunststoffen
+  in Industrie und Gesellschaft und eröffnet eine differenzierte Perspektive auf
+  Nachhaltigkeit, Verantwortung und den bewussten Umgang mit Materialien.
 duration: 45
 resources: []
 speakers:
