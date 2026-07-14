@@ -21,7 +21,7 @@ description: >-
 duration: 45
 resources: []
 speakers:
-  - ''
+  - fabian-bos
 stage: workshop-space-3
 type: Workshop
 ---
