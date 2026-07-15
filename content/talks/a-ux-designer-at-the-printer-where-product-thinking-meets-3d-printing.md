@@ -2,7 +2,13 @@
 title: A UX Designer at the Printer — where product thinking meets 3D printing
 slug: a-ux-designer-at-the-printer-where-product-thinking-meets-3d-printing
 dateTime: '2026-09-26T09:30:00.000Z'
-description: ''
+description: >-
+  Tagsüber designt Jens Schaller digitale Produkte – abends und am Wochenende
+  steht er am 3D-Drucker. In diesem Talk zeigt er, was passiert, wenn man
+  UX-Methoden wie Design Thinking und strukturiertes Prototyping auf Maker-Projekte
+  anwendet: Schluss mit blindem Trial-and-Error, stattdessen ein klarer Prozess
+  vom gescheiterten Druck zur fertigen Lösung. Das Publikum nimmt ein konkretes
+  Framework mit, das sich sofort auf eigene Projekte anwenden lässt.
 duration: 20
 resources: []
 speakers:

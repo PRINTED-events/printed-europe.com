@@ -42,9 +42,6 @@ blocks:
       - src: /sponsors/recycklingfabrik.png
         alt: Recycling Fabrik
         url: https://www.recyclingfabrik.com/
-      - src: /sponsors/pla-y-3d.png
-        alt: PLA-Y-Glue
-        url: https://www.pla-y-3d.com/en
   - component: AppLandingSection
     title: Wo Ideen entstehen.
     description: Sei dabei und erlebe ein unvergessliches Event.
@@ -236,7 +233,6 @@ blocks:
     description: Triff unsere Sponsoren persönlich, teste ihre Produkte und erfahre mehr über die Lösungen, die die Zukunft von Making und Fertigung prägen.
     items:
       - SKZ – Kunststofftechnik & Prüfung
-      - PlayGlue – Kreative Bausysteme
     images:
       - src: /venues/8-sponsor-booths/printedhub25-037.jpg
         alt: Sponsor-Stände beim PRINTED Hub
@@ -246,8 +242,6 @@ blocks:
       - src: /venues/8-sponsor-booths/logo-skz.png
         alt: SKZ
         url: https://www.skz.de
-      - src: /venues/8-sponsor-booths/PLA-Y-3D.png
-        alt: PlayGlue
   - component: AppLandingVenueArea
     headline: "10 · Hardware-Bereich"
     title: Wo Hardware ernst wird.

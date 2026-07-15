@@ -1,7 +1,7 @@
 ---
 title: Live-Recycling mit der RecycleBar
-slug: live-recycling-mit-der-recyclebar
-dateTime: '2026-09-25T13:00:00.000Z'
+slug: live-recycling-mit-der-recyclebar-fr-1030
+dateTime: '2026-09-25T08:30:00.000Z'
 description: >-
   Wir verwandeln Plastikreste (Flaschendeckel, Shampooflaschen und 3D-Reste) mit
   euch in neue Produkte.
@@ -25,4 +25,3 @@ speakers:
 stage: workshop-space-3
 type: Workshop
 ---
-
