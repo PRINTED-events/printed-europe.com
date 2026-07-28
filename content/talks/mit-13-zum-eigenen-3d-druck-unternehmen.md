@@ -7,7 +7,7 @@ description: >-
   Bereich 3D-Druck aufgebaut hat. Er teilt seine Erfahrungen, die
   Herausforderungen auf diesem Weg und gibt Einblicke, wie aus einer
   Begeisterung für 3D-Druck ein eigenes Geschäft entstanden ist.
-duration: 45
+duration: 20
 resources: []
 speakers:
   - dominik-nudaim3d
