@@ -1,13 +1,13 @@
 ---
-title: Dominik (Nudaim3D)
-name: Dominik (Nudaim3D)
+title: Dominik Schkalei
+name: Dominik Schkalei
 slug: dominik-nudaim3d
 company: Nudaim3D
 description: Gründer von Nudaim3D
 featured: false
 image: /speaker/dominik-nudaim3d.jpg
 navigation:
-  title: Dominik (Nudaim3D)
+  title: Dominik Schkalei
 socialMedia:
   - url: https://www.instagram.com/nudaim3d/
     description: Instagram – @nudaim3d
