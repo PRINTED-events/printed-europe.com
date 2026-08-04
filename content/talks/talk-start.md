@@ -1,7 +1,7 @@
 ---
 title: Onboarding Ceremony
 slug: talk-start
-dateTime: '2026-09-25T07:00:00.000Z'
+dateTime: '2026-09-25T07:30:00.000Z'
 description: The start
 duration: 20
 resources: []
