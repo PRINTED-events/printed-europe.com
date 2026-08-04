@@ -7,5 +7,5 @@ duration: 20
 resources: []
 speakers: []
 stage: main-stage
-type: Talk
+type: Panel
 ---

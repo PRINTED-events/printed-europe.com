@@ -9,7 +9,7 @@ description: >-
   spielen. Im Fokus stehen praxistaugliche Ansätze für mehr Ressourceneffizienz
   und der Beitrag des 3D-Drucks zu einem nachhaltigen Hobby und einer
   zukunftsfähigen Kreislaufwirtschaft.
-duration: 20
+duration: 45
 resources: []
 speakers:
   - rudolfleue
