@@ -42,6 +42,18 @@ blocks:
       - src: /sponsors/recycklingfabrik.png
         alt: Recycling Fabrik
         url: https://www.recyclingfabrik.com/
+      - src: /sponsors/3d-druck-akademie.png
+        alt: 3D Druck Akademie
+      - src: /sponsors/farm-app.png
+        alt: Farm App
+      - src: /sponsors/recyclebar.png
+        alt: RecycleBar
+        url: https://recyclebar.org
+      - src: /sponsors/thangs.png
+        alt: Thangs
+        url: https://thangs.com
+      - src: /sponsors/wtf.png
+        alt: W.T.F. – Wirtschaft Tourismus Förderung
   - component: AppLandingSection
     title: Wo Ideen entstehen.
     description: Sei dabei und erlebe ein unvergessliches Event.
