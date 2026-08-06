@@ -44,8 +44,10 @@ blocks:
         url: https://www.recyclingfabrik.com/
       - src: /sponsors/3d-druck-akademie.png
         alt: 3D Druck Akademie
+        url: https://www.3dd-akademie.de
       - src: /sponsors/farm-app.png
         alt: Farm App
+        url: https://farm.makeorama.ch
       - src: /sponsors/recyclebar.png
         alt: RecycleBar
         url: https://recyclebar.org
