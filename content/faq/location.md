@@ -49,8 +49,6 @@ More than just a venue, Asbachgasse is a space where brands and people connect n
 
 ### Getting There
 
-![image](/eventimages/parkingPHub.jpg)
-
 **Address**
 
 Asbachgasse\
@@ -58,16 +56,18 @@ Am Rottland 6\
 65385 Rüdesheim am Rhein\
 Germany
 
-**By Car**
+> ⚠️ **Bauarbeiten beachten**
+>
+> Vom 10.07. bis 12.12.2026 fällt die Zugstrecke Wiesbaden–Rüdesheim (RB 10) wegen der Generalsanierung „Rechter Rhein" aus. Aus Frankfurt/Wiesbaden kommend geht es ab Wiesbaden Hbf nur mit Schienenersatzverkehr (Bus) weiter.
 
-We recommend using **Parking Lot P8** or at **Oberstrasse**, which are conveniently located nearby.
+**Die entspannte Route (empfohlen)**
 
-**By Train (Direct)**
+Zug bis **Bingen (Rhein) Hbf**, kurzer Weg zur Fähre, rüber nach Rüdesheim – kein Schienenersatzverkehr nötig.
 
-The event location is perfectly situated just **50 meters** from the **Rüdesheim (Rhein)** train station.
+> **Achtung:** Das Deutschlandticket gilt nicht auf der Fähre.
 
-**The Scenic Route (via Bingen)**
+Fährplan & Preise: [bingen-ruedesheimer.de](https://www.bingen-ruedesheimer.de/rheinfaehren/personenfaehre/)
 
-For a touch of adventure, take the train to **Bingen (Rhein) Hbf**. From there, enjoy a short 900m walk (or take a bus) to the riverfront and cross the Rhine on the **passenger ferry**. It’s a beautiful way to start your visit!
+**Mit dem Auto**
 
-Ferry Schedule & prices: [bingen-ruedesheimer.de](https://www.bingen-ruedesheimer.de/rheinfaehren/personenfaehre/)
+Parkplätze an der **Oberstraße** oder am **Parkplatz P8**, beide fußläufig erreichbar.
