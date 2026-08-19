@@ -10,7 +10,7 @@ duration: 45
 resources: []
 speakers:
   - adrianluben
-stage: workshop-space-2
+stage: workshop-space-4
 type: Workshop
 ---
 

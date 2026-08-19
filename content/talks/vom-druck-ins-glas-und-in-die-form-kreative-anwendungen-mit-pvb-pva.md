@@ -17,7 +17,7 @@ duration: 45
 resources: []
 speakers:
   - robin-eschrich
-stage: workshop-space-2
+stage: workshop-space-4
 type: Workshop
 ---
 
