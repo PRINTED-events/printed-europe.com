@@ -1,7 +1,7 @@
 ---
 title: Idea to Print - Software & Workflows für den 3D-Druck
 slug: workshop-block-1
-dateTime: '2026-09-25T07:30:00.000Z'
+dateTime: '2026-09-25T09:30:00.000Z'
 description: >-
   Von der Idee zum fertigen Design – welche Software passt zu welchem Ziel, und
   welche Arbeitsweisen gibt es? Der Workshop gibt einen praxisnahen Überblick
