@@ -1,7 +1,7 @@
 ---
 title: A UX Designer at the Printer — where product thinking meets 3D printing
 slug: a-ux-designer-at-the-printer-where-product-thinking-meets-3d-printing
-dateTime: '2026-09-26T08:00:00.000Z'
+dateTime: '2026-09-25T14:00:00.000Z'
 description: >-
   Tagsüber designt Jens Schaller digitale Produkte – abends und am Wochenende
   steht er am 3D-Drucker. In diesem Talk zeigt er, was passiert, wenn man

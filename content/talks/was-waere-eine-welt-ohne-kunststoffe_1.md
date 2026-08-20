@@ -1,7 +1,7 @@
 ---
 title: Was wäre eine Welt ohne Kunststoffe?
 slug: was-waere-eine-welt-ohne-kunststoffe_1
-dateTime: '2026-09-25T09:00:00.000Z'
+dateTime: '2026-09-25T12:00:00.000Z'
 description: >-
   Kunststoffe sind so selbstverständlich geworden, dass wir sie kaum noch
   wahrnehmen – bis man sich fragt: Was würde fehlen, wenn es sie nicht gäbe?
