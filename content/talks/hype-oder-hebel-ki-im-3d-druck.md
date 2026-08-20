@@ -1,6 +1,6 @@
 ---
-title: AI in 3D Printing and Content Creation
-slug: ai-in-3d-printing-and-content-creation
+title: Hype oder Hebel? KI im 3D-Druck
+slug: hype-oder-hebel-ki-im-3d-druck
 dateTime: '2026-09-26T12:30:00.000Z'
 description: ''
 duration: 40

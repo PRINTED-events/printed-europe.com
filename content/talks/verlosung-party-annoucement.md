@@ -1,6 +1,6 @@
 ---
-title: Closing & Party Announcement!
-slug: closing-party-announcement
+title: Verlosung & Party Annoucement
+slug: verlosung-party-annoucement
 dateTime: '2026-09-26T14:30:00.000Z'
 description: >-
   Der offizielle Abschluss des PRINTED Hub 2026 – Janos Kehl blickt auf zwei
