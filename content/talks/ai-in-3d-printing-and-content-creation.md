@@ -1,6 +1,6 @@
 ---
-title: AI in 3D Priting and Content Creation
-slug: ai-in-3d-priting-and-content-creation
+title: AI in 3D Printing and Content Creation
+slug: ai-in-3d-printing-and-content-creation
 dateTime: '2026-09-26T12:30:00.000Z'
 description: ''
 duration: 40
