@@ -4,14 +4,14 @@ title: >-
   Drucks und ihre Anwendung
 slug: >-
   warum-ich-immer-wieder-auf-pla-zurueck-komme-verschiedene-materialen-des-3d-drucks-und-ihre-anwendung_2
-dateTime: '2026-09-25T14:00:00.000Z'
+dateTime: '2026-09-26T13:30:00.000Z'
 description: >-
   PETG, ABS, TPU und Co. – die Materialauswahl im 3D-Druck ist riesig, doch am
-  Ende landet Stefan Hermann fast immer wieder beim guten alten PLA. In diesem Talk
-  geht er durch die gängigen Filamente, erklärt ihre Stärken und Tücken und zeigt,
-  warum PLA für die meisten Anwendungen die pragmatischste Wahl bleibt – und wann
-  sich der Griff zu einer Alternative trotzdem lohnt.
-duration: 45
+  Ende landet Stefan Hermann fast immer wieder beim guten alten PLA. In diesem
+  Talk geht er durch die gängigen Filamente, erklärt ihre Stärken und Tücken und
+  zeigt, warum PLA für die meisten Anwendungen die pragmatischste Wahl bleibt –
+  und wann sich der Griff zu einer Alternative trotzdem lohnt.
+duration: 20
 resources: []
 speakers:
   - stefan-herman
