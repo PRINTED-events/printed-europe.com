@@ -8,6 +8,7 @@ resources: []
 speakers:
   - adrianluben
   - janos-kehl
+  - nils-stackler
   - stefan-herman
 stage: main-stage
 type: Panel
