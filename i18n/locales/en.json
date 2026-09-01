@@ -76,6 +76,10 @@
   },
   "tickets": {
     "accessibility": {
+      "accompanying": {
+        "label": "Accompanying persons",
+        "text": "If your German disability pass lists an accompanying person (mark “B”), they join us free of charge. A short note to {email} is enough and we will issue the second ticket. We do not check routinely at the entrance — please bring the pass along anyway, just to be safe."
+      },
       "halls": {
         "label": "The halls",
         "text": "on one level, step-free and without raised door sills. The exhibition areas are fully accessible by wheelchair."

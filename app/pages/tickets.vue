@@ -37,9 +37,16 @@ const meta = computed(() => getSeoMetaBase(seoMetadata.value))
 const contactEmail = 'office@printed-events.com'
 const contactPhone = '+49 152 342 844 07'
 
-// The plain paragraphs of the accessibility box. The contact paragraph is
-// rendered separately because it embeds links.
-const accessibilityTopics = ['halls', 'route', 'parking', 'toilets'] as const
+// The paragraphs of the accessibility box, in display order. Each one is
+// rendered through `i18n-t`, so any of them may embed the contact links.
+const accessibilityTopics = [
+  'halls',
+  'route',
+  'parking',
+  'accompanying',
+  'toilets',
+  'questions',
+] as const
 
 useSeoMeta({
   title: () => meta.value.title,
@@ -89,17 +96,8 @@ defineOgImageComponent('DefaultSatori', {
               {{ t(`tickets.accessibility.${topic}.label`) }}:
             </dt>
             <dd class="inline">
-              {{ t(`tickets.accessibility.${topic}.text`) }}
-            </dd>
-          </div>
-
-          <div>
-            <dt class="inline font-semibold text-highlighted">
-              {{ t('tickets.accessibility.questions.label') }}:
-            </dt>
-            <dd class="inline">
               <i18n-t
-                keypath="tickets.accessibility.questions.text"
+                :keypath="`tickets.accessibility.${topic}.text`"
                 scope="global"
                 tag="span"
               >

@@ -76,6 +76,10 @@
   },
   "tickets": {
     "accessibility": {
+      "accompanying": {
+        "label": "Begleitpersonen",
+        "text": "Ist in deinem Schwerbehindertenausweis eine Begleitperson eingetragen (Merkzeichen „B“), kommt sie bei uns kostenfrei mit. Ein kurzer Hinweis an {email} genügt, dann stellen wir das zweite Ticket aus. Wir kontrollieren am Einlass nicht routinemäßig — bring den Ausweis trotzdem sicherheitshalber mit."
+      },
       "halls": {
         "label": "Die Hallen",
         "text": "ebenerdig, stufenlos und ohne Türschwellen. Die Ausstellungsflächen lassen sich mit dem Rollstuhl uneingeschränkt befahren."
