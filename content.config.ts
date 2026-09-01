@@ -59,9 +59,14 @@ export default defineContentConfig({
       schema: sponsorSchema,
     }),
 
+    // Tickets (root `tickets/` = default locale `en`, localized variants live
+    // under `<locale>/tickets/`, e.g. `de/tickets/`)
     tickets: defineCollection({
       type: 'data',
-      source: 'tickets/**/*.yml',
+      source: [
+        { include: 'tickets/**/*.yml' },
+        { include: '*/tickets/**/*.yml' },
+      ],
       schema: ticketSchema,
     }),
 

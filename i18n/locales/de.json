@@ -75,6 +75,29 @@
     "speakers": "Speaker"
   },
   "tickets": {
+    "accessibility": {
+      "halls": {
+        "label": "Die Hallen",
+        "text": "ebenerdig, stufenlos und ohne Türschwellen. Die Ausstellungsflächen lassen sich mit dem Rollstuhl uneingeschränkt befahren."
+      },
+      "parking": {
+        "label": "Parken",
+        "text": "Ein Parkplatz etwa fünf Gehminuten entfernt steht zur Verfügung. Die wenigen Stellplätze direkt vor der Halle sind für Aussteller reserviert. Wenn du auf einen Platz in unmittelbarer Nähe angewiesen bist, frag uns vorher — wir prüfen, ob sich einer freihalten lässt."
+      },
+      "questions": {
+        "label": "Fragen vorab",
+        "text": "Schreib uns unter {email} oder ruf an unter {phone}. Wir sagen dir ehrlich, was geht und was nicht."
+      },
+      "route": {
+        "label": "Der Weg dorthin",
+        "text": "Vom Eingang der Asbachgasse bis zum Haupteingang sind es etwa 100 Meter historisches Kopfsteinpflaster — mit Rollstuhl, Rollator oder Kinderwagen holprig und anstrengend. Du musst die Strecke aber nicht fahren: Die Einfahrt in die Gasse ist mit dem Auto erlaubt, Absetzen direkt vor dem Haupteingang ist zulässig."
+      },
+      "title": "Barrierefreiheit vor Ort",
+      "toilets": {
+        "label": "Toiletten",
+        "text": "Barrierefreie Toiletten stehen leider nicht zur Verfügung. Das ist uns bewusst, und wir bedauern es."
+      }
+    },
     "description": "Sichere dir dein Ticket und sei beim Event dabei.",
     "title": "Tickets"
   }

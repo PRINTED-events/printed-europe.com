@@ -1,0 +1,14 @@
+title: Education Day (Freitag)
+button:
+  label: Ticket kaufen
+  to: https://ti.to/printed-europe/printed-hub-2026
+  target: _blank
+description: Unser Education Day ist für alle da, mit besonderem Fokus auf Gruppen von Schülerinnen, Schülern und Studierenden. Freu dich auf einen ganzen Tag mit bis zu 6 Workshops, die jeweils für Einsteiger und Erfahrene angeboten werden. Insgesamt gibt es 12 Workshops, aus denen du das Niveau wählst, das am besten zu dir passt.
+discount: € 49,-
+features:
+  - Eintritt
+  - 6 aus 12 Workshops wählen
+  - Survival-Paket (Snacks und Getränke)
+price: € 69,-
+scale: false
+slug: education-day-ticket

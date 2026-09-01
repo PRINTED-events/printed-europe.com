@@ -1,0 +1,15 @@
+title: All Access inkl. Education Day
+button:
+  label: Ticket kaufen
+  to: https://ti.to/printed-europe/printed-hub-2026
+  target: _blank
+description: 'Hol dir das komplette Erlebnis: erst ein ganzer Workshop-Tag am Freitag, dann der Community Day mit Talks und vielen weiteren Gelegenheiten, voneinander zu lernen. Triff Creator und entdecke die Angebote unserer Sponsoren.'
+discount: € 69,-
+features:
+  - Eintritt
+  - 6 aus 12 Workshops wählen
+  - 2 x Survival-Paket (Snacks und Getränke)
+  - Teilnahme am Community-Giveaway
+price: € 128,-
+scale: true
+slug: 2-ticket-allaccess

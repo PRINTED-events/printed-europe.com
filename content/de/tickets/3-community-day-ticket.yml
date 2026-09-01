@@ -1,0 +1,14 @@
+title: Community Day (Samstag)
+button:
+  label: Ticket kaufen
+  to: https://ti.to/printed-europe/printed-hub-2026
+  target: _blank
+description: Der Community Day ist die beste Gelegenheit, dich zu vernetzen, Gleichgesinnte zu treffen und mit deinen Lieblings-Creatorn und -Unternehmen ins Gespräch zu kommen. Erlebe neue Projekte kreativer Köpfe aus dem 3D-Druck und genieß deinen Tag.
+discount: € 29,-
+features:
+  - Eintritt
+  - Survival-Paket (Snacks und Getränke)
+  - Teilnahme am Community-Giveaway
+price: € 59,-
+scale: false
+slug: community-day-ticket

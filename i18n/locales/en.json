@@ -75,6 +75,29 @@
     "speakers": "Speakers"
   },
   "tickets": {
+    "accessibility": {
+      "halls": {
+        "label": "The halls",
+        "text": "on one level, step-free and without raised door sills. The exhibition areas are fully accessible by wheelchair."
+      },
+      "parking": {
+        "label": "Parking",
+        "text": "A car park about a five-minute walk away is available. The few spaces directly in front of the hall are reserved for exhibitors. If you depend on a space close by, ask us in advance — we will check whether one can be kept free."
+      },
+      "questions": {
+        "label": "Questions in advance",
+        "text": "Write to us at {email} or call us at {phone}. We will tell you honestly what is possible and what is not."
+      },
+      "route": {
+        "label": "Getting to the entrance",
+        "text": "From the Asbachgasse entrance to the main entrance it is roughly 100 metres of historic cobblestone — bumpy and tiring with a wheelchair, walker or pushchair. You do not have to cover that stretch yourself: driving into the lane is permitted, and dropping off directly at the main entrance is allowed."
+      },
+      "title": "Accessibility on site",
+      "toilets": {
+        "label": "Toilets",
+        "text": "Accessible toilets are unfortunately not available. We are aware of this and we regret it."
+      }
+    },
     "description": "Purchase your ticket to join the conference.",
     "title": "Tickets"
   }

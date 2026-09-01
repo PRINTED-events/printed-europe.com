@@ -87,6 +87,18 @@ export default antfu(
   },
   {
     /**
+     * Disable max-len rule in translation files: prose paragraphs cannot be
+     * wrapped in JSON, so the limit would be unenforceable there anyway.
+     */
+    files: [
+      'i18n/locales/*.json',
+    ],
+    rules: {
+      'style/max-len': 'off',
+    },
+  },
+  {
+    /**
      * Disable JSONC sort-keys rule for VSCode settings & TS config file
      */
     files: [
