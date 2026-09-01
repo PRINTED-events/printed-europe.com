@@ -71,3 +71,8 @@ Fährplan & Preise: [bingen-ruedesheimer.de](https://www.bingen-ruedesheimer.de/
 **Mit dem Auto**
 
 Parkplätze an der **Oberstraße** oder am **Parkplatz P8**, beide fußläufig erreichbar.
+
+### Barrierefreiheit
+
+::accessibility-note
+::
