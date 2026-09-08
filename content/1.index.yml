@@ -30,12 +30,41 @@ blocks:
         text: 15+ Speakers
         label: Content
   - component: AppLandingLogoGrid
-    headline: Sponsors
+    headline: Main Sponsors
     title: Powering the PRINTED Hub experience.
     logos:
+      - src: /sponsors/snapmaker-white.svg
+        alt: Snapmaker
+        url: https://www.snapmaker.com/
       - src: /sponsors/MultiBuild-onblack.png
         alt: Multibuild
         url: https://multibuild.io
+      - src: /sponsors/thangs.png
+        alt: Thangs
+        url: https://thangs.com
+      - src: /sponsors/fibreseek.jpeg
+        alt: FibreSeek
+        url: https://www.fibreseek3d.com
+  - component: AppLandingLogoGrid
+    headline: Giveaway Sponsors
+    title: These sponsors are providing prizes for our giveaway.
+    description: The raffle takes place on Saturday afternoon.
+    logos:
+      - src: /sponsors/3dconnexion-white.png
+        alt: 3Dconnexion
+        url: https://3dconnexion.com
+      - src: /sponsors/prusa-research.png
+        alt: Prusa Research
+        url: https://www.prusa3d.com/de/
+      - src: /sponsors/black-mamba-ptfe.png
+        alt: Black Mamba PTFE
+      - src: /sponsors/juicebox.png
+        alt: Juicebox
+        url: https://juicebox.at
+  - component: AppLandingLogoGrid
+    headline: Sponsors
+    title: More great partners by our side.
+    logos:
       - src: /sponsors/skz-das-kunststoff-zentrum.png
         alt: SKZ – Das Kunststoff-Zentrum
         url: https://www.skz.de
@@ -51,23 +80,47 @@ blocks:
       - src: /sponsors/recyclebar.png
         alt: RecycleBar
         url: https://recyclebar.org
-      - src: /sponsors/thangs.png
-        alt: Thangs
-        url: https://thangs.com
       - src: /sponsors/wtf.png
         alt: W.T.F. – Wirtschaft Tourismus Förderung
-      - src: /sponsors/fibreseek.jpeg
-        alt: FibreSeek
-        url: https://www.fibreseek3d.com
-      - src: /sponsors/black-mamba-ptfe.png
-        alt: Black Mamba PTFE
-        url: https://blackmambaptfe.com
       - src: /sponsors/xtool-white.svg
         alt: xTool
         url: https://www.xtool.com
-      - src: /sponsors/juicebox.png
-        alt: Juicebox
-        url: https://juicebox.de
+      - src: /sponsors/3d-natives.png
+        alt: 3D natives
+        url: https://www.3dnatives.com/
+      - src: /sponsors/dachzelt-nomaden.png
+        alt: Dachzelt Nomaden
+        url: https://dachzelt-dorf.com
+      - src: /sponsors/diamand-polymer.png
+        alt: Diamant Polymer
+        url: https://diamant-polymer.de/
+      - src: /sponsors/e3d.png
+        alt: E3D
+        url: https://e3d-online.com
+      - src: /sponsors/gerda-stetter-stiftung-technik-macht-spass.png
+        alt: Gerda Stetter Stiftung - Technik macht spaß
+        url: https://technikmachtspass.org
+      - src: /sponsors/gloop.png
+        alt: Gloop
+        url: https://www.3dgloop.com
+      - src: /sponsors/phillips.png
+        alt: Philips
+        url: https://www.philips.de
+      - src: /sponsors/redline-filament.png
+        alt: Redline Filament
+        url: https://redline-filament.com
+      - src: /sponsors/ripcord.png
+        alt: Repkord
+        url: https://www.repkord.com
+      - src: /sponsors/sanjay-mortimer-foundation.png
+        alt: Sanjay Mortimer Foundation
+        url: https://www.sanjaymortimerfoundation.org
+      - src: /sponsors/stemfie.png
+        alt: Stemfie
+        url: https://www.stemfie.org
+      - src: /sponsors/tito.png
+        alt: Tito
+        url: https://ti.to/home
   - component: AppLandingSection
     title: Where ideas happen.
     description: Join us for an unforgettable experience.
