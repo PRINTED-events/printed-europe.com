@@ -56,6 +56,18 @@ blocks:
         url: https://thangs.com
       - src: /sponsors/wtf.png
         alt: W.T.F. – Wirtschaft Tourismus Förderung
+      - src: /sponsors/fibreseek.jpeg
+        alt: FibreSeek
+        url: https://www.fibreseek3d.com
+      - src: /sponsors/black-mamba-ptfe.png
+        alt: Black Mamba PTFE
+        url: https://blackmambaptfe.com
+      - src: /sponsors/xtool-white.svg
+        alt: xTool
+        url: https://www.xtool.com
+      - src: /sponsors/juicebox.png
+        alt: Juicebox
+        url: https://juicebox.de
   - component: AppLandingSection
     title: Where ideas happen.
     description: Join us for an unforgettable experience.
