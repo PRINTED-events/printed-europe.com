@@ -1,7 +1,7 @@
 ---
 title: 3D Printing Hardware 101
 slug: edu-ws1-b4
-dateTime: '2026-09-25T12:00:00.000Z'
+dateTime: '2026-09-25T12:30:00.000Z'
 description: >-
   Hotend, Extruder, Achsen, Druckbett – ein 3D-Drucker besteht aus vielen Komponenten,
   die im Zusammenspiel erst das gedruckte Objekt entstehen lassen. Der Workshop erklärt

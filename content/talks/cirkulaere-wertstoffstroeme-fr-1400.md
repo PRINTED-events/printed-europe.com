@@ -1,7 +1,7 @@
 ---
 title: Circuläre Wertstoffströme im 3D-Druck
 slug: cirkulaere-wertstoffstroeme-fr-1400
-dateTime: '2026-09-25T12:00:00.000Z'
+dateTime: '2026-09-25T12:30:00.000Z'
 description: >-
   Wie können Materialien im 3D-Druck länger im Kreislauf gehalten werden?
   Wertstoffströme lassen sich gezielt schließen und wir klären die Frage,

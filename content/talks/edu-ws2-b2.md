@@ -1,7 +1,7 @@
 ---
 title: Idea to Print - Software & Workflows für den 3D-Druck
 slug: edu-ws2-b2
-dateTime: '2026-09-25T13:00:00.000Z'
+dateTime: '2026-09-25T11:30:00.000Z'
 description: >-
   Von der Idee zum fertigen Design – welche Software passt zu welchem Ziel, und
   welche Arbeitsweisen gibt es? Der Workshop gibt einen praxisnahen Überblick
