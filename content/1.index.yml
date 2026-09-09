@@ -31,7 +31,7 @@ blocks:
         label: Content
   - component: AppLandingLogoGrid
     headline: Main Sponsors
-    title: Powering the PRINTED Hub experience.
+    title: Powering PRINTED Hub.
     logos:
       - src: /sponsors/snapmaker-white.svg
         alt: Snapmaker
@@ -47,7 +47,7 @@ blocks:
         url: https://www.fibreseek3d.com
   - component: AppLandingLogoGrid
     headline: Giveaway Sponsors
-    title: These sponsors are providing prizes for our giveaway.
+    title: Prizes to win.
     description: The raffle takes place on Saturday afternoon.
     logos:
       - src: /sponsors/3dconnexion-white.png
@@ -63,7 +63,7 @@ blocks:
         url: https://juicebox.at
   - component: AppLandingLogoGrid
     headline: Sponsors
-    title: More great partners by our side.
+    title: Partners by our side.
     logos:
       - src: /sponsors/skz-das-kunststoff-zentrum.png
         alt: SKZ – Das Kunststoff-Zentrum
@@ -71,56 +71,23 @@ blocks:
       - src: /sponsors/recycklingfabrik.png
         alt: Recycling Fabrik
         url: https://www.recyclingfabrik.com/
-      - src: /sponsors/3d-druck-akademie.png
-        alt: 3D Druck Akademie
-        url: https://www.3dd-akademie.de
       - src: /sponsors/farm-app.png
         alt: Farm App
         url: https://farm.makeorama.ch
+      - src: /sponsors/wtf.png
+        alt: W.T.F. – Wirtschaft Tourismus Förderung
+      - src: /sponsors/3d-druck-akademie.png
+        alt: 3D Druck Akademie
+        url: https://www.3dd-akademie.de
       - src: /sponsors/recyclebar.png
         alt: RecycleBar
         url: https://recyclebar.org
-      - src: /sponsors/wtf.png
-        alt: W.T.F. – Wirtschaft Tourismus Förderung
+      - src: /sponsors/juicebox.png
+        alt: Juicebox
+        url: https://juicebox.at
       - src: /sponsors/xtool-white.svg
         alt: xTool
         url: https://www.xtool.com
-      - src: /sponsors/3d-natives.png
-        alt: 3D natives
-        url: https://www.3dnatives.com/
-      - src: /sponsors/dachzelt-nomaden.png
-        alt: Dachzelt Nomaden
-        url: https://dachzelt-dorf.com
-      - src: /sponsors/diamand-polymer.png
-        alt: Diamant Polymer
-        url: https://diamant-polymer.de/
-      - src: /sponsors/e3d.png
-        alt: E3D
-        url: https://e3d-online.com
-      - src: /sponsors/gerda-stetter-stiftung-technik-macht-spass.png
-        alt: Gerda Stetter Stiftung - Technik macht spaß
-        url: https://technikmachtspass.org
-      - src: /sponsors/gloop.png
-        alt: Gloop
-        url: https://www.3dgloop.com
-      - src: /sponsors/phillips.png
-        alt: Philips
-        url: https://www.philips.de
-      - src: /sponsors/redline-filament.png
-        alt: Redline Filament
-        url: https://redline-filament.com
-      - src: /sponsors/ripcord.png
-        alt: Repkord
-        url: https://www.repkord.com
-      - src: /sponsors/sanjay-mortimer-foundation.png
-        alt: Sanjay Mortimer Foundation
-        url: https://www.sanjaymortimerfoundation.org
-      - src: /sponsors/stemfie.png
-        alt: Stemfie
-        url: https://www.stemfie.org
-      - src: /sponsors/tito.png
-        alt: Tito
-        url: https://ti.to/home
   - component: AppLandingSection
     title: Where ideas happen.
     description: Join us for an unforgettable experience.
