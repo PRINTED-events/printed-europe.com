@@ -127,8 +127,12 @@ export default antfu(
     },
   },
   {
+    /**
+     * CLI scripts report their results to the terminal
+     */
     files: [
       'quick-conf-cli.mjs',
+      'scripts/*.mjs',
     ],
     rules: {
       'no-console': 'off',

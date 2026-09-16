@@ -24,10 +24,21 @@ This command will:
 1. Run Nuxt prepare steps
 1. Run `postinstall` script if present
 
-## 4. Environment Variables
+## 4. Enable the Git Hooks
+
+The repository ships a `pre-push` hook that verifies English and German content
+still match. Enable it once per clone:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+See [Multi-Language Content](multi-language-content.md) for details.
+
+## 5. Environment Variables
 
 Duplicate the `.env.example` as `.env` and fill out all necessary variables for your environment.
 
-## 5. Start the Development Server
+## 6. Start the Development Server
 
 Once dependencies are installed and environment variables are configured, you can start the Nuxt development server and use the project, see [package.json](/package.json) for available script commands.

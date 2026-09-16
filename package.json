@@ -53,6 +53,7 @@
     "preview": "nuxt preview",
     "reset": "rimraf node_modules .nuxt .output dist .data",
     "test": "run-s \"test:*\"",
+    "test:i18n-parity": "node scripts/check-i18n-parity.mjs",
     "test:lint-format": "eslint .",
     "test:renovate": "renovate-config-validator",
     "test:types": "nuxt typecheck",
@@ -95,6 +96,7 @@
     "typescript": "~5.9.3",
     "vue-router": "~4.6.4",
     "vue-tsc": "~3.2.6",
+    "yaml": "2.9.0",
     "zod": "~4.3.6"
   }
 }

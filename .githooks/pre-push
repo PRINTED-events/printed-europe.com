@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# Blocks a push when localized content has drifted apart from the default
+# locale - e.g. a homepage block that was only added in English.
+#
+# Enable once per clone:
+#   git config core.hooksPath .githooks
+#
+# Bypass in an emergency with `git push --no-verify`.
+
+echo 'Running i18n content parity check...'
+
+if ! node scripts/check-i18n-parity.mjs; then
+  echo ''
+  echo 'Push aborted. Fix the differences above, or push with --no-verify to skip.'
+  exit 1
+fi
+
+exit 0

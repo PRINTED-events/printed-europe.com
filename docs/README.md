@@ -21,6 +21,8 @@ Guides for setting up, customizing, and managing your conference website.
   - How to use and configure the modular landing page blocks.
 - **[Display Mode Usage](display-mode.md)** (`display-mode.md`)
   - Quick setup guide for the `/display` signage page and shareable settings URL.
+- **[Multi-Language Content](multi-language-content.md)** (`multi-language-content.md`)
+  - How localized content is stored and how to keep the languages in sync.
 - **[Using Icons](icon-usage.md)** (`icon-usage.md`)
   - Guide to the available icon sets and how to use them in content.
 - **[SEO Features](seo.md)** (`seo.md`)

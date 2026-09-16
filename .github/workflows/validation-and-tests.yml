@@ -1,9 +1,12 @@
 name: Validation & Tests
 
 on:
-  # push:
-  #   branches:
-  #     - main
+  # Content is regularly pushed straight to `main`, so the checks must run on
+  # push too - not only for pull requests.
+  push:
+    branches:
+      - main
+      - stage
   pull_request:
     branches:
       - main
@@ -27,6 +30,8 @@ jobs:
     name: ${{ matrix.name }}
     runs-on: ubuntu-24.04
     needs: validate-pr
+    # Unchanged scope: these checks stay bound to pull requests.
+    if: github.event_name == 'pull_request'
     # The matrix strategy allows running different test configurations in parallel to run all, even if one fails
     strategy:
       fail-fast: false
@@ -65,6 +70,30 @@ jobs:
         # could also run as `pnpm test` as all commands are defined to run sequentially, but more control this way for now
         run: ${{ matrix.command }}
 
+  # Content parity runs on pushes as well, because content changes regularly
+  # land on `main` directly and this is exactly the case it has to catch.
+  check-i18n-parity:
+    name: i18n Content Parity Check
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout the Codebase
+        uses: actions/checkout@v6
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm i --frozen-lockfile --prefer-offline
+
+      - name: Check that localized content mirrors the default locale
+        run: pnpm run test:i18n-parity
+
   # This job acts as a single, final status check for branch protection.
   all_checks_passed:
     name: All Validations & Tests Passed
@@ -75,6 +104,7 @@ jobs:
     needs:
       - validate-pr
       - run-checks
+      - check-i18n-parity
     steps:
       - name: Check status of dependent jobs
         run: |
