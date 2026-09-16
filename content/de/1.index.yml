@@ -30,32 +30,64 @@ blocks:
         text: 15+ Speaker
         label: Content
   - component: AppLandingLogoGrid
-    headline: Sponsoren
-    title: Sie machen das PRINTED Hub Erlebnis möglich.
+    headline: Hauptsponsoren
+    title: Sie machen das PRINTED Hub möglich.
     logos:
+      - src: /sponsors/snapmaker-white.svg
+        alt: Snapmaker
+        url: https://www.snapmaker.com/
       - src: /sponsors/MultiBuild-onblack.png
         alt: Multibuild
         url: https://multibuild.io
+      - src: /sponsors/thangs.png
+        alt: Thangs
+        url: https://thangs.com
+      - src: /sponsors/fibreseek.jpeg
+        alt: FibreSeek
+        url: https://www.fibreseek3d.com
+  - component: AppLandingLogoGrid
+    headline: Verlosungssponsoren
+    title: Diese Preise kannst du gewinnen.
+    description: Die Verlosung findet am Samstagnachmittag statt.
+    logos:
+      - src: /sponsors/3dconnexion-white.png
+        alt: 3Dconnexion
+        url: https://3dconnexion.com
+      - src: /sponsors/prusa-research.png
+        alt: Prusa Research
+        url: https://www.prusa3d.com/de/
+      - src: /sponsors/black-mamba-ptfe.png
+        alt: Black Mamba PTFE
+      - src: /sponsors/juicebox.png
+        alt: Juicebox
+        url: https://juicebox.at
+  - component: AppLandingLogoGrid
+    headline: Sponsoren
+    title: Partner an unserer Seite.
+    logos:
       - src: /sponsors/skz-das-kunststoff-zentrum.png
         alt: SKZ – Das Kunststoff-Zentrum
         url: https://www.skz.de
       - src: /sponsors/recycklingfabrik.png
         alt: Recycling Fabrik
         url: https://www.recyclingfabrik.com/
-      - src: /sponsors/3d-druck-akademie.png
-        alt: 3D Druck Akademie
-        url: https://www.3dd-akademie.de
       - src: /sponsors/farm-app.png
         alt: Farm App
         url: https://farm.makeorama.ch
+      - src: /sponsors/wtf.png
+        alt: W.T.F. – Wirtschaft Tourismus Förderung
+      - src: /sponsors/3d-druck-akademie.png
+        alt: 3D Druck Akademie
+        url: https://www.3dd-akademie.de
       - src: /sponsors/recyclebar.png
         alt: RecycleBar
         url: https://recyclebar.org
-      - src: /sponsors/thangs.png
-        alt: Thangs
-        url: https://thangs.com
-      - src: /sponsors/wtf.png
-        alt: W.T.F. – Wirtschaft Tourismus Förderung
+      - src: /sponsors/juicebox.png
+        alt: Juicebox
+        url: https://juicebox.at
+      - src: /sponsors/xtool-white.svg
+        alt: xTool
+        url: https://www.xtool.com
   - component: AppLandingSection
     title: Wo Ideen entstehen.
     description: Sei dabei und erlebe ein unvergessliches Event.
