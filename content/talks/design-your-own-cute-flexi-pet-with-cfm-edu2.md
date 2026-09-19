@@ -1,7 +1,7 @@
 ---
 title: Design Your Own Cute Flexi Pet with CFM EDU
 slug: design-your-own-cute-flexi-pet-with-cfm-edu2
-dateTime: '2026-09-25T09:30:00.000Z'
+dateTime: '2026-09-25T13:30:00.000Z'
 description: >-
   Bringing 3D Design and 3D Printing into the Classroom with Fun. No CAD
   Experience Required. Create & Win 3D-Printed Cute Flexis!
@@ -19,7 +19,7 @@ description: >-
 duration: 45
 resources: []
 speakers:
-  - ''
+  - valeria-and-mattia
 stage: workshop-space-1
 type: Workshop
 ---
