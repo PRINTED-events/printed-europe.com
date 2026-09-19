@@ -19,7 +19,7 @@ description: >-
 duration: 45
 resources: []
 speakers:
-  - ''
+  - valeria-and-mattia
 stage: workshop-space-1
 type: Workshop
 ---
