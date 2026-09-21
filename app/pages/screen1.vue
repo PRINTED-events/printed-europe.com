@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Ref } from 'vue'
 import { DateTime } from 'luxon'
 
 definePageMeta({ layout: false })
@@ -173,64 +174,142 @@ function onSponsorLogoUpload(event: Event) {
 }
 
 // ── Clipping detection (hide images when tile overflows) ──────
+// The check must wait until fonts and images have loaded: measuring
+// during initial build reports a transient overflow and would hide
+// the images permanently.
 const currentTileRef = ref<HTMLElement | null>(null)
 const nextTileRef = ref<HTMLElement | null>(null)
 const hideCurrentImages = ref(false)
 const hideNextImages = ref(false)
 const hideAltImages = reactive<Record<string, boolean>>({})
-const altObservers = new Map<string, ResizeObserver>()
 
 function isClipped(el: HTMLElement) {
   return el.scrollHeight > el.clientHeight + 2
 }
 
+function useClipGuard(hide: Ref<boolean>) {
+  let token = 0
+  let debounceTimer: ReturnType<typeof setTimeout> | undefined
+  let currentEl: HTMLElement | null = null
+  let lastWidth = -1
+  let lastHeight = -1
+  let obs: ResizeObserver | null = null
+
+  async function measure() {
+    const my = ++token
+    const el = currentEl
+    if (!el) return
+
+    await nextTick()
+    if (my !== token || !el.isConnected || hide.value) return
+
+    await document.fonts?.ready
+    if (my !== token || !el.isConnected || hide.value) return
+
+    const imgs = Array.from(el.querySelectorAll('img'))
+    await Promise.all(imgs.map((img) => {
+      if (img.complete) return Promise.resolve()
+      return new Promise<void>((resolve) => {
+        img.addEventListener('load', () => resolve(), { once: true })
+        img.addEventListener('error', () => resolve(), { once: true })
+      })
+    }))
+    if (my !== token || !el.isConnected || hide.value) return
+
+    await new Promise<void>(resolve =>
+      requestAnimationFrame(() => requestAnimationFrame(() => resolve())),
+    )
+    if (my !== token || !el.isConnected || hide.value) return
+
+    if (isClipped(el)) hide.value = true
+  }
+
+  function teardown() {
+    obs?.disconnect()
+    obs = null
+    clearTimeout(debounceTimer)
+  }
+
+  function attach(el: HTMLElement | null) {
+    if (el === currentEl) return
+    teardown()
+    currentEl = el
+    if (!el) return
+
+    lastWidth = el.clientWidth
+    lastHeight = el.clientHeight
+
+    obs = new ResizeObserver(() => {
+      if (!currentEl) return
+      const w = currentEl.clientWidth
+      const h = currentEl.clientHeight
+      // The tile is sized by the grid, not its content, so hiding
+      // images can't re-trigger this — no feedback loop.
+      if (w === lastWidth && h === lastHeight) return
+      lastWidth = w
+      lastHeight = h
+      hide.value = false
+      clearTimeout(debounceTimer)
+      debounceTimer = setTimeout(() => { measure() }, 250)
+    })
+    obs.observe(el)
+
+    measure()
+  }
+
+  return { attach, measure, teardown }
+}
+
+const currentGuard = useClipGuard(hideCurrentImages)
+const nextGuard = useClipGuard(hideNextImages)
+const altGuards = new Map<string, ReturnType<typeof useClipGuard>>()
+const altRefCallbacks = new Map<string, (el: HTMLElement | null) => void>()
+
+watch(currentTileRef, el => currentGuard.attach(el), { immediate: true })
+watch(nextTileRef, el => nextGuard.attach(el), { immediate: true })
+
 // Reset when talks change (allow re-check after content changes)
-watch(currentTalk, () => { hideCurrentImages.value = false })
-watch(nextTalk, () => { hideNextImages.value = false })
+watch(currentTalk, () => { hideCurrentImages.value = false; currentGuard.measure() })
+watch(nextTalk, () => { hideNextImages.value = false; nextGuard.measure() })
 
 // Reset on zoom change so images show again if now there's space
 watch(fontScale, () => {
   hideCurrentImages.value = false
   hideNextImages.value = false
-  Object.keys(hideAltImages).forEach(k => { hideAltImages[k] = false })
-})
-
-watchEffect((onCleanup) => {
-  const el = currentTileRef.value
-  if (!el) return
-  const obs = new ResizeObserver(() => {
-    if (!hideCurrentImages.value && isClipped(el)) hideCurrentImages.value = true
+  currentGuard.measure()
+  nextGuard.measure()
+  Object.keys(hideAltImages).forEach((k) => {
+    hideAltImages[k] = false
+    altGuards.get(k)?.measure()
   })
-  obs.observe(el)
-  onCleanup(() => obs.disconnect())
-})
-
-watchEffect((onCleanup) => {
-  const el = nextTileRef.value
-  if (!el) return
-  const obs = new ResizeObserver(() => {
-    if (!hideNextImages.value && isClipped(el)) hideNextImages.value = true
-  })
-  obs.observe(el)
-  onCleanup(() => obs.disconnect())
 })
 
 function setAltRef(el: HTMLElement | null, slug: string) {
-  if (!el) {
-    altObservers.get(slug)?.disconnect()
-    altObservers.delete(slug)
-    return
+  let guard = altGuards.get(slug)
+  if (!guard) {
+    if (!(slug in hideAltImages)) hideAltImages[slug] = false
+    guard = useClipGuard(toRef(hideAltImages, slug))
+    altGuards.set(slug, guard)
   }
-  altObservers.get(slug)?.disconnect()
-  const obs = new ResizeObserver(() => {
-    if (!hideAltImages[slug] && isClipped(el)) hideAltImages[slug] = true
-  })
-  altObservers.set(slug, obs)
-  obs.observe(el)
+  guard.attach(el)
+}
+
+// Memoized so the identity stays stable across re-renders — an inline
+// arrow would make Vue rebind the ref (and rebuild the observer) on
+// every clock tick.
+function getAltRefCallback(slug: string) {
+  let fn = altRefCallbacks.get(slug)
+  if (!fn) {
+    fn = (el: HTMLElement | null) => setAltRef(el, slug)
+    altRefCallbacks.set(slug, fn)
+  }
+  return fn
 }
 
 onUnmounted(() => {
-  altObservers.forEach(obs => obs.disconnect())
+  currentGuard.teardown()
+  nextGuard.teardown()
+  altGuards.forEach(guard => guard.teardown())
 })
 
 // ── QR Code ───────────────────────────────────────────────────
@@ -818,7 +897,7 @@ onUnmounted(() => {
         v-for="stage in visibleAltStages"
         :key="stage.slug"
         class="stage-tile"
-        :ref="(el) => setAltRef(el as HTMLElement | null, stage.slug)"
+        :ref="getAltRefCallback(stage.slug)"
       >
         <!-- Stage name always top -->
         <p class="stage-name">
