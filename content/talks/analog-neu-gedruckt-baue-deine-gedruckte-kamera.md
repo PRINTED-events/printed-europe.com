@@ -1,6 +1,6 @@
 ---
-title: Analog neu gedruckt - Baue deine eigene gedruckte Kamera!
-slug: analog-neu-gedruckt-baue-deine-eigene-gedruckte-kamera
+title: Analog neu gedruckt - Baue deine gedruckte Kamera!
+slug: analog-neu-gedruckt-baue-deine-gedruckte-kamera
 dateTime: '2026-09-25T10:30:00.000Z'
 description: >-
   Build your own 3D printed analog camera. You are building a small pinhole
@@ -13,7 +13,7 @@ duration: 45
 resources: []
 speakers:
   - marius-hirn
-stage: workshop-space-3
+stage: workshop-space-4
 type: Workshop
 ---
 
