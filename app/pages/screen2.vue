@@ -175,16 +175,86 @@ watch(sponsorImageUrl, () => {
   sponsorImageError.value = false
 })
 
-function onSponsorImageUpload(event: Event) {
-  const file = (event.target as HTMLInputElement).files?.[0]
+// Resize an uploaded image client-side (max 1000px on the longer edge)
+// before it ever touches localStorage — a raw phone photo easily blows
+// past the ~5MB quota and throws QuotaExceededError on save.
+function resizeImageFile(file: File, maxDim = 1000, jpegQuality = 0.85): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    const objectUrl = URL.createObjectURL(file)
+    img.onload = () => {
+      URL.revokeObjectURL(objectUrl)
+      let width = img.naturalWidth
+      let height = img.naturalHeight
+      if (width <= 0 || height <= 0) {
+        reject(new Error('Invalid image dimensions'))
+        return
+      }
+      if (width > maxDim || height > maxDim) {
+        if (width >= height) {
+          height = Math.round((height * maxDim) / width)
+          width = maxDim
+        }
+        else {
+          width = Math.round((width * maxDim) / height)
+          height = maxDim
+        }
+      }
+      const canvas = document.createElement('canvas')
+      canvas.width = width
+      canvas.height = height
+      const ctx = canvas.getContext('2d')
+      if (!ctx) {
+        reject(new Error('Canvas context unavailable'))
+        return
+      }
+      ctx.drawImage(img, 0, 0, width, height)
+      const keepAlpha = file.type === 'image/png' || file.type === 'image/webp'
+      resolve(keepAlpha ? canvas.toDataURL('image/png') : canvas.toDataURL('image/jpeg', jpegQuality))
+    }
+    img.onerror = () => {
+      URL.revokeObjectURL(objectUrl)
+      reject(new Error('Failed to load image'))
+    }
+    img.src = objectUrl
+  })
+}
+
+// Short-lived notice shown in the config overlay when an upload can't be
+// stored (e.g. localStorage quota exceeded).
+const uploadNotice = ref('')
+let uploadNoticeTimer: ReturnType<typeof setTimeout>
+
+function showUploadNotice(message: string) {
+  uploadNotice.value = message
+  clearTimeout(uploadNoticeTimer)
+  uploadNoticeTimer = setTimeout(() => {
+    uploadNotice.value = ''
+  }, 4000)
+}
+
+async function onSponsorImageUpload(event: Event) {
+  const input = event.target as HTMLInputElement
+  const file = input.files?.[0]
+  input.value = ''
   if (!file)
     return
-  const reader = new FileReader()
-  reader.onload = (e) => {
-    sponsorImageUrl.value = e.target?.result as string
-    saveSettings()
+
+  let dataUrl: string
+  try {
+    dataUrl = await resizeImageFile(file)
   }
-  reader.readAsDataURL(file)
+  catch {
+    showUploadNotice('Image too large to store')
+    return
+  }
+
+  const previous = sponsorImageUrl.value
+  sponsorImageUrl.value = dataUrl
+  if (!saveSettings()) {
+    sponsorImageUrl.value = previous
+    showUploadNotice('Image too large to store')
+  }
 }
 
 // ── Format helpers ────────────────────────────────────────────
@@ -780,22 +850,31 @@ function loadSettings() {
   validateStageSelection()
 }
 
-function saveSettings() {
+// Returns false (instead of throwing) when the write fails — e.g.
+// QuotaExceededError from a large sponsor image data URL — so callers can
+// react (see onSponsorImageUpload) instead of the page breaking.
+function saveSettings(): boolean {
   if (typeof localStorage === 'undefined')
-    return
-  localStorage.setItem('screen2-settings', JSON.stringify({
-    autoMode: autoMode.value,
-    manualDate: manualDate.value,
-    timeOverride: timeOverride.value,
-    viewMode: viewMode.value,
-    visibleStageSlugs: [...visibleStageSlugs.value],
-    singleStageSlug: singleStageSlug.value,
-    fontScale: fontScale.value,
-    zoomMode: zoomMode.value,
-    manualHourH: manualHourH.value,
-    showSponsors: showSponsors.value,
-    sponsorImageUrl: sponsorImageUrl.value,
-  }))
+    return true
+  try {
+    localStorage.setItem('screen2-settings', JSON.stringify({
+      autoMode: autoMode.value,
+      manualDate: manualDate.value,
+      timeOverride: timeOverride.value,
+      viewMode: viewMode.value,
+      visibleStageSlugs: [...visibleStageSlugs.value],
+      singleStageSlug: singleStageSlug.value,
+      fontScale: fontScale.value,
+      zoomMode: zoomMode.value,
+      manualHourH: manualHourH.value,
+      showSponsors: showSponsors.value,
+      sponsorImageUrl: sponsorImageUrl.value,
+    }))
+    return true
+  }
+  catch {
+    return false
+  }
 }
 
 watch(
@@ -1065,6 +1144,12 @@ onUnmounted(() => {
                 >
               </label>
             </div>
+            <p
+              v-if="uploadNotice"
+              class="config-time-hint"
+            >
+              {{ uploadNotice }}
+            </p>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
 import { DateTime } from 'luxon'
+import QRCode from 'qrcode'
 
 definePageMeta({ layout: false })
 
@@ -162,15 +163,85 @@ const mainStageName = computed(
   () => stages.value?.find(s => s.slug === mainStageSlug.value)?.name ?? mainStageSlug.value,
 )
 
-function onSponsorLogoUpload(event: Event) {
-  const file = (event.target as HTMLInputElement).files?.[0]
+// Resize an uploaded image client-side (max 1000px on the longer edge)
+// before it ever touches localStorage — a raw phone photo easily blows
+// past the ~5MB quota and throws QuotaExceededError on save.
+function resizeImageFile(file: File, maxDim = 1000, jpegQuality = 0.85): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    const objectUrl = URL.createObjectURL(file)
+    img.onload = () => {
+      URL.revokeObjectURL(objectUrl)
+      let width = img.naturalWidth
+      let height = img.naturalHeight
+      if (width <= 0 || height <= 0) {
+        reject(new Error('Invalid image dimensions'))
+        return
+      }
+      if (width > maxDim || height > maxDim) {
+        if (width >= height) {
+          height = Math.round((height * maxDim) / width)
+          width = maxDim
+        }
+        else {
+          width = Math.round((width * maxDim) / height)
+          height = maxDim
+        }
+      }
+      const canvas = document.createElement('canvas')
+      canvas.width = width
+      canvas.height = height
+      const ctx = canvas.getContext('2d')
+      if (!ctx) {
+        reject(new Error('Canvas context unavailable'))
+        return
+      }
+      ctx.drawImage(img, 0, 0, width, height)
+      const keepAlpha = file.type === 'image/png' || file.type === 'image/webp'
+      resolve(keepAlpha ? canvas.toDataURL('image/png') : canvas.toDataURL('image/jpeg', jpegQuality))
+    }
+    img.onerror = () => {
+      URL.revokeObjectURL(objectUrl)
+      reject(new Error('Failed to load image'))
+    }
+    img.src = objectUrl
+  })
+}
+
+// Short-lived notice shown in the config overlay when an upload can't be
+// stored (e.g. localStorage quota exceeded).
+const uploadNotice = ref('')
+let uploadNoticeTimer: ReturnType<typeof setTimeout>
+
+function showUploadNotice(message: string) {
+  uploadNotice.value = message
+  clearTimeout(uploadNoticeTimer)
+  uploadNoticeTimer = setTimeout(() => {
+    uploadNotice.value = ''
+  }, 4000)
+}
+
+async function onSponsorLogoUpload(event: Event) {
+  const input = event.target as HTMLInputElement
+  const file = input.files?.[0]
+  input.value = ''
   if (!file) return
-  const reader = new FileReader()
-  reader.onload = (e) => {
-    sponsorBarLogoUrl.value = e.target?.result as string
-    saveSettings()
+
+  let dataUrl: string
+  try {
+    dataUrl = await resizeImageFile(file)
   }
-  reader.readAsDataURL(file)
+  catch {
+    showUploadNotice('Image too large to store')
+    return
+  }
+
+  const previous = sponsorBarLogoUrl.value
+  sponsorBarLogoUrl.value = dataUrl
+  if (!saveSettings()) {
+    sponsorBarLogoUrl.value = previous
+    showUploadNotice('Image too large to store')
+  }
 }
 
 // ── Clipping detection (hide images when tile overflows) ──────
@@ -313,8 +384,34 @@ onUnmounted(() => {
 })
 
 // ── QR Code ───────────────────────────────────────────────────
-const qrUrl = ref('/Hub26_scheduleqr_white_scaled.png')
+// The QR code is generated client-side from `qrTarget` — no more manual
+// image upload. Dark modules on a white tile with a quiet zone so any
+// scanner can read it reliably on-site.
+const qrTarget = ref('https://printed-europe.com/schedule')
 const showQr = ref(true)
+const qrDataUrl = ref('')
+
+async function generateQr() {
+  if (!import.meta.client)
+    return
+  if (!qrTarget.value) {
+    qrDataUrl.value = ''
+    return
+  }
+  try {
+    qrDataUrl.value = await QRCode.toDataURL(qrTarget.value, {
+      errorCorrectionLevel: 'M',
+      margin: 2,
+      width: 512,
+      color: { dark: '#080808', light: '#ffffff' },
+    })
+  }
+  catch {
+    qrDataUrl.value = ''
+  }
+}
+
+watch(qrTarget, generateQr)
 
 // ── Alternative stages ────────────────────────────────────────
 const hiddenAltSlugs = ref<Set<string>>(new Set())
@@ -429,7 +526,8 @@ function loadSettings() {
     if (p.manualDate) manualDate.value = p.manualDate
     if (p.timeOverride) applyTimeOverride(p.timeOverride)
     if (Array.isArray(p.hiddenAltSlugs)) hiddenAltSlugs.value = new Set(p.hiddenAltSlugs)
-    if (p.qrUrl) qrUrl.value = p.qrUrl
+    // Old `qrUrl` (image-based) entries are ignored on purpose — no migration.
+    if (typeof p.qrTarget === 'string') qrTarget.value = p.qrTarget
     if (typeof p.showQr === 'boolean') showQr.value = p.showQr
     if (typeof p.fontScale === 'number') fontScale.value = p.fontScale
     if (typeof p.showSponsorBar === 'boolean') showSponsorBar.value = p.showSponsorBar
@@ -438,20 +536,29 @@ function loadSettings() {
   catch {}
 }
 
-function saveSettings() {
-  if (typeof localStorage === 'undefined') return
-  localStorage.setItem('screen1-settings', JSON.stringify({
-    mainStageSlug: mainStageSlug.value,
-    autoMode: autoMode.value,
-    manualDate: manualDate.value,
-    timeOverride: timeOverride.value,
-    hiddenAltSlugs: [...hiddenAltSlugs.value],
-    qrUrl: qrUrl.value,
-    showQr: showQr.value,
-    fontScale: fontScale.value,
-    showSponsorBar: showSponsorBar.value,
-    sponsorBarLogoUrl: sponsorBarLogoUrl.value,
-  }))
+// Returns false (instead of throwing) when the write fails — e.g.
+// QuotaExceededError from a large sponsor logo data URL — so callers can
+// react (see onSponsorLogoUpload) instead of the page breaking.
+function saveSettings(): boolean {
+  if (typeof localStorage === 'undefined') return true
+  try {
+    localStorage.setItem('screen1-settings', JSON.stringify({
+      mainStageSlug: mainStageSlug.value,
+      autoMode: autoMode.value,
+      manualDate: manualDate.value,
+      timeOverride: timeOverride.value,
+      hiddenAltSlugs: [...hiddenAltSlugs.value],
+      qrTarget: qrTarget.value,
+      showQr: showQr.value,
+      fontScale: fontScale.value,
+      showSponsorBar: showSponsorBar.value,
+      sponsorBarLogoUrl: sponsorBarLogoUrl.value,
+    }))
+    return true
+  }
+  catch {
+    return false
+  }
 }
 
 function setManualDate(date: string) {
@@ -476,6 +583,7 @@ watch([mainStageSlug, autoMode, manualDate, fontScale, showSponsorBar, showQr], 
 
 onMounted(() => {
   loadSettings()
+  generateQr()
   document.addEventListener('fullscreenchange', () => {
     isFullscreen.value = !!document.fullscreenElement
   })
@@ -627,7 +735,7 @@ onUnmounted(() => {
             </div>
           </div>
 
-          <!-- QR Code URL -->
+          <!-- QR Code -->
           <div class="config-section">
             <p class="config-section-label">
               QR Code
@@ -642,9 +750,12 @@ onUnmounted(() => {
               />
               {{ showQr ? 'Shown' : 'Hidden' }}
             </button>
-            <div class="config-time-row" style="margin-top: 8px">
+            <p class="config-section-label" style="margin-top: 12px">
+              QR Code target
+            </p>
+            <div class="config-time-row">
               <input
-                v-model="qrUrl"
+                v-model="qrTarget"
                 type="url"
                 placeholder="https://..."
                 class="config-time-input config-url-input"
@@ -652,9 +763,9 @@ onUnmounted(() => {
                 @change="saveSettings()"
               >
               <button
-                v-if="qrUrl"
+                v-if="qrTarget"
                 class="config-date-btn"
-                @click="qrUrl = ''; saveSettings()"
+                @click="qrTarget = ''; saveSettings()"
               >
                 Clear
               </button>
@@ -696,6 +807,12 @@ onUnmounted(() => {
                 Clear
               </button>
             </div>
+            <p
+              v-if="uploadNotice"
+              class="config-time-hint"
+            >
+              {{ uploadNotice }}
+            </p>
             <img
               v-if="sponsorBarLogoUrl"
               :src="sponsorBarLogoUrl"
@@ -997,12 +1114,12 @@ onUnmounted(() => {
         <p class="qr-schedule-label">
           View full Schedule
         </p>
-        <NuxtImg
-          v-if="qrUrl"
-          :src="qrUrl"
+        <img
+          v-if="qrDataUrl"
+          :src="qrDataUrl"
           alt="QR Code"
           class="qr-img"
-        />
+        >
         <div
           v-else
           class="qr-placeholder"
