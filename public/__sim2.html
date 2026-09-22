@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>sim2</title></head>
+<body>
+<script>
+  const params = new URLSearchParams(location.search);
+  const settings = params.get('settings');
+  if (settings === 'CLEAR') {
+    localStorage.removeItem('screen2-settings');
+  } else if (settings === 'BROKEN') {
+    localStorage.setItem('screen2-settings', '{kaputt');
+  } else if (settings) {
+    localStorage.setItem('screen2-settings', settings);
+  }
+  location.href = '/screen2';
+</script>
+</body>
+</html>

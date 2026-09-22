@@ -26,10 +26,6 @@ const { data: rawTalks, refresh: refreshTalks } = await useAsyncData(
   'screen2-talks',
   () => queryCollection('talks').order('dateTime', 'ASC').all(),
 )
-const { data: indexPage, refresh: refreshIndex } = await useAsyncData(
-  'screen2-index',
-  () => queryCollection('index').path('/').first(),
-)
 
 // Auto-refresh data every 60 seconds
 let refreshTimer: ReturnType<typeof setInterval>
@@ -38,7 +34,6 @@ onMounted(() => {
     refreshTalks()
     refreshSpeakers()
     refreshStages()
-    refreshIndex()
   }, 60_000)
 })
 onUnmounted(() => clearInterval(refreshTimer))
@@ -170,61 +165,27 @@ function validateStageSelection() {
 const fontScale = ref(1.0)
 
 // ── Sponsors ─────────────────────────────────────────────────
+// Deliberately a single static image (no dynamic logo list, no scroll
+// animation) — the column just centers whatever image is configured.
 const showSponsors = ref(false)
+const sponsorImageUrl = ref('/sponsors.png')
+const sponsorImageError = ref(false)
 
-interface SponsorLogo { src: string, alt: string }
-interface SponsorGroup { headline: string, logos: SponsorLogo[] }
-
-const sponsorGroups = computed<SponsorGroup[]>(() => {
-  const blocks = (indexPage.value as any)?.blocks ?? []
-  const seen = new Set<string>()
-  const groups: SponsorGroup[] = []
-  for (const block of blocks) {
-    if (block?.component !== 'AppLandingLogoGrid')
-      continue
-    const logos: SponsorLogo[] = []
-    for (const logo of block.logos ?? []) {
-      if (!logo?.src || seen.has(logo.src))
-        continue
-      seen.add(logo.src)
-      logos.push({ src: logo.src, alt: logo.alt || '' })
-    }
-    if (logos.length)
-      groups.push({ headline: block.headline || 'Sponsors', logos })
-  }
-  return groups
+watch(sponsorImageUrl, () => {
+  sponsorImageError.value = false
 })
 
-const sponsorColRef = ref<HTMLElement | null>(null)
-const sponsorInnerRef = ref<HTMLElement | null>(null)
-const sponsorOverflow = ref(false)
-const sponsorScrollDuration = ref(30)
-let sponsorObserver: ResizeObserver | null = null
-
-function checkSponsorOverflow() {
-  const col = sponsorColRef.value
-  const inner = sponsorInnerRef.value
-  if (!col || !inner) {
-    sponsorOverflow.value = false
+function onSponsorImageUpload(event: Event) {
+  const file = (event.target as HTMLInputElement).files?.[0]
+  if (!file)
     return
+  const reader = new FileReader()
+  reader.onload = (e) => {
+    sponsorImageUrl.value = e.target?.result as string
+    saveSettings()
   }
-  const overflow = inner.scrollHeight > col.clientHeight + 4
-  sponsorOverflow.value = overflow
-  if (overflow)
-    sponsorScrollDuration.value = Math.max(18, Math.round(inner.scrollHeight / 28))
+  reader.readAsDataURL(file)
 }
-
-watch(sponsorColRef, (el) => {
-  sponsorObserver?.disconnect()
-  sponsorObserver = null
-  if (!el)
-    return
-  sponsorObserver = new ResizeObserver(() => checkSponsorOverflow())
-  sponsorObserver.observe(el)
-  nextTick(checkSponsorOverflow)
-})
-watch([showSponsors, sponsorGroups, fontScale], () => nextTick(checkSponsorOverflow))
-onUnmounted(() => sponsorObserver?.disconnect())
 
 // ── Format helpers ────────────────────────────────────────────
 function fmtTimer(seconds: number): string {
@@ -302,9 +263,25 @@ function progressFor(talk: any): number {
 // fontScale correction because both text and geometry share one space.
 const STAGE_HEADER_H = 40
 const CARD_GAP = 3
-const MIN_CARD_H = 16
-const CARD_TIER_FULL = 130
-const CARD_TIER_MEDIUM = 56
+// Reserved breathing room at the very top and bottom of each day's grid so
+// the first/last card never touches — let alone is covered by — the column
+// header or the scroll edge.
+const EDGE_PAD = 8
+// The floor a card's box height can never go below. Sized generously so the
+// single-line "compact" tier (padding + one line of text, which never wraps
+// — it's nowrap+ellipsis) always has room, no matter how short the talk's
+// duration is. This is what previously let a 10-minute talk collapse to an
+// unreadable sliver.
+const MIN_CARD_H = 34
+// Heuristic starting guesses only — used for the very first paint to avoid
+// a visible flash while the real (correct) tier is derived. The actual tier
+// shown is always corrected after render by measuring the rendered content
+// against the box (see cardTierOverride/measureCard below), so an imprecise
+// guess here can never cause clipped text — it only affects how many cards
+// need a downgrade pass.
+const CARD_TIER_GUESS_FULL = 150
+const CARD_TIER_GUESS_MEDIUM = 95
+const CARD_TIER_GUESS_BRIEF = 55
 
 const zoomMode = ref<'fit' | 'manual'>('fit')
 const manualHourH = ref(150)
@@ -366,9 +343,12 @@ const pxPerHour = computed(() => {
     return manualHourH.value
   if (!timelineAvailableHeight.value || !dayTotalHours.value)
     return 100
-  const usable = Math.max(60, timelineAvailableHeight.value - STAGE_HEADER_H)
+  const usable = Math.max(60, timelineAvailableHeight.value - STAGE_HEADER_H - EDGE_PAD * 2)
   return Math.max(20, usable / dayTotalHours.value)
 })
+
+// Body height (axis + stage columns) including the top/bottom edge reserve.
+const bodyHeightPx = computed(() => dayTotalHours.value * pxPerHour.value + EDGE_PAD * 2)
 
 const timelineHourMarks = computed(() => {
   if (!dayBounds.value)
@@ -385,7 +365,7 @@ const timelineHourMarks = computed(() => {
 function markTop(m: DateTime): number {
   if (!dayBounds.value)
     return 0
-  return (m.diff(dayBounds.value.start, 'minutes').minutes / 60) * pxPerHour.value
+  return EDGE_PAD + (m.diff(dayBounds.value.start, 'minutes').minutes / 60) * pxPerHour.value
 }
 
 // True only when "now" falls within the actual programme span (first
@@ -408,7 +388,7 @@ const nowLineTopBody = computed<number | null>(() => {
   }
   if (now.value < progStart || now.value > progEnd)
     return null
-  return (now.value.diff(dayBounds.value.start, 'minutes').minutes / 60) * pxPerHour.value
+  return EDGE_PAD + (now.value.diff(dayBounds.value.start, 'minutes').minutes / 60) * pxPerHour.value
 })
 
 // ── Overlap-aware column layout ─────────────────────────────────
@@ -459,7 +439,28 @@ function layoutColumns(talks: any[]): LaidOutTalk[] {
   return result
 }
 
-interface TimelineCard { talk: any, tier: 'full' | 'medium' | 'compact', style: Record<string, string> }
+type CardTier = 'full' | 'medium' | 'brief' | 'compact'
+interface TimelineCard { talk: any, tier: CardTier, style: Record<string, string> }
+
+// The order tiers are tried in, richest first. A talk without speakers has
+// no visual difference between 'medium' and 'brief' (the speaker line is
+// already conditional on speakers existing), so its order skips 'brief' to
+// avoid a pointless extra measure/downgrade pass.
+function tierOrderFor(talk: any): CardTier[] {
+  return (talk.speakerObjects?.length ?? 0) > 0
+    ? ['full', 'medium', 'brief', 'compact']
+    : ['full', 'medium', 'compact']
+}
+
+function guessTier(height: number): CardTier {
+  if (height >= CARD_TIER_GUESS_FULL)
+    return 'full'
+  if (height >= CARD_TIER_GUESS_MEDIUM)
+    return 'medium'
+  if (height >= CARD_TIER_GUESS_BRIEF)
+    return 'brief'
+  return 'compact'
+}
 
 const timelineCardsByStage = computed(() => {
   const map = new Map<string, TimelineCard[]>()
@@ -471,15 +472,12 @@ const timelineCardsByStage = computed(() => {
     const cards: TimelineCard[] = laidOut.map((item) => {
       const startMin = item.talk.start.diff(dayBounds.value!.start, 'minutes').minutes
       const rawHeight = (item.talk.end.diff(item.talk.start, 'minutes').minutes / 60) * pxPerHour.value
-      const top = (startMin / 60) * pxPerHour.value
+      const top = EDGE_PAD + (startMin / 60) * pxPerHour.value
       const height = Math.max(rawHeight - CARD_GAP, MIN_CARD_H)
       const colWidthPct = 100 / item.cols
-      const tier: TimelineCard['tier'] = height >= CARD_TIER_FULL
-        ? 'full'
-        : height >= CARD_TIER_MEDIUM ? 'medium' : 'compact'
       return {
         talk: item.talk,
-        tier,
+        tier: guessTier(height),
         style: {
           top: `${top}px`,
           height: `${height}px`,
@@ -496,6 +494,92 @@ const timelineCardsByStage = computed(() => {
 function stageCards(slug: string): TimelineCard[] {
   return timelineCardsByStage.value.get(slug) ?? []
 }
+
+const cardBySlug = computed(() => {
+  const m = new Map<string, TimelineCard>()
+  timelineCardsByStage.value.forEach(list => list.forEach(c => m.set(c.talk.slug, c)))
+  return m
+})
+
+// ── Card tier correction (guarantees no clipped text, ever) ────────────
+// The tier assigned above is only a best-effort guess based on box height.
+// Real text height depends on actual wrapping (title length, column width,
+// font metrics) which we don't want to re-implement in JS. Instead: render
+// the guessed tier, then measure the real DOM box after paint — if its
+// content overflows the fixed-height card, drop to the next lower tier and
+// measure again. This directly enforces "never clipped", independent of
+// fontScale, title length, or column width, rather than a hardcoded value.
+const cardTierOverride = reactive<Record<string, CardTier>>({})
+
+function effectiveTier(card: TimelineCard): CardTier {
+  return cardTierOverride[card.talk.slug] ?? card.tier
+}
+
+const cardEls = new Map<string, HTMLElement>()
+const cardRefCallbacks = new Map<string, (el: Element | null) => void>()
+const pendingCardMeasure = new Set<string>()
+let cardMeasureScheduled = false
+
+function scheduleCardMeasure(slug: string) {
+  pendingCardMeasure.add(slug)
+  if (cardMeasureScheduled)
+    return
+  cardMeasureScheduled = true
+  nextTick(async () => {
+    await document.fonts?.ready
+    await new Promise<void>(resolve =>
+      requestAnimationFrame(() => requestAnimationFrame(() => resolve())))
+    cardMeasureScheduled = false
+    const slugs = [...pendingCardMeasure]
+    pendingCardMeasure.clear()
+    slugs.forEach(s => checkCardOverflow(s))
+  })
+}
+
+function checkCardOverflow(slug: string) {
+  const el = cardEls.get(slug)
+  if (!el || !el.isConnected)
+    return
+  if (el.scrollHeight <= el.clientHeight + 1)
+    return
+  const card = cardBySlug.value.get(slug)
+  if (!card)
+    return
+  const order = tierOrderFor(card.talk)
+  const current = cardTierOverride[slug] ?? card.tier
+  const idx = order.indexOf(current)
+  if (idx === -1 || idx >= order.length - 1)
+    return // already at the leanest tier
+  cardTierOverride[slug] = order[idx + 1]
+  nextTick(() => requestAnimationFrame(() => checkCardOverflow(slug)))
+}
+
+function getCardRefCallback(slug: string) {
+  let fn = cardRefCallbacks.get(slug)
+  if (!fn) {
+    fn = (el: Element | null) => {
+      if (el instanceof HTMLElement) {
+        cardEls.set(slug, el)
+        scheduleCardMeasure(slug)
+      }
+      else {
+        cardEls.delete(slug)
+      }
+    }
+    cardRefCallbacks.set(slug, fn)
+  }
+  return fn
+}
+
+// Any change that can alter a card's actual rendered size (zoom, text size,
+// day, available height, which stages/columns are shown) invalidates prior
+// downgrade decisions — clear overrides and re-measure from the fresh guess.
+watch([fontScale, zoomMode, manualHourH, selectedDay, timelineAvailableHeight, timelineStages], () => {
+  Object.keys(cardTierOverride).forEach(k => delete cardTierOverride[k])
+  nextTick(() => {
+    cardEls.forEach((_, slug) => scheduleCardMeasure(slug))
+  })
+})
 
 // ── Manual-zoom auto-scroll (keeps the now-line in the upper third) ──
 const userScrollingTimeline = ref(false)
@@ -687,6 +771,8 @@ function loadSettings() {
       manualHourH.value = p.manualHourH
     if (typeof p.showSponsors === 'boolean')
       showSponsors.value = p.showSponsors
+    if (typeof p.sponsorImageUrl === 'string')
+      sponsorImageUrl.value = p.sponsorImageUrl
   }
   catch {}
   validateStageSelection()
@@ -706,17 +792,20 @@ function saveSettings() {
     zoomMode: zoomMode.value,
     manualHourH: manualHourH.value,
     showSponsors: showSponsors.value,
+    sponsorImageUrl: sponsorImageUrl.value,
   }))
 }
 
-watch([autoMode, manualDate, fontScale, viewMode, singleStageSlug, zoomMode, manualHourH, showSponsors], saveSettings)
+watch(
+  [autoMode, manualDate, fontScale, viewMode, singleStageSlug, zoomMode, manualHourH, showSponsors, sponsorImageUrl],
+  saveSettings,
+)
 watch(visibleStageSlugs, saveSettings)
 
 onMounted(() => {
   loadSettings()
   document.addEventListener('fullscreenchange', onFullscreenChange)
   nextTick(() => {
-    checkSponsorOverflow()
     centerTimelineScroll(false)
     centerListScroll(false)
   })
@@ -936,6 +1025,36 @@ onUnmounted(() => {
               />
               {{ showSponsors ? 'Shown' : 'Hidden' }}
             </button>
+            <div class="config-time-row" style="margin-top: 8px">
+              <input
+                v-model="sponsorImageUrl"
+                class="config-time-input config-url-input"
+                placeholder="https://..."
+                type="url"
+                @change="saveSettings()"
+                @click.stop
+              >
+              <button
+                v-if="sponsorImageUrl"
+                class="config-date-btn"
+                @click="sponsorImageUrl = ''; saveSettings()"
+              >
+                Clear
+              </button>
+            </div>
+            <div class="config-time-row" style="margin-top: 8px">
+              <label class="config-upload-btn" @click.stop>
+                <UIcon class="config-btn-icon" name="i-lucide-image" />
+                Upload image
+                <input
+                  accept="image/*"
+                  style="display:none"
+                  type="file"
+                  @change="onSponsorImageUpload"
+                  @click.stop
+                >
+              </label>
+            </div>
           </div>
         </div>
       </div>
@@ -979,7 +1098,7 @@ onUnmounted(() => {
               <!-- Time axis -->
               <div class="time-axis">
                 <div class="axis-header-spacer" :style="{ height: `${STAGE_HEADER_H}px` }" />
-                <div class="axis-body" :style="{ height: `${dayTotalHours * pxPerHour}px` }">
+                <div class="axis-body" :style="{ height: `${bodyHeightPx}px` }">
                   <span
                     v-if="nowLineTopBody !== null"
                     class="now-axis-dot"
@@ -1011,7 +1130,7 @@ onUnmounted(() => {
                   <div class="stage-col-header" :style="{ height: `${STAGE_HEADER_H}px` }">
                     {{ stage.name }}
                   </div>
-                  <div class="stage-col-body" :style="{ height: `${dayTotalHours * pxPerHour}px` }">
+                  <div class="stage-col-body" :style="{ height: `${bodyHeightPx}px` }">
                     <div
                       v-for="m in timelineHourMarks"
                       :key="`g-${m.toISO()}`"
@@ -1021,12 +1140,13 @@ onUnmounted(() => {
                     <div
                       v-for="card in stageCards(stage.slug)"
                       :key="card.talk.slug"
+                      :ref="getCardRefCallback(card.talk.slug)"
                       class="talk-card"
-                      :class="[`talk-card--${card.tier}`, `talk-card--${talkStatus(card.talk)}`]"
+                      :class="[`talk-card--${effectiveTier(card)}`, `talk-card--${talkStatus(card.talk)}`]"
                       :style="card.style"
                     >
                       <!-- Compact: single line "HH:mm Title" -->
-                      <template v-if="card.tier === 'compact'">
+                      <template v-if="effectiveTier(card) === 'compact'">
                         <p class="talk-card-compact-line">
                           <span v-if="talkStatus(card.talk) === 'live'" class="live-dot talk-card-live-dot" />
                           <span class="talk-card-compact-time">{{ fmtTime(card.talk.start) }}</span>
@@ -1034,8 +1154,22 @@ onUnmounted(() => {
                         </p>
                       </template>
 
+                      <!-- Brief: type/time + title, no speaker (fits when medium doesn't) -->
+                      <template v-else-if="effectiveTier(card) === 'brief'">
+                        <div class="talk-card-meta">
+                          <span class="talk-card-type">
+                            <span v-if="talkStatus(card.talk) === 'live'" class="live-dot talk-card-live-dot" />
+                            {{ card.talk.type }}
+                          </span>
+                          <span class="talk-card-time">{{ fmtTime(card.talk.start) }}</span>
+                        </div>
+                        <p class="talk-card-title talk-card-title--clamp2">
+                          {{ card.talk.title }}
+                        </p>
+                      </template>
+
                       <!-- Medium: type/time + title (2 lines) + speaker name -->
-                      <template v-else-if="card.tier === 'medium'">
+                      <template v-else-if="effectiveTier(card) === 'medium'">
                         <div class="talk-card-meta">
                           <span class="talk-card-type">
                             <span v-if="talkStatus(card.talk) === 'live'" class="live-dot talk-card-live-dot" />
@@ -1208,47 +1342,17 @@ onUnmounted(() => {
         </div>
 
         <!-- ── Sponsor column ──────────────────────────────── -->
-        <aside v-if="showSponsors" ref="sponsorColRef" class="sponsor-col">
-          <div
-            class="sponsor-track"
-            :class="{ 'sponsor-track--scroll': sponsorOverflow }"
-            :style="sponsorOverflow ? { animationDuration: `${sponsorScrollDuration}s` } : {}"
+        <!-- Deliberately a single static, centered image — no logo list, no animation -->
+        <aside v-if="showSponsors" class="sponsor-col">
+          <img
+            v-if="sponsorImageUrl && !sponsorImageError"
+            alt="Sponsors"
+            class="sponsor-image"
+            :src="sponsorImageUrl"
+            @error="sponsorImageError = true"
           >
-            <div ref="sponsorInnerRef" class="sponsor-inner">
-              <template v-for="group in sponsorGroups" :key="group.headline">
-                <p class="sponsor-group-label">
-                  {{ group.headline }}
-                </p>
-                <div class="sponsor-logos">
-                  <div
-                    v-for="logo in group.logos"
-                    :key="logo.src"
-                    class="sponsor-logo-tile"
-                  >
-                    <img :alt="logo.alt" :src="logo.src">
-                  </div>
-                </div>
-              </template>
-              <p v-if="!sponsorGroups.length" class="sponsor-empty">
-                No sponsor logos configured.
-              </p>
-            </div>
-            <div v-if="sponsorOverflow" aria-hidden="true" class="sponsor-inner">
-              <template v-for="group in sponsorGroups" :key="`dup-${group.headline}`">
-                <p class="sponsor-group-label">
-                  {{ group.headline }}
-                </p>
-                <div class="sponsor-logos">
-                  <div
-                    v-for="logo in group.logos"
-                    :key="`dup-${logo.src}`"
-                    class="sponsor-logo-tile"
-                  >
-                    <img :alt="logo.alt" :src="logo.src">
-                  </div>
-                </div>
-              </template>
-            </div>
+          <div v-else class="sponsor-placeholder">
+            <UIcon name="i-lucide-image" />
           </div>
         </aside>
       </div>
@@ -1661,12 +1765,16 @@ onUnmounted(() => {
   padding: 0 8px;
   font-size: 0.85rem;
   font-weight: 700;
+  line-height: 1.2;
   color: rgba(255, 255, 255, 0.75);
   letter-spacing: 0.01em;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 10px;
   margin-bottom: 6px;
+  /* A long stage name must never grow taller than its fixed-height box and
+     bleed into the cards below. */
+  overflow: hidden;
 }
 
 .stage-col-body {
@@ -2122,6 +2230,9 @@ onUnmounted(() => {
 }
 
 /* ── Sponsor column ─────────────────────────────────────────── */
+/* A single static, centered image — dark column background (never white),
+   the image never exceeds the column width or the column height, and it
+   never moves. */
 .sponsor-col {
   flex-shrink: 0;
   width: 21%;
@@ -2131,70 +2242,52 @@ onUnmounted(() => {
   background: rgba(255, 255, 255, 0.015);
   overflow: hidden;
   padding: 20px 16px;
-}
-
-.sponsor-track {
-  display: flex;
-  flex-direction: column;
-}
-
-.sponsor-track--scroll {
-  animation-name: sponsor-scroll;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-@keyframes sponsor-scroll {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-50%);
-  }
-}
-
-.sponsor-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-}
-
-.sponsor-group-label {
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
-  margin: 0 0 10px;
-  text-align: center;
-}
-
-.sponsor-logos {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.sponsor-logo-tile {
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.03);
-  padding: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 56px;
 }
 
-.sponsor-logo-tile img {
+.sponsor-image {
+  display: block;
   max-width: 100%;
-  max-height: 40px;
+  max-height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
-.sponsor-empty {
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.25);
-  text-align: center;
+.sponsor-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border: 2px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  font-size: 2.4rem;
+  color: rgba(255, 255, 255, 0.18);
+}
+
+/* ── Config upload button (mirrors screen1) ──────────────────── */
+.config-upload-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.config-upload-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
 }
 </style>

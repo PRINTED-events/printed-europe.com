@@ -1,7 +1,7 @@
 ---
 title: Analog neu gedruckt - Baue deine gedruckte Kamera!
 slug: analog-neu-gedruckt-baue-deine-gedruckte-kamera
-dateTime: '2026-09-25T10:30:00.000Z'
+dateTime: '2026-09-25T09:30:00.000Z'
 description: >-
   Build your own 3D printed analog camera. You are building a small pinhole
   camera to take pictures on 35mm film. Learn how 3D printing gives new life to
