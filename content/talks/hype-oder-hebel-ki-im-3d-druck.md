@@ -6,7 +6,6 @@ description: ''
 duration: 40
 resources: []
 speakers:
-  - adrianluben
   - janos-kehl
   - nils-stackler
   - stefan-herman

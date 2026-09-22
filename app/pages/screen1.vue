@@ -314,6 +314,7 @@ onUnmounted(() => {
 
 // ── QR Code ───────────────────────────────────────────────────
 const qrUrl = ref('/Hub26_scheduleqr_white_scaled.png')
+const showQr = ref(true)
 
 // ── Alternative stages ────────────────────────────────────────
 const hiddenAltSlugs = ref<Set<string>>(new Set())
@@ -429,6 +430,7 @@ function loadSettings() {
     if (p.timeOverride) applyTimeOverride(p.timeOverride)
     if (Array.isArray(p.hiddenAltSlugs)) hiddenAltSlugs.value = new Set(p.hiddenAltSlugs)
     if (p.qrUrl) qrUrl.value = p.qrUrl
+    if (typeof p.showQr === 'boolean') showQr.value = p.showQr
     if (typeof p.fontScale === 'number') fontScale.value = p.fontScale
     if (typeof p.showSponsorBar === 'boolean') showSponsorBar.value = p.showSponsorBar
     if (p.sponsorBarLogoUrl) sponsorBarLogoUrl.value = p.sponsorBarLogoUrl
@@ -445,6 +447,7 @@ function saveSettings() {
     timeOverride: timeOverride.value,
     hiddenAltSlugs: [...hiddenAltSlugs.value],
     qrUrl: qrUrl.value,
+    showQr: showQr.value,
     fontScale: fontScale.value,
     showSponsorBar: showSponsorBar.value,
     sponsorBarLogoUrl: sponsorBarLogoUrl.value,
@@ -469,7 +472,7 @@ function fmtDayLabel(iso: string): string {
   return DateTime.fromISO(iso).setLocale('en').toFormat('EEE, d. MMM')
 }
 
-watch([mainStageSlug, autoMode, manualDate, fontScale, showSponsorBar], saveSettings)
+watch([mainStageSlug, autoMode, manualDate, fontScale, showSponsorBar, showQr], saveSettings)
 
 onMounted(() => {
   loadSettings()
@@ -627,9 +630,19 @@ onUnmounted(() => {
           <!-- QR Code URL -->
           <div class="config-section">
             <p class="config-section-label">
-              QR Code URL
+              QR Code
             </p>
-            <div class="config-time-row">
+            <button
+              :class="['config-btn', showQr && 'config-btn--active']"
+              @click="showQr = !showQr; saveSettings(); scheduleHide()"
+            >
+              <UIcon
+                :name="showQr ? 'i-lucide-eye' : 'i-lucide-eye-off'"
+                class="config-btn-icon"
+              />
+              {{ showQr ? 'Shown' : 'Hidden' }}
+            </button>
+            <div class="config-time-row" style="margin-top: 8px">
               <input
                 v-model="qrUrl"
                 type="url"
@@ -976,8 +989,11 @@ onUnmounted(() => {
         </div>
       </div>
 
-      <!-- QR code tile (always last) -->
-      <div class="stage-tile qr-tile">
+      <!-- QR code tile (always last, when enabled) -->
+      <div
+        v-if="showQr"
+        class="stage-tile qr-tile"
+      >
         <p class="qr-schedule-label">
           View full Schedule
         </p>
