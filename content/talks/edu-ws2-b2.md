@@ -11,7 +11,7 @@ description: >-
 duration: 45
 resources: []
 speakers:
-  - ''
+  - tobias
 stage: workshop-space-1
 type: Workshop
 ---
