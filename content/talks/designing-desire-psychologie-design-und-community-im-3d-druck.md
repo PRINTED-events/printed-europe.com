@@ -1,7 +1,7 @@
 ---
 title: 'Designing Desire: Psychologie, Design und Community im 3D-Druck'
 slug: designing-desire-psychologie-design-und-community-im-3d-druck
-dateTime: '2026-09-26T08:30:00.000Z'
+dateTime: '2026-09-26T09:30:00.000Z'
 description: >-
   Was macht ein Objekt wirklich begehrenswert – und warum drucken wir
   eigentlich, was wir drucken? Roman Rackwitz verbindet Erkenntnisse aus

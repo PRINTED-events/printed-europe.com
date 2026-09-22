@@ -520,15 +520,17 @@ const cardRefCallbacks = new Map<string, (el: Element | null) => void>()
 const pendingCardMeasure = new Set<string>()
 let cardMeasureScheduled = false
 
+// Deliberately nextTick-only (no requestAnimationFrame): reading
+// scrollHeight/clientHeight forces a synchronous layout pass, so the
+// measurement is accurate as soon as Vue has patched the DOM — no need to
+// wait for a paint. This also keeps it deterministic under headless/virtual
+// time testing, where rAF timing is not reliable.
 function scheduleCardMeasure(slug: string) {
   pendingCardMeasure.add(slug)
   if (cardMeasureScheduled)
     return
   cardMeasureScheduled = true
-  nextTick(async () => {
-    await document.fonts?.ready
-    await new Promise<void>(resolve =>
-      requestAnimationFrame(() => requestAnimationFrame(() => resolve())))
+  nextTick(() => {
     cardMeasureScheduled = false
     const slugs = [...pendingCardMeasure]
     pendingCardMeasure.clear()
@@ -551,7 +553,7 @@ function checkCardOverflow(slug: string) {
   if (idx === -1 || idx >= order.length - 1)
     return // already at the leanest tier
   cardTierOverride[slug] = order[idx + 1]
-  nextTick(() => requestAnimationFrame(() => checkCardOverflow(slug)))
+  nextTick(() => checkCardOverflow(slug))
 }
 
 function getCardRefCallback(slug: string) {
@@ -808,6 +810,14 @@ onMounted(() => {
   nextTick(() => {
     centerTimelineScroll(false)
     centerListScroll(false)
+  })
+  // Safety net: web font metrics can differ slightly from the fallback font
+  // used for the very first measurement pass. Once the real font is loaded,
+  // re-check every currently mounted card once more.
+  document.fonts?.ready.then(() => {
+    nextTick(() => {
+      cardEls.forEach((_, slug) => scheduleCardMeasure(slug))
+    })
   })
 })
 
@@ -1865,6 +1875,12 @@ onUnmounted(() => {
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+  /* Without this, flexbox treats an element with its own overflow:hidden as
+     having an automatic min-height of 0, so a cramped card would silently
+     flex-shrink the title below its clamped line height instead of the
+     card ever registering overflow — clipping text mid-line without the
+     JS overflow check (see checkCardOverflow) ever detecting it. */
+  flex-shrink: 0;
 }
 
 .talk-card--full .talk-card-title {
@@ -1909,6 +1925,7 @@ onUnmounted(() => {
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 0;
+  flex-shrink: 0;
 }
 
 .talk-card-compact-line {
@@ -1919,6 +1936,7 @@ onUnmounted(() => {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  flex-shrink: 0;
   line-height: 1.3;
 }
 
