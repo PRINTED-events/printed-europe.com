@@ -42,7 +42,7 @@ blocks:
       - src: /sponsors/thangs.png
         alt: Thangs
         url: https://thangs.com
-      - src: /sponsors/fibreseek.jpeg
+      - src: /sponsors/fibreseek-white.svg
         alt: FibreSeek
         url: https://www.fibreseek3d.com
   - component: AppLandingLogoGrid
@@ -61,6 +61,12 @@ blocks:
       - src: /sponsors/juicebox.png
         alt: Juicebox
         url: https://juicebox.at
+      - src: /sponsors/cute-flexi-maker.png
+        alt: Cute Flexi Maker
+        url: https://www.cutefleximaker.com
+      - src: /sponsors/clicker-factory.png
+        alt: Clicker Factory
+        url: https://clickerfactory.com
   - component: AppLandingLogoGrid
     headline: Sponsors
     title: Partners by our side.
@@ -88,6 +94,9 @@ blocks:
       - src: /sponsors/xtool-white.svg
         alt: xTool
         url: https://www.xtool.com
+      - src: /sponsors/anker.png
+        alt: Anker
+        url: https://www.anker.com
   - component: AppLandingSection
     title: Where ideas happen.
     description: Join us for an unforgettable experience.

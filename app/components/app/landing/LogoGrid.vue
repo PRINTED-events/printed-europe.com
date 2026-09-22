@@ -17,7 +17,7 @@ defineProps<{
     :headline="headline"
     :title="title"
   >
-    <UPageGrid>
+    <UPageGrid class="grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 lg:gap-6">
       <UPageCard
         v-for="logo in logos"
         :key="logo.src"
