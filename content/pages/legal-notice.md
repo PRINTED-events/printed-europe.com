@@ -1,5 +1,6 @@
 ---
 title: Legal Notice
+description: Legal notice and provider identification for Printed Europe, operated by Printed Events UG (haftungsbeschränkt).
 ---
 
 # Legal Notice

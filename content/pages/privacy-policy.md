@@ -1,5 +1,6 @@
 ---
 title: Privacy Policy
+description: How Printed Europe collects, uses and protects your personal data, and the rights you have under the GDPR.
 ---
 
 # Privacy Policy
