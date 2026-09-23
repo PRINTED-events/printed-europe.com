@@ -239,6 +239,12 @@ export default defineNuxtConfig({
     },
   },
 
+  // /kiosk is the address used on the venue screens; it now serves the
+  // reworked rundown on /screen2
+  routeRules: {
+    '/kiosk': { redirect: { to: '/screen2', statusCode: 302 } },
+  },
+
   site: { // for `@nuxtjs/seo`
     url: customConfig.general.siteUrl,
     name: customConfig.general.conferenceName,

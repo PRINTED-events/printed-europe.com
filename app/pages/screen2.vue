@@ -170,9 +170,97 @@ const fontScale = ref(1.0)
 const showSponsors = ref(false)
 const sponsorImageUrl = ref('/sponsors.png')
 const sponsorImageError = ref(false)
+// naturalWidth / naturalHeight of the currently loaded sponsor image, once
+// known. Null until the <img> fires @load (or there is no image), in which
+// case the column falls back to a fixed default width below.
+const sponsorImageRatio = ref<number | null>(null)
 
 watch(sponsorImageUrl, () => {
   sponsorImageError.value = false
+  sponsorImageRatio.value = null
+})
+
+function onSponsorImageLoad(event: Event) {
+  const img = event.target as HTMLImageElement
+  sponsorImageRatio.value = img.naturalWidth > 0 && img.naturalHeight > 0
+    ? img.naturalWidth / img.naturalHeight
+    : null
+}
+
+// ── Sponsor column width (fills the column's full height, never distorted) ──
+// The column's width is derived, not fixed: given the column's available
+// height and the loaded image's aspect ratio, we compute the width that lets
+// the image use 100% of that height (spaltenBreite = verfügbareHöhe *
+// seitenverhältnis). The CSS content-box `width` set below is exactly that
+// value; the column's existing horizontal padding is added on top of it by
+// the box model itself, so the rendered total already includes it. Clamped
+// to 12%–40% of the screen width — a very wide (landscape) image hits the
+// max and then simply falls back to being letterboxed by `object-fit:
+// contain` inside that fixed-width box, same as before this feature existed.
+const SPONSOR_COL_MIN_FRAC = 0.12
+const SPONSOR_COL_MAX_FRAC = 0.40
+// Default/fallback fraction used before the image's ratio is known (or it's
+// missing) — matches the column's previous fixed width so there is no jump
+// while waiting for the image to load.
+const SPONSOR_COL_FALLBACK_FRAC = 0.21
+
+const sponsorColRef = ref<HTMLElement | null>(null)
+// Measures the padding-free inner wrapper, i.e. the height actually
+// available to the image — independent of the column's own (computed)
+// width, since the column is a flex item whose height is stretched by its
+// parent row regardless of its width.
+const sponsorImgWrapRef = ref<HTMLElement | null>(null)
+const sponsorImgAvailableHeight = ref(0)
+let sponsorImgResizeObserver: ResizeObserver | null = null
+
+watch(sponsorImgWrapRef, (el) => {
+  sponsorImgResizeObserver?.disconnect()
+  sponsorImgResizeObserver = null
+  if (!el)
+    return
+  sponsorImgAvailableHeight.value = el.clientHeight
+  sponsorImgResizeObserver = new ResizeObserver((entries) => {
+    const h = entries[0]?.contentRect.height
+    if (h && Math.abs(h - sponsorImgAvailableHeight.value) > 1)
+      sponsorImgAvailableHeight.value = h
+  })
+  sponsorImgResizeObserver.observe(el)
+})
+onUnmounted(() => sponsorImgResizeObserver?.disconnect())
+
+// Measures the screen body (virtual/pre-scale px — see the --font-scale
+// comment near STAGE_HEADER_H above) so the 12%/40% clamp is a fraction of
+// the actual window width regardless of font-scale.
+const screenBodyRef = ref<HTMLElement | null>(null)
+const screenBodyWidth = ref(0)
+let screenBodyResizeObserver: ResizeObserver | null = null
+
+watch(screenBodyRef, (el) => {
+  screenBodyResizeObserver?.disconnect()
+  screenBodyResizeObserver = null
+  if (!el)
+    return
+  screenBodyWidth.value = el.clientWidth
+  screenBodyResizeObserver = new ResizeObserver((entries) => {
+    const w = entries[0]?.contentRect.width
+    if (w && Math.abs(w - screenBodyWidth.value) > 1)
+      screenBodyWidth.value = w
+  })
+  screenBodyResizeObserver.observe(el)
+})
+onUnmounted(() => screenBodyResizeObserver?.disconnect())
+
+const sponsorColWidthPx = computed<number | null>(() => {
+  if (!screenBodyWidth.value)
+    return null
+  const minW = screenBodyWidth.value * SPONSOR_COL_MIN_FRAC
+  const maxW = screenBodyWidth.value * SPONSOR_COL_MAX_FRAC
+  if (!sponsorImageRatio.value || !sponsorImgAvailableHeight.value) {
+    const fallback = screenBodyWidth.value * SPONSOR_COL_FALLBACK_FRAC
+    return Math.min(maxW, Math.max(minW, fallback))
+  }
+  const desired = sponsorImgAvailableHeight.value * sponsorImageRatio.value
+  return Math.min(maxW, Math.max(minW, desired))
 })
 
 // Resize an uploaded image client-side (max 1000px on the longer edge)
@@ -695,12 +783,6 @@ const currentListTalk = computed(() =>
   stageListTalks.value.find(t => t.start <= now.value && t.end > now.value) ?? null)
 const nextListTalk = computed(() => stageListTalks.value.find(t => t.start > now.value) ?? null)
 
-const untilNextListSeconds = computed(() => {
-  if (!nextListTalk.value)
-    return null
-  return Math.max(0, Math.floor(nextListTalk.value.start.diff(now.value, 'seconds').seconds))
-})
-
 type StageListState = 'live' | 'upcoming' | 'finished' | 'empty'
 const stageListState = computed<StageListState>(() => {
   if (!stageListTalks.value.length)
@@ -722,7 +804,13 @@ function untilTalkSeconds(talk: any): number {
 
 function listItemClasses(talk: any): (string | false)[] {
   const status = talkStatus(talk)
-  return [`stagelist-item--${status}`, status !== 'live' && isNextListTalk(talk) && 'stagelist-item--next']
+  const isNext = status !== 'live' && isNextListTalk(talk)
+  return [
+    `stagelist-item--${status}`,
+    isNext && 'stagelist-item--next',
+    // With nothing running, the next item carries the screen on its own
+    isNext && !currentListTalk.value && 'stagelist-item--next-hero',
+  ]
 }
 
 const stageListScrollRef = ref<HTMLElement | null>(null)
@@ -1174,7 +1262,7 @@ onUnmounted(() => {
       </header>
 
       <!-- ── Body ────────────────────────────────────────────── -->
-      <div class="screen-body">
+      <div ref="screenBodyRef" class="screen-body">
         <!-- ── Timeline view ───────────────────────────────── -->
         <div v-if="viewMode === 'timeline'" class="timeline-view">
           <div v-if="!dayTalks.length" class="empty-state">
@@ -1326,19 +1414,11 @@ onUnmounted(() => {
           </div>
 
           <div
-            v-if="stageListState !== 'live'"
+            v-if="stageListState === 'finished' || stageListState === 'empty'"
             class="stagelist-banner"
             :class="`stagelist-banner--${stageListState}`"
           >
-            <template v-if="stageListState === 'upcoming'">
-              <p class="banner-label">
-                Next up in
-              </p>
-              <p class="banner-countdown">
-                {{ fmtCountdown(untilNextListSeconds ?? 0) }}
-              </p>
-            </template>
-            <template v-else-if="stageListState === 'finished'">
+            <template v-if="stageListState === 'finished'">
               <p class="banner-finished">
                 Programme finished for today
               </p>
@@ -1399,6 +1479,36 @@ onUnmounted(() => {
                     </div>
                   </div>
                 </template>
+                <template v-else-if="isNextListTalk(talk)">
+                  <div class="list-live-top">
+                    <p class="list-next-label">
+                      Next
+                    </p>
+                    <span class="list-time">{{ fmtTime(talk.start) }}–{{ fmtTime(talk.end) }}</span>
+                  </div>
+                  <h2 class="list-title list-title--next">
+                    {{ talk.title }}
+                  </h2>
+                  <div class="talk-type-badge">
+                    {{ talk.type }}
+                  </div>
+                  <div v-if="talk.speakerObjects.length" class="list-speakers">
+                    <div class="list-avatar-stack">
+                      <NuxtImg
+                        v-for="sp in talk.speakerObjects.filter((s: any) => s.image).slice(0, 2)"
+                        :key="sp.slug"
+                        :alt="sp.name"
+                        class="list-avatar"
+                        :src="sp.image"
+                      />
+                    </div>
+                    <span class="list-speaker-names">{{ speakerNames(talk) }}</span>
+                  </div>
+                  <p class="list-next-countdown">
+                    <span class="list-next-countdown-value">{{ fmtCountdown(untilTalkSeconds(talk)) }}</span>
+                    <span class="list-next-countdown-label">until start</span>
+                  </p>
+                </template>
                 <template v-else>
                   <div class="list-row">
                     <UIcon
@@ -1438,16 +1548,24 @@ onUnmounted(() => {
 
         <!-- ── Sponsor column ──────────────────────────────── -->
         <!-- Deliberately a single static, centered image — no logo list, no animation -->
-        <aside v-if="showSponsors" class="sponsor-col">
-          <img
-            v-if="sponsorImageUrl && !sponsorImageError"
-            alt="Sponsors"
-            class="sponsor-image"
-            :src="sponsorImageUrl"
-            @error="sponsorImageError = true"
-          >
-          <div v-else class="sponsor-placeholder">
-            <UIcon name="i-lucide-image" />
+        <aside
+          v-if="showSponsors"
+          ref="sponsorColRef"
+          class="sponsor-col"
+          :style="sponsorColWidthPx !== null ? { width: `${sponsorColWidthPx}px` } : undefined"
+        >
+          <div ref="sponsorImgWrapRef" class="sponsor-img-wrap">
+            <img
+              v-if="sponsorImageUrl && !sponsorImageError"
+              alt="Sponsors"
+              class="sponsor-image"
+              :src="sponsorImageUrl"
+              @error="sponsorImageError = true"
+              @load="onSponsorImageLoad"
+            >
+            <div v-else class="sponsor-placeholder">
+              <UIcon name="i-lucide-image" />
+            </div>
           </div>
         </aside>
       </div>
@@ -2158,6 +2276,46 @@ onUnmounted(() => {
 .stagelist-item--next {
   border-color: rgba(255, 145, 77, 0.35);
   background: rgba(255, 145, 77, 0.05);
+  padding: 18px 24px;
+}
+
+.stagelist-item--next-hero {
+  border-color: rgba(255, 145, 77, 0.55);
+  background: linear-gradient(135deg, rgba(255, 145, 77, 0.1) 0%, rgba(255, 255, 255, 0.03) 70%);
+  padding: 22px 28px;
+}
+
+.list-next-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ff914d;
+  margin: 0;
+}
+
+.list-title--next {
+  font-size: clamp(1.3rem, 2vw, 1.9rem);
+}
+
+.list-next-countdown {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 4px 0 0;
+}
+
+.list-next-countdown-value {
+  font-size: 1.7rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: #ff914d;
+  line-height: 1;
+}
+
+.list-next-countdown-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .stagelist-item--live {
@@ -2337,14 +2495,23 @@ onUnmounted(() => {
    the image never exceeds the column width or the column height, and it
    never moves. */
 .sponsor-col {
+  /* content-box so the derived width stays the width available to the
+     image itself — the padding is added around it by the box model */
+  box-sizing: content-box;
   flex-shrink: 0;
   width: 21%;
-  min-width: 200px;
-  max-width: 320px;
+  min-width: 160px;
   border-left: 1px solid rgba(255, 255, 255, 0.07);
   background: rgba(255, 255, 255, 0.015);
   overflow: hidden;
   padding: 20px 16px;
+  display: flex;
+}
+
+.sponsor-img-wrap {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
