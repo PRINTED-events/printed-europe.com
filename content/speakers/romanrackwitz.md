@@ -7,9 +7,6 @@ image: /speaker/romanrackwitz.png
 name: Roman Rackwitz
 navigation:
   title: Roman Rackwitz
-seo:
-  title: RomanRackwitz file
-  description: K
 slug: romanrackwitz
 socialMedia:
   - url: https://romanrackwitz.de/

@@ -9,7 +9,6 @@ navigation:
   title: Gazzaladra (Johannes Straka)
 seo:
   title: Gazzaladra (Johannes Straka)
-  description: K
 slug: gazzaladra
 socialMedia:
   - url: https://thangs.com/designer/Gazzaladra

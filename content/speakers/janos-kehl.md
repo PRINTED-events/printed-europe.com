@@ -1,6 +1,7 @@
 ---
 title: Janos Kehl
 company: PRINTED events
+description: Host & Organiser of PRINTED events
 featured: false
 image: /speaker/janos-kehl.jpg
 name: Janos Kehl

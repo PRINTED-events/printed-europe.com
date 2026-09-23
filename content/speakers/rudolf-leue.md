@@ -9,7 +9,6 @@ navigation:
   title: Rudolf Leue
 seo:
   title: Rudolf Leue
-  description: K
 slug: rudolfleue
 socialMedia:
   - url: https://recyclingfabrik.com
