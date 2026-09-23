@@ -6,6 +6,10 @@ definePageMeta({
   layout: 'display',
 })
 
+// Screen/embed pages are for on-site use, not for visitors: keep them out
+// of search results. They are excluded from the sitemap in `nuxt.config.ts`.
+useRobotsRule('noindex, nofollow')
+
 const appConfig = useAppConfig()
 const colorMode = useColorMode()
 const { setSettings, settings, finalUrl } = useDisplaySettings()

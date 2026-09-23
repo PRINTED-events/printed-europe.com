@@ -252,6 +252,21 @@ export default defineNuxtConfig({
 
   sitemap: {
     zeroRuntime: true,
+    // Content pages reach the sitemap through `asSitemapCollection()` in
+    // `content.config.ts`; static routes are discovered automatically.
+    exclude: [
+      // Screen and embed pages are for on-site use, not for visitors. They
+      // also set `useRobotsRule('noindex, nofollow')` in their own component.
+      '/display',
+      '/screen1',
+      '/screen2',
+      '/embed/**',
+      // `/kiosk` only redirects to `/screen2`.
+      '/kiosk',
+      // `/talks` only redirects to `/schedule`, so it does not belong in the
+      // sitemap - the individual talk pages below it do.
+      '/talks',
+    ],
   },
 
   robots: { // for `robots` (included in `@nuxtjs/seo`)

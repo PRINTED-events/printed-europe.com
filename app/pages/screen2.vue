@@ -3,6 +3,10 @@ import { DateTime } from 'luxon'
 
 definePageMeta({ layout: false })
 
+// Screen/embed pages are for on-site use, not for visitors: keep them out
+// of search results. They are excluded from the sitemap in `nuxt.config.ts`.
+useRobotsRule('noindex, nofollow')
+
 // Force dark mode globally
 const colorMode = useColorMode()
 onMounted(() => {

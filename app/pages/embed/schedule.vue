@@ -1,6 +1,10 @@
 <script setup lang="ts">
 definePageMeta({ layout: 'embed' })
 
+// Screen/embed pages are for on-site use, not for visitors: keep them out
+// of search results. They are excluded from the sitemap in `nuxt.config.ts`.
+useRobotsRule('noindex, nofollow')
+
 const EDUCATION_DAY = '2026-09-25'
 
 const {

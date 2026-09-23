@@ -4,6 +4,7 @@
  */
 
 import { defineCollection, defineContentConfig } from '@nuxt/content'
+import { asSitemapCollection } from '@nuxtjs/sitemap/content'
 import { customConfigSchema } from './app/schemas/customConfig'
 import { faqSchema } from './app/schemas/faq'
 import { landingSchema } from './app/schemas/landing'
@@ -38,18 +39,24 @@ export default defineContentConfig({
     }),
 
     // FAQ collection for frequently asked questions
-    faq: defineCollection({
+    faq: defineCollection(asSitemapCollection({
       type: 'page',
       source: 'faq/**/*.md',
       schema: faqSchema,
-    }),
+    })),
 
     // generic pages, e.g. Contact, Privacy Policy, Legal Notice, etc.
-    pages: defineCollection({
+    pages: defineCollection(asSitemapCollection({
       type: 'page',
       source: 'pages/**/*.md',
       schema: pageSchema,
-    }),
+    }, {
+      name: 'pages',
+      // `app/pages/[...slug].vue` serves `/pages/contact` at `/contact`.
+      onUrl: (url) => {
+        url.loc = String(url.loc).replace(/^\/pages(?=\/|$)/, '')
+      },
+    })),
 
     // -------- standalone data
 
@@ -78,16 +85,32 @@ export default defineContentConfig({
       schema: stageSchema,
     }),
 
-    speakers: defineCollection({
+    speakers: defineCollection(asSitemapCollection({
       type: 'page',
       source: 'speakers/**/*.md',
       schema: speakerSchema,
-    }),
+    }, {
+      name: 'speakers',
+      // `app/pages/speakers/[...slug].vue` resolves entries by their `slug`
+      // field rather than by file name, and the two can differ.
+      onUrl: (url, entry) => {
+        if (entry?.slug)
+          url.loc = `/speakers/${entry.slug}`
+      },
+    })),
 
-    talks: defineCollection({
+    talks: defineCollection(asSitemapCollection({
       type: 'page',
       source: 'talks/**/*.md',
       schema: talkSchema,
-    }),
+    }, {
+      name: 'talks',
+      // `app/pages/talks/[...slug].vue` resolves entries by their `slug`
+      // field rather than by file name, and the two can differ.
+      onUrl: (url, entry) => {
+        if (entry?.slug)
+          url.loc = `/talks/${entry.slug}`
+      },
+    })),
   },
 })
