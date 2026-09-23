@@ -166,7 +166,7 @@ const mainStageName = computed(
 // Resize an uploaded image client-side (max 1000px on the longer edge)
 // before it ever touches localStorage — a raw phone photo easily blows
 // past the ~5MB quota and throws QuotaExceededError on save.
-function resizeImageFile(file: File, maxDim = 1000, jpegQuality = 0.85): Promise<string> {
+function resizeImageFile(file: File, maxDim = 1920, jpegQuality = 0.85): Promise<string> {
   return new Promise((resolve, reject) => {
     const img = new Image()
     const objectUrl = URL.createObjectURL(file)
@@ -240,6 +240,125 @@ async function onSponsorLogoUpload(event: Event) {
   sponsorBarLogoUrl.value = dataUrl
   if (!saveSettings()) {
     sponsorBarLogoUrl.value = previous
+    showUploadNotice('Image too large to store')
+  }
+}
+
+// ── Sponsor column (full-height right sidebar — distinct from the header
+// Sponsor Bar above) ────────────────────────────────────────
+// Deliberately a single static image (no dynamic logo list, no scroll
+// animation) — the column just centers whatever image is configured.
+const showSponsorColumn = ref(false)
+const sponsorColumnImageUrl = ref('/sponsors.png')
+const sponsorImageError = ref(false)
+// naturalWidth / naturalHeight of the currently loaded sponsor image, once
+// known. Null until the <img> fires @load (or there is no image), in which
+// case the column falls back to a fixed default width below.
+const sponsorImageRatio = ref<number | null>(null)
+
+watch(sponsorColumnImageUrl, () => {
+  sponsorImageError.value = false
+  sponsorImageRatio.value = null
+})
+
+function onSponsorImageLoad(event: Event) {
+  const img = event.target as HTMLImageElement
+  sponsorImageRatio.value = img.naturalWidth > 0 && img.naturalHeight > 0
+    ? img.naturalWidth / img.naturalHeight
+    : null
+}
+
+// ── Sponsor column width (fills the column's full height, never distorted) ──
+// Given the column's available height and the loaded image's aspect ratio,
+// compute the width that lets the image use 100% of that height. Clamped to
+// 12%–40% of the screen width so a very wide (landscape) image just gets
+// letterboxed by `object-fit: contain` inside a fixed-width box instead of
+// growing the column without bound.
+const SPONSOR_COL_MIN_FRAC = 0.12
+const SPONSOR_COL_MAX_FRAC = 0.40
+// Default/fallback fraction used before the image's ratio is known (or it's
+// missing) — avoids a jump while waiting for the image to load.
+const SPONSOR_COL_FALLBACK_FRAC = 0.21
+
+const sponsorColRef = ref<HTMLElement | null>(null)
+// Measures the padding-free inner wrapper, i.e. the height actually
+// available to the image — independent of the column's own (computed)
+// width, since the column is a flex item whose height is stretched by its
+// parent row regardless of its width.
+const sponsorImgWrapRef = ref<HTMLElement | null>(null)
+const sponsorImgAvailableHeight = ref(0)
+let sponsorImgResizeObserver: ResizeObserver | null = null
+
+watch(sponsorImgWrapRef, (el) => {
+  sponsorImgResizeObserver?.disconnect()
+  sponsorImgResizeObserver = null
+  if (!el)
+    return
+  sponsorImgAvailableHeight.value = el.clientHeight
+  sponsorImgResizeObserver = new ResizeObserver((entries) => {
+    const h = entries[0]?.contentRect.height
+    if (h && Math.abs(h - sponsorImgAvailableHeight.value) > 1)
+      sponsorImgAvailableHeight.value = h
+  })
+  sponsorImgResizeObserver.observe(el)
+})
+onUnmounted(() => sponsorImgResizeObserver?.disconnect())
+
+// Measures the screen body row (main content + sponsor column) so the
+// 12%/40% clamp is a fraction of the actual window width regardless of
+// font-scale.
+const screenBodyRef = ref<HTMLElement | null>(null)
+const screenBodyWidth = ref(0)
+let screenBodyResizeObserver: ResizeObserver | null = null
+
+watch(screenBodyRef, (el) => {
+  screenBodyResizeObserver?.disconnect()
+  screenBodyResizeObserver = null
+  if (!el)
+    return
+  screenBodyWidth.value = el.clientWidth
+  screenBodyResizeObserver = new ResizeObserver((entries) => {
+    const w = entries[0]?.contentRect.width
+    if (w && Math.abs(w - screenBodyWidth.value) > 1)
+      screenBodyWidth.value = w
+  })
+  screenBodyResizeObserver.observe(el)
+})
+onUnmounted(() => screenBodyResizeObserver?.disconnect())
+
+const sponsorColWidthPx = computed<number | null>(() => {
+  if (!screenBodyWidth.value)
+    return null
+  const minW = screenBodyWidth.value * SPONSOR_COL_MIN_FRAC
+  const maxW = screenBodyWidth.value * SPONSOR_COL_MAX_FRAC
+  if (!sponsorImageRatio.value || !sponsorImgAvailableHeight.value) {
+    const fallback = screenBodyWidth.value * SPONSOR_COL_FALLBACK_FRAC
+    return Math.min(maxW, Math.max(minW, fallback))
+  }
+  const desired = sponsorImgAvailableHeight.value * sponsorImageRatio.value
+  return Math.min(maxW, Math.max(minW, desired))
+})
+
+async function onSponsorColumnImageUpload(event: Event) {
+  const input = event.target as HTMLInputElement
+  const file = input.files?.[0]
+  input.value = ''
+  if (!file)
+    return
+
+  let dataUrl: string
+  try {
+    dataUrl = await resizeImageFile(file)
+  }
+  catch {
+    showUploadNotice('Image too large to store')
+    return
+  }
+
+  const previous = sponsorColumnImageUrl.value
+  sponsorColumnImageUrl.value = dataUrl
+  if (!saveSettings()) {
+    sponsorColumnImageUrl.value = previous
     showUploadNotice('Image too large to store')
   }
 }
@@ -532,6 +651,10 @@ function loadSettings() {
     if (typeof p.fontScale === 'number') fontScale.value = p.fontScale
     if (typeof p.showSponsorBar === 'boolean') showSponsorBar.value = p.showSponsorBar
     if (p.sponsorBarLogoUrl) sponsorBarLogoUrl.value = p.sponsorBarLogoUrl
+    if (typeof p.showSponsorColumn === 'boolean')
+      showSponsorColumn.value = p.showSponsorColumn
+    if (typeof p.sponsorColumnImageUrl === 'string')
+      sponsorColumnImageUrl.value = p.sponsorColumnImageUrl
   }
   catch {}
 }
@@ -553,6 +676,8 @@ function saveSettings(): boolean {
       fontScale: fontScale.value,
       showSponsorBar: showSponsorBar.value,
       sponsorBarLogoUrl: sponsorBarLogoUrl.value,
+      showSponsorColumn: showSponsorColumn.value,
+      sponsorColumnImageUrl: sponsorColumnImageUrl.value,
     }))
     return true
   }
@@ -579,7 +704,7 @@ function fmtDayLabel(iso: string): string {
   return DateTime.fromISO(iso).setLocale('en').toFormat('EEE, d. MMM')
 }
 
-watch([mainStageSlug, autoMode, manualDate, fontScale, showSponsorBar, showQr], saveSettings)
+watch([mainStageSlug, autoMode, manualDate, fontScale, showSponsorBar, showQr, showSponsorColumn], saveSettings)
 
 onMounted(() => {
   loadSettings()
@@ -820,6 +945,60 @@ onUnmounted(() => {
               class="config-logo-preview"
             >
           </div>
+
+          <!-- Sponsor Wall (full-height column, right edge — separate from the Sponsor Bar above) -->
+          <div class="config-section">
+            <p class="config-section-label">
+              Sponsor Wall
+            </p>
+            <button
+              class="config-btn"
+              :class="showSponsorColumn && 'config-btn--active'"
+              @click="showSponsorColumn = !showSponsorColumn; saveSettings(); scheduleHide()"
+            >
+              <UIcon
+                class="config-btn-icon"
+                :name="showSponsorColumn ? 'i-lucide-eye' : 'i-lucide-eye-off'"
+              />
+              {{ showSponsorColumn ? 'Eingeblendet' : 'Ausgeblendet' }}
+            </button>
+            <div class="config-time-row" style="margin-top: 8px">
+              <input
+                v-model="sponsorColumnImageUrl"
+                class="config-time-input config-url-input"
+                placeholder="https://..."
+                type="url"
+                @change="saveSettings()"
+                @click.stop
+              >
+              <button
+                v-if="sponsorColumnImageUrl"
+                class="config-date-btn"
+                @click="sponsorColumnImageUrl = ''; saveSettings()"
+              >
+                Clear
+              </button>
+            </div>
+            <div class="config-time-row" style="margin-top: 8px">
+              <label class="config-upload-btn" @click.stop>
+                <UIcon class="config-btn-icon" name="i-lucide-image" />
+                Bild hochladen
+                <input
+                  accept="image/*"
+                  style="display:none"
+                  type="file"
+                  @change="onSponsorColumnImageUpload"
+                  @click.stop
+                >
+              </label>
+            </div>
+            <p
+              v-if="uploadNotice"
+              class="config-time-hint"
+            >
+              {{ uploadNotice }}
+            </p>
+          </div>
         </div>
       </div>
     </Transition>
@@ -864,6 +1043,9 @@ onUnmounted(() => {
       <span class="clock-time">{{ clockDisplay }}</span>
     </header>
 
+      <!-- ── Body row (main content + sponsor column) ──────────── -->
+      <div ref="screenBodyRef" class="screen-body">
+        <div class="screen-body-content">
     <!-- ── Main grid ───────────────────────────────────────── -->
     <main
       v-if="mainStageEmpty"
@@ -1132,6 +1314,33 @@ onUnmounted(() => {
         </div>
       </div>
     </footer>
+        </div>
+
+        <!-- ── Sponsor column (right edge, full height) ─────────── -->
+        <aside
+          v-if="showSponsorColumn"
+          ref="sponsorColRef"
+          class="sponsor-col"
+          :style="sponsorColWidthPx !== null ? { width: `${sponsorColWidthPx}px` } : undefined"
+        >
+          <div ref="sponsorImgWrapRef" class="sponsor-img-wrap">
+            <img
+              v-if="sponsorColumnImageUrl && !sponsorImageError"
+              alt="Sponsors"
+              class="sponsor-image"
+              :src="sponsorColumnImageUrl"
+              @error="sponsorImageError = true"
+              @load="onSponsorImageLoad"
+            >
+            <div
+              v-else
+              class="sponsor-placeholder"
+            >
+              <UIcon name="i-lucide-image" />
+            </div>
+          </div>
+        </aside>
+      </div>
     </div><!-- /screen-root -->
   </div><!-- /screen-outer -->
 </template>
@@ -2057,5 +2266,72 @@ onUnmounted(() => {
   background: rgba(255, 255, 255, 0.04);
   padding: 6px;
   border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ── Body row (main content + sponsor column) ─────────────────── */
+.screen-body {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.screen-body-content {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── Sponsor column (right edge, full height) ───────────────────
+   Deliberately a single static, centered image — no logo list, no
+   animation. Width is derived from the image's aspect ratio (see
+   sponsorColWidthPx) so the image never exceeds the column width or
+   the column height, and it never moves. */
+.sponsor-col {
+  /* content-box so the derived width stays the width available to the
+     image itself — the padding is added around it by the box model */
+  box-sizing: content-box;
+  flex-shrink: 0;
+  width: 21%;
+  min-width: 160px;
+  border-left: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.015);
+  overflow: hidden;
+  padding: 20px 16px;
+  display: flex;
+}
+
+.sponsor-img-wrap {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sponsor-image {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.sponsor-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border: 2px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  font-size: 2.4rem;
+  color: rgba(255, 255, 255, 0.18);
 }
 </style>

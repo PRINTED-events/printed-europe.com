@@ -266,7 +266,7 @@ const sponsorColWidthPx = computed<number | null>(() => {
 // Resize an uploaded image client-side (max 1000px on the longer edge)
 // before it ever touches localStorage — a raw phone photo easily blows
 // past the ~5MB quota and throws QuotaExceededError on save.
-function resizeImageFile(file: File, maxDim = 1000, jpegQuality = 0.85): Promise<string> {
+function resizeImageFile(file: File, maxDim = 1920, jpegQuality = 0.85): Promise<string> {
   return new Promise((resolve, reject) => {
     const img = new Image()
     const objectUrl = URL.createObjectURL(file)
@@ -778,6 +778,11 @@ const stageListTalks = computed(() =>
     .filter(t => t.stageObject?.slug === effectiveSingleStageSlug.value)
     .sort((a, b) => a.start.toMillis() - b.start.toMillis()),
 )
+
+// Finished talks are dropped so the running one always sits at the top,
+// where it is readable from across the room
+const upcomingStageListTalks = computed(() =>
+  stageListTalks.value.filter(t => talkStatus(t) !== 'past'))
 
 const currentListTalk = computed(() =>
   stageListTalks.value.find(t => t.start <= now.value && t.end > now.value) ?? null)
@@ -1431,14 +1436,14 @@ onUnmounted(() => {
           </div>
 
           <div
-            v-if="stageListTalks.length"
+            v-if="upcomingStageListTalks.length"
             ref="stageListScrollRef"
             class="stagelist-scroll"
             @scroll.passive="onListUserScroll"
           >
             <ul class="stagelist-list">
               <li
-                v-for="talk in stageListTalks"
+                v-for="talk in upcomingStageListTalks"
                 :key="talk.slug"
                 :ref="(el) => setStageListItemRef(el, talk.slug)"
                 class="stagelist-item"
