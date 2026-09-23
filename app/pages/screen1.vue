@@ -157,7 +157,9 @@ const fontScale = ref(1.0)
 
 // ── Sponsor bar ───────────────────────────────────────────────
 const showSponsorBar = ref(false)
-const sponsorBarLogoUrl = ref('')
+// Fixed on purpose: an uploaded logo lives in one browser's storage only,
+// so every screen showed something different
+const sponsorBarLogoUrl = '/sponsors/thangs.png'
 
 const mainStageName = computed(
   () => stages.value?.find(s => s.slug === mainStageSlug.value)?.name ?? mainStageSlug.value,
@@ -219,29 +221,6 @@ function showUploadNotice(message: string) {
   uploadNoticeTimer = setTimeout(() => {
     uploadNotice.value = ''
   }, 4000)
-}
-
-async function onSponsorLogoUpload(event: Event) {
-  const input = event.target as HTMLInputElement
-  const file = input.files?.[0]
-  input.value = ''
-  if (!file) return
-
-  let dataUrl: string
-  try {
-    dataUrl = await resizeImageFile(file)
-  }
-  catch {
-    showUploadNotice('Image too large to store')
-    return
-  }
-
-  const previous = sponsorBarLogoUrl.value
-  sponsorBarLogoUrl.value = dataUrl
-  if (!saveSettings()) {
-    sponsorBarLogoUrl.value = previous
-    showUploadNotice('Image too large to store')
-  }
 }
 
 // ── Sponsor column (full-height right sidebar — distinct from the header
@@ -650,7 +629,6 @@ function loadSettings() {
     if (typeof p.showQr === 'boolean') showQr.value = p.showQr
     if (typeof p.fontScale === 'number') fontScale.value = p.fontScale
     if (typeof p.showSponsorBar === 'boolean') showSponsorBar.value = p.showSponsorBar
-    if (p.sponsorBarLogoUrl) sponsorBarLogoUrl.value = p.sponsorBarLogoUrl
     if (typeof p.showSponsorColumn === 'boolean')
       showSponsorColumn.value = p.showSponsorColumn
     if (typeof p.sponsorColumnImageUrl === 'string')
@@ -675,7 +653,6 @@ function saveSettings(): boolean {
       showQr: showQr.value,
       fontScale: fontScale.value,
       showSponsorBar: showSponsorBar.value,
-      sponsorBarLogoUrl: sponsorBarLogoUrl.value,
       showSponsorColumn: showSponsorColumn.value,
       sponsorColumnImageUrl: sponsorColumnImageUrl.value,
     }))
@@ -912,34 +889,7 @@ onUnmounted(() => {
               />
               {{ showSponsorBar ? 'Eingeblendet' : 'Ausgeblendet' }}
             </button>
-            <div class="config-time-row" style="margin-top: 8px">
-              <label class="config-upload-btn" @click.stop>
-                <UIcon name="i-lucide-image" class="config-btn-icon" />
-                Logo hochladen
-                <input
-                  type="file"
-                  accept="image/*"
-                  style="display:none"
-                  @change="onSponsorLogoUpload"
-                  @click.stop
-                >
-              </label>
-              <button
-                v-if="sponsorBarLogoUrl"
-                class="config-date-btn"
-                @click="sponsorBarLogoUrl = ''; saveSettings()"
-              >
-                Clear
-              </button>
-            </div>
-            <p
-              v-if="uploadNotice"
-              class="config-time-hint"
-            >
-              {{ uploadNotice }}
-            </p>
             <img
-              v-if="sponsorBarLogoUrl"
               :src="sponsorBarLogoUrl"
               alt="Sponsor logo preview"
               class="config-logo-preview"
@@ -1027,16 +977,9 @@ onUnmounted(() => {
         <div class="header-sponsor-logo">
           <span class="header-sponsor-label">Sponsored by</span>
           <img
-            v-if="sponsorBarLogoUrl"
             :src="sponsorBarLogoUrl"
             alt="Sponsor"
           >
-          <div
-            v-else
-            class="header-sponsor-placeholder"
-          >
-            <UIcon name="i-lucide-image" />
-          </div>
         </div>
       </template>
 
@@ -1572,17 +1515,6 @@ onUnmounted(() => {
   object-fit: contain;
 }
 
-.header-sponsor-placeholder {
-  width: 160px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px dashed rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  font-size: 1.8rem;
-  color: rgba(255, 255, 255, 0.2);
-}
 
 .logo-btn {
   background: none;
