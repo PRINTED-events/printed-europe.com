@@ -42,6 +42,38 @@ onMounted(() => {
 })
 onUnmounted(() => clearInterval(refreshTimer))
 
+// The content database is baked into the deployment and cached in the
+// browser, so re-querying it can never show an edited schedule. Poll the
+// deployed schedule's fingerprint instead and reload once it changes.
+let versionTimer: ReturnType<typeof setInterval>
+let knownVersion: string | null = null
+
+async function checkScheduleVersion() {
+  try {
+    const res = await fetch(`/schedule/version.json?t=${Date.now()}`, { cache: 'no-store' })
+    if (!res.ok)
+      return
+    const { hash } = await res.json()
+    if (!hash)
+      return
+    if (knownVersion === null) {
+      knownVersion = hash
+      return
+    }
+    if (hash !== knownVersion)
+      window.location.reload()
+  }
+  catch {
+    // offline or deploy in flight — try again on the next tick
+  }
+}
+
+onMounted(() => {
+  checkScheduleVersion()
+  versionTimer = setInterval(checkScheduleVersion, 30_000)
+})
+onUnmounted(() => clearInterval(versionTimer))
+
 // ── Process talks ────────────────────────────────────────────
 const processedTalks = computed(() => {
   if (!rawTalks.value || !stages.value || !speakers.value)
