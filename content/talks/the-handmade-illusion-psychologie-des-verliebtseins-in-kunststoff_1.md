@@ -7,7 +7,7 @@ description: >-
   3D-Drucker kommen? Roman Rackwitz erklärt die Psychologie hinter dem Reiz des
   Selbstgemachten und was das über unsere Beziehung zu gedruckten Objekten
   verrät.
-duration: 20
+duration: 15
 resources: []
 speakers:
   - romanrackwitz
