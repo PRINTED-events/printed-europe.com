@@ -9,7 +9,7 @@ description: >-
   includes one roll of film for your camera. If desired (and you're taking
   pictures fast enough ) you can leave the finished roll with Marius and receive
   digital scans of your film after the event! Limited number of participants.
-duration: 45
+duration: 90
 resources: []
 speakers:
   - marius-hirn
