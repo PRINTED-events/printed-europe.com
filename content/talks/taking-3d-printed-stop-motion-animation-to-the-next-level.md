@@ -1,7 +1,7 @@
 ---
 title: Taking 3D printed stop-motion animation to the next level
 slug: taking-3d-printed-stop-motion-animation-to-the-next-level
-dateTime: '2026-09-25T08:00:00.000Z'
+dateTime: '2026-09-25T07:50:00.000Z'
 description: >-
   Prash Makes takes us behind the scenes of his stop-motion animation projects
   and shows how 3D printing has transformed the craft. From designing
