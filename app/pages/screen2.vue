@@ -972,8 +972,9 @@ function loadSettings() {
       manualHourH.value = p.manualHourH
     if (typeof p.showSponsors === 'boolean')
       showSponsors.value = p.showSponsors
-    if (typeof p.sponsorImageUrl === 'string')
-      sponsorImageUrl.value = p.sponsorImageUrl
+    // A stored image is deliberately not restored: it lives in one browser
+    // only, and there is no way to clear it from afar. The deployed file
+    // wins, so every screen shows the same wall.
   }
   catch {}
   validateStageSelection()

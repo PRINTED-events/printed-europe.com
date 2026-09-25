@@ -667,8 +667,9 @@ function loadSettings() {
     if (typeof p.showSponsorBar === 'boolean') showSponsorBar.value = p.showSponsorBar
     if (typeof p.showSponsorColumn === 'boolean')
       showSponsorColumn.value = p.showSponsorColumn
-    if (typeof p.sponsorColumnImageUrl === 'string')
-      sponsorColumnImageUrl.value = p.sponsorColumnImageUrl
+    // A stored image is deliberately not restored: it lives in one browser
+    // only, and there is no way to clear it from afar. The deployed file
+    // wins, so every screen shows the same wall.
   }
   catch {}
 }

@@ -10,7 +10,14 @@ export default defineEventHandler(async (event) => {
     queryCollection(event, 'stages').all(),
   ])
 
+  // The build id changes with every deployment, so the screens also pick up
+  // things the content query can't see — images, styling, code
+  const buildId = process.env.VERCEL_GIT_COMMIT_SHA
+    || useRuntimeConfig(event).app?.buildId
+    || 'dev'
+
   const fingerprint = JSON.stringify([
+    buildId,
     talks.map(t => [t.slug, t.title, t.dateTime, t.duration, t.stage, t.type, t.speakers]),
     speakers.map(s => [s.slug, s.name, s.image, s.description, s.company]),
     stages.map(s => [s.slug, s.name]),
