@@ -1,18 +1,10 @@
 title: Start
-description: Zwei Tage 3D-Druck mit Talks, Workshops und Community beim PRINTED Hub 2026 – 25. & 26. September in Rüdesheim bei Frankfurt. 15+ Speaker, 400+ Maker.
+description: Vielen Dank für ein erfolgreiches PRINTED Hub 2026 – zwei Tage 3D-Druck mit Talks, Workshops und Community am 25. und 26. September in Rüdesheim bei Frankfurt.
 blocks:
   - component: AppLandingHero
     title: PRINTED Hub
-    description: 25. und 26. September 2026 – Rüdesheim (bei Frankfurt)
-    headline: Mach dich bereit für 2 Tage voller Workshops, Content und Community
-    links:
-      - label: Tickets kaufen
-        icon: i-lucide-ticket
-        trailing: false
-        color: primary
-        variant: solid
-        size: xl
-        to: /tickets
+    description: Vielen Dank für ein erfolgreiches PRINTED Hub 2026!
+    headline: 25. und 26. September 2026 · Rüdesheim bei Frankfurt
   - component: AppLandingMetaInfo
     title: Lernen. Vernetzen. Gestalten.
     description: null
