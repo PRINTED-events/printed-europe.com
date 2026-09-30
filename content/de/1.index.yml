@@ -24,7 +24,7 @@ blocks:
         label: Content
   - component: AppLandingLogoGrid
     headline: Hauptsponsoren
-    title: Sie machen das PRINTED Hub möglich.
+    title: Sie machen die PRINTED Hub möglich.
     logos:
       - src: /sponsors/snapmaker-white.svg
         alt: Snapmaker
@@ -154,7 +154,7 @@ blocks:
         icon: i-lucide-party-popper
   - component: AppLandingFloorplan
     title: Finde dich zurecht.
-    description: Übersicht über das Gelände beim PRINTED Hub 2026.
+    description: Übersicht über das Gelände bei der PRINTED Hub 2026.
     headline: Geländeplan
     image:
       src: /hub26_floorplan_v2.png
@@ -162,14 +162,14 @@ blocks:
   - component: AppLandingVenueArea
     headline: Hauptbühne
     title: Wo Inspiration im Rampenlicht steht.
-    description: Das Herz des PRINTED Hub – zwei Tage Talks, Präsentationen und Panels von den klügsten Köpfen im 3D-Druck und Making. Alle Talks werden aufgezeichnet und nach dem Event veröffentlicht.
+    description: Das Herz der PRINTED Hub – zwei Tage Talks, Präsentationen und Panels von den klügsten Köpfen im 3D-Druck und Making. Alle Talks werden aufgezeichnet und nach dem Event veröffentlicht.
     items:
       - Talks & Präsentationen von 15+ Speakern
       - Aufgezeichnet und nach dem Event veröffentlicht
       - Live-Q&A-Sessions mit jedem Speaker
     image:
       src: /venues/main-stage/printedhub25-053.jpg
-      alt: Hauptbühne beim PRINTED Hub
+      alt: Hauptbühne bei der PRINTED Hub
     links:
       - label: Programm ansehen
         to: /schedule
@@ -179,7 +179,7 @@ blocks:
   - component: AppLandingVenueArea
     headline: "1 · Info Point"
     title: Dein erster Stopp im Hub.
-    description: Starte hier – check ein, hol dir dein Badge und alles, was du brauchst, um zwei Tage beim PRINTED Hub optimal zu nutzen.
+    description: Starte hier – check ein, hol dir dein Badge und alles, was du brauchst, um zwei Tage bei der PRINTED Hub optimal zu nutzen.
     reverse: true
     items:
       - Stell jede Frage – unser Team hilft dir gern
@@ -189,7 +189,7 @@ blocks:
       - Stöbere im Merch-Shop
     image:
       src: /venues/Entry_Gemini.png
-      alt: Info Point beim PRINTED Hub
+      alt: Info Point bei der PRINTED Hub
   - component: AppLandingVenueArea
     headline: "2 · Gold-Sponsor-Stände"
     title: Triff die Köpfe hinter den Maschinen.
@@ -204,7 +204,7 @@ blocks:
   - component: AppLandingVenueArea
     headline: "3 · Community Showcase"
     title: Zeig, was du gemacht hast. Lass dich von anderen begeistern.
-    description: Die Maker-Galerie im Herzen des PRINTED Hub – Community-Mitglieder bringen ihre schönsten Kreationen mit und vernetzen sich direkt mit Gleichgesinnten.
+    description: Die Maker-Galerie im Herzen der PRINTED Hub – Community-Mitglieder bringen ihre schönsten Kreationen mit und vernetzen sich direkt mit Gleichgesinnten.
     reverse: true
     items:
       - Community-Mitglieder präsentieren ihre besonderen Projekte
@@ -230,7 +230,7 @@ blocks:
       - Workshop-Fläche für Nachhaltigkeitsthemen
     image:
       src: /venues/4-recycling-corner/printedhub25-044.jpg
-      alt: Recycling-Ecke beim PRINTED Hub
+      alt: Recycling-Ecke bei der PRINTED Hub
     logos:
       - src: /venues/4-recycling-corner/recyclingfabrik.png
         alt: Recycling Fabrik
@@ -246,7 +246,7 @@ blocks:
       - Wird am Freitag zur Workshop-Fläche
     image:
       src: /venues/5-community-hangout/printedhub25-090.jpg
-      alt: Community Hangout beim PRINTED Hub
+      alt: Community Hangout bei der PRINTED Hub
   - component: AppLandingVenueArea
     headline: "6 · Bar"
     title: Getränke, Snacks & süße Leckereien.
@@ -256,7 +256,7 @@ blocks:
       - Snacks & mehr
     image:
       src: /venues/6-bar/printedhub25-013.jpg
-      alt: Bar beim PRINTED Hub
+      alt: Bar bei der PRINTED Hub
     logos:
       - src: /venues/6-bar/KCC_logo_color_square.png
         alt: Kittycatcakes
@@ -270,11 +270,11 @@ blocks:
       - Von der Community designte 3D-gedruckte Spiele
     images:
       - src: /venues/7-fun-and-games/printedhub25-025.jpg
-        alt: Fun & Games beim PRINTED Hub
+        alt: Fun & Games bei der PRINTED Hub
       - src: /venues/7-fun-and-games/printedhub25-043.jpg
-        alt: Fun & Games beim PRINTED Hub
+        alt: Fun & Games bei der PRINTED Hub
       - src: /venues/7-fun-and-games/printedhub25-045.jpg
-        alt: Fun & Games beim PRINTED Hub
+        alt: Fun & Games bei der PRINTED Hub
   - component: AppLandingVenueArea
     headline: "8 · Sponsor-Stände"
     title: Entdecke, was die Maker-Welt antreibt.
@@ -283,9 +283,9 @@ blocks:
       - SKZ – Kunststofftechnik & Prüfung
     images:
       - src: /venues/8-sponsor-booths/printedhub25-037.jpg
-        alt: Sponsor-Stände beim PRINTED Hub
+        alt: Sponsor-Stände bei der PRINTED Hub
       - src: /venues/8-sponsor-booths/printedhub25-038.jpg
-        alt: Sponsor-Stände beim PRINTED Hub
+        alt: Sponsor-Stände bei der PRINTED Hub
     logos:
       - src: /venues/8-sponsor-booths/logo-skz.png
         alt: SKZ
@@ -301,9 +301,9 @@ blocks:
       - Snapmaker Stand & Live-Demos
     images:
       - src: /venues/10-hardware-space/printedhub25-009.jpg
-        alt: Hardware-Bereich beim PRINTED Hub
+        alt: Hardware-Bereich bei der PRINTED Hub
       - src: /venues/10-hardware-space/printedhub25-014.jpg
-        alt: Hardware-Bereich beim PRINTED Hub
+        alt: Hardware-Bereich bei der PRINTED Hub
     logos:
       - src: /venues/10-hardware-space/logo-snapmaker.png
         alt: Snapmaker

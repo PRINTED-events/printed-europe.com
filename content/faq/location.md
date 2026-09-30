@@ -6,7 +6,7 @@ order: 2
 
 ### Destination Rüdesheim – Where History Meets the Rhine
 
-Mitten im UNESCO-Welterbe Oberes Mittelrheintal liegt Rüdesheim am Rhein – malerische Weinberge, historische Gassen und direkter Blick auf den Fluss. Genau hier treffen sich Macher, Denker und Kreative aus der 3D-Druck-Community zum PRINTED Hub 2026.
+Mitten im UNESCO-Welterbe Oberes Mittelrheintal liegt Rüdesheim am Rhein – malerische Weinberge, historische Gassen und direkter Blick auf den Fluss. Genau hier treffen sich Macher, Denker und Kreative aus der 3D-Druck-Community zur PRINTED Hub 2026.
 
 ![image](/9257f014-d09d-40d5-892b-02203a7f2c62-Rheingau-Gondel-Assmannshausen-010.jpg)
 
@@ -20,7 +20,7 @@ Hoch über den Weinbergen thront das Niederwalddenkmal mit seiner imposanten Ger
 
 **Industrial Heritage meets Modern Creativity**
 
-Mitten in Rüdesheim liegt die Asbachgasse – eine der ältesten und charmantesten Gassen der Stadt, geprägt von Fachwerk, Weinlaub und jahrhundertealter Geschichte. Ein Stück echtes Rheingau-Flair, direkt vor der Tür des PRINTED Hub 2026.
+Mitten in Rüdesheim liegt die Asbachgasse – eine der ältesten und charmantesten Gassen der Stadt, geprägt von Fachwerk, Weinlaub und jahrhundertealter Geschichte. Ein Stück echtes Rheingau-Flair, direkt vor der Tür der PRINTED Hub 2026.
 
 Located on the grounds of the former Asbach distillery, **Asbachgasse** is a revitalized industrial quarter where history and innovation converge. Its winding courtyards and rustic brick halls have been transformed into a dynamic space for culture, design, and events.
 

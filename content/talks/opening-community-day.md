@@ -6,7 +6,7 @@ description: Janos will open the Community Day!
 title_de: Eröffnung Community Day
 title_en: Opening Community Day
 description_de: >-
-  Janos Kehl eröffnet den Community Day, den zweiten Tag des PRINTED Hub 2026.
+  Janos Kehl eröffnet den Community Day, den zweiten Tag der PRINTED Hub 2026.
   Er gibt einen kurzen Überblick über das Programm und stimmt dich auf einen
   Tag voller Talks und Begegnungen ein.
 description_en: >-
