@@ -1,5 +1,5 @@
 title: Start
-description: PRINTED Hub und die PRINTED World Conference sind das Zuhause der 3D-Druck-Community. Mach dich bereit für die PRINTED World Conference im Mai 2027 in Amsterdam.
+description: PRINTED Hub und die PRINTED World Conference sind das Zuhause der 3D-Druck-Community. Mach dich bereit für die PRINTED World Conference am 21. und 22. Mai 2027 in Leiden bei Amsterdam.
 seo:
   title: Willkommen in der Familie
 blocks:
@@ -28,7 +28,7 @@ blocks:
         size: xl
     editions:
       - label: PRINTED World Conference
-        text: Mai 2027 · Amsterdam
+        text: 21.–22. Mai 2027 · Leiden bei Amsterdam
       - label: PRINTED Hub
         text: 2027 · Rüdesheim am Rhein
     badge:
@@ -149,9 +149,9 @@ blocks:
     id: events
     headline: Printed Events
     title: Zwei Treffen. Eine Familie.
-    description: Ob du am Rhein oder in Amsterdam dabei bist – du erkennst die Gesichter wieder, das Lachen und das Gefühl, willkommen zu sein.
+    description: Ob du am Rhein oder in Leiden dabei bist – du erkennst die Gesichter wieder, das Lachen und das Gefühl, willkommen zu sein.
     items:
-      - meta: Mai 2027 · Amsterdam
+      - meta: 21.–22. Mai 2027 · Leiden bei Amsterdam
         title: PRINTED World Conference
         description: Die Familie wird international. Creators, Lehrende und Entwickler aus der ganzen Welt treffen sich zu Talks, Panels und Gesprächen, die weitergehen, lange nachdem das Bühnenlicht aus ist.
         image:
