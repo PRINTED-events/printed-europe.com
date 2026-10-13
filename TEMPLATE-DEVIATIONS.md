@@ -79,6 +79,7 @@ Two helper components are not blocks themselves: `AppLandingBlockHead` is the le
 - `app/utils/youtube.ts`: new helper that extracts a YouTube video id from a URL.
 - `content.config.ts`: sitemap URLs for speakers and talks are built from the `slug` field, because the pages resolve by slug and not by file name. Pages under `content/pages/` are listed without the `/pages` prefix.
 - `nuxt.config.ts`: sitemap exclusions, the `/kiosk` redirect, and a redirect from `/tickets` to the external ticket shop, and Vercel preview deployments use their own address as site URL.
+- Fonts: Inter is self-hosted through the new dependency `@fontsource-variable/inter` (imported in `app/assets/css/main.css`, set as `--font-sans` in `public/custom-styles.css`). The template ships no font file, so the configured typeface only appeared on devices that had it installed.
 - `eslint.config.mjs`: no line length limit for translation files, console output allowed in `scripts/*.mjs`.
 
 ## Suggested for upstream

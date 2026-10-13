@@ -2,16 +2,11 @@
 
 import type { CustomConfig } from './app/schemas/customConfigPlain'
 import { readdirSync } from 'node:fs'
+import process from 'node:process'
 import { customConfigSchema } from './app/schemas/customConfigPlain'
 import { getColorModeSetting, resolveColorModePolicy } from './app/utils/color-mode'
 import { formatCustomConfigValidationErrors } from './app/utils/custom-config-validation'
 import _customConfig from './content/0.custom-config.json'
-
-// A Vercel preview deployment uses its own address, so that link previews of it
-// load their image from the preview instead of from the live website.
-const siteUrl = process.env.VERCEL_ENV === 'preview' && process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : customConfig.general.siteUrl
 
 // Recaps of past events are served by a dynamic route, so the sitemap has to be told about them.
 const archivePaths = readdirSync(new URL('./content/archive', import.meta.url))
@@ -27,6 +22,12 @@ if (!parseResult.success) {
 }
 
 const customConfig = (parseResult.success ? parseResult.data : _customConfig) as CustomConfig
+
+// A Vercel preview deployment uses its own address, so that link previews of it
+// load their image from the preview instead of from the live website.
+const siteUrl = process.env.VERCEL_ENV === 'preview' && process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : customConfig.general.siteUrl
 
 const configuredColorMode = customConfig?.general?.colorMode as string | undefined
 const resolvedColorModePolicy = resolveColorModePolicy(configuredColorMode)

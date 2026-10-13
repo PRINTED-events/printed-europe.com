@@ -1,6 +1,6 @@
 @theme static {
   /* Font */
-  --font-sans: 'Public Sans', sans-serif;
+  --font-sans: 'Inter Variable', 'Inter', 'Public Sans', sans-serif;
 
   /* Define custom brand color palette */
   --color-brand-50: #fff6ed;

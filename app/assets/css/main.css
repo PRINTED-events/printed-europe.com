@@ -1,6 +1,9 @@
 @import 'tailwindcss';
 @import '@nuxt/ui';
 
+/* Self-hosted web font, so every device renders the same typeface. */
+@import '@fontsource-variable/inter/wght.css';
+
 @import '../../../public/custom-styles.css';
 
 @source "../../../content/**/*";
