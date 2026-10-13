@@ -249,6 +249,10 @@ export default defineNuxtConfig({
   // reworked rundown on /screen2
   routeRules: {
     '/kiosk': { redirect: { to: '/screen2', statusCode: 302 } },
+    // Tickets are sold on ti.to. Every "buy tickets" button links to `/tickets`,
+    // so this is the one place to change the shop. Remove the rule to show the
+    // ticket plans from `content/tickets/` on the page again.
+    '/tickets': { redirect: { to: 'https://ti.to/printed-europe/printed-worldconference-2027', statusCode: 302 } },
   },
 
   site: { // for `@nuxtjs/seo`
@@ -270,6 +274,8 @@ export default defineNuxtConfig({
       '/embed/**',
       // `/kiosk` only redirects to `/screen2`.
       '/kiosk',
+      // `/tickets` only redirects to the ticket shop.
+      '/tickets',
       // `/talks` only redirects to `/schedule`, so it does not belong in the
       // sitemap - the individual talk pages below it do.
       '/talks',

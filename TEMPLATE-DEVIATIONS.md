@@ -78,7 +78,7 @@ Two helper components are not blocks themselves: `AppLandingBlockHead` is the le
 - `app/utils/talk.ts`: the talk type is matched case-insensitively. This is a bug fix that applies to the template as well.
 - `app/utils/youtube.ts`: new helper that extracts a YouTube video id from a URL.
 - `content.config.ts`: sitemap URLs for speakers and talks are built from the `slug` field, because the pages resolve by slug and not by file name. Pages under `content/pages/` are listed without the `/pages` prefix.
-- `nuxt.config.ts`: sitemap exclusions, the `/kiosk` redirect.
+- `nuxt.config.ts`: sitemap exclusions, the `/kiosk` redirect, and a redirect from `/tickets` to the external ticket shop.
 - `eslint.config.mjs`: no line length limit for translation files, console output allowed in `scripts/*.mjs`.
 
 ## Suggested for upstream

@@ -1,7 +1,8 @@
 title: Start
 description: PRINTED Hub und die PRINTED World Conference sind das Zuhause der 3D-Druck-Community. Mach dich bereit für die PRINTED World Conference am 21. und 22. Mai 2027 in Leiden bei Amsterdam.
 seo:
-  title: Willkommen in der Familie
+  title: Welcome to the family – PRINTED World Conference 2027
+  description: Get ready for the PRINTED World Conference on 21 and 22 May 2027 in Leiden near Amsterdam. Learn. Network. Create. – where the 3D printing community comes home.
 blocks:
   - component: AppLandingHeroFamily
     headline: Mach dich bereit für die PRINTED World Conference 2027
@@ -218,6 +219,30 @@ blocks:
       - src: /sponsors/skz.png
         alt: SKZ – Das Kunststoff-Zentrum
         url: https://www.skz.de
+  - component: AppLandingVenueArea
+    id: location
+    headline: Location
+    title: Scheltema Leiden
+    description: Die PRINTED World Conference 2027 findet im Scheltema Leiden statt, einer ehemaligen Wolldeckenfabrik an der Gracht im Zentrum von Leiden, in der Nähe von Amsterdam.
+    items:
+      - 21. und 22. Mai 2027
+      - Marktsteeg 1, 2312 CS Leiden, Niederlande
+    image:
+      src: /venues/scheltema-leiden.webp
+      alt: Scheltema Leiden bei Nacht, von der Gracht aus gesehen
+    links:
+      - label: Website der Location
+        to: https://www.scheltemaleiden.nl/
+        icon: i-lucide-external-link
+        target: _blank
+        color: neutral
+        variant: outline
+      - label: In Google Maps öffnen
+        to: https://www.google.com/maps/search/?api=1&query=Scheltema+Leiden%2C+Marktsteeg+1%2C+2312+CS+Leiden
+        icon: i-lucide-map-pin
+        target: _blank
+        color: neutral
+        variant: outline
   - component: AppLandingHeroMedia
     id: join
     headline: Wir sehen uns

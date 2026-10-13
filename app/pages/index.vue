@@ -34,8 +34,8 @@ const seoMetadata = extractSeoMetadata(page.value)
 
 useSeoMeta({
   ...getSeoMetaBase(seoMetadata),
-  ogImage: '/og-image.jpg',
-  twitterImage: '/og-image.jpg',
+  ogImage: '/og-welcome-to-the-family.jpg',
+  twitterImage: '/og-welcome-to-the-family.jpg',
   twitterCard: 'summary_large_image',
 })
 </script>
