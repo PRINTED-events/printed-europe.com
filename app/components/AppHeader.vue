@@ -5,9 +5,8 @@ const { t } = useI18n()
 const allEvents = computed(() => [
   {
     label: 'PRINTED Hub',
-    description: 'Sep 2025 · Rüdesheim',
-    to: 'https://hub25.printed-europe.com',
-    target: '_blank',
+    description: 'Aug 2025 · Rüdesheim',
+    to: '/archive/hub25',
   },
   {
     label: 'PRINTED Worldconference',

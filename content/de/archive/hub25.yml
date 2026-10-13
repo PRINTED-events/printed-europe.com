@@ -1,0 +1,142 @@
+title: PRINTED Hub 2025
+description: Rückblick auf die PRINTED Hub 2025 am 30. August 2025 in Rüdesheim am Rhein – Talks, Workshops und Community für die 3D-Druck-Szene.
+blocks:
+  - component: AppLandingHero
+    headline: Rückblick · 30. August 2025 · Rüdesheim am Rhein
+    title: PRINTED Hub 2025
+    description: Danke, dass du bei der ersten PRINTED Hub dabei warst! Talks, Workshops und Community im Rheingau – mit allen Aufzeichnungen zum Nachschauen.
+    links:
+      - label: Aftermovie ansehen
+        to: /archive/hub25#aftermovie
+        icon: i-lucide-play
+        size: xl
+      - label: Talks ansehen
+        to: https://www.youtube.com/playlist?list=PLqJRz7k9GBbMcMnBPYPMWIhNCblq7PZA7
+        icon: i-mdi-youtube
+        target: _blank
+        color: neutral
+        variant: subtle
+        size: xl
+  - component: AppLandingStats
+    title: Das Event in Zahlen
+    items:
+      - value: '100'
+        suffix: +
+        label: Teilnehmende
+      - value: '9'
+        label: Speaker
+      - value: '7'
+        label: Aufgezeichnete Talks
+      - value: '10'
+        label: Partner
+  - component: AppLandingVideo
+    id: aftermovie
+    headline: Aftermovie
+    title: Der Tag in wenigen Minuten.
+    description: Der Zusammenschnitt der PRINTED Hub 2025.
+    videoUrl: https://www.youtube.com/watch?v=mou_V2jFpBE
+  - component: AppLandingTalkVideos
+    id: talks
+    headline: Alle Talks
+    title: Einzeln zum Nachschauen.
+    description: Die Aufzeichnungen der Talks, direkt aus unserer YouTube-Playlist.
+    items: []
+    playlistUrl: https://www.youtube.com/playlist?list=PLqJRz7k9GBbMcMnBPYPMWIhNCblq7PZA7
+    links:
+      - label: Playlist auf YouTube öffnen
+        to: https://www.youtube.com/playlist?list=PLqJRz7k9GBbMcMnBPYPMWIhNCblq7PZA7
+        icon: i-mdi-youtube
+        target: _blank
+        color: neutral
+        variant: outline
+  - component: AppLandingGallery
+    id: gallery
+    headline: Galerie
+    title: Eindrücke aus Rüdesheim.
+    images:
+      - src: /gallery/hub25/printedhub25-007.jpg
+        alt: PRINTED Hub 2025
+      - src: /gallery/hub25/printedhub25-021.jpg
+        alt: PRINTED Hub 2025
+      - src: /gallery/hub25/printedhub25-040.jpg
+        alt: PRINTED Hub 2025
+      - src: /gallery/hub25/printedhub25-055.jpg
+        alt: PRINTED Hub 2025
+      - src: /gallery/hub25/printedhub25-060.jpg
+        alt: PRINTED Hub 2025
+      - src: /gallery/hub25/printedhub25-080.jpg
+        alt: PRINTED Hub 2025
+      - src: /gallery/hub25/printedhub25-095.jpg
+        alt: PRINTED Hub 2025
+      - src: /gallery/hub25/printedhub25-100.jpg
+        alt: PRINTED Hub 2025
+      - src: /gallery/hub25/printedhub25-116.jpg
+        alt: PRINTED Hub 2025
+      - src: /gallery/hub25/printedhub25-131.jpg
+        alt: PRINTED Hub 2025
+      - src: /gallery/hub25/printedhub25-010.jpg
+        alt: PRINTED Hub 2025
+      - src: /gallery/hub25/printedhub25-044.jpg
+        alt: PRINTED Hub 2025
+  - component: AppLandingSpeakers
+    id: speakers
+    headline: Speaker
+    title: Die ihr Wissen geteilt haben.
+    description: Jeder Name führt auf die Speaker-Seite.
+    slugs:
+      - romanrackwitz
+      - rüdigerneuweg
+      - rudolfleue
+      - fabian-bos
+      - nathalie-schonwetter
+      - nerdvater
+      - andreasingenwardt
+      - kevinkias
+      - janos-kehl
+  - component: AppLandingLogoGrid
+    headline: Sponsoren & Partner
+    title: Sie haben die PRINTED Hub möglich gemacht.
+    logos:
+      - src: /sponsors/snapmaker-white.svg
+        alt: Snapmaker
+        url: https://www.snapmaker.com/
+      - src: /sponsors/MultiBuild-onblack.png
+        alt: Multibuild
+        url: https://multibuild.io/
+      - src: /sponsors/diamand-polymer.png
+        alt: DIAMANT Polymer
+        url: https://diamant-polymer.de/
+      - src: /sponsors/recycklingfabrik.png
+        alt: Recycling Fabrik
+        url: https://recyclingfabrik.com/
+      - src: /sponsors/skz.png
+        alt: SKZ – Das Kunststoff-Zentrum
+        url: https://www.skz.de
+      - src: /sponsors/3d-druck-akademie.png
+        alt: 3D Druck Akademie
+        url: https://3ddakademie.de/
+      - src: /sponsors/pla-y-3d.png
+        alt: PLA-Y 3D
+        url: https://www.pla-y-3d.com/en
+      - src: /sponsors/dachzelt-nomaden.png
+        alt: Dachzeltnomaden
+        url: https://dachzeltnomaden.com/
+      - src: /sponsors/gerda-stetter-stiftung-technik-macht-spass.png
+        alt: Technik macht Spaß
+        url: https://technikmachtspass.org
+      - src: /sponsors/wtf.png
+        alt: W.T.F. – Wirtschaft Tourismus Förderung
+        url: https://www.wtf-ruedesheim.de
+  - component: AppLandingHeroMedia
+    headline: Das nächste Event
+    title: Die aktuelle Ausgabe liegt immer auf printed-europe.com.
+    description: Dieser Rückblick bleibt hier stehen.
+    overlayOpacity: 0.6
+    image:
+      src: /gallery/hub25/printedhub25-095.jpg
+      alt: Publikum beim Event
+    links:
+      - label: Zum aktuellen Event
+        to: /
+        icon: i-lucide-arrow-right
+        size: lg

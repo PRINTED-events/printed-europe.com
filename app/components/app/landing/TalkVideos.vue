@@ -81,7 +81,10 @@ function thumbnail(item: { to?: string, image?: { src: string } }) {
         :title="title"
       />
 
-      <p class="mt-10 flex items-center gap-3 text-xs font-medium uppercase tracking-widest text-muted">
+      <p
+        v-if="talks.length"
+        class="mt-10 flex items-center gap-3 text-xs font-medium uppercase tracking-widest text-muted"
+      >
         {{ t('landing.recordingsOnline', { online: onlineCount, total: talks.length }) }}
         <span class="h-px flex-1 bg-(--ui-border)" />
       </p>
