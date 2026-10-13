@@ -30,8 +30,6 @@ blocks:
     editions:
       - label: PRINTED World Conference
         text: 21–22 May 2027 · Leiden near Amsterdam
-      - label: PRINTED Hub
-        text: 2027 · Rüdesheim am Rhein
     badge:
       greeting: Hi, my name is
       names:
@@ -192,7 +190,7 @@ blocks:
           - label: Get tickets
             to: /tickets
             icon: i-lucide-ticket
-      - meta: Rüdesheim am Rhein · 2027 dates coming soon
+      - meta: Rüdesheim am Rhein
         title: PRINTED Hub
         description: 'Two days in the Asbachgasse: workshops, talks, community showcase, board games and evenings with wine from the Rheingau. Thank you to everyone who made 2026 feel like home.'
         image:
