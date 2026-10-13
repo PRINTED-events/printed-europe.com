@@ -25,17 +25,31 @@ const props = defineProps<{
   }
 }>()
 
-// The badge cycles through who PRINTED is for.
-const nameIndex = ref(0)
+// The badge runs through the names in a random order, so everyone feels
+// welcome. The first name stays fixed until the page is interactive, which
+// keeps the server-rendered and the client-rendered markup identical.
+const nameOrder = ref((props.badge?.names ?? []).map((_, index) => index))
+const namePosition = ref(0)
+const badgeName = computed(() => props.badge?.names[nameOrder.value[namePosition.value] ?? 0])
 let timer: ReturnType<typeof setInterval> | undefined
 
+function shuffled(count: number, first: number) {
+  const order = Array.from({ length: count }, (_, index) => index).filter(index => index !== first)
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[order[i], order[j]] = [order[j]!, order[i]!]
+  }
+  return [first, ...order]
+}
+
 onMounted(() => {
-  const names = props.badge?.names ?? []
-  if (names.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+  const count = props.badge?.names.length ?? 0
+  if (count < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches)
     return
+  nameOrder.value = shuffled(count, 0)
   timer = setInterval(() => {
-    nameIndex.value = (nameIndex.value + 1) % names.length
-  }, 2600)
+    namePosition.value = (namePosition.value + 1) % count
+  }, 2200)
 })
 
 onUnmounted(() => clearInterval(timer))
@@ -138,7 +152,7 @@ const claimColors = ['text-white', 'text-primary-200', 'text-primary-400']
             class="mt-0.5 min-h-12 border-b-2 border-dashed border-slate-300 pb-2.5 text-[34px] font-black
             leading-[1.05] tracking-tight"
           >
-            {{ badge.names[nameIndex] }}
+            {{ badgeName }}
           </p>
           <span
             v-if="badge.role"

@@ -35,10 +35,16 @@ blocks:
     badge:
       greeting: Hi, ich bin
       names:
-        - Du
-        - Dein Kind
-        - Deine Crew
-        - Wieder du
+        - Andrew
+        - Joyce
+        - Peter
+        - Aiko
+        - Mateo
+        - Fatima
+        - Lars
+        - Priya
+        - Chen
+        - Amara
       role: Family
       note: Zum ersten Mal dabei? Perfekt. Jemand sagt Hallo, noch bevor du den Kaffee gefunden hast.
   - component: AppLandingManifesto
