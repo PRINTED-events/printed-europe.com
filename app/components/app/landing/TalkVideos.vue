@@ -19,6 +19,8 @@ const props = defineProps<{
   // A YouTube playlist: its videos are matched to the talks by title, and
   // videos that match no listed talk are added to the end.
   playlistUrl?: string
+  // Videos of the playlist that are not talks, e.g. the aftermovie shown above.
+  excludedVideoUrls?: string[]
   links?: ButtonProps[]
 }>()
 
@@ -35,7 +37,8 @@ const { data: playlistVideos } = await useAsyncData(
 )
 
 const talks = computed(() => {
-  const videos = playlistVideos.value.map(video => ({
+  const excludedIds = (props.excludedVideoUrls ?? []).map(url => getYouTubeVideoId(url))
+  const videos = playlistVideos.value.filter(video => !excludedIds.includes(video.id)).map(video => ({
     ...parseTalkVideoTitle(video.title),
     to: `https://www.youtube.com/watch?v=${video.id}`,
     key: normalizeTalkTitle(video.title),

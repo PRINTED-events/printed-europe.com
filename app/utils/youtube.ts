@@ -24,8 +24,8 @@ export function getYouTubePlaylistId(url?: string): string | undefined {
 
 /**
  * Splits the title of a talk recording into talk title and speaker. Understands
- * the form used on the PRINTED channel, `"Talk title" mit Speaker` (also
- * `with` / `von` / `by`), and falls back to the whole title.
+ * the forms used on the PRINTED channel, `"Talk title" mit Speaker` and
+ * `Talk title - with Speaker`, and falls back to the whole title.
  * @param videoTitle the title of the video on YouTube
  * @returns the talk title and, if it could be read, the speaker
  */
@@ -42,12 +42,12 @@ export function parseTalkVideoTitle(videoTitle: string): { title: string, speake
     }
   }
 
-  // `Talk title mit Speaker`: the speaker follows the last "mit" / "with"
-  const parts = text.split(/ (?:mit|with) /i)
+  // `Talk title - with Speaker`: only a "mit" / "with" right after a dash
+  // names the speaker, because the word is common inside talk titles as well.
+  const parts = text.split(/ [-–—|] ?(?:mit|with) /i)
   if (parts.length > 1) {
     const speaker = parts.pop()!.trim()
-    const title = text.slice(0, text.length - speaker.length).replace(/(?:mit|with) $/i, '')
-    return { title: stripSeparator(title), speaker }
+    return { title: stripSeparator(parts.join(' – ')), speaker }
   }
 
   return { title: text }

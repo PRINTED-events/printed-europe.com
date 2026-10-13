@@ -177,6 +177,10 @@ export const landingSchema = createBaseWithSeoSchema().extend({
             + 'Speaker`. Videos that match no listed talk are added to the end. Only the 15 newest videos '
             + 'of a playlist can be read.',
         }),
+        excludedVideoUrls: property(z.array(z.string()).optional()).editor({
+          // @ts-expect-error `description` is custom and patched in `nuxt-studio`
+          description: 'Videos of the playlist that are not talks and should not be listed, e.g. the aftermovie.',
+        }),
         links: z.array(createLinkSchema()).optional(),
       }),
 

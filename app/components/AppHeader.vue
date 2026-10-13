@@ -11,8 +11,7 @@ const allEvents = computed(() => [
   {
     label: 'PRINTED Worldconference',
     description: 'May 2025 · Amsterdam',
-    to: 'https://pwc25.printed-europe.com',
-    target: '_blank',
+    to: '/archive/pwc25',
   },
   {
     label: 'PRINTED Hub',

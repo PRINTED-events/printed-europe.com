@@ -18,9 +18,10 @@ socialMedia:
   - url: 'https://www.instagram.com/marsgizmo/'
     description: Instagram
 ---
+
 ## 3D Printing towards MARS. One step at a time.
 
-**Adrian Luben**, widely known online as *Marsgizmo*, is an **internationally** recognized 3D printing **creator** and **digital innovator** whose content has generated **billions** of views across social media platforms.
+**Adrian Luben**, widely known online as _Marsgizmo_, is an **internationally** recognized 3D printing **creator** and **digital innovator** whose content has generated **billions** of views across social media platforms.
 
 Through his **highly engaging** 3D printing projects, **creative experiments**, and practical tutorials, Adrian inspires **millions of makers**, tech enthusiasts, and entrepreneurs worldwide. His ability to transform complex technical processes into accessible, entertaining content has made **Marsgizmo** one of the most **influential** voices in the global 3D printing community.
 

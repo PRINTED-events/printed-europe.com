@@ -1,0 +1,161 @@
+title: PRINTED World Conference 2025
+description: Recap of the first PRINTED World Conference on 22 and 23 May 2025 in Amsterdam – the global meeting point of the 3D printing community, with all recorded talks.
+blocks:
+  - component: AppLandingHero
+    headline: Recap · 22 and 23 May 2025 · Amsterdam
+    title: PRINTED World Conference 2025
+    description: 'The world met in Amsterdam: the first global gathering of the 3D printing community, with talks, panel discussions, workshops and an exhibition floor full of makers, creators and engineers.'
+    links:
+      - label: Watch the thank-you video
+        to: /archive/pwc25#aftermovie
+        icon: i-lucide-play
+        size: xl
+      - label: Watch talks
+        to: https://www.youtube.com/playlist?list=PLqJRz7k9GBbMc1Xlf9qLC2s_SzYqVRFtd
+        icon: i-mdi-youtube
+        target: _blank
+        color: neutral
+        variant: subtle
+        size: xl
+  - component: AppLandingStats
+    title: The event in numbers
+    items:
+      - value: '2'
+        label: Days
+      - value: '24'
+        label: Speakers
+      - value: '13'
+        label: Recorded talks
+      - value: '13'
+        label: Partners
+  - component: AppLandingVideo
+    id: aftermovie
+    headline: Thank you
+    title: Thank you for PRINTED World Conference 2025.
+    description: Two days at B. Amsterdam, Johan Huizingalaan 400, in a few minutes.
+    videoUrl: https://www.youtube.com/watch?v=q4jtDTzJtsc
+  - component: AppLandingTalkVideos
+    id: talks
+    headline: All talks
+    title: Watch them one by one.
+    description: The recordings of the talks and panel discussions, straight from our YouTube playlist.
+    items: []
+    playlistUrl: https://www.youtube.com/playlist?list=PLqJRz7k9GBbMc1Xlf9qLC2s_SzYqVRFtd
+    excludedVideoUrls:
+      - https://www.youtube.com/watch?v=q4jtDTzJtsc
+    links:
+      - label: Open the playlist on YouTube
+        to: https://www.youtube.com/playlist?list=PLqJRz7k9GBbMc1Xlf9qLC2s_SzYqVRFtd
+        icon: i-mdi-youtube
+        target: _blank
+        color: neutral
+        variant: outline
+  - component: AppLandingGallery
+    id: gallery
+    headline: Gallery
+    title: Impressions from Amsterdam.
+    images:
+      - src: /gallery/pwc25/pwc25-01.jpg
+        alt: PRINTED World Conference 2025
+      - src: /gallery/pwc25/pwc25-02.jpg
+        alt: PRINTED World Conference 2025
+      - src: /gallery/pwc25/pwc25-03.jpg
+        alt: PRINTED World Conference 2025
+      - src: /gallery/pwc25/pwc25-04.jpg
+        alt: PRINTED World Conference 2025
+      - src: /gallery/pwc25/pwc25-05.jpg
+        alt: PRINTED World Conference 2025
+      - src: /gallery/pwc25/pwc25-06.jpg
+        alt: PRINTED World Conference 2025
+      - src: /gallery/pwc25/pwc25-07.jpg
+        alt: PRINTED World Conference 2025
+      - src: /gallery/pwc25/pwc25-08.jpg
+        alt: PRINTED World Conference 2025
+      - src: /gallery/pwc25/pwc25-09.jpg
+        alt: PRINTED World Conference 2025
+  - component: AppLandingSpeakers
+    id: speakers
+    headline: Speakers
+    title: Voices from around the world.
+    description: International speakers who shared their knowledge, stories and vision. Every name leads to the speaker page.
+    slugs:
+      - aleksander-sadowski
+      - beverly-tan
+      - blayne-sapelli
+      - carlos-reyes
+      - courtney-blum
+      - daniel-bettencourt
+      - dave-miao
+      - janos-kehl
+      - joel-gomes
+      - jon-schone
+      - jonathan-keep-making
+      - jonathan-levi
+      - josef-prusa
+      - adrianluben
+      - noe-jenn-treyer
+      - ollie-pockett
+      - paul-campbell
+      - paulo-kiefe
+      - pierre-bolmer
+      - prash-makes
+      - rudolfleue
+      - teula-bradshaw
+      - thorsten-seyschab
+      - werner-fugmann
+  - component: AppLandingLogoGrid
+    headline: Sponsors & Partners
+    title: They made the first PRINTED World Conference possible.
+    logos:
+      - src: /sponsors/snapmaker-white.svg
+        alt: Snapmaker
+        url: https://www.snapmaker.com
+      - src: /sponsors/prusaresearch-logo-rgb-white.png
+        alt: Prusa Research
+        url: https://www.prusa3d.com
+      - src: /sponsors/e3d.png
+        alt: E3D
+        url: https://e3d-online.com
+      - src: /sponsors/phillips.png
+        alt: Philips
+        url: https://www.philips.com
+      - src: /sponsors/recycklingfabrik.png
+        alt: Recycling Fabrik
+        url: https://www.recyclingfabrik.com
+      - src: /sponsors/redline-filament.png
+        alt: Redline Filament
+        url: https://www.redline-filament.com
+      - src: /sponsors/ripcord.png
+        alt: Repkord
+        url: https://www.repkord.com
+      - src: /sponsors/gloop.png
+        alt: 3D Gloop!
+        url: https://www.3dgloop.com
+      - src: /sponsors/stemfie.png
+        alt: STEMFIE
+        url: https://www.stemfie.org
+      - src: /sponsors/prismablend.png
+        alt: Prismablend
+        url: https://www.prismablend.com
+      - src: /sponsors/lotactree.png
+        alt: Lotactree
+        url: https://www.lotactree.de
+      - src: /sponsors/3d-natives.png
+        alt: 3Dnatives
+        url: https://www.3dnatives.com
+      - src: /sponsors/tito.png
+        alt: Tito
+        url: https://ti.to
+  - component: AppLandingHeroMedia
+    headline: The next event
+    title: The current edition is always on printed-europe.com.
+    description: This recap stays right here.
+    overlayOpacity: 0.6
+    image:
+      src: /gallery/pwc25/pwc25-05.jpg
+      alt: Audience at the PRINTED World Conference 2025
+    links:
+      - label: To the current event
+        to: /
+        icon: i-lucide-arrow-right
+        size: lg
