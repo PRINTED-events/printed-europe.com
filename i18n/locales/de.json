@@ -40,9 +40,11 @@
     "events": "Events",
     "faq": "FAQ",
     "location": "Anfahrt",
+    "partners": "Partner",
     "schedule": "Programm",
     "speakers": "Speaker",
-    "tickets": "Tickets"
+    "tickets": "Tickets",
+    "whyPrinted": "Warum PRINTED"
   },
   "schedule": {
     "checkBack": "Schau später wieder vorbei – das Programm wird laufend aktualisiert.",
@@ -101,6 +103,10 @@
         "label": "Toiletten",
         "text": "Barrierefreie Toiletten stehen leider nicht zur Verfügung. Das ist uns bewusst, und wir bedauern es."
       }
+    },
+    "comingSoon": {
+      "description": "Tickets für die PRINTED World Conference 2027 in Amsterdam sind noch nicht im Verkauf. Folge uns auf Social Media, dann erfährst du es zuerst.",
+      "title": "Der Ticketverkauf startet bald"
     },
     "description": "Sichere dir dein Ticket und sei beim Event dabei.",
     "title": "Tickets"

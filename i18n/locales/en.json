@@ -40,9 +40,11 @@
     "events": "Events",
     "faq": "FAQ",
     "location": "Location",
+    "partners": "Partners",
     "schedule": "Schedule",
     "speakers": "Speakers",
-    "tickets": "Tickets"
+    "tickets": "Tickets",
+    "whyPrinted": "Why PRINTED"
   },
   "schedule": {
     "checkBack": "Check back later for updates to the schedule.",
@@ -101,6 +103,10 @@
         "label": "Toilets",
         "text": "Accessible toilets are unfortunately not available. We are aware of this and we regret it."
       }
+    },
+    "comingSoon": {
+      "description": "Tickets for the PRINTED World Conference 2027 in Amsterdam are not on sale yet. Follow us on social media to hear first.",
+      "title": "Ticket sales open soon"
     },
     "description": "Purchase your ticket to join the conference.",
     "title": "Tickets"

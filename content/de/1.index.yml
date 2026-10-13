@@ -1,30 +1,195 @@
 title: Start
-description: Vielen Dank für eine erfolgreiche PRINTED Hub 2026 – zwei Tage 3D-Druck mit Talks, Workshops und Community am 25. und 26. September in Rüdesheim bei Frankfurt.
+description: PRINTED Hub und die PRINTED World Conference sind das Zuhause der 3D-Druck-Community. Mach dich bereit für die PRINTED World Conference im Mai 2027 in Amsterdam.
+seo:
+  title: Willkommen in der Familie
 blocks:
-  - component: AppLandingHero
-    title: PRINTED Hub
-    description: Vielen Dank für eine erfolgreiche PRINTED Hub 2026!
-    headline: 25. und 26. September 2026 · Rüdesheim bei Frankfurt
-  - component: AppLandingMetaInfo
-    title: Lernen. Vernetzen. Gestalten.
-    description: null
-    headline: Erlebe das besondere Event für 3D-Druck in Europa!
+  - component: AppLandingHeroFamily
+    headline: Mach dich bereit für die PRINTED World Conference 2027
+    title: Welcome to the
+    titleAccent: family.
+    description: Bei der PRINTED Hub und der PRINTED World Conference kommt die 3D-Druck-Community nach Hause. Du teilst, was du herausgefunden hast, lernst von Leuten, die schon dort waren, und gehörst dazu – von dem Moment an, in dem du dein Badge abholst.
+    claim:
+      - Learn.
+      - Network.
+      - Create.
+    image:
+      src: /family/hero.jpg
+      alt: Speaker und Gäste gemeinsam auf der PRINTED-Bühne
+    links:
+      - label: Platz sichern
+        to: /tickets
+        size: xl
+      - label: Aftermovie 2025 ansehen
+        to: https://www.youtube.com/watch?v=mou_V2jFpBE
+        icon: i-lucide-play
+        target: _blank
+        color: neutral
+        variant: outline
+        size: xl
+    editions:
+      - label: PRINTED World Conference
+        text: Mai 2027 · Amsterdam
+      - label: PRINTED Hub
+        text: 2027 · Rüdesheim am Rhein
+    badge:
+      greeting: Hi, ich bin
+      names:
+        - Du
+        - Dein Kind
+        - Deine Crew
+        - Wieder du
+      role: Family
+      note: Zum ersten Mal dabei? Perfekt. Jemand sagt Hallo, noch bevor du den Kaffee gefunden hast.
+  - component: AppLandingManifesto
+    id: family
+    headline: Warum sich PRINTED anders anfühlt
+    lead: Niemand kommt her, um dir einen Drucker zu verkaufen.
+    text: Die Leute kommen, um ihr Wissen zu teilen, um zu lernen, was andere auf die harte Tour herausgefunden haben, und um zwei Tage mit Menschen zu verbringen, die
+    accent: es verstehen.
     items:
-      - icon: i-lucide-calendar
-        text: 25.–26. Sep 2026
-        label: Datum
-      - icon: i-lucide-map-pin
-        text: Asbachgasse, Rüdesheim am Rhein
-        label: Ort
-      - icon: i-lucide-users
-        text: 400+
-        label: Kapazität
-      - icon: i-lucide-mic-2
-        text: 15+ Speaker
-        label: Content
-  - component: AppLandingLogoGrid
-    headline: Hauptsponsoren
-    title: Sie machen die PRINTED Hub möglich.
+      - not: Stände und Pitches
+        instead: Geschichten und Erfahrung
+      - not: Visitenkarten sammeln
+        instead: Freundschaften schließen
+      - not: Aus der Menge zuschauen
+        instead: Am selben Tisch sitzen
+  - component: AppLandingPillars
+    headline: Learn. Network. Create.
+    title: Drei Worte. Ein Gefühl.
+    description: 'Unser Claim ist derselbe geblieben. Was er bei PRINTED bedeutet, ist einfach: Hier sind alle Familie – also bringen alle etwas bei, alle hören zu, und alle zeigen, was sie gemacht haben.'
+    items:
+      - word: Learn.
+        title: Alle bringen etwas bei. Alle lernen.
+        description: Die Speakerin von heute Morgen sitzt mittags an deinem Tisch. Stell die Frage, die du dich auf der Bühne nicht getraut hast. Einsteiger und alte Hasen tauschen hier Tricks aus, und niemand wird belächelt.
+        items:
+          - Talks von Menschen, die teilen, was geklappt hat und was nicht
+          - Hands-on-Workshops, vom ersten Druck bis zum Produktdesign
+          - Jeder Talk wird aufgezeichnet – zum Nacherleben zu Hause
+        image:
+          src: /family/learn.jpg
+          alt: Ein Gast betrachtet den Druckkopf eines Druckers aus der Nähe
+      - word: Network.
+        title: Fremde beim Check-in. Freunde auf der After-Party.
+        description: Networking fühlt sich bei PRINTED nicht nach Networking an. Du landest in einem langen Gespräch an der Bar, bei einem Brettspiel mit Leuten, die du nur von YouTube kanntest, und in einem Gruppenchat, der bis zum nächsten Jahr weiterläuft.
+        items:
+          - Community Hangout und Fun-&-Games-Bereich
+          - Abendessen und After-Partys direkt an der Location
+          - Creators, Lehrende und Entwickler auf Augenhöhe
+        image:
+          src: /family/talk.jpg
+          alt: Gäste unterhalten sich lachend im Community-Bereich
+      - word: Create.
+        title: Bring mit, was du gemacht hast. Geh mit dem, was als Nächstes kommt.
+        description: Stell dein Projekt auf den Tisch im Community Showcase. Du bekommst neugierige Fragen, ehrliches Feedback, drei neue Ideen – und jemanden, der das nächste mit dir bauen will.
+        items:
+          - Community Showcase „Show your stuff“
+          - Recycling Corner und Workshops zur Nachhaltigkeit
+          - Ideen, die bei PRINTED entstanden und weitergewachsen sind
+        image:
+          src: /family/show.jpg
+          alt: Community-Mitglieder zeigen ihre gedruckten Projekte
+  - component: AppLandingMosaic
+    headline: Atmosphäre
+    title: So sieht Nachhausekommen aus.
+    description: Keine Stockfotos. Das sind die Menschen von PRINTED, bei PRINTED.
+    images:
+      - src: /family/laugh.jpg
+        alt: Das Publikum lacht gemeinsam während eines Talks
+        caption: Über dieselben Witze lachen
+      - src: /family/smile.jpg
+        alt: Zwei Gäste lächeln mit einem gedruckten Projekt
+        caption: Stolz auf das, was du gemacht hast
+      - src: /family/kid.jpg
+        alt: Eine Frau und ein Kind spielen ein 3D-gedrucktes Spiel
+        caption: Die nächste Generation am Tisch
+      - src: /family/grin.jpg
+        alt: Drei Gäste grinsen im Gespräch
+        caption: Alte Freunde, neue Drucke
+      - src: /family/sofa.jpg
+        alt: Creators im Gespräch auf Sofas auf der Bühne
+        caption: Talks wie im Wohnzimmer
+      - src: /family/crowd.jpg
+        alt: Eine volle Halle mit Menschen im Gespräch
+        caption: Die Gespräche auf dem Flur
+      - src: /family/lamp.jpg
+        alt: Gäste bestaunen eine hohe gedruckte Lampe
+        caption: Den Funken weitergeben
+  - component: AppLandingStats
+    title: PRINTED in Zahlen
+    items:
+      - value: '400'
+        suffix: +
+        label: Maker unter einem Dach
+      - value: '15'
+        suffix: +
+        label: Speaker, die zum Abendessen bleiben
+      - value: '2'
+        label: Tage, ein langes Gespräch
+      - value: '1'
+        label: Familie
+  - component: AppLandingAudience
+    headline: Du gehörst dazu
+    title: An diesem Tisch ist für alle ein Platz frei.
+    description: Du brauchst keinen großen Kanal, keine Firma und keine zehn Jahre Erfahrung. Wenn du es liebst, Dinge zu machen, bist du schon eine oder einer von uns.
+    image:
+      src: /family/kid.jpg
+      alt: Eine Frau und ein Kind spielen gemeinsam ein gedrucktes Spiel
+    items:
+      - text: Du hast letzten Monat dein erstes Benchy gedruckt
+        reply: Willkommen.
+      - text: Du betreibst eine Druckfarm mit Dutzenden Maschinen
+        reply: Willkommen zurück.
+      - text: Du bringst deine Kinder mit
+        reply: Bring sie mit.
+      - text: Du machst Videos, designst Modelle oder unterrichtest
+        reply: Teil es.
+      - text: Du baust die Maschinen, die alle anderen nutzen
+        reply: Setz dich dazu.
+  - component: AppLandingEvents
+    id: events
+    headline: Printed Events
+    title: Zwei Treffen. Eine Familie.
+    description: Ob du am Rhein oder in Amsterdam dabei bist – du erkennst die Gesichter wieder, das Lachen und das Gefühl, willkommen zu sein.
+    items:
+      - meta: Mai 2027 · Amsterdam
+        title: PRINTED World Conference
+        description: Die Familie wird international. Creators, Lehrende und Entwickler aus der ganzen Welt treffen sich zu Talks, Panels und Gesprächen, die weitergehen, lange nachdem das Bühnenlicht aus ist.
+        image:
+          src: /family/pwc.jpg
+          alt: Creators auf der Bühne der PRINTED World Conference
+        links:
+          - label: Tickets sichern
+            to: /tickets
+            icon: i-lucide-ticket
+      - meta: Rüdesheim am Rhein · Termine für 2027 folgen
+        title: PRINTED Hub
+        description: 'Zwei Tage in der Asbachgasse: Workshops, Talks, Community Showcase, Brettspiele und Abende mit Wein aus dem Rheingau. Danke an alle, durch die sich 2026 wie zu Hause angefühlt hat.'
+        image:
+          src: /family/hubstage.jpg
+          alt: Eine volle Halle bei der PRINTED Hub in Rüdesheim
+        links:
+          - label: Rückblick auf 2026
+            to: /schedule
+            icon: i-lucide-calendar
+            color: neutral
+            variant: outline
+  - component: AppLandingSpeakers
+    id: speakers
+    headline: Speaker
+    title: Sie haben den Weg bereitet – und sitzen beim Abendessen trotzdem neben dir.
+    description: Unsere Speaker verschwinden nicht hinter der Bühne. Sie sind in den Workshops, in der Schlange an der Bar und bei den späten Gesprächen dabei.
+    slugs:
+      - stefan-herman
+      - adrianluben
+      - irenaheuzeroth
+      - prash-makes
+      - gazzaladra
+      - marius-hirn
+  - component: AppLandingPartners
+    id: partners
+    headline: Sponsoren & Partner
+    title: Freunde der Familie.
+    description: Unsere Partner machen PRINTED möglich. Sie kommen, um zuzuhören, geben Workshops, beantworten Fragen und sind auf der After-Party dabei – wie alle anderen auch.
     logos:
       - src: /sponsors/snapmaker-white.svg
         alt: Snapmaker
@@ -38,315 +203,36 @@ blocks:
       - src: /sponsors/fibreseek-white.svg
         alt: FibreSeek
         url: https://www.fibreseek3d.com
-  - component: AppLandingLogoGrid
-    headline: Verlosungssponsoren
-    title: Diese Preise kannst du gewinnen.
-    description: Die Verlosung findet am Samstagnachmittag statt.
-    logos:
+      - src: /sponsors/prusaresearch-logo-rgb-white.png
+        alt: Prusa Research
+        url: https://www.prusa3d.com/de/
       - src: /sponsors/3dconnexion-white.png
         alt: 3Dconnexion
         url: https://3dconnexion.com
-      - src: /sponsors/prusa-research.png
-        alt: Prusa Research
-        url: https://www.prusa3d.com/de/
-      - src: /sponsors/black-mamba-ptfe.png
-        alt: Black Mamba PTFE
-      - src: /sponsors/juicebox.png
-        alt: Juicebox
-        url: https://juicebox.at
-      - src: /sponsors/cute-flexi-maker.png
-        alt: Cute Flexi Maker
-        url: https://www.cutefleximaker.com
-      - src: /sponsors/clicker-factory.png
-        alt: Clicker Factory
-        url: https://clickerfactory.com
-  - component: AppLandingLogoGrid
-    headline: Sponsoren
-    title: Partner an unserer Seite.
-    logos:
-      - src: /sponsors/skz-das-kunststoff-zentrum.png
-        alt: SKZ – Das Kunststoff-Zentrum
-        url: https://www.skz.de
-      - src: /sponsors/recycklingfabrik.png
-        alt: Recycling Fabrik
-        url: https://www.recyclingfabrik.com/
-      - src: /sponsors/farm-app.png
-        alt: Farm App
-        url: https://farm.makeorama.ch
-      - src: /sponsors/wtf.png
-        alt: W.T.F. – Wirtschaft Tourismus Förderung
-      - src: /sponsors/3d-druck-akademie.png
-        alt: 3D Druck Akademie
-        url: https://www.3dd-akademie.de
-      - src: /sponsors/recyclebar.png
-        alt: RecycleBar
-        url: https://recyclebar.org
-      - src: /sponsors/juicebox.png
-        alt: Juicebox
-        url: https://juicebox.at
       - src: /sponsors/xtool-white.svg
         alt: xTool
         url: https://www.xtool.com
-      - src: /sponsors/anker.png
-        alt: Anker
-        url: https://www.anker.com
-  - component: AppLandingSection
-    title: Wo Ideen entstehen.
-    description: Sei dabei und erlebe ein unvergessliches Event.
-    headline: Printed Events
-    orientation: horizontal
-    features:
-      - title: Experten
-        description: Unsere Branchenprofis geben wertvolle Einblicke, wie Unternehmen im 3D-Druck und 3D-Design arbeiten. Lerne neue Produkte kennen und probiere als Erste:r Neues aus.
-        icon: i-lucide-users
-      - title: Networking
-        description: Der Austausch mit Gleichgesinnten ist ein zentrales Ergebnis von Printed Events. Unser Ziel ist es, die richtigen Menschen zusammenzubringen.
-        icon: i-lucide-contact
-      - title: Workshops
-        description: Lerne von anderen – egal ob Einsteiger:in oder Profi. Vom 3D-Druck über das Design bis zur Entwicklung neuer Produkte. Von Hardware bis Software.
-        icon: i-lucide-wrench
-    image:
-      src: /eventimages/printedhub25340.jpg
-      alt: Glasdruck mit PVB
-  - component: AppLandingSpeakers
-    title: Die, die den Weg geebnet haben …
-    description: Hier, um ihr Wissen und ihre Erfahrung zu teilen.
-    headline: Speaker
-  - component: AppLandingMarquee
-    direction: left
-    speed: 40
-    gap: 30
-    images:
-      - src: /eventimages/Panel2PWC.jpg
-        alt: Podiumsdiskussion
-      - src: /eventimages/cakePWC.jpg
-        alt: Prusa Cake One
-      - src: /eventimages/panelPWC.jpg
-        alt: Podiumsdiskussion Creators
-      - src: /eventimages/stage1.jpg
-        alt: Networking
-      - src: /eventimages/stage2.jpg
-        alt: Bühnenansicht
-      - src: /eventimages/outside1PWC.jpg
-        alt: Ausstellungsfläche
-  - component: AppLandingFeatures
-    title: Was dich beim PRINTED erwartet
-    description: Bildung, Community und Spaß
-    headline: Highlights
-    items:
-      - title: Talks auf der Bühne
-        description: Höre von Profis, Unternehmen und Creators über ihre Visionen und Erfahrungen. Alle Talks werden aufgezeichnet und nach dem Event veröffentlicht.
-        icon: i-lucide-mic
-      - title: Workshops
-        description: Ein ganzer Tag voller Workshops für Einsteiger:innen bis Fortgeschrittene im 3D-Design und 3D-Druck. Lerne von den Besten.
-        icon: i-lucide-code
-      - title: Community-Projekte
-        description: Unser „Show your stuff"-Bereich gibt DIR die Möglichkeit, deine Projekte und deine Leidenschaft zu zeigen. Hol dir dein Ticket und schreib uns, wenn du etwas zeigen möchtest!
-        icon: i-lucide-messages-square
-      - title: Networking
-        description: Vernetze dich mit anderen Teilnehmenden. Lerne neue Leute kennen und voneinander. Manch neue Idee entstand zuerst bei PRINTED Events.
-        icon: i-lucide-coffee
-      - title: Sponsoren
-        description: Unsere Sponsoren machen die Events möglich. Sie zeigen ihre Produkte und Lösungen, halten Talks und Workshops.
-        icon: i-lucide-store
-      - title: After-Party
-        description: Es geht um Community und das Treffen Gleichgesinnter. Ein großer Teil davon ist, gemeinsam Spaß zu haben. Sei dabei und genieße unsere After-Partys und Abend-Events.
-        icon: i-lucide-party-popper
-  - component: AppLandingFloorplan
-    title: Finde dich zurecht.
-    description: Übersicht über das Gelände bei der PRINTED Hub 2026.
-    headline: Geländeplan
-    image:
-      src: /hub26_floorplan_v2.png
-      alt: PRINTED Hub 2026 Geländeplan
-  - component: AppLandingVenueArea
-    headline: Hauptbühne
-    title: Wo Inspiration im Rampenlicht steht.
-    description: Das Herz der PRINTED Hub – zwei Tage Talks, Präsentationen und Panels von den klügsten Köpfen im 3D-Druck und Making. Alle Talks werden aufgezeichnet und nach dem Event veröffentlicht.
-    items:
-      - Talks & Präsentationen von 15+ Speakern
-      - Aufgezeichnet und nach dem Event veröffentlicht
-      - Live-Q&A-Sessions mit jedem Speaker
-    image:
-      src: /venues/main-stage/printedhub25-053.jpg
-      alt: Hauptbühne bei der PRINTED Hub
-    links:
-      - label: Programm ansehen
-        to: /schedule
-        icon: i-lucide-calendar
-        variant: subtle
-        size: lg
-  - component: AppLandingVenueArea
-    headline: "1 · Info Point"
-    title: Dein erster Stopp im Hub.
-    description: Starte hier – check ein, hol dir dein Badge und alles, was du brauchst, um zwei Tage bei der PRINTED Hub optimal zu nutzen.
-    reverse: true
-    items:
-      - Stell jede Frage – unser Team hilft dir gern
-      - Einchecken & Badge abholen
-      - Gepäck verstauen
-      - Hol dir deinen exklusiven Stoffbeutel
-      - Stöbere im Merch-Shop
-    image:
-      src: /venues/Entry_Gemini.png
-      alt: Info Point bei der PRINTED Hub
-  - component: AppLandingVenueArea
-    headline: "2 · Gold-Sponsor-Stände"
-    title: Triff die Köpfe hinter den Maschinen.
-    description: Probiere die neueste Hardware aus, lerne die Teams kennen und nimm an einem kreativen Wettbewerb teil – mit der Chance auf einen Gewinn.
-    image:
-      src: /venues/2-gold-sponsor-booths/multibuild-products.jpg
-      alt: Multibuild Produkte
-    logos:
-      - src: /venues/2-gold-sponsor-booths/logo-multibuild.png
-        alt: Multibuild
-        url: https://multibuild.io
-  - component: AppLandingVenueArea
-    headline: "3 · Community Showcase"
-    title: Zeig, was du gemacht hast. Lass dich von anderen begeistern.
-    description: Die Maker-Galerie im Herzen der PRINTED Hub – Community-Mitglieder bringen ihre schönsten Kreationen mit und vernetzen sich direkt mit Gleichgesinnten.
-    reverse: true
-    items:
-      - Community-Mitglieder präsentieren ihre besonderen Projekte
-      - Lass dich inspirieren und entwickle neue Ideen
-      - Vernetze dich direkt mit den Creators
-    images:
-      - src: /venues/3-community-showcase/printedhub25-010.jpg
-        alt: Community Showcase
-      - src: /venues/3-community-showcase/printedhub25-011.jpg
-        alt: Community Showcase
-      - src: /venues/3-community-showcase/printedhub25-021.jpg
-        alt: Community Showcase
-      - src: /venues/3-community-showcase/printedhub25-027.jpg
-        alt: Community Showcase
-  - component: AppLandingVenueArea
-    headline: "4 · Recycling-Ecke"
-    title: Bewusst gestalten.
-    description: Nachhaltigkeit in Aktion – entdecke, wie die Maker-Community verantwortungsvolle Produktion, zirkuläres Design und umweltfreundliche Materialien vorantreibt.
-    talksStage: workshop-space-3
-    items:
-      - RecycleBar – Filament-Recycling in der Praxis
-      - Recycling Fabrik Stand
-      - Workshop-Fläche für Nachhaltigkeitsthemen
-    image:
-      src: /venues/4-recycling-corner/printedhub25-044.jpg
-      alt: Recycling-Ecke bei der PRINTED Hub
-    logos:
-      - src: /venues/4-recycling-corner/recyclingfabrik.png
+      - src: /sponsors/recycklingfabrik.png
         alt: Recycling Fabrik
-  - component: AppLandingVenueArea
-    headline: "5 · Community Hangout"
-    title: Die besten Ideen beginnen mit einem guten Gespräch.
-    description: Entspann dich, setz dich hin, lerne jemand Neues kennen. Am Freitag verwandelt sich dieser Bereich in eine zusätzliche Workshop-Fläche – vielseitig und immer lebendig.
-    reverse: true
-    items:
-      - Entspannen & auftanken zwischen den Sessions
-      - Vernetze dich mit anderen Teilnehmenden
-      - Essen & Getränke vor Ort
-      - Wird am Freitag zur Workshop-Fläche
-    image:
-      src: /venues/5-community-hangout/printedhub25-090.jpg
-      alt: Community Hangout bei der PRINTED Hub
-  - component: AppLandingVenueArea
-    headline: "6 · Bar"
-    title: Getränke, Snacks & süße Leckereien.
-    description: Halte deine Energie hoch mit Getränken, dazu süße Leckereien von Kittycatcakes und jede Menge Snacks über den Tag verteilt.
-    items:
-      - Cookies von Kittycatcakes
-      - Snacks & mehr
-    image:
-      src: /venues/6-bar/printedhub25-013.jpg
-      alt: Bar bei der PRINTED Hub
-    logos:
-      - src: /venues/6-bar/KCC_logo_color_square.png
-        alt: Kittycatcakes
-  - component: AppLandingVenueArea
-    headline: "7 · Fun & Games"
-    title: Weil Making Spaß machen soll.
-    description: Mach zwischen den Sessions eine Pause und fordere jemanden zu einem Spiel heraus. Mit klassischen Brettspielen und – natürlich – von der Community designten und 3D-gedruckten Spielen.
-    reverse: true
-    items:
-      - Klassische Brettspiele
-      - Von der Community designte 3D-gedruckte Spiele
-    images:
-      - src: /venues/7-fun-and-games/printedhub25-025.jpg
-        alt: Fun & Games bei der PRINTED Hub
-      - src: /venues/7-fun-and-games/printedhub25-043.jpg
-        alt: Fun & Games bei der PRINTED Hub
-      - src: /venues/7-fun-and-games/printedhub25-045.jpg
-        alt: Fun & Games bei der PRINTED Hub
-  - component: AppLandingVenueArea
-    headline: "8 · Sponsor-Stände"
-    title: Entdecke, was die Maker-Welt antreibt.
-    description: Triff unsere Sponsoren persönlich, teste ihre Produkte und erfahre mehr über die Lösungen, die die Zukunft von Making und Fertigung prägen.
-    items:
-      - SKZ – Kunststofftechnik & Prüfung
-    images:
-      - src: /venues/8-sponsor-booths/printedhub25-037.jpg
-        alt: Sponsor-Stände bei der PRINTED Hub
-      - src: /venues/8-sponsor-booths/printedhub25-038.jpg
-        alt: Sponsor-Stände bei der PRINTED Hub
-    logos:
-      - src: /venues/8-sponsor-booths/logo-skz.png
-        alt: SKZ
+        url: https://www.recyclingfabrik.com/
+      - src: /sponsors/skz.png
+        alt: SKZ – Das Kunststoff-Zentrum
         url: https://www.skz.de
-  - component: AppLandingVenueArea
-    headline: "10 · Hardware-Bereich"
-    title: Wo Hardware ernst wird.
-    description: Powered by Snapmaker hostet dieser dedizierte Bereich Rüdigers beliebten Hardware-Workshop und gibt dir direkten Zugang zu modernsten Maschinen.
-    talksStage: workshop-space-1
-    reverse: true
-    items:
-      - Hardware-Workshop von Rüdiger
-      - Snapmaker Stand & Live-Demos
-    images:
-      - src: /venues/10-hardware-space/printedhub25-009.jpg
-        alt: Hardware-Bereich bei der PRINTED Hub
-      - src: /venues/10-hardware-space/printedhub25-014.jpg
-        alt: Hardware-Bereich bei der PRINTED Hub
-    logos:
-      - src: /venues/10-hardware-space/logo-snapmaker.png
-        alt: Snapmaker
-        url: https://snapmaker.com
-  - component: AppLandingVenueArea
-    headline: Restaurant
-    title: Zwei tolle Restaurants, direkt am Veranstaltungsort.
-    description: Genieße leckeres Essen, ohne die Asbachgasse zu verlassen – zwei Partner-Restaurants heißen dich während und nach dem Event willkommen.
-    items:
-      - Bees Restaurant – Moderne Küche in entspannter Atmosphäre
-      - Rheinweinwelt – Regionale Weinkultur & Essen
-    images:
-      - src: /venues/restaurant/bees-essen-5.jpeg
-        alt: Bees Restaurant
-      - src: /venues/restaurant/2025-galerie-rheinweinwelt-impressionen-13-e5fa49ce.jpg
-        alt: Rheinweinwelt
-    logos:
-      - src: /venues/restaurant/BeeslogoCombined.png
-        alt: Bees Restaurant
-        url: https://www.beesrestaurant.de/en
-      - src: /venues/restaurant/RWW_white.png
-        alt: Rheinweinwelt
-        url: https://www.rheinweinwelt.de/en/
-  - component: AppLandingSponsorMarquee
-    headline: Sponsoren & Partner
-    title: Die, die PRINTED möglich machen!
-    description: Sponsoren & Partner, mit denen wir bereits zusammengearbeitet haben.
-    direction: left
-    speed: 50
-    gap: 80
-    imageHeight: 48
   - component: AppLandingHeroMedia
-    title: Triff Gleichgesinnte
-    description: Tauch ein.
-    headline: Atmosphäre
-    overlayOpacity: 0.5
+    id: join
+    headline: Wir sehen uns
+    title: Wir haben dir einen Platz freigehalten.
+    description: Komm, wie du bist. Bring deine Fragen, deine Projekte und deine Freunde mit. Du gehst mit mehr Wissen, neuen Ideen und ein paar Menschen mehr, die du Familie nennst.
+    overlayOpacity: 0.7
     image:
-      src: /printedhub25317.jpg
-      alt: Event-Crowd
+      src: /family/vine.jpg
+      alt: Weinberge oberhalb von Rüdesheim am Rhein
     links:
-      - label: Aftermovie Printed Hub 2025
-        icon: i-lucide-play
-        variant: solid
-        size: lg
-        to: https://www.youtube.com/watch?v=mou_V2jFpBE
-        target: _blank
+      - label: Tickets kaufen
+        to: /tickets
+        size: xl
+      - label: Als Speaker bewerben
+        to: /faq/cfp
+        color: neutral
+        variant: outline
+        size: xl
