@@ -11,6 +11,11 @@ export const speakerSchema = z.object({
     // @ts-expect-error `description` is custom and patched in `nuxt-studio`
     description: 'Whether the speaker is featured on the main page.',
   }),
+  currentEvent: property(z.boolean().default(false)).editor({
+    // @ts-expect-error `description` is custom and patched in `nuxt-studio`
+    description: 'Whether the speaker is part of the upcoming event and listed on the speakers page. '
+      + 'The profile page of a speaker stays reachable either way, e.g. from the recap of a past event.',
+  }),
   name: property(z.string()).editor({
     // @ts-expect-error `description` is custom and patched in `nuxt-studio`
     description: 'The name of the speaker.',

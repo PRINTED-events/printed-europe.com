@@ -2,8 +2,10 @@
 const { t } = useI18n()
 const { extractSeoMetadata, getSeoMetaBase } = useSeo()
 
-const { data: speakers } = await useAsyncData('speakers-all', () =>
-  queryCollection('speakers').order('featured', 'DESC').all())
+// Only the speakers of the upcoming event are listed. Speakers of past events
+// keep their profile page and are linked from the recap in `/archive`.
+const { data: speakers } = await useAsyncData('speakers-current', () =>
+  queryCollection('speakers').where('currentEvent', '=', true).order('featured', 'DESC').order('name', 'ASC').all())
 
 const seoMetadata = computed(() => extractSeoMetadata({
   title: t('speakers.title'),
@@ -41,7 +43,20 @@ defineOgImageComponent('DefaultSatori', {
         :title="seoMetadata.title"
       />
 
-      <AppSpeakerGrid is-all-speakers :speakers="speakers" />
+      <AppSpeakerGrid
+        v-if="speakers.length"
+        is-all-speakers
+        :speakers="speakers"
+      />
+
+      <UPageCard
+        v-else
+        class="mt-8"
+        :description="t('speakers.comingSoon.description')"
+        icon="i-lucide-mic-2"
+        :title="t('speakers.comingSoon.title')"
+        variant="subtle"
+      />
     </UContainer>
   </template>
 </template>

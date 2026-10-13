@@ -9,8 +9,8 @@ const props = defineProps<{
 
 const { data: speakers } = await useAsyncData(`speakers-landing-${props.slugs?.join(',') ?? 'featured'}`, async () => {
   if (!props.slugs?.length) {
-    return queryCollection('speakers').where('featured', '=', true).order('featured', 'DESC').order('name', 'ASC')
-      .all()
+    return queryCollection('speakers').where('featured', '=', true).where('currentEvent', '=', true)
+      .order('name', 'ASC').all()
   }
   // A curated list keeps the order it was written in.
   const picked = await queryCollection('speakers').where('slug', 'IN', props.slugs).all()
@@ -25,7 +25,8 @@ const { data: speakers } = await useAsyncData(`speakers-landing-${props.slugs?.j
       :headline="headline"
       :title="title"
     >
-      <AppSpeakerGrid :speakers="speakers" />
+      <!-- A curated list is complete in itself, so it does not link on to the speakers page. -->
+      <AppSpeakerGrid :is-all-speakers="Boolean(slugs?.length)" :speakers="speakers" />
     </UPageSection>
   </template>
 </template>

@@ -27,6 +27,11 @@ const allEvents = computed(() => [
   },
 ])
 
+// Before the lineup of the upcoming event is announced there is no speakers
+// page to show, so the menu item jumps to the speakers on the homepage.
+const { data: hasCurrentSpeakers } = await useAsyncData('header-has-current-speakers', async () =>
+  (await queryCollection('speakers').where('currentEvent', '=', true).count()) > 0)
+
 const items = computed(() => [
   {
     label: t('nav.whyPrinted'),
@@ -38,7 +43,7 @@ const items = computed(() => [
   },
   {
     label: t('nav.speakers'),
-    to: '/speakers',
+    to: hasCurrentSpeakers.value ? '/speakers' : '/#speakers',
     active: route.path.startsWith('/speakers'),
   },
   {

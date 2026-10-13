@@ -64,6 +64,10 @@
     "talksWorkshops": "Talks & Workshops"
   },
   "speakers": {
+    "comingSoon": {
+      "description": "Die Speaker des nächsten PRINTED Events stehen noch nicht fest. Folge uns auf Social Media, dann erfährst du es zuerst.",
+      "title": "Das Line-up wird bald bekannt gegeben"
+    },
     "description": "Lerne unsere großartigen Speaker kennen und erfahre mehr über ihre Talks.",
     "ogDescription": "Lerne unsere großartigen Speaker kennen",
     "title": "Speaker"

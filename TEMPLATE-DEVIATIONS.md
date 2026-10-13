@@ -50,13 +50,13 @@ Two helper components are not blocks themselves: `AppLandingBlockHead` is the le
 
 ## Changes to template blocks
 
-| Block                     | Change                                                                                                             |
-| :------------------------ | :----------------------------------------------------------------------------------------------------------------- |
-| every block               | New optional `id` in `createLandingBlockBaseSchema()` (`app/schemas/common.ts`), so `/#partners` style links work. |
-| `AppLandingSpeakers`      | New optional `slugs[]`: shows exactly these speakers in this order instead of all featured speakers.               |
-| `AppLandingMarquee`       | New optional `imageHeight` in pixels, default 128.                                                                 |
-| `AppLandingHero`          | Fixed background photo through a global `.hero-bg` class. Specific to PRINTED, not suited for upstream as is.      |
-| `AppLandingHeroCountdown` | Labels come from the translation files instead of being hard-coded in English.                                     |
+| Block                     | Change                                                                                                                                                              |
+| :------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| every block               | New optional `id` in `createLandingBlockBaseSchema()` (`app/schemas/common.ts`), so `/#partners` style links work.                                                  |
+| `AppLandingSpeakers`      | New optional `slugs[]`: shows exactly these speakers in this order, without the "view all" card. Without it, the featured speakers of the upcoming event are shown. |
+| `AppLandingMarquee`       | New optional `imageHeight` in pixels, default 128.                                                                                                                  |
+| `AppLandingHero`          | Fixed background photo through a global `.hero-bg` class. Specific to PRINTED, not suited for upstream as is.                                                       |
+| `AppLandingHeroCountdown` | Labels come from the translation files instead of being hard-coded in English.                                                                                      |
 
 ## Other code changes
 
@@ -70,6 +70,7 @@ Two helper components are not blocks themselves: `AppLandingBlockHead` is the le
 
 **Smaller changes.**
 
+- Speakers: new `currentEvent` flag in `app/schemas/speaker.ts`. `app/pages/speakers/index.vue` lists only speakers with the flag and shows a "lineup will be announced soon" card when there are none. Every speaker keeps a profile page, so recaps of past events can still link to it.
 - `app/pages/tickets.vue`: tickets load per locale with a fallback to English, an accessibility note (`app/components/content/AccessibilityNote.vue`) sits below the plans, and an empty ticket list shows a "ticket sales open soon" card.
 - `app/components/AppHeader.vue`: navigation of the PRINTED site, an "Events" menu that links the other PRINTED event sites, and the language switcher.
 - `app/components/AppFooter.vue`: translated labels and a copyright year span.
