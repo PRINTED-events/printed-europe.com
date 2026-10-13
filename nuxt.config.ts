@@ -1,10 +1,16 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 import type { CustomConfig } from './app/schemas/customConfigPlain'
+import { readdirSync } from 'node:fs'
 import { customConfigSchema } from './app/schemas/customConfigPlain'
 import { getColorModeSetting, resolveColorModePolicy } from './app/utils/color-mode'
 import { formatCustomConfigValidationErrors } from './app/utils/custom-config-validation'
 import _customConfig from './content/0.custom-config.json'
+
+// Recaps of past events are served by a dynamic route, so the sitemap has to be told about them.
+const archivePaths = readdirSync(new URL('./content/archive', import.meta.url))
+  .filter(file => file.endsWith('.yml'))
+  .map(file => `/archive/${file.replace(/\.yml$/, '')}`)
 
 const parseResult = customConfigSchema.safeParse(_customConfig)
 if (!parseResult.success) {
@@ -252,6 +258,7 @@ export default defineNuxtConfig({
 
   sitemap: {
     zeroRuntime: true,
+    urls: archivePaths,
     // Content pages reach the sitemap through `asSitemapCollection()` in
     // `content.config.ts`; static routes are discovered automatically.
     exclude: [

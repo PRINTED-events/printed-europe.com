@@ -18,7 +18,7 @@ const allEvents = computed(() => [
   {
     label: 'PRINTED Hub',
     description: 'Sep 2026 · Rüdesheim',
-    to: '/schedule',
+    to: '/archive/hub26',
   },
   {
     label: t('header.aboutPrintedEvents'),

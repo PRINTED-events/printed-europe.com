@@ -169,7 +169,7 @@ blocks:
           alt: Eine volle Halle bei der PRINTED Hub in Rüdesheim
         links:
           - label: Rückblick auf 2026
-            to: /schedule
+            to: /archive/hub26
             icon: i-lucide-calendar
             color: neutral
             variant: outline

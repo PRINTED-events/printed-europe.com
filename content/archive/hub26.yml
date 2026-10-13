@@ -1,0 +1,170 @@
+title: PRINTED Hub 2026
+description: Recap of PRINTED Hub 2026 – two days of 3D printing talks, workshops and community on 25 & 26 September 2026 in Rüdesheim am Rhein.
+blocks:
+  - component: AppLandingHero
+    headline: Recap · 25 and 26 September 2026 · Rüdesheim am Rhein
+    title: PRINTED Hub 2026
+    description: Thank you for a successful PRINTED Hub 2026! Two days of 3D printing, workshops and community in the Rheingau – the full programme stays here to look up.
+    links:
+      - label: View the programme
+        to: /schedule
+        icon: i-lucide-calendar
+        size: xl
+      - label: Watch talks
+        to: https://www.youtube.com/@printed-europe
+        icon: i-lucide-play
+        target: _blank
+        color: neutral
+        variant: subtle
+        size: xl
+      - label: Speakers
+        to: /speakers
+        icon: i-lucide-users
+        color: neutral
+        variant: subtle
+        size: xl
+  - component: AppLandingStats
+    title: The event in numbers
+    items:
+      - value: '17'
+        label: Speakers
+      - value: '33'
+        label: Talks & workshops
+      - value: '4'
+        label: Stages & spaces
+      - value: '26'
+        label: Partners
+  - component: AppLandingTalkVideos
+    id: talks
+    headline: All talks
+    title: Watch them one by one.
+    description: The recordings go online one after the other. What is finished can be started right here – the rest is already listed and will follow.
+    items:
+      - title: 'The Handmade Illusion: Psychologie des Verliebtseins in Kunststoff'
+        speaker: Roman Rackwitz
+      - title: Taking 3D printed stop-motion animation to the next level
+        speaker: Prashanthan Ganeswaran
+      - title: Was wäre eine Welt ohne Kunststoffe?
+        speaker: Irena Heuzeroth
+      - title: A UX Designer at the Printer — where product thinking meets 3D printing
+        speaker: Jens Schaller
+      - title: Print Stronger! Reinforcing 3D Prints with Continuous Glass or Carbon Fibre
+        speaker: Lutz Feldmann
+      - title: 'Layer by Layer: 3D Printing as Therapy'
+        speaker: Rüdiger Neuweg
+      - title: Mit 13 zum eigenen 3D Druck Unternehmen
+        speaker: Dominik Schkalei
+      - title: Hype oder Hebel? KI im 3D-Druck
+        speaker: Panel · Janos Kehl, Nils Stackler, Stefan Herman
+      - title: Warum ich immer wieder auf PLA zurück komme - verschiedene Materialen des 3D Drucks und ihre Anwendung
+        speaker: Stefan Herman
+    links:
+      - label: To our YouTube channel
+        to: https://www.youtube.com/@printed-europe
+        icon: i-mdi-youtube
+        target: _blank
+        color: neutral
+        variant: outline
+  - component: AppLandingSpeakers
+    id: speakers
+    headline: Speakers
+    title: Those who shared their knowledge.
+    description: Every name leads to the speaker page with bio, links and the talks they gave.
+    slugs:
+      - bigbangbash
+      - dominik-nudaim3d
+      - fabian-bos
+      - irenaheuzeroth
+      - janos-kehl
+      - jens-schaller
+      - lutz-feldmann
+      - marius-hirn
+      - nils-stackler
+      - prash-makes
+      - robin-eschrich
+      - romanrackwitz
+      - rudolfleue
+      - rüdigerneuweg
+      - stefan-herman
+      - tobias
+      - valeria-and-mattia
+  - component: AppLandingLogoGrid
+    headline: Main Sponsors
+    title: They made PRINTED Hub possible.
+    logos:
+      - src: /sponsors/snapmaker-white.svg
+        alt: Snapmaker
+        url: https://www.snapmaker.com/
+      - src: /sponsors/MultiBuild-onblack.png
+        alt: Multibuild
+        url: https://multibuild.io
+      - src: /sponsors/thangs.png
+        alt: Thangs
+        url: https://thangs.com
+      - src: /sponsors/fibreseek-white.svg
+        alt: FibreSeek
+        url: https://www.fibreseek3d.com
+  - component: AppLandingLogoGrid
+    headline: Giveaway Sponsors
+    title: They provided the prizes.
+    logos:
+      - src: /sponsors/3dconnexion-white.png
+        alt: 3Dconnexion
+        url: https://3dconnexion.com
+      - src: /sponsors/prusa-research.png
+        alt: Prusa Research
+        url: https://www.prusa3d.com/de/
+      - src: /sponsors/black-mamba-ptfe.png
+        alt: Black Mamba PTFE
+      - src: /sponsors/juicebox.png
+        alt: Juicebox
+        url: https://juicebox.at
+      - src: /sponsors/cute-flexi-maker.png
+        alt: Cute Flexi Maker
+        url: https://www.cutefleximaker.com
+      - src: /sponsors/clicker-factory.png
+        alt: Clicker Factory
+        url: https://clickerfactory.com
+  - component: AppLandingLogoGrid
+    headline: Sponsors
+    title: Partners by our side.
+    logos:
+      - src: /sponsors/skz-das-kunststoff-zentrum.png
+        alt: SKZ – Das Kunststoff-Zentrum
+        url: https://www.skz.de
+      - src: /sponsors/recycklingfabrik.png
+        alt: Recycling Fabrik
+        url: https://www.recyclingfabrik.com/
+      - src: /sponsors/farm-app.png
+        alt: Farm App
+        url: https://farm.makeorama.ch
+      - src: /sponsors/wtf.png
+        alt: W.T.F. – Wirtschaft Tourismus Förderung
+      - src: /sponsors/3d-druck-akademie.png
+        alt: 3D Druck Akademie
+        url: https://www.3dd-akademie.de
+      - src: /sponsors/recyclebar.png
+        alt: RecycleBar
+        url: https://recyclebar.org
+      - src: /sponsors/juicebox.png
+        alt: Juicebox
+        url: https://juicebox.at
+      - src: /sponsors/xtool-white.svg
+        alt: xTool
+        url: https://www.xtool.com
+      - src: /sponsors/anker.png
+        alt: Anker
+        url: https://www.anker.com
+  - component: AppLandingHeroMedia
+    headline: The next event
+    title: The current edition is always on printed-europe.com.
+    description: This recap stays right here.
+    overlayOpacity: 0.6
+    image:
+      src: /printedhub25317.jpg
+      alt: Event crowd
+    links:
+      - label: printed-europe.com
+        to: /
+        icon: i-lucide-arrow-right
+        size: lg

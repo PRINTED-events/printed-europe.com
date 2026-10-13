@@ -1,64 +1,5 @@
 <script setup lang="ts">
-import {
-  AppLandingAudience,
-  AppLandingCta,
-  AppLandingEvents,
-  AppLandingFaqPreview,
-  AppLandingFeatures,
-  AppLandingFloorplan,
-  AppLandingGallery,
-  AppLandingHero,
-  AppLandingHeroCountdown,
-  AppLandingHeroFamily,
-  AppLandingHeroMedia,
-  AppLandingHeroSplit,
-  AppLandingLogoGrid,
-  AppLandingManifesto,
-  AppLandingMarquee,
-  AppLandingMetaInfo,
-  AppLandingMosaic,
-  AppLandingPartners,
-  AppLandingPillars,
-  AppLandingSection,
-  AppLandingSeparator,
-  AppLandingSpeakers,
-  AppLandingSponsorMarquee,
-  AppLandingSponsors,
-  AppLandingStats,
-  AppLandingTestimonials,
-  AppLandingVenueArea,
-} from '#components'
 import { isNil } from 'lodash-es'
-
-const componentsMap: Record<string, Component> = {
-  AppLandingAudience,
-  AppLandingCta,
-  AppLandingEvents,
-  AppLandingFaqPreview,
-  AppLandingFeatures,
-  AppLandingFloorplan,
-  AppLandingGallery,
-  AppLandingHero,
-  AppLandingHeroCountdown,
-  AppLandingHeroFamily,
-  AppLandingHeroMedia,
-  AppLandingHeroSplit,
-  AppLandingLogoGrid,
-  AppLandingManifesto,
-  AppLandingMarquee,
-  AppLandingMetaInfo,
-  AppLandingMosaic,
-  AppLandingPartners,
-  AppLandingPillars,
-  AppLandingSection,
-  AppLandingSeparator,
-  AppLandingSpeakers,
-  AppLandingSponsorMarquee,
-  AppLandingSponsors,
-  AppLandingStats,
-  AppLandingTestimonials,
-  AppLandingVenueArea,
-}
 
 const { locale } = useI18n()
 const { extractSeoMetadata, getSeoMetaBase } = useSeo()
@@ -88,30 +29,6 @@ if (isNil(_page.value)) {
 // we tested above that these are not nil, so we can assert the types here safely by removing nil from them
 const page = _page as globalThis.Ref<NonNullable<typeof _page.value>>
 
-const renderedBlocks = computed(() => {
-  if (!page.value?.blocks)
-    return []
-
-  return page.value.blocks
-    .filter((block) => {
-      if (!componentsMap[block.component]) {
-        console.warn(`[Landing Page] Component "${block.component}" not found in componentsMap.`)
-        return false
-      }
-      return true
-    })
-    .map((block, index) => {
-      const { component: componentName, ...props } = block
-      const Component = componentsMap[componentName]
-
-      return {
-        is: Component,
-        props,
-        key: `${componentName}-${index}`,
-      }
-    })
-})
-
 const seoMetadata = extractSeoMetadata(page.value)
 // const { title, description } = seoMetadata
 
@@ -124,9 +41,5 @@ useSeoMeta({
 </script>
 
 <template>
-  <div v-if="page.blocks">
-    <template v-for="block in renderedBlocks" :key="block.key">
-      <component :is="block.is" v-bind="block.props" />
-    </template>
-  </div>
+  <AppLandingBlocks v-if="page.blocks" :blocks="page.blocks" />
 </template>

@@ -34,6 +34,8 @@
     "homeAria": "Home"
   },
   "landing": {
+    "recordingPending": "Upload pending",
+    "recordingsOnline": "{online} of {total} recordings online",
     "workshopsAndTalks": "Workshops & Talks"
   },
   "nav": {

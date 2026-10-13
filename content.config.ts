@@ -38,6 +38,17 @@ export default defineContentConfig({
       schema: landingSchema,
     }),
 
+    // Recaps of past events at `/archive/<slug>` (root `archive/` = default locale `en`,
+    // localized variants live under `<locale>/archive/`, e.g. `de/archive/`)
+    archive: defineCollection({
+      type: 'page',
+      source: [
+        { include: 'archive/*.yml' },
+        { include: '*/archive/*.yml' },
+      ],
+      schema: landingSchema,
+    }),
+
     // FAQ collection for frequently asked questions
     faq: defineCollection(asSitemapCollection({
       type: 'page',

@@ -152,6 +152,28 @@ export const landingSchema = createBaseWithSeoSchema().extend({
       }),
 
       createLandingBlockBaseSchema().extend({
+        component: z.literal('AppLandingVideo'),
+        videoUrl: property(z.string().min(1)).editor({
+          // @ts-expect-error `description` is custom and patched in `nuxt-studio`
+          description: 'The YouTube Video URL.',
+        }),
+      }),
+
+      createLandingBlockBaseSchema().extend({
+        component: z.literal('AppLandingTalkVideos'),
+        items: z.array(z.object({
+          title: z.string().min(1),
+          speaker: z.string().optional(),
+          to: property(z.string().optional()).editor({
+            // @ts-expect-error `description` is custom and patched in `nuxt-studio`
+            description: 'Link to the recording. Leave empty while the recording is not online yet.',
+          }),
+          image: createImageSchema().optional(),
+        })),
+        links: z.array(createLinkSchema()).optional(),
+      }),
+
+      createLandingBlockBaseSchema().extend({
         component: z.literal('AppLandingHeroSplit'),
         links: z.array(createLinkSchema()).optional(),
         image: createImageSchema().optional(),

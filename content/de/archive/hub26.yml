@@ -1,0 +1,170 @@
+title: PRINTED Hub 2026
+description: Rückblick auf die PRINTED Hub 2026 – zwei Tage 3D-Druck mit Talks, Workshops und Community am 25. und 26. September 2026 in Rüdesheim am Rhein.
+blocks:
+  - component: AppLandingHero
+    headline: Rückblick · 25. und 26. September 2026 · Rüdesheim am Rhein
+    title: PRINTED Hub 2026
+    description: Vielen Dank für eine erfolgreiche PRINTED Hub 2026! Zwei Tage 3D-Druck, Workshops und Community im Rheingau – das Programm bleibt hier vollständig nachlesbar.
+    links:
+      - label: Zum Programm
+        to: /schedule
+        icon: i-lucide-calendar
+        size: xl
+      - label: Talks ansehen
+        to: https://www.youtube.com/@printed-europe
+        icon: i-lucide-play
+        target: _blank
+        color: neutral
+        variant: subtle
+        size: xl
+      - label: Speaker
+        to: /speakers
+        icon: i-lucide-users
+        color: neutral
+        variant: subtle
+        size: xl
+  - component: AppLandingStats
+    title: Das Event in Zahlen
+    items:
+      - value: '17'
+        label: Speaker
+      - value: '33'
+        label: Talks & Workshops
+      - value: '4'
+        label: Bühnen & Spaces
+      - value: '26'
+        label: Partner
+  - component: AppLandingTalkVideos
+    id: talks
+    headline: Alle Talks
+    title: Einzeln zum Nachschauen.
+    description: Die Aufzeichnungen gehen nach und nach online. Was fertig ist, lässt sich hier direkt starten – der Rest steht schon in der Liste und wird nachgereicht.
+    items:
+      - title: 'The Handmade Illusion: Psychologie des Verliebtseins in Kunststoff'
+        speaker: Roman Rackwitz
+      - title: Taking 3D printed stop-motion animation to the next level
+        speaker: Prashanthan Ganeswaran
+      - title: Was wäre eine Welt ohne Kunststoffe?
+        speaker: Irena Heuzeroth
+      - title: A UX Designer at the Printer — where product thinking meets 3D printing
+        speaker: Jens Schaller
+      - title: Print Stronger! Reinforcing 3D Prints with Continuous Glass or Carbon Fibre
+        speaker: Lutz Feldmann
+      - title: 'Layer by Layer: 3D Printing as Therapy'
+        speaker: Rüdiger Neuweg
+      - title: Mit 13 zum eigenen 3D Druck Unternehmen
+        speaker: Dominik Schkalei
+      - title: Hype oder Hebel? KI im 3D-Druck
+        speaker: Panel · Janos Kehl, Nils Stackler, Stefan Herman
+      - title: Warum ich immer wieder auf PLA zurück komme - verschiedene Materialen des 3D Drucks und ihre Anwendung
+        speaker: Stefan Herman
+    links:
+      - label: Zu unserem YouTube-Kanal
+        to: https://www.youtube.com/@printed-europe
+        icon: i-mdi-youtube
+        target: _blank
+        color: neutral
+        variant: outline
+  - component: AppLandingSpeakers
+    id: speakers
+    headline: Speaker
+    title: Die ihr Wissen geteilt haben.
+    description: Jeder Name führt auf die Speaker-Seite mit Bio, Links und den gehaltenen Talks.
+    slugs:
+      - bigbangbash
+      - dominik-nudaim3d
+      - fabian-bos
+      - irenaheuzeroth
+      - janos-kehl
+      - jens-schaller
+      - lutz-feldmann
+      - marius-hirn
+      - nils-stackler
+      - prash-makes
+      - robin-eschrich
+      - romanrackwitz
+      - rudolfleue
+      - rüdigerneuweg
+      - stefan-herman
+      - tobias
+      - valeria-and-mattia
+  - component: AppLandingLogoGrid
+    headline: Hauptsponsoren
+    title: Sie haben die PRINTED Hub möglich gemacht.
+    logos:
+      - src: /sponsors/snapmaker-white.svg
+        alt: Snapmaker
+        url: https://www.snapmaker.com/
+      - src: /sponsors/MultiBuild-onblack.png
+        alt: Multibuild
+        url: https://multibuild.io
+      - src: /sponsors/thangs.png
+        alt: Thangs
+        url: https://thangs.com
+      - src: /sponsors/fibreseek-white.svg
+        alt: FibreSeek
+        url: https://www.fibreseek3d.com
+  - component: AppLandingLogoGrid
+    headline: Verlosungssponsoren
+    title: Sie haben die Preise gestiftet.
+    logos:
+      - src: /sponsors/3dconnexion-white.png
+        alt: 3Dconnexion
+        url: https://3dconnexion.com
+      - src: /sponsors/prusa-research.png
+        alt: Prusa Research
+        url: https://www.prusa3d.com/de/
+      - src: /sponsors/black-mamba-ptfe.png
+        alt: Black Mamba PTFE
+      - src: /sponsors/juicebox.png
+        alt: Juicebox
+        url: https://juicebox.at
+      - src: /sponsors/cute-flexi-maker.png
+        alt: Cute Flexi Maker
+        url: https://www.cutefleximaker.com
+      - src: /sponsors/clicker-factory.png
+        alt: Clicker Factory
+        url: https://clickerfactory.com
+  - component: AppLandingLogoGrid
+    headline: Sponsoren
+    title: Partner an unserer Seite.
+    logos:
+      - src: /sponsors/skz-das-kunststoff-zentrum.png
+        alt: SKZ – Das Kunststoff-Zentrum
+        url: https://www.skz.de
+      - src: /sponsors/recycklingfabrik.png
+        alt: Recycling Fabrik
+        url: https://www.recyclingfabrik.com/
+      - src: /sponsors/farm-app.png
+        alt: Farm App
+        url: https://farm.makeorama.ch
+      - src: /sponsors/wtf.png
+        alt: W.T.F. – Wirtschaft Tourismus Förderung
+      - src: /sponsors/3d-druck-akademie.png
+        alt: 3D Druck Akademie
+        url: https://www.3dd-akademie.de
+      - src: /sponsors/recyclebar.png
+        alt: RecycleBar
+        url: https://recyclebar.org
+      - src: /sponsors/juicebox.png
+        alt: Juicebox
+        url: https://juicebox.at
+      - src: /sponsors/xtool-white.svg
+        alt: xTool
+        url: https://www.xtool.com
+      - src: /sponsors/anker.png
+        alt: Anker
+        url: https://www.anker.com
+  - component: AppLandingHeroMedia
+    headline: Das nächste Event
+    title: Die aktuelle Ausgabe liegt immer auf printed-europe.com.
+    description: Dieser Rückblick bleibt hier stehen.
+    overlayOpacity: 0.6
+    image:
+      src: /printedhub25317.jpg
+      alt: Publikum beim Event
+    links:
+      - label: printed-europe.com
+        to: /
+        icon: i-lucide-arrow-right
+        size: lg
