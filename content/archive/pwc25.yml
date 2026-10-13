@@ -6,7 +6,7 @@ blocks:
     title: PRINTED World Conference 2025
     description: 'The world met in Amsterdam: the first global gathering of the 3D printing community, with talks, panel discussions, workshops and an exhibition floor full of makers, creators and engineers.'
     links:
-      - label: Watch the thank-you video
+      - label: Watch the aftermovie
         to: /archive/pwc25#aftermovie
         icon: i-lucide-play
         size: xl
@@ -24,16 +24,16 @@ blocks:
         label: Days
       - value: '24'
         label: Speakers
-      - value: '13'
+      - value: '20'
         label: Recorded talks
       - value: '13'
         label: Partners
   - component: AppLandingVideo
     id: aftermovie
-    headline: Thank you
-    title: Thank you for PRINTED World Conference 2025.
-    description: Two days at B. Amsterdam, Johan Huizingalaan 400, in a few minutes.
-    videoUrl: https://www.youtube.com/watch?v=q4jtDTzJtsc
+    headline: Aftermovie
+    title: Two days in Amsterdam in a few minutes.
+    description: Talks, feedback and impressions from B. Amsterdam, Johan Huizingalaan 400.
+    videoUrl: https://www.youtube.com/watch?v=zV_V94-Cczk
   - component: AppLandingTalkVideos
     id: talks
     headline: All talks
@@ -42,7 +42,7 @@ blocks:
     items: []
     playlistUrl: https://www.youtube.com/playlist?list=PLqJRz7k9GBbMc1Xlf9qLC2s_SzYqVRFtd
     excludedVideoUrls:
-      - https://www.youtube.com/watch?v=q4jtDTzJtsc
+      - https://www.youtube.com/watch?v=zV_V94-Cczk
     links:
       - label: Open the playlist on YouTube
         to: https://www.youtube.com/playlist?list=PLqJRz7k9GBbMc1Xlf9qLC2s_SzYqVRFtd

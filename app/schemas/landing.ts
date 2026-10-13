@@ -174,8 +174,8 @@ export const landingSchema = createBaseWithSeoSchema().extend({
           // @ts-expect-error `description` is custom and patched in `nuxt-studio`
           description: 'Link to a public YouTube playlist with the recordings. New videos appear on their own: '
             + 'a video is matched to a talk when its title contains the talk title, e.g. `"Talk title" mit '
-            + 'Speaker`. Videos that match no listed talk are added to the end. Only the 15 newest videos '
-            + 'of a playlist can be read.',
+            + 'Speaker`. Videos that match no listed talk are added to the end. Up to 100 videos of a '
+            + 'playlist are read.',
         }),
         excludedVideoUrls: property(z.array(z.string()).optional()).editor({
           // @ts-expect-error `description` is custom and patched in `nuxt-studio`

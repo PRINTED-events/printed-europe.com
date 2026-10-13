@@ -77,7 +77,7 @@ Two helper components are not blocks themselves: `AppLandingBlockHead` is the le
 - `app/composables/useSimplifiedColorMode.ts`: adjusted for the dark-only setup.
 - `app/utils/talk.ts`: the talk type is matched case-insensitively. This is a bug fix that applies to the template as well.
 - `app/utils/youtube.ts`: new helpers that read video and playlist ids from YouTube URLs and split a recording title into talk title and speaker.
-- `server/api/youtube-playlist.get.ts`: lists the videos of a public YouTube playlist from YouTube's feed, without an API key and cached for ten minutes. The feed only contains the 15 newest videos of a playlist.
+- `server/api/youtube-playlist.get.ts`: lists the videos of a public YouTube playlist without an API key, cached for ten minutes. It reads the public playlist page (up to 100 videos) and falls back to YouTube's feed (15 videos).
 - `content.config.ts`: sitemap URLs for speakers and talks are built from the `slug` field, because the pages resolve by slug and not by file name. Pages under `content/pages/` are listed without the `/pages` prefix.
 - `nuxt.config.ts`: `i.ytimg.com` as an allowed image domain, so recording thumbnails are served through the website, sitemap exclusions, the `/kiosk` redirect, and a redirect from `/tickets` to the external ticket shop, and Vercel preview deployments use their own address as site URL.
 - Fonts: Inter is self-hosted through the new dependency `@fontsource-variable/inter` (imported in `app/assets/css/main.css`, set as `--font-sans` in `public/custom-styles.css`). The template ships no font file, so the configured typeface only appeared on devices that had it installed.
