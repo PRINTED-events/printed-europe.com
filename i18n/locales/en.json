@@ -36,6 +36,7 @@
   "landing": {
     "recordingPending": "Upload pending",
     "recordingsOnline": "{online} of {total} recordings online",
+    "videoPending": "Video coming soon",
     "workshopsAndTalks": "Workshops & Talks"
   },
   "nav": {

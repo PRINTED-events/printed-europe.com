@@ -34,6 +34,12 @@ blocks:
         label: Stages & spaces
       - value: '26'
         label: Partners
+  - component: AppLandingVideo
+    id: aftermovie
+    headline: Aftermovie
+    title: Two days in a few minutes.
+    description: The cut of the Hub – workshop air, stage and evening programme.
+    videoUrl: ''
   - component: AppLandingTalkVideos
     id: talks
     headline: All talks
@@ -58,6 +64,7 @@ blocks:
         speaker: Panel · Janos Kehl, Nils Stackler, Stefan Herman
       - title: Warum ich immer wieder auf PLA zurück komme - verschiedene Materialen des 3D Drucks und ihre Anwendung
         speaker: Stefan Herman
+    playlistUrl: ''
     links:
       - label: To our YouTube channel
         to: https://www.youtube.com/@printed-europe

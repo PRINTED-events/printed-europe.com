@@ -153,9 +153,9 @@ export const landingSchema = createBaseWithSeoSchema().extend({
 
       createLandingBlockBaseSchema().extend({
         component: z.literal('AppLandingVideo'),
-        videoUrl: property(z.string().min(1)).editor({
+        videoUrl: property(z.string().optional()).editor({
           // @ts-expect-error `description` is custom and patched in `nuxt-studio`
-          description: 'The YouTube Video URL.',
+          description: 'The YouTube Video URL. While it is empty, the block says that the video will follow.',
         }),
       }),
 
@@ -170,6 +170,13 @@ export const landingSchema = createBaseWithSeoSchema().extend({
           }),
           image: createImageSchema().optional(),
         })),
+        playlistUrl: property(z.string().optional()).editor({
+          // @ts-expect-error `description` is custom and patched in `nuxt-studio`
+          description: 'Link to a public YouTube playlist with the recordings. New videos appear on their own: '
+            + 'a video is matched to a talk when its title contains the talk title, e.g. `"Talk title" mit '
+            + 'Speaker`. Videos that match no listed talk are added to the end. Only the 15 newest videos '
+            + 'of a playlist can be read.',
+        }),
         links: z.array(createLinkSchema()).optional(),
       }),
 

@@ -4,8 +4,10 @@ const props = defineProps<{
   description?: string
   headline?: string
   // class?: string // works without using it due to Vue3's attribute fallthrough
-  videoUrl: string
+  videoUrl?: string
 }>()
+
+const { t } = useI18n()
 
 const videoId = computed(() => getYouTubeVideoId(props.videoUrl))
 </script>
@@ -42,6 +44,23 @@ const videoId = computed(() => getYouTubeVideoId(props.videoUrl))
           </template>
         </ScriptYouTubePlayer>
       </div>
+
+      <div
+        v-else
+        class="video-pending mt-10 flex aspect-video items-center justify-center rounded-lg border border-default
+        bg-muted"
+      >
+        <span
+          class="rounded-sm border border-default bg-default px-3 py-1.5 text-xs font-medium uppercase
+          tracking-widest text-muted"
+        >{{ t('landing.videoPending') }}</span>
+      </div>
     </UContainer>
   </section>
 </template>
+
+<style scoped>
+.video-pending {
+  background-image: repeating-linear-gradient(135deg, var(--ui-border) 0 1px, transparent 1px 9px);
+}
+</style>

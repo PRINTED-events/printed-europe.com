@@ -16,14 +16,55 @@ const props = defineProps<{
       alt?: string
     }
   }[]
+  // A YouTube playlist: its videos are matched to the talks by title, and
+  // videos that match no listed talk are added to the end.
+  playlistUrl?: string
   links?: ButtonProps[]
 }>()
 
 const { t } = useI18n()
 
-const onlineCount = computed(() => props.items.filter(item => item.to).length)
+const playlistId = computed(() => getYouTubePlaylistId(props.playlistUrl))
 
-function thumbnail(item: (typeof props.items)[number]) {
+const { data: playlistVideos } = await useAsyncData(
+  `talk-videos-${playlistId.value ?? 'none'}`,
+  async () => playlistId.value
+    ? await $fetch('/api/youtube-playlist', { query: { list: playlistId.value } })
+    : [],
+  { default: () => [] },
+)
+
+const talks = computed(() => {
+  const videos = playlistVideos.value.map(video => ({
+    ...parseTalkVideoTitle(video.title),
+    to: `https://www.youtube.com/watch?v=${video.id}`,
+    key: normalizeTalkTitle(video.title),
+    used: false,
+  }))
+
+  const listed = props.items.map((item) => {
+    if (item.to)
+      return item
+    const key = normalizeTalkTitle(item.title)
+    // A video belongs to a talk when one title contains the other.
+    const video = videos.find(candidate => !candidate.used && key.length >= 8
+      && (candidate.key.includes(key) || key.includes(normalizeTalkTitle(candidate.title))))
+    if (!video)
+      return item
+    video.used = true
+    return { ...item, to: video.to }
+  })
+
+  const extra = videos
+    .filter(video => !video.used)
+    .map(video => ({ title: video.title, speaker: video.speaker, to: video.to, image: undefined }))
+
+  return [...listed, ...extra]
+})
+
+const onlineCount = computed(() => talks.value.filter(item => item.to).length)
+
+function thumbnail(item: { to?: string, image?: { src: string } }) {
   if (item.image?.src)
     return item.image.src
   const videoId = getYouTubeVideoId(item.to)
@@ -41,12 +82,12 @@ function thumbnail(item: (typeof props.items)[number]) {
       />
 
       <p class="mt-10 flex items-center gap-3 text-xs font-medium uppercase tracking-widest text-muted">
-        {{ t('landing.recordingsOnline', { online: onlineCount, total: items.length }) }}
+        {{ t('landing.recordingsOnline', { online: onlineCount, total: talks.length }) }}
         <span class="h-px flex-1 bg-(--ui-border)" />
       </p>
 
       <ul class="mt-6 grid grid-cols-2 gap-x-4 gap-y-6 md:grid-cols-3 lg:grid-cols-4">
-        <li v-for="item in items" :key="item.title">
+        <li v-for="item in talks" :key="item.title + (item.to ?? '')">
           <component
             :is="item.to ? 'a' : 'div'"
             class="group grid gap-2"
@@ -60,14 +101,15 @@ function thumbnail(item: (typeof props.items)[number]) {
               :class="{ 'talk-pending': !item.to }"
             >
               <template v-if="item.to">
-                <img
+                <NuxtImg
                   v-if="thumbnail(item)"
                   :alt="item.image?.alt ?? ''"
                   class="size-full object-cover opacity-80 transition duration-300 group-hover:scale-105
                   group-hover:opacity-100"
                   loading="lazy"
                   :src="thumbnail(item)"
-                >
+                  width="320"
+                />
                 <span
                   class="absolute bottom-2 left-2 flex size-8 items-center justify-center rounded-full
                   bg-primary-500 text-white"

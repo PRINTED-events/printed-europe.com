@@ -34,6 +34,12 @@ blocks:
         label: Bühnen & Spaces
       - value: '26'
         label: Partner
+  - component: AppLandingVideo
+    id: aftermovie
+    headline: Aftermovie
+    title: Zwei Tage in wenigen Minuten.
+    description: Der Zusammenschnitt von der Hub – Werkstattluft, Bühne, Abendprogramm.
+    videoUrl: ''
   - component: AppLandingTalkVideos
     id: talks
     headline: Alle Talks
@@ -58,6 +64,7 @@ blocks:
         speaker: Panel · Janos Kehl, Nils Stackler, Stefan Herman
       - title: Warum ich immer wieder auf PLA zurück komme - verschiedene Materialen des 3D Drucks und ihre Anwendung
         speaker: Stefan Herman
+    playlistUrl: ''
     links:
       - label: Zu unserem YouTube-Kanal
         to: https://www.youtube.com/@printed-europe

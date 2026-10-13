@@ -216,6 +216,9 @@ export default defineNuxtConfig({
   },
 
   image: { // for `@nuxt/image`
+    // Thumbnails of talk recordings are served through this website instead of
+    // being loaded from YouTube by the visitor's browser.
+    domains: ['i.ytimg.com'],
   },
 
   content: { // for `@nuxt/content`
