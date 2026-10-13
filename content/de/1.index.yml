@@ -54,6 +54,30 @@ blocks:
         instead: Freundschaften schließen
       - not: Aus der Menge zuschauen
         instead: Am selben Tisch sitzen
+  - component: AppLandingVenueArea
+    id: location
+    headline: Location
+    title: Scheltema Leiden
+    description: Die PRINTED World Conference 2027 findet im Scheltema Leiden statt, einer ehemaligen Wolldeckenfabrik an der Gracht im Zentrum von Leiden, in der Nähe von Amsterdam.
+    items:
+      - 21. und 22. Mai 2027
+      - Marktsteeg 1, 2312 CS Leiden, Niederlande
+    image:
+      src: /venues/scheltema-leiden.webp
+      alt: Scheltema Leiden bei Nacht, von der Gracht aus gesehen
+    links:
+      - label: Website der Location
+        to: https://www.scheltemaleiden.nl/
+        icon: i-lucide-external-link
+        target: _blank
+        color: neutral
+        variant: outline
+      - label: In Google Maps öffnen
+        to: https://www.google.com/maps/search/?api=1&query=Scheltema+Leiden%2C+Marktsteeg+1%2C+2312+CS+Leiden
+        icon: i-lucide-map-pin
+        target: _blank
+        color: neutral
+        variant: outline
   - component: AppLandingPillars
     headline: Learn. Network. Create.
     title: Drei Worte. Ein Gefühl.
@@ -219,30 +243,6 @@ blocks:
       - src: /sponsors/skz.png
         alt: SKZ – Das Kunststoff-Zentrum
         url: https://www.skz.de
-  - component: AppLandingVenueArea
-    id: location
-    headline: Location
-    title: Scheltema Leiden
-    description: Die PRINTED World Conference 2027 findet im Scheltema Leiden statt, einer ehemaligen Wolldeckenfabrik an der Gracht im Zentrum von Leiden, in der Nähe von Amsterdam.
-    items:
-      - 21. und 22. Mai 2027
-      - Marktsteeg 1, 2312 CS Leiden, Niederlande
-    image:
-      src: /venues/scheltema-leiden.webp
-      alt: Scheltema Leiden bei Nacht, von der Gracht aus gesehen
-    links:
-      - label: Website der Location
-        to: https://www.scheltemaleiden.nl/
-        icon: i-lucide-external-link
-        target: _blank
-        color: neutral
-        variant: outline
-      - label: In Google Maps öffnen
-        to: https://www.google.com/maps/search/?api=1&query=Scheltema+Leiden%2C+Marktsteeg+1%2C+2312+CS+Leiden
-        icon: i-lucide-map-pin
-        target: _blank
-        color: neutral
-        variant: outline
   - component: AppLandingHeroMedia
     id: join
     headline: Wir sehen uns
