@@ -21,9 +21,8 @@ blocks:
         to: /tickets
         size: xl
       - label: Aftermovie 2025 ansehen
-        to: https://www.youtube.com/watch?v=mou_V2jFpBE
+        to: /archive/pwc25#aftermovie
         icon: i-lucide-play
-        target: _blank
         color: neutral
         variant: outline
         size: xl
