@@ -42,6 +42,7 @@ const LANGUAGE_NEUTRAL_KEYS = new Set([
   'discount',
   'gap',
   'icon',
+  'id',
   'imageHeight',
   'orientation',
   'price',

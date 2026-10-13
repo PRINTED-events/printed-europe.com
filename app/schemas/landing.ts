@@ -64,6 +64,94 @@ export const landingSchema = createBaseWithSeoSchema().extend({
       }),
 
       createLandingBlockBaseSchema().extend({
+        component: z.literal('AppLandingHeroFamily'),
+        titleAccent: property(z.string().optional()).editor({
+          // @ts-expect-error `description` is custom and patched in `nuxt-studio`
+          description: 'Closing words of the title, shown in the accent color.',
+        }),
+        claim: z.array(z.string()).optional(),
+        links: z.array(createLinkSchema()).optional(),
+        image: createImageSchema().optional(),
+        editions: z.array(z.object({
+          label: z.string().min(1),
+          text: z.string().optional(),
+        })).optional(),
+        badge: z.object({
+          greeting: z.string().optional(),
+          names: z.array(z.string().min(1)).min(1),
+          role: z.string().optional(),
+          note: z.string().optional(),
+        }).optional(),
+      }),
+
+      createLandingBlockBaseSchema().extend({
+        component: z.literal('AppLandingManifesto'),
+        lead: z.string().optional(),
+        text: z.string().optional(),
+        accent: z.string().optional(),
+        items: z.array(z.object({
+          not: z.string().min(1),
+          instead: z.string().min(1),
+        })).optional(),
+      }),
+
+      createLandingBlockBaseSchema().extend({
+        component: z.literal('AppLandingPillars'),
+        items: z.array(z.object({
+          word: z.string().min(1),
+          title: z.string().min(1),
+          description: z.string().optional(),
+          items: z.array(z.string()).optional(),
+          image: createImageSchema().optional(),
+        })),
+      }),
+
+      createLandingBlockBaseSchema().extend({
+        component: z.literal('AppLandingMosaic'),
+        images: z.array(createImageSchema().extend({
+          caption: z.string().optional(),
+        })),
+      }),
+
+      createLandingBlockBaseSchema().extend({
+        component: z.literal('AppLandingStats'),
+        items: z.array(z.object({
+          value: z.string().min(1),
+          suffix: z.string().optional(),
+          label: z.string().min(1),
+        })),
+      }),
+
+      createLandingBlockBaseSchema().extend({
+        component: z.literal('AppLandingAudience'),
+        image: createImageSchema().optional(),
+        items: z.array(z.object({
+          text: z.string().min(1),
+          reply: z.string().min(1),
+        })),
+      }),
+
+      createLandingBlockBaseSchema().extend({
+        component: z.literal('AppLandingEvents'),
+        items: z.array(z.object({
+          meta: z.string().optional(),
+          title: z.string().min(1),
+          description: z.string().optional(),
+          image: createImageSchema().optional(),
+          links: z.array(createLinkSchema()).optional(),
+        })),
+      }),
+
+      createLandingBlockBaseSchema().extend({
+        component: z.literal('AppLandingPartners'),
+        logos: z.array(z.object({
+          src: z.string().min(1),
+          alt: z.string().optional(),
+          url: z.string().optional(),
+        })),
+      }),
+
+      createLandingBlockBaseSchema().extend({
         component: z.literal('AppLandingHeroSplit'),
         links: z.array(createLinkSchema()).optional(),
         image: createImageSchema().optional(),
@@ -162,6 +250,10 @@ export const landingSchema = createBaseWithSeoSchema().extend({
 
       createLandingBlockBaseSchema().extend({
         component: z.literal('AppLandingSpeakers'),
+        slugs: property(z.array(z.string()).optional()).editor({
+          // @ts-expect-error `description` is custom and patched in `nuxt-studio`
+          description: 'Speaker slugs to show, in this order. If empty, all featured speakers are shown.',
+        }),
       }),
 
       createLandingBlockBaseSchema().extend({

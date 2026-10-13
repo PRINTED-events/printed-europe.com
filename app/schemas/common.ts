@@ -119,6 +119,10 @@ export function createLandingBlockBaseSchema() {
       // @ts-expect-error `description` is custom and patched in `nuxt-studio`
       description: 'Tailwind classes for custom styling (e.g. "md:-mt-20").',
     }),
+    id: property(z.string().optional()).editor({
+      // @ts-expect-error `description` is custom and patched in `nuxt-studio`
+      description: 'Anchor of the block, so links like `/#partners` can jump to it.',
+    }),
   })
 }
 

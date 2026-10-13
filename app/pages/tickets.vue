@@ -62,7 +62,16 @@ defineOgImageComponent('DefaultSatori', {
         :title="seoMetadata.title"
       />
 
-      <UPricingPlans :plans="tickets" />
+      <UPricingPlans v-if="tickets.length" :plans="tickets" />
+
+      <UPageCard
+        v-else
+        class="mt-8"
+        :description="t('tickets.comingSoon.description')"
+        icon="i-lucide-ticket"
+        :title="t('tickets.comingSoon.title')"
+        variant="subtle"
+      />
 
       <AccessibilityNote />
     </UContainer>

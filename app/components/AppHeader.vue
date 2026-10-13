@@ -16,9 +16,9 @@ const allEvents = computed(() => [
     target: '_blank',
   },
   {
-    label: 'PRINTED Worldconference',
-    description: `May 2027 · Amsterdam – ${t('common.comingSoon')}`,
-    disabled: true,
+    label: 'PRINTED Hub',
+    description: 'Sep 2026 · Rüdesheim',
+    to: '/schedule',
   },
   {
     label: t('header.aboutPrintedEvents'),
@@ -29,9 +29,12 @@ const allEvents = computed(() => [
 
 const items = computed(() => [
   {
-    label: t('nav.schedule'),
-    to: '/schedule',
-    active: route.path.startsWith('/schedule') || route.path.startsWith('/talks'),
+    label: t('nav.whyPrinted'),
+    to: '/#family',
+  },
+  {
+    label: t('nav.events'),
+    children: allEvents.value,
   },
   {
     label: t('nav.speakers'),
@@ -39,18 +42,13 @@ const items = computed(() => [
     active: route.path.startsWith('/speakers'),
   },
   {
-    label: t('nav.location'),
-    to: '/faq/location',
-    active: route.path.startsWith('/faq/location'),
+    label: t('nav.partners'),
+    to: '/#partners',
   },
   {
     label: t('nav.faq'),
     to: '/faq',
     active: route.path.startsWith('/faq'),
-  },
-  {
-    label: t('nav.events'),
-    children: allEvents.value,
   },
 ])
 </script>
@@ -134,4 +132,3 @@ const items = computed(() => [
     </template>
   </UHeader>
 </template>
-
