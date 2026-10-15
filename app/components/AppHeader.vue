@@ -2,7 +2,13 @@
 const route = useRoute()
 const { t } = useI18n()
 
+// Past events, newest first.
 const allEvents = computed(() => [
+  {
+    label: 'PRINTED Hub',
+    description: 'Sep 2026 · Rüdesheim',
+    to: '/archive/hub26',
+  },
   {
     label: 'PRINTED Hub',
     description: 'Aug 2025 · Rüdesheim',
@@ -12,11 +18,6 @@ const allEvents = computed(() => [
     label: 'PRINTED Worldconference',
     description: 'May 2025 · Amsterdam',
     to: '/archive/pwc25',
-  },
-  {
-    label: 'PRINTED Hub',
-    description: 'Sep 2026 · Rüdesheim',
-    to: '/archive/hub26',
   },
   {
     label: t('header.aboutPrintedEvents'),
