@@ -21,6 +21,8 @@ const props = defineProps<{
     greeting?: string
     names: string[]
     role?: string
+    // Cycled through on the badge; takes precedence over `role`.
+    roles?: string[]
     note?: string
   }
 }>()
@@ -30,7 +32,14 @@ const props = defineProps<{
 // keeps the server-rendered and the client-rendered markup identical.
 const nameOrder = ref((props.badge?.names ?? []).map((_, index) => index))
 const namePosition = ref(0)
-const badgeName = computed(() => props.badge?.names[nameOrder.value[namePosition.value] ?? 0])
+const badgeName = computed(() => {
+  const count = props.badge?.names.length ?? 0
+  return count ? props.badge?.names[nameOrder.value[namePosition.value % count] ?? 0] : undefined
+})
+
+// The role label runs through its list in the given order, one step per name.
+const roles = computed(() => props.badge?.roles?.length ? props.badge.roles : [props.badge?.role].filter(Boolean))
+const badgeRole = computed(() => roles.value[namePosition.value % Math.max(roles.value.length, 1)])
 let timer: ReturnType<typeof setInterval> | undefined
 
 function shuffled(count: number, first: number) {
@@ -44,11 +53,12 @@ function shuffled(count: number, first: number) {
 
 onMounted(() => {
   const count = props.badge?.names.length ?? 0
-  if (count < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+  if (Math.max(count, roles.value.length) < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches)
     return
   nameOrder.value = shuffled(count, 0)
   timer = setInterval(() => {
-    namePosition.value = (namePosition.value + 1) % count
+    // Counts on past the end of the names, so the roles keep going even when the two lists differ in length.
+    namePosition.value++
   }, 2200)
 })
 
@@ -155,10 +165,10 @@ const claimColors = ['text-white', 'text-primary-200', 'text-primary-400']
             {{ badgeName }}
           </p>
           <span
-            v-if="badge.role"
+            v-if="badgeRole"
             class="mt-3.5 inline-block rounded-full bg-primary-500 px-3 py-1 text-xs font-bold uppercase
             tracking-widest text-white"
-          >{{ badge.role }}</span>
+          >{{ badgeRole }}</span>
           <p v-if="badge.note" class="mt-3 text-[13px] leading-snug text-slate-600">
             {{ badge.note }}
           </p>

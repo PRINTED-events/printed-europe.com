@@ -42,7 +42,13 @@ blocks:
         - Priya
         - Chen
         - Amara
-      role: Family
+      roles:
+        - Maker
+        - Creator
+        - Designer
+        - Crew
+        - Brand
+        - Family
       note: First time? Perfect. Somebody will say hi before you've found the coffee.
   - component: AppLandingManifesto
     id: family

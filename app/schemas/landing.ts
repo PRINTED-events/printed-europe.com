@@ -80,6 +80,7 @@ export const landingSchema = createBaseWithSeoSchema().extend({
           greeting: z.string().optional(),
           names: z.array(z.string().min(1)).min(1),
           role: z.string().optional(),
+          roles: z.array(z.string().min(1)).optional(),
           note: z.string().optional(),
         }).optional(),
       }),
