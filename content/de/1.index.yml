@@ -203,9 +203,9 @@ blocks:
             variant: outline
   - component: AppLandingSpeakers
     id: speakers
-    headline: Speaker
-    title: Sie haben den Weg bereitet – und sitzen beim Abendessen trotzdem neben dir.
-    description: Unsere Speaker verschwinden nicht hinter der Bühne. Sie sind in den Workshops, in der Schlange an der Bar und bei den späten Gesprächen dabei.
+    headline: Vergangene Speaker
+    title: Sie standen schon bei uns auf der Bühne.
+    description: Diese Speaker haben ihr Wissen bei vergangenen PRINTED Events geteilt – und waren danach in den Workshops, in der Schlange an der Bar und bei den späten Gesprächen dabei. Das Line-up für die PRINTED World Conference 2027 wird noch bekannt gegeben.
     slugs:
       - stefan-herman
       - adrianluben

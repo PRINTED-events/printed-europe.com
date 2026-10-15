@@ -203,9 +203,9 @@ blocks:
             variant: outline
   - component: AppLandingSpeakers
     id: speakers
-    headline: Speakers
-    title: Those who paved the way, and still sit with you at dinner.
-    description: Our speakers don't vanish backstage. They join the workshops, the queue at the bar and the late conversations.
+    headline: Past speakers
+    title: Those who have already been on our stage.
+    description: These speakers shared their knowledge at past PRINTED events – and stayed for the workshops, the queue at the bar and the late conversations. The lineup for the PRINTED World Conference 2027 will be announced soon.
     slugs:
       - stefan-herman
       - adrianluben
