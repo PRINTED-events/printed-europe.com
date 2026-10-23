@@ -45,6 +45,12 @@ const talks = computed(() => {
     used: false,
   }))
 
+  // A talk with its own link claims that video, so it is not added again below.
+  const linkedIds = props.items.map(item => getYouTubeVideoId(item.to)).filter(Boolean)
+  videos.forEach((video) => {
+    video.used = linkedIds.includes(getYouTubeVideoId(video.to))
+  })
+
   const listed = props.items.map((item) => {
     if (item.to)
       return item

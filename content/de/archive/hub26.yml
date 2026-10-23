@@ -11,7 +11,7 @@ blocks:
         icon: i-lucide-calendar
         size: xl
       - label: Talks ansehen
-        to: https://www.youtube.com/@printed-europe
+        to: https://www.youtube.com/playlist?list=PLDf6XVLSvmRQ
         icon: i-lucide-play
         target: _blank
         color: neutral
@@ -48,14 +48,17 @@ blocks:
     items:
       - title: 'The Handmade Illusion: Psychologie des Verliebtseins in Kunststoff'
         speaker: Roman Rackwitz
+        to: https://www.youtube.com/watch?v=w07ZD6ed16c
       - title: Taking 3D printed stop-motion animation to the next level
         speaker: Prashanthan Ganeswaran
       - title: Was wäre eine Welt ohne Kunststoffe?
         speaker: Irena Heuzeroth
+        to: https://www.youtube.com/watch?v=z3YJ_9cuKOs
       - title: A UX Designer at the Printer — where product thinking meets 3D printing
         speaker: Jens Schaller
       - title: Print Stronger! Reinforcing 3D Prints with Continuous Glass or Carbon Fibre
         speaker: Lutz Feldmann
+        to: https://www.youtube.com/watch?v=Y0emHdtVWwo
       - title: 'Layer by Layer: 3D Printing as Therapy'
         speaker: Rüdiger Neuweg
       - title: Mit 13 zum eigenen 3D Druck Unternehmen
@@ -64,10 +67,10 @@ blocks:
         speaker: Panel · Janos Kehl, Nils Stackler, Stefan Herman
       - title: Warum ich immer wieder auf PLA zurück komme - verschiedene Materialen des 3D Drucks und ihre Anwendung
         speaker: Stefan Herman
-    playlistUrl: ''
+    playlistUrl: https://www.youtube.com/playlist?list=PLDf6XVLSvmRQ
     links:
       - label: Zu unserem YouTube-Kanal
-        to: https://www.youtube.com/@printed-europe
+        to: https://www.youtube.com/playlist?list=PLDf6XVLSvmRQ
         icon: i-mdi-youtube
         target: _blank
         color: neutral
