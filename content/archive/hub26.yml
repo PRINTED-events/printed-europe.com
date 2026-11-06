@@ -39,7 +39,7 @@ blocks:
     headline: Aftermovie
     title: Two days in a few minutes.
     description: The cut of the Hub – workshop air, stage and evening programme.
-    videoUrl: ''
+    videoUrl: https://www.youtube.com/watch?v=DzMhYr8SRFE
   - component: AppLandingTalkVideos
     id: talks
     headline: All talks
@@ -73,6 +73,8 @@ blocks:
       - title: Warum ich immer wieder auf PLA zurück komme - verschiedene Materialen des 3D Drucks und ihre Anwendung
         speaker: Stefan Herman
     playlistUrl: https://www.youtube.com/playlist?list=PLDf6XVLSvmRQ
+    excludedVideoUrls:
+      - https://www.youtube.com/watch?v=DzMhYr8SRFE
     links:
       - label: To our YouTube channel
         to: https://www.youtube.com/playlist?list=PLDf6XVLSvmRQ
