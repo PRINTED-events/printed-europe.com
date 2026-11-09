@@ -9,6 +9,7 @@
       "tooShort": "Please tell us a little more."
     },
     "facts": {
+      "deadline": "Apply by 31 January 2027.",
       "recording": "Our own production team records every talk. You are free to use the recording for your own channels afterwards.",
       "reply": "We read every application and get back to you personally.",
       "stage": "Talks take place on 21 and 22 May 2027 at Scheltema Leiden, near Amsterdam."
@@ -56,7 +57,7 @@
       "description": "We will read it and get back to you by e-mail.",
       "title": "Thank you, your application is in."
     },
-    "seoDescription": "Apply as a speaker for the PRINTED World Conference on 21 and 22 May 2027 in Leiden near Amsterdam.",
+    "seoDescription": "Apply as a speaker for the PRINTED World Conference on 21 and 22 May 2027 in Leiden near Amsterdam. Deadline: 31 January 2027.",
     "seoTitle": "Call for Papers",
     "sponsor": {
       "needs-sponsor": {

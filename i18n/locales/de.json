@@ -9,6 +9,7 @@
       "tooShort": "Erzähl uns bitte etwas mehr."
     },
     "facts": {
+      "deadline": "Bewirb dich bis zum 31. Januar 2027.",
       "recording": "Unser eigenes Produktionsteam zeichnet jeden Talk auf. Die Aufnahme darfst du danach für deine eigenen Kanäle nutzen.",
       "reply": "Wir lesen jede Bewerbung und melden uns persönlich bei dir.",
       "stage": "Die Talks finden am 21. und 22. Mai 2027 im Scheltema Leiden bei Amsterdam statt."
@@ -56,7 +57,7 @@
       "description": "Wir lesen sie und melden uns per E-Mail bei dir.",
       "title": "Danke, deine Bewerbung ist angekommen."
     },
-    "seoDescription": "Bewirb dich als Speaker für die PRINTED World Conference am 21. und 22. Mai 2027 in Leiden bei Amsterdam.",
+    "seoDescription": "Bewirb dich als Speaker für die PRINTED World Conference am 21. und 22. Mai 2027 in Leiden bei Amsterdam. Bewerbungsschluss: 31. Januar 2027.",
     "seoTitle": "Call for Papers",
     "sponsor": {
       "needs-sponsor": {

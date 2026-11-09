@@ -1,10 +1,13 @@
+import process from 'node:process'
+
 /**
  * Receives a speaker application from the form on `/cfp` and sends it by
  * e-mail through Resend (https://resend.com).
  *
  * Configured with environment variables:
- * - `NUXT_CFP_RESEND_API_KEY`: Resend API key. Without it the endpoint answers
- *   503 and the form falls back to opening the visitor's mail program.
+ * - `NUXT_CFP_RESEND_API_KEY` (or the common `RESEND_API_KEY`): Resend API
+ *   key. Without it the endpoint answers 503 and the form falls back to
+ *   opening the visitor's mail program.
  * - `NUXT_CFP_MAIL_FROM`: sender, on a domain verified at Resend,
  *   e.g. `PRINTED Call for Papers <cfp@printed-europe.com>`.
  * - `NUXT_CFP_MAIL_TO`: recipient, default `office@printed-events.com`.
@@ -18,8 +21,9 @@ const SPONSOR_LABELS: Record<CfpSponsorOption, string> = {
 
 export default defineEventHandler(async (event) => {
   const { cfp } = useRuntimeConfig(event)
+  const apiKey = cfp.resendApiKey || process.env.RESEND_API_KEY
 
-  if (!cfp.resendApiKey || !cfp.mailFrom)
+  if (!apiKey || !cfp.mailFrom)
     throw createError({ statusCode: 503, statusMessage: 'Applications by form are not set up yet' })
 
   const result = cfpSchema.safeParse(await readBody(event))
@@ -34,7 +38,7 @@ export default defineEventHandler(async (event) => {
 
   await $fetch('https://api.resend.com/emails', {
     method: 'POST',
-    headers: { Authorization: `Bearer ${cfp.resendApiKey}` },
+    headers: { Authorization: `Bearer ${apiKey}` },
     body: {
       from: cfp.mailFrom,
       to: [cfp.mailTo],

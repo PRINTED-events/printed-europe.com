@@ -52,7 +52,7 @@ blocks:
       note: Zum ersten Mal dabei? Perfekt. Jemand sagt Hallo, noch bevor du den Kaffee gefunden hast.
   - component: AppLandingCallout
     id: cfp
-    headline: Der Call for Papers ist offen
+    headline: Call for Papers · offen bis 31. Januar 2027
     title: Du hast etwas zu erzählen? Hol dir die Bühne in Leiden.
     description: Bewirb dich als Speaker für die PRINTED World Conference 2027. Maker, Creator, Designer und Unternehmen sind willkommen, mit oder ohne Sponsor.
     icon: i-lucide-mic-vocal

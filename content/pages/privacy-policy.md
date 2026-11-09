@@ -43,7 +43,15 @@ Ticket sales are handled via [tito](https://ti.to), a third-party ticketing serv
 
 If you contact us by email, the information you provide (including your email address) will be stored for the purpose of processing your request. This data will not be shared with third parties without your consent. The legal basis is Art. 6 (1) lit. b GDPR.
 
-## 6. Your Rights
+## 6. Speaker Applications (Call for Papers)
+
+If you apply as a speaker through the form at [/cfp](/cfp), we process the details you enter: your name, email address, creator handle and social media channels, your talk topic and description, your sponsoring situation and anything else you tell us. We use this data only to review your application, to contact you about it and, if your talk is accepted, to plan the event with you. The legal basis is Art. 6 (1) lit. b GDPR (steps prior to entering into an agreement at your request).
+
+The form sends your application as an email to our team. For this we use Resend (Resend, Inc., 2261 Market Street #5039, San Francisco, CA 94114, USA) as a processor under a data processing agreement. Resend may process data in the USA; the transfer is based on the EU Standard Contractual Clauses. Details: [https://resend.com/legal/privacy-policy](https://resend.com/legal/privacy-policy). If the form opens your own email program instead, your application is sent through your email provider and is handled as described under "Contact via Email".
+
+We delete applications that are not accepted no later than six months after the conference. Details of accepted speakers are kept as long as needed for the event and its follow-up, and as required by law.
+
+## 7. Your Rights
 
 You have the right to:
 
@@ -56,19 +64,19 @@ You have the right to:
 
 To exercise any of these rights, please contact us at [office@printed-events.com](mailto:office@printed-events.com).
 
-## 7. Right to Lodge a Complaint
+## 8. Right to Lodge a Complaint
 
 You have the right to lodge a complaint with a supervisory authority. The competent authority for Printed Events is:
 
 Landesbeauftragter für den Datenschutz und die Informationsfreiheit Rheinland-Pfalz\
 [https://www.datenschutz.rlp.de](https://www.datenschutz.rlp.de)
 
-## 8. Data Retention
+## 9. Data Retention
 
 We store personal data only as long as necessary for the purpose it was collected, or as required by law.
 
-## 9. Changes to This Privacy Policy
+## 10. Changes to This Privacy Policy
 
 We reserve the right to update this privacy policy to reflect changes in legal requirements or our services. The current version is always available at this URL.
 
-*Last updated: May 2026*
+_Last updated: November 2026_

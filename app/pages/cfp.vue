@@ -104,12 +104,17 @@ async function onSubmit(event: FormSubmitEvent<CfpSubmission>) {
 
         <ul class="mt-8 space-y-4">
           <li
-            v-for="key in ['stage', 'recording', 'reply']"
+            v-for="key in ['deadline', 'stage', 'recording', 'reply']"
             :key="key"
             class="flex gap-3"
           >
-            <UIcon class="mt-1 size-5 shrink-0 text-primary" name="i-lucide-check" />
-            <span class="text-muted">{{ t(`cfp.facts.${key}`) }}</span>
+            <UIcon
+              class="mt-1 size-5 shrink-0 text-primary"
+              :name="key === 'deadline' ? 'i-lucide-calendar-clock' : 'i-lucide-check'"
+            />
+            <span :class="key === 'deadline' ? 'font-semibold text-highlighted' : 'text-muted'">
+              {{ t(`cfp.facts.${key}`) }}
+            </span>
           </li>
         </ul>
 

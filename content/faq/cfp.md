@@ -22,7 +22,7 @@ You are free to use your very own reording also for your own marketing purpose a
 
 Fill in the [speaker application form](/cfp). Tell us who you are, where people can find you online, what you want to talk about, and whether you already work with a sponsor, are looking for one, or want to present your own project without one.
 
-We read every application and get back to you personally.
+Applications for the PRINTED World Conference 2027 are open until **31 January 2027**. We read every application and get back to you personally.
 
 ## Questions?
 
