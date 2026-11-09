@@ -1,4 +1,80 @@
 {
+  "cfp": {
+    "breadcrumb": "Call for Papers",
+    "errors": {
+      "consent": "Bitte stimme zu, damit wir deine Bewerbung bearbeiten können.",
+      "email": "Bitte gib eine gültige E-Mail-Adresse ein.",
+      "required": "Bitte fülle dieses Feld aus.",
+      "tooLong": "Das ist zu lang.",
+      "tooShort": "Erzähl uns bitte etwas mehr."
+    },
+    "facts": {
+      "recording": "Unser eigenes Produktionsteam zeichnet jeden Talk auf. Die Aufnahme darfst du danach für deine eigenen Kanäle nutzen.",
+      "reply": "Wir lesen jede Bewerbung und melden uns persönlich bei dir.",
+      "stage": "Die Talks finden am 21. und 22. Mai 2027 im Scheltema Leiden bei Amsterdam statt."
+    },
+    "failed": {
+      "description": "Bitte versuch es gleich noch einmal oder schreib uns an {email}.",
+      "title": "Deine Bewerbung konnte nicht gesendet werden."
+    },
+    "fields": {
+      "abstract": "Worüber möchtest du sprechen?",
+      "consent": "Ich bin einverstanden, dass PRINTED meine Angaben speichert, um diese Bewerbung zu bearbeiten. Mehr dazu in der {privacy}.",
+      "email": "E-Mail",
+      "handle": "Creator-Handle",
+      "name": "Name",
+      "notes": "Möchtest du uns sonst noch etwas sagen?",
+      "socials": "Social-Media-Kanäle",
+      "sponsorName": "Welcher Sponsor?",
+      "title": "Thema oder Arbeitstitel"
+    },
+    "headline": "Call for Papers · PRINTED World Conference 2027",
+    "help": {
+      "abstract": "Ein paar Sätze reichen: was du zeigst und was die Leute daraus mitnehmen.",
+      "socials": "Ein Link pro Zeile: YouTube, Instagram, TikTok, Website oder was du sonst nutzt."
+    },
+    "intro": "Du hast ein Projekt, eine hart erarbeitete Erkenntnis oder eine Idee, die die Community hören sollte? Erzähl uns davon. Maker, Creator, Designer und Unternehmen können sich gleichermaßen bewerben.",
+    "mail": {
+      "back": "Zurück zum Formular",
+      "description": "Dein Mailprogramm sollte sich mit deiner Bewerbung an {email} geöffnet haben. Bitte schick sie von dort ab.",
+      "open": "E-Mail erneut öffnen",
+      "title": "Fast geschafft: E-Mail absenden"
+    },
+    "optional": "Optional",
+    "placeholders": {
+      "handle": "{'@'}yourhandle",
+      "socials": "youtube.com/{'@'}yourchannel\ninstagram.com/yourhandle"
+    },
+    "privacy": "Datenschutzerklärung",
+    "questions": "Fragen zum Speaken bei PRINTED? Schreib uns an {email}.",
+    "sections": {
+      "sponsor": "Sponsoring",
+      "talk": "Dein Talk",
+      "you": "Über dich"
+    },
+    "sent": {
+      "description": "Wir lesen sie und melden uns per E-Mail bei dir.",
+      "title": "Danke, deine Bewerbung ist angekommen."
+    },
+    "seoDescription": "Bewirb dich als Speaker für die PRINTED World Conference am 21. und 22. Mai 2027 in Leiden bei Amsterdam.",
+    "seoTitle": "Call for Papers",
+    "sponsor": {
+      "needs-sponsor": {
+        "description": "Ich hätte gern Unterstützung bei der Suche nach einem Sponsor für meinen Talk.",
+        "label": "Ich suche einen Sponsor"
+      },
+      "no-sponsor": {
+        "description": "Ich möchte mein eigenes Projekt vorstellen und brauche nur einen Platz auf der Bühne.",
+        "label": "Ich brauche keinen Sponsor"
+      },
+      "own-sponsor": {
+        "description": "Einer meiner Hauptsponsoren würde diesen Talk unterstützen.",
+        "label": "Ich arbeite schon mit einem Sponsor"
+      }
+    },
+    "submit": "Bewerbung senden",
+    "title": "Deine Bühne in Leiden."
+  },
   "common": {
     "comingSoon": "Demnächst",
     "home": "Start",

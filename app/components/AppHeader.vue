@@ -88,7 +88,7 @@ const items = computed(() => [
         class="hidden lg:inline-flex"
         color="primary"
         :label="t('header.applyAsSpeaker')"
-        to="/faq/cfp"
+        to="/cfp"
         variant="outline"
       />
 
@@ -123,7 +123,7 @@ const items = computed(() => [
         class="mb-3"
         color="primary"
         :label="t('header.applyAsSpeaker')"
-        to="/faq/cfp"
+        to="/cfp"
         variant="subtle"
       />
 

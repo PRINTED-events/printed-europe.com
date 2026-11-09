@@ -84,6 +84,12 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    // Call for papers form, see `server/api/cfp.post.ts`.
+    cfp: {
+      resendApiKey: '',
+      mailFrom: '',
+      mailTo: 'office@printed-events.com',
+    },
     public: {
       demoMode: false,
     },

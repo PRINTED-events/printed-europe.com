@@ -15,6 +15,14 @@ export const landingSchema = createBaseWithSeoSchema().extend({
     z.discriminatedUnion('component', [
 
       createLandingBlockBaseSchema().extend({
+        component: z.literal('AppLandingCallout'),
+        icon: property(z.string().optional()).editor({
+          input: 'icon',
+        }),
+        links: z.array(createLinkSchema()).optional(),
+      }),
+
+      createLandingBlockBaseSchema().extend({
         component: z.literal('AppLandingCta'),
         links: z.array(createLinkSchema()).optional(),
       }),

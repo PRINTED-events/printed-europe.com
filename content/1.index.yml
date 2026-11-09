@@ -50,6 +50,18 @@ blocks:
         - Brand
         - Family
       note: First time? Perfect. Somebody will say hi before you've found the coffee.
+  - component: AppLandingCallout
+    id: cfp
+    headline: Call for Papers is open
+    title: Got something to share? Take the stage in Leiden.
+    description: Apply as a speaker for the PRINTED World Conference 2027. Makers, creators, designers and companies are all welcome, with or without a sponsor.
+    icon: i-lucide-mic-vocal
+    links:
+      - label: Apply as speaker
+        to: /cfp
+        icon: i-lucide-arrow-right
+        trailing: true
+        size: xl
   - component: AppLandingManifesto
     id: family
     headline: Why PRINTED feels different
@@ -266,7 +278,7 @@ blocks:
         to: /tickets
         size: xl
       - label: Apply as Speaker
-        to: /faq/cfp
+        to: /cfp
         color: neutral
         variant: outline
         size: xl

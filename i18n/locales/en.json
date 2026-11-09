@@ -1,4 +1,80 @@
 {
+  "cfp": {
+    "breadcrumb": "Call for Papers",
+    "errors": {
+      "consent": "Please agree so we can process your application.",
+      "email": "Please enter a valid e-mail address.",
+      "required": "Please fill in this field.",
+      "tooLong": "This is too long.",
+      "tooShort": "Please tell us a little more."
+    },
+    "facts": {
+      "recording": "Our own production team records every talk. You are free to use the recording for your own channels afterwards.",
+      "reply": "We read every application and get back to you personally.",
+      "stage": "Talks take place on 21 and 22 May 2027 at Scheltema Leiden, near Amsterdam."
+    },
+    "failed": {
+      "description": "Please try again in a moment, or write to us at {email}.",
+      "title": "Your application could not be sent."
+    },
+    "fields": {
+      "abstract": "What do you want to talk about?",
+      "consent": "I agree that PRINTED stores my details to process this application. More in the {privacy}.",
+      "email": "E-mail",
+      "handle": "Creator handle",
+      "name": "Name",
+      "notes": "Anything else we should know?",
+      "socials": "Social media channels",
+      "sponsorName": "Which sponsor?",
+      "title": "Topic or working title"
+    },
+    "headline": "Call for Papers · PRINTED World Conference 2027",
+    "help": {
+      "abstract": "A few sentences are enough: what you will show, and what people take home from it.",
+      "socials": "One link per line: YouTube, Instagram, TikTok, website or anything else."
+    },
+    "intro": "Got a project, a hard-won lesson or an idea the community should hear? Tell us about it. Makers, creators, designers and companies are all welcome to apply.",
+    "mail": {
+      "back": "Back to the form",
+      "description": "Your mail program should have opened with your application to {email}. Please send it from there.",
+      "open": "Open e-mail again",
+      "title": "Almost done: send the e-mail"
+    },
+    "optional": "Optional",
+    "placeholders": {
+      "handle": "{'@'}yourhandle",
+      "socials": "youtube.com/{'@'}yourchannel\ninstagram.com/yourhandle"
+    },
+    "privacy": "privacy policy",
+    "questions": "Questions about speaking at PRINTED? Write to {email}.",
+    "sections": {
+      "sponsor": "Sponsoring",
+      "talk": "Your talk",
+      "you": "About you"
+    },
+    "sent": {
+      "description": "We will read it and get back to you by e-mail.",
+      "title": "Thank you, your application is in."
+    },
+    "seoDescription": "Apply as a speaker for the PRINTED World Conference on 21 and 22 May 2027 in Leiden near Amsterdam.",
+    "seoTitle": "Call for Papers",
+    "sponsor": {
+      "needs-sponsor": {
+        "description": "I would like help finding a sponsor for my talk.",
+        "label": "I am looking for a sponsor"
+      },
+      "no-sponsor": {
+        "description": "I want to present my own project and just need a spot on stage.",
+        "label": "No sponsor needed"
+      },
+      "own-sponsor": {
+        "description": "A main sponsor of mine would back this talk.",
+        "label": "I already work with a sponsor"
+      }
+    },
+    "submit": "Send application",
+    "title": "Take the stage in Leiden."
+  },
   "common": {
     "comingSoon": "Coming Soon",
     "home": "Home",

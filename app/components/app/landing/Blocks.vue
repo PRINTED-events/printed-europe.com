@@ -2,6 +2,7 @@
 import type { IndexCollectionItem } from '@nuxt/content'
 import {
   AppLandingAudience,
+  AppLandingCallout,
   AppLandingCta,
   AppLandingEvents,
   AppLandingFaqPreview,
@@ -39,6 +40,7 @@ const props = defineProps<{
 
 const componentsMap: Record<string, Component> = {
   AppLandingAudience,
+  AppLandingCallout,
   AppLandingCta,
   AppLandingEvents,
   AppLandingFaqPreview,

@@ -50,6 +50,18 @@ blocks:
         - Brand
         - Family
       note: Zum ersten Mal dabei? Perfekt. Jemand sagt Hallo, noch bevor du den Kaffee gefunden hast.
+  - component: AppLandingCallout
+    id: cfp
+    headline: Der Call for Papers ist offen
+    title: Du hast etwas zu erzählen? Hol dir die Bühne in Leiden.
+    description: Bewirb dich als Speaker für die PRINTED World Conference 2027. Maker, Creator, Designer und Unternehmen sind willkommen, mit oder ohne Sponsor.
+    icon: i-lucide-mic-vocal
+    links:
+      - label: Als Speaker bewerben
+        to: /cfp
+        icon: i-lucide-arrow-right
+        trailing: true
+        size: xl
   - component: AppLandingManifesto
     id: family
     headline: Warum sich PRINTED anders anfühlt
@@ -266,7 +278,7 @@ blocks:
         to: /tickets
         size: xl
       - label: Als Speaker bewerben
-        to: /faq/cfp
+        to: /cfp
         color: neutral
         variant: outline
         size: xl

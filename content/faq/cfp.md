@@ -20,11 +20,9 @@ You are free to use your very own reording also for your own marketing purpose a
 
 ## How to Submit
 
-To submit your talk proposal:
+Fill in the [speaker application form](/cfp). Tell us who you are, where people can find you online, what you want to talk about, and whether you already work with a sponsor, are looking for one, or want to present your own project without one.
 
-1. write down what you want to talk about.
-2. send us an email with your proposal to <office@printed-events.com>
-3. we will reach out to you after 72 hours.
+We read every application and get back to you personally.
 
 ## Questions?
 
