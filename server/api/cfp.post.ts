@@ -128,38 +128,53 @@ export default defineEventHandler(async (event) => {
 
   // A bot filled in the hidden field. Answer as if it worked, so it moves on.
   if (data.website)
-    return { ok: true }
+    return { ok: true, confirmationSent: true }
 
-  const sendMail = (body: Record<string, unknown>) => $fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${apiKey}` },
-    body: { from: cfp.mailFrom, ...body },
-  })
+  const language: Language = getCookie(event, 'i18n_locale') === 'de' ? 'de' : 'en'
+  const confirmation = CONFIRMATION[language]
 
-  // The application for the team. If this fails, the visitor is told so.
-  await sendMail({
-    to: [cfp.mailTo],
-    reply_to: data.email,
-    subject: `Call for Papers: ${data.title} – ${data.name}`,
-    text: format(data, 'en'),
-  }).catch((error) => {
-    console.error('[cfp] sending the application failed', error)
+  // Both mails go out in one request: Resend limits the number of requests per
+  // second, and a second request right after the first one was rejected. In
+  // permissive mode a rejected mail does not stop the other one.
+  // Index 0 is the application for the team, index 1 the confirmation for the
+  // applicant, in the language of the website.
+  const response = await $fetch<{ errors?: { index: number, message: string }[] }>(
+    'https://api.resend.com/emails/batch',
+    {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'x-batch-validation': 'permissive',
+      },
+      body: [
+        {
+          from: cfp.mailFrom,
+          to: [cfp.mailTo],
+          reply_to: data.email,
+          subject: `Call for Papers: ${data.title} – ${data.name}`,
+          text: format(data, 'en'),
+        },
+        {
+          from: cfp.mailFrom,
+          to: [data.email],
+          reply_to: cfp.mailTo,
+          subject: confirmation.subject(data.title),
+          text: confirmation.text(data.name, format(data, language)),
+        },
+      ],
+    },
+  ).catch((error) => {
+    console.error('[cfp] sending the application failed', error?.data ?? error)
     throw createError({ statusCode: 502, statusMessage: 'The application could not be sent' })
   })
 
-  // The confirmation for the applicant, in the language of the website. The
-  // application already reached the team, so a failure here is only logged.
-  const language: Language = getCookie(event, 'i18n_locale') === 'de' ? 'de' : 'en'
-  const confirmation = CONFIRMATION[language]
-  const confirmationSent = await sendMail({
-    to: [data.email],
-    reply_to: cfp.mailTo,
-    subject: confirmation.subject(data.title),
-    text: confirmation.text(data.name, format(data, language)),
-  }).then(() => true, (error) => {
-    console.error('[cfp] sending the confirmation failed', error)
-    return false
-  })
+  const errors = response.errors ?? []
+  if (errors.length)
+    console.error('[cfp] Resend rejected a mail', errors)
 
-  return { ok: true, confirmationSent }
+  // Without the mail to the team the application is lost, so the visitor is told.
+  if (errors.some(error => error.index === 0))
+    throw createError({ statusCode: 502, statusMessage: 'The application could not be sent' })
+
+  return { ok: true, confirmationSent: !errors.some(error => error.index === 1) }
 })

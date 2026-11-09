@@ -63,6 +63,7 @@ function validate(data: Partial<CfpSubmission>) {
 }
 
 const status = ref<'idle' | 'sending' | 'sent' | 'mail' | 'error'>('idle')
+const confirmationSent = ref(true)
 const mailtoHref = ref('')
 
 function onError(event: FormErrorEvent) {
@@ -74,7 +75,8 @@ function onError(event: FormErrorEvent) {
 async function onSubmit(event: FormSubmitEvent<CfpSubmission>) {
   status.value = 'sending'
   try {
-    await $fetch('/api/cfp', { method: 'POST', body: event.data })
+    const response = await $fetch('/api/cfp', { method: 'POST', body: event.data })
+    confirmationSent.value = response.confirmationSent !== false
     status.value = 'sent'
   }
   catch (error) {
@@ -142,7 +144,7 @@ async function onSubmit(event: FormSubmitEvent<CfpSubmission>) {
       <div>
         <UPageCard
           v-if="status === 'sent'"
-          :description="t('cfp.sent.description')"
+          :description="t(confirmationSent ? 'cfp.sent.description' : 'cfp.sent.noConfirmation')"
           icon="i-lucide-party-popper"
           :title="t('cfp.sent.title')"
           variant="subtle"

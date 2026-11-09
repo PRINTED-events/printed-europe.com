@@ -63,6 +63,7 @@
     },
     "sent": {
       "description": "We have sent you a confirmation with a copy of your application by e-mail. We will read it and get back to you.",
+      "noConfirmation": "Your application reached us, but we could not send you a confirmation. Please check the e-mail address you entered. We will get back to you.",
       "title": "Thank you, your application is in."
     },
     "seoDescription": "Apply as a speaker for the PRINTED World Conference on 21 and 22 May 2027 in Leiden near Amsterdam. Deadline: 31 January 2027.",
