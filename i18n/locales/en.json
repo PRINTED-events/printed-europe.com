@@ -1,6 +1,10 @@
 {
   "cfp": {
     "breadcrumb": "Call for Papers",
+    "closed": {
+      "description": "Applications for the PRINTED World Conference 2027 closed on 31 January 2027. Thank you to everyone who applied. If you have a question, write to {email}.",
+      "title": "The call for papers is closed"
+    },
     "errors": {
       "consent": "Please agree so we can process your application.",
       "email": "Please enter a valid e-mail address.",

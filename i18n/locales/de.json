@@ -1,6 +1,10 @@
 {
   "cfp": {
     "breadcrumb": "Call for Papers",
+    "closed": {
+      "description": "Die Bewerbungsphase für die PRINTED World Conference 2027 endete am 31. Januar 2027. Danke an alle, die sich beworben haben. Bei Fragen schreib uns an {email}.",
+      "title": "Der Call for Papers ist geschlossen"
+    },
     "errors": {
       "consent": "Bitte stimme zu, damit wir deine Bewerbung bearbeiten können.",
       "email": "Bitte gib eine gültige E-Mail-Adresse ein.",

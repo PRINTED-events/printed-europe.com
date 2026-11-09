@@ -56,6 +56,7 @@ blocks:
     title: Got something to share? Take the stage in Leiden.
     description: Apply as a speaker for the PRINTED World Conference 2027. Makers, creators, designers and companies are all welcome, with or without a sponsor.
     icon: i-lucide-mic-vocal
+    until: '2027-02-01T00:00:00+01:00'
     links:
       - label: Apply as speaker
         to: /cfp

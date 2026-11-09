@@ -19,6 +19,11 @@ export const landingSchema = createBaseWithSeoSchema().extend({
         icon: property(z.string().optional()).editor({
           input: 'icon',
         }),
+        until: property(z.string().optional()).editor({
+          // @ts-expect-error `description` is custom and patched in `nuxt-studio`
+          description: 'Optional end of the announcement (ISO format, e.g. `2027-02-01T00:00:00+01:00`). '
+            + 'From then on the block is hidden.',
+        }),
         links: z.array(createLinkSchema()).optional(),
       }),
 

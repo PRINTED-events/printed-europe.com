@@ -56,6 +56,7 @@ blocks:
     title: Du hast etwas zu erzählen? Hol dir die Bühne in Leiden.
     description: Bewirb dich als Speaker für die PRINTED World Conference 2027. Maker, Creator, Designer und Unternehmen sind willkommen, mit oder ohne Sponsor.
     icon: i-lucide-mic-vocal
+    until: '2027-02-01T00:00:00+01:00'
     links:
       - label: Als Speaker bewerben
         to: /cfp

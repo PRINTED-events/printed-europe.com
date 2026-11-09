@@ -7,6 +7,16 @@ import { z } from 'zod/v4'
  * same rules. Error messages are translation keys below `cfp.errors`.
  */
 
+/**
+ * The call for papers closes at the end of 31 January 2027, Amsterdam time.
+ * From then on the form, the homepage callout and the header button are gone.
+ */
+export const cfpClosesAt = '2027-02-01T00:00:00+01:00'
+
+export function isCfpOpen(now = new Date()): boolean {
+  return now < new Date(cfpClosesAt)
+}
+
 /** Where applications go when the form cannot send them itself. */
 export const cfpContactEmail = 'office@printed-events.com'
 

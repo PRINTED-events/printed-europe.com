@@ -62,6 +62,8 @@ function validate(data: Partial<CfpSubmission>) {
   }))
 }
 
+const cfpOpen = useState('cfp-open', () => isCfpOpen())
+
 const status = ref<'idle' | 'sending' | 'sent' | 'mail' | 'error'>('idle')
 const confirmationSent = ref(true)
 const mailtoHref = ref('')
@@ -143,7 +145,15 @@ async function onSubmit(event: FormSubmitEvent<CfpSubmission>) {
 
       <div>
         <UPageCard
-          v-if="status === 'sent'"
+          v-if="!cfpOpen"
+          :description="t('cfp.closed.description', { email: cfpContactEmail })"
+          icon="i-lucide-calendar-x"
+          :title="t('cfp.closed.title')"
+          variant="subtle"
+        />
+
+        <UPageCard
+          v-else-if="status === 'sent'"
           :description="t(confirmationSent ? 'cfp.sent.description' : 'cfp.sent.noConfirmation')"
           icon="i-lucide-party-popper"
           :title="t('cfp.sent.title')"

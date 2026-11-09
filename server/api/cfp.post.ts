@@ -114,6 +114,9 @@ function format(data: CfpSubmission, language: Language) {
 }
 
 export default defineEventHandler(async (event) => {
+  if (!isCfpOpen())
+    throw createError({ statusCode: 410, statusMessage: 'The call for papers is closed' })
+
   const { cfp } = useRuntimeConfig(event)
   const apiKey = cfp.resendApiKey || process.env.RESEND_API_KEY
 

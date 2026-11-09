@@ -2,18 +2,23 @@
 import type { ButtonProps } from '@nuxt/ui'
 
 // A highlighted band for one current announcement, e.g. an open call for papers.
-defineProps<{
+const props = defineProps<{
   title?: string
   description?: string
   headline?: string
   // class?: string // works without using it due to Vue3's attribute fallthrough
   icon?: string
   links?: ButtonProps[]
+  // Hides the block from this moment on (ISO date and time).
+  until?: string
 }>()
+
+// Decided once on the server and passed to the client, so both render the same.
+const visible = useState(`callout-${props.until ?? 'always'}`, () => !props.until || new Date() < new Date(props.until))
 </script>
 
 <template>
-  <section class="py-8 sm:py-12">
+  <section v-if="visible" class="py-8 sm:py-12">
     <UContainer>
       <div
         class="relative isolate overflow-hidden rounded-lg border border-primary/40 bg-primary/10 p-7 sm:p-10

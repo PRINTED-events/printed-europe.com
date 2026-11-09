@@ -2,6 +2,9 @@
 const route = useRoute()
 const { t } = useI18n()
 
+// The "Apply as Speaker" buttons disappear when the call for papers closes.
+const cfpOpen = useState('cfp-open', () => isCfpOpen())
+
 // Past events, newest first.
 const allEvents = computed(() => [
   {
@@ -85,6 +88,7 @@ const items = computed(() => [
       />
 
       <UButton
+        v-if="cfpOpen"
         class="hidden lg:inline-flex"
         color="primary"
         :label="t('header.applyAsSpeaker')"
@@ -119,6 +123,7 @@ const items = computed(() => [
       />
 
       <UButton
+        v-if="cfpOpen"
         block
         class="mb-3"
         color="primary"
