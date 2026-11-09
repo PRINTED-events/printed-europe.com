@@ -8,6 +8,11 @@
       "tooLong": "This is too long.",
       "tooShort": "Please tell us a little more."
     },
+    "experience": {
+      "first-time": "No, this would be my first time on stage",
+      "other-talks": "I have spoken on stage, but not this talk",
+      "this-talk": "Yes, I have given this talk before"
+    },
     "facts": {
       "deadline": "Apply by 31 January 2027.",
       "recording": "Our own production team records every talk. You are free to use the recording for your own channels afterwards.",
@@ -22,7 +27,9 @@
       "abstract": "What do you want to talk about?",
       "consent": "I agree that PRINTED stores my details to process this application. More in the {privacy}.",
       "email": "E-mail",
+      "experience": "Have you given this talk before?",
       "handle": "Creator handle",
+      "lastTalk": "Where did you last give this talk, or a similar one?",
       "name": "Name",
       "notes": "Anything else we should know?",
       "socials": "Social media channels",
@@ -32,6 +39,7 @@
     "headline": "Call for Papers · PRINTED World Conference 2027",
     "help": {
       "abstract": "A few sentences are enough: what you will show, and what people take home from it.",
+      "lastTalk": "Event and year are enough, a link to a recording is welcome.",
       "socials": "One link per line: YouTube, Instagram, TikTok, website or anything else."
     },
     "intro": "Got a project, a hard-won lesson or an idea the community should hear? Tell us about it. Makers, creators, designers and companies are all welcome to apply.",

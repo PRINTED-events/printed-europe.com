@@ -31,12 +31,19 @@ const state = reactive<Partial<CfpSubmission>>({
   socials: '',
   title: '',
   abstract: '',
+  experience: undefined,
+  lastTalk: '',
   sponsor: undefined,
   sponsorName: '',
   notes: '',
   consent: undefined,
   website: '',
 })
+
+const experienceItems = computed(() => cfpExperienceOptions.map(value => ({
+  value,
+  label: t(`cfp.experience.${value}`),
+})))
 
 const sponsorItems = computed(() => cfpSponsorOptions.map(value => ({
   value,
@@ -73,7 +80,10 @@ async function onSubmit(event: FormSubmitEvent<CfpSubmission>) {
   catch (error) {
     // The form is not connected to a mail service yet: hand the application to the visitor's mail program.
     if ((error as { statusCode?: number }).statusCode === 503) {
-      const body = formatCfpSubmission(event.data, t(`cfp.sponsor.${event.data.sponsor}.label`))
+      const body = formatCfpSubmission(event.data, {
+        experience: t(`cfp.experience.${event.data.experience}`),
+        sponsor: t(`cfp.sponsor.${event.data.sponsor}.label`),
+      })
       const subject = encodeURIComponent(`Call for Papers: ${event.data.title} – ${event.data.name}`)
       mailtoHref.value = `mailto:${cfpContactEmail}?subject=${subject}&body=${encodeURIComponent(body)}`
       status.value = 'mail'
@@ -232,6 +242,24 @@ async function onSubmit(event: FormSubmitEvent<CfpSubmission>) {
                 class="w-full"
                 :rows="6"
               />
+            </UFormField>
+
+            <UFormField :label="t('cfp.fields.experience')" name="experience" required>
+              <URadioGroup
+                v-model="state.experience"
+                class="mt-1"
+                :items="experienceItems"
+              />
+            </UFormField>
+
+            <UFormField
+              v-if="state.experience && state.experience !== 'first-time'"
+              :help="t('cfp.help.lastTalk')"
+              :label="t('cfp.fields.lastTalk')"
+              name="lastTalk"
+              required
+            >
+              <UInput v-model="state.lastTalk" class="w-full" />
             </UFormField>
           </fieldset>
 

@@ -8,6 +8,11 @@
       "tooLong": "Das ist zu lang.",
       "tooShort": "Erzähl uns bitte etwas mehr."
     },
+    "experience": {
+      "first-time": "Nein, das wäre mein erstes Mal auf der Bühne",
+      "other-talks": "Ich stand schon auf der Bühne, aber nicht mit diesem Talk",
+      "this-talk": "Ja, ich habe diesen Talk schon gehalten"
+    },
     "facts": {
       "deadline": "Bewirb dich bis zum 31. Januar 2027.",
       "recording": "Unser eigenes Produktionsteam zeichnet jeden Talk auf. Die Aufnahme darfst du danach für deine eigenen Kanäle nutzen.",
@@ -22,7 +27,9 @@
       "abstract": "Worüber möchtest du sprechen?",
       "consent": "Ich bin einverstanden, dass PRINTED meine Angaben speichert, um diese Bewerbung zu bearbeiten. Mehr dazu in der {privacy}.",
       "email": "E-Mail",
+      "experience": "Hast du diesen Talk schon einmal gehalten?",
       "handle": "Creator-Handle",
+      "lastTalk": "Wo hast du diesen oder einen ähnlichen Talk zuletzt gehalten?",
       "name": "Name",
       "notes": "Möchtest du uns sonst noch etwas sagen?",
       "socials": "Social-Media-Kanäle",
@@ -32,6 +39,7 @@
     "headline": "Call for Papers · PRINTED World Conference 2027",
     "help": {
       "abstract": "Ein paar Sätze reichen: was du zeigst und was die Leute daraus mitnehmen.",
+      "lastTalk": "Event und Jahr reichen, ein Link zur Aufzeichnung ist gern gesehen.",
       "socials": "Ein Link pro Zeile: YouTube, Instagram, TikTok, Website oder was du sonst nutzt."
     },
     "intro": "Du hast ein Projekt, eine hart erarbeitete Erkenntnis oder eine Idee, die die Community hören sollte? Erzähl uns davon. Maker, Creator, Designer und Unternehmen können sich gleichermaßen bewerben.",

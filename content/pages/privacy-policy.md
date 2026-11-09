@@ -45,7 +45,7 @@ If you contact us by email, the information you provide (including your email ad
 
 ## 6. Speaker Applications (Call for Papers)
 
-If you apply as a speaker through the form at [/cfp](/cfp), we process the details you enter: your name, email address, creator handle and social media channels, your talk topic and description, your sponsoring situation and anything else you tell us. We use this data only to review your application, to contact you about it and, if your talk is accepted, to plan the event with you. The legal basis is Art. 6 (1) lit. b GDPR (steps prior to entering into an agreement at your request).
+If you apply as a speaker through the form at [/cfp](/cfp), we process the details you enter: your name, email address, creator handle and social media channels, your talk topic and description, your stage experience, your sponsoring situation and anything else you tell us. We use this data only to review your application, to contact you about it and, if your talk is accepted, to plan the event with you. The legal basis is Art. 6 (1) lit. b GDPR (steps prior to entering into an agreement at your request).
 
 The form sends your application as an email to our team. For this we use Resend (Resend, Inc., 2261 Market Street #5039, San Francisco, CA 94114, USA) as a processor under a data processing agreement. Resend may process data in the USA; the transfer is based on the EU Standard Contractual Clauses. Details: [https://resend.com/legal/privacy-policy](https://resend.com/legal/privacy-policy). If the form opens your own email program instead, your application is sent through your email provider and is handled as described under "Contact via Email".
 

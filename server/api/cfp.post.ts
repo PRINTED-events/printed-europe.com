@@ -19,6 +19,12 @@ const SPONSOR_LABELS: Record<CfpSponsorOption, string> = {
   'no-sponsor': 'No sponsor, presents own project',
 }
 
+const EXPERIENCE_LABELS: Record<CfpExperienceOption, string> = {
+  'this-talk': 'Has given this talk before',
+  'other-talks': 'Has spoken on stage, but not this talk',
+  'first-time': 'First time on stage',
+}
+
 export default defineEventHandler(async (event) => {
   const { cfp } = useRuntimeConfig(event)
   const apiKey = cfp.resendApiKey || process.env.RESEND_API_KEY
@@ -44,7 +50,10 @@ export default defineEventHandler(async (event) => {
       to: [cfp.mailTo],
       reply_to: data.email,
       subject: `Call for Papers: ${data.title} – ${data.name}`,
-      text: formatCfpSubmission(data, SPONSOR_LABELS[data.sponsor]),
+      text: formatCfpSubmission(data, {
+        experience: EXPERIENCE_LABELS[data.experience],
+        sponsor: SPONSOR_LABELS[data.sponsor],
+      }),
     },
   }).catch((error) => {
     console.error('[cfp] sending the application failed', error)
