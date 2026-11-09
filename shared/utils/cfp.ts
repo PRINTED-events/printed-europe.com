@@ -43,22 +43,42 @@ export const cfpSchema = z.object({
 
 export type CfpSubmission = z.output<typeof cfpSchema>
 
-/** Plain text version of an application, used for the e-mail. */
-export function formatCfpSubmission(data: CfpSubmission, labels: { experience: string, sponsor: string }): string {
+/** Field names in the plain text version of an application. */
+export const cfpFieldLabels = {
+  name: 'Name',
+  email: 'E-mail',
+  handle: 'Creator handle',
+  socials: 'Social media',
+  title: 'Talk title',
+  abstract: 'About the talk',
+  experience: 'Stage experience',
+  lastTalk: 'Last given at',
+  sponsor: 'Sponsor',
+  notes: 'Anything else',
+}
+
+export type CfpFieldLabels = typeof cfpFieldLabels
+
+/** Plain text version of an application, used for the e-mails. */
+export function formatCfpSubmission(
+  data: CfpSubmission,
+  labels: { experience: string, sponsor: string },
+  fields: CfpFieldLabels = cfpFieldLabels,
+): string {
   return [
-    `Name: ${data.name}`,
-    `E-mail: ${data.email}`,
-    `Creator handle: ${data.handle || '–'}`,
-    `Social media:\n${data.socials || '–'}`,
+    `${fields.name}: ${data.name}`,
+    `${fields.email}: ${data.email}`,
+    `${fields.handle}: ${data.handle || '–'}`,
+    `${fields.socials}:\n${data.socials || '–'}`,
     '',
-    `Talk title: ${data.title}`,
-    `About the talk:\n${data.abstract}`,
+    `${fields.title}: ${data.title}`,
+    `${fields.abstract}:\n${data.abstract}`,
     '',
-    `Stage experience: ${labels.experience}`,
-    ...(data.experience === 'first-time' ? [] : [`Last given at: ${data.lastTalk || '–'}`]),
+    `${fields.experience}: ${labels.experience}`,
+    ...(data.experience === 'first-time' ? [] : [`${fields.lastTalk}: ${data.lastTalk || '–'}`]),
     '',
-    `Sponsor: ${labels.sponsor}${data.sponsorName ? ` (${data.sponsorName})` : ''}`,
+    `${fields.sponsor}: ${labels.sponsor}${data.sponsorName ? ` (${data.sponsorName})` : ''}`,
     '',
-    `Anything else:\n${data.notes || '–'}`,
+    `${fields.notes}:\n${data.notes || '–'}`,
   ].join('\n')
 }
