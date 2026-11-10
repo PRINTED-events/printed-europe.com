@@ -6,6 +6,8 @@
       <slot />
     </UMain>
 
+    <AppNewsletterBand />
+
     <AppFooter />
 
     <AppDemoBanner />

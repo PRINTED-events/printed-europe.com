@@ -220,6 +220,15 @@ blocks:
             icon: i-lucide-calendar
             color: neutral
             variant: outline
+  - component: AppLandingNewsletter
+    id: newsletter
+    headline: Newsletter
+    title: Bleib in der Familie.
+    description: News zu PRINTED per E-Mail, ein paar Mal im Jahr. Kein Spam, Abmeldung mit einem Klick.
+    items:
+      - Als Erste wissen, wenn Tickets, Speaker und Termine feststehen
+      - Aufzeichnungen und Geschichten von vergangenen Events
+      - Aufrufe für Speaker, Workshops und Helfer
   - component: AppLandingSpeakers
     id: speakers
     headline: Vergangene Speaker

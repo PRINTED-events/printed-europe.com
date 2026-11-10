@@ -139,6 +139,36 @@
     "tickets": "Tickets",
     "whyPrinted": "Warum PRINTED"
   },
+  "newsletter": {
+    "band": {
+      "description": "News zu PRINTED per E-Mail, ein paar Mal im Jahr. Kein Spam.",
+      "headline": "Newsletter",
+      "title": "Bleib in der Familie."
+    },
+    "consent": "Ich möchte den PRINTED-Newsletter erhalten. Ich kann mich jederzeit abmelden. Mehr dazu in der {privacy}.",
+    "errors": {
+      "consent": "Bitte stimme zu, damit wir dir den Newsletter schicken dürfen.",
+      "email": "Bitte gib eine gültige E-Mail-Adresse ein.",
+      "required": "Bitte fülle dieses Feld aus.",
+      "tooLong": "Das ist zu lang."
+    },
+    "fields": {
+      "email": "E-Mail",
+      "firstName": "Vorname"
+    },
+    "privacy": "Datenschutzerklärung",
+    "sent": {
+      "description": "Wir haben dir eine E-Mail mit einem Bestätigungslink geschickt. Erst mit dem Klick darauf ist deine Anmeldung abgeschlossen.",
+      "title": "Fast geschafft: Bitte schau in dein Postfach."
+    },
+    "status": {
+      "error": "Da ist etwas schiefgegangen. Bitte versuch es gleich noch einmal.",
+      "invalid": "Bitte prüf deine E-Mail-Adresse.",
+      "tooMany": "Zu viele Anmeldungen von deiner Verbindung. Bitte versuch es später noch einmal.",
+      "unavailable": "Die Newsletter-Anmeldung ist noch nicht verbunden. Bitte versuch es später noch einmal."
+    },
+    "submit": "Anmelden"
+  },
   "schedule": {
     "checkBack": "Schau später wieder vorbei – das Programm wird laufend aktualisiert.",
     "description": "Übersicht aller Talks des Events mit Uhrzeit, Speaker und Bühne.",

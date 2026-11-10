@@ -51,7 +51,15 @@ The form sends your application as an email to our team and a confirmation with 
 
 We delete applications that are not accepted no later than six months after the conference. Details of accepted speakers are kept as long as needed for the event and its follow-up, and as required by law.
 
-## 7. Your Rights
+## 7. Newsletter
+
+You can sign up for our newsletter on this website. We ask for your first name and email address and, with your consent, use them to send you news about PRINTED events a few times a year. The legal basis is your consent under Art. 6 (1) lit. a GDPR. After signing up you receive an email with a confirmation link; you are only added to the newsletter once you click it (double opt-in). We store the time of your sign-up and confirmation as proof of your consent.
+
+We send the newsletter with HubSpot (HubSpot Ireland Limited, 1 Sir John Rogerson's Quay, Dublin 2, Ireland; parent company HubSpot, Inc., USA) as a processor under a data processing agreement. When you sign up, our website passes your details directly to HubSpot; no HubSpot script runs in your browser. HubSpot may record whether you open the newsletter and click its links. Transfers to HubSpot, Inc. in the USA are based on the EU-U.S. Data Privacy Framework and the EU Standard Contractual Clauses. Details: [https://legal.hubspot.com/privacy-policy](https://legal.hubspot.com/privacy-policy).
+
+You can unsubscribe at any time with the link in every newsletter or by writing to [office@printed-events.com](mailto:office@printed-events.com). We then delete your details from the newsletter list, unless we need to keep them for another purpose.
+
+## 8. Your Rights
 
 You have the right to:
 
@@ -64,18 +72,18 @@ You have the right to:
 
 To exercise any of these rights, please contact us at [office@printed-events.com](mailto:office@printed-events.com).
 
-## 8. Right to Lodge a Complaint
+## 9. Right to Lodge a Complaint
 
 You have the right to lodge a complaint with a supervisory authority. The competent authority for Printed Events is:
 
 Landesbeauftragter für den Datenschutz und die Informationsfreiheit Rheinland-Pfalz\
 [https://www.datenschutz.rlp.de](https://www.datenschutz.rlp.de)
 
-## 9. Data Retention
+## 10. Data Retention
 
 We store personal data only as long as necessary for the purpose it was collected, or as required by law.
 
-## 10. Changes to This Privacy Policy
+## 11. Changes to This Privacy Policy
 
 We reserve the right to update this privacy policy to reflect changes in legal requirements or our services. The current version is always available at this URL.
 

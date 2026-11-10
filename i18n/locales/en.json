@@ -139,6 +139,36 @@
     "tickets": "Tickets",
     "whyPrinted": "Why PRINTED"
   },
+  "newsletter": {
+    "band": {
+      "description": "News about PRINTED by e-mail, a few times a year. No spam.",
+      "headline": "Newsletter",
+      "title": "Stay in the family."
+    },
+    "consent": "I would like to receive the PRINTED newsletter. I can unsubscribe at any time. More in the {privacy}.",
+    "errors": {
+      "consent": "Please agree so we can send you the newsletter.",
+      "email": "Please enter a valid e-mail address.",
+      "required": "Please fill in this field.",
+      "tooLong": "This is too long."
+    },
+    "fields": {
+      "email": "E-mail",
+      "firstName": "First name"
+    },
+    "privacy": "privacy policy",
+    "sent": {
+      "description": "We have sent you an e-mail with a confirmation link. Your sign-up is complete once you click it.",
+      "title": "Almost there: please check your inbox."
+    },
+    "status": {
+      "error": "Something went wrong. Please try again in a moment.",
+      "invalid": "Please check your e-mail address.",
+      "tooMany": "Too many sign-ups from your connection. Please try again later.",
+      "unavailable": "The newsletter sign-up is not connected yet. Please try again later."
+    },
+    "submit": "Sign up"
+  },
   "schedule": {
     "checkBack": "Check back later for updates to the schedule.",
     "description": "List of talks for the event with time, speaker and stage information.",

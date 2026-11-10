@@ -90,6 +90,13 @@ export default defineNuxtConfig({
       mailFrom: '',
       mailTo: 'office@printed-events.com',
     },
+    // Newsletter sign-up through HubSpot, see `server/api/newsletter.post.ts`.
+    newsletter: {
+      hubspotPortalId: '',
+      hubspotFormId: '',
+      hubspotSubscriptionTypeId: '',
+      hubspotApiBase: 'https://api.hsforms.com',
+    },
     public: {
       demoMode: false,
     },

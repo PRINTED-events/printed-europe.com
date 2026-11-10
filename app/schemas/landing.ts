@@ -28,6 +28,11 @@ export const landingSchema = createBaseWithSeoSchema().extend({
       }),
 
       createLandingBlockBaseSchema().extend({
+        component: z.literal('AppLandingNewsletter'),
+        items: z.array(z.string().min(1)).optional(),
+      }),
+
+      createLandingBlockBaseSchema().extend({
         component: z.literal('AppLandingCta'),
         links: z.array(createLinkSchema()).optional(),
       }),
