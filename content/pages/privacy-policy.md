@@ -31,9 +31,17 @@ When you visit this website, our hosting provider automatically collects and sto
 
 This data cannot be attributed to specific individuals and is not merged with other data sources. The legal basis is Art. 6 (1) lit. f GDPR (legitimate interest in the technically error-free operation of the website).
 
-### Cookies
+### Cookies and Local Storage
 
-This website may use technically necessary cookies to ensure its proper functioning. These cookies do not store any personally identifiable information. You can configure your browser to block cookies, though this may affect some website functionality.
+This website does not use advertising or analytics cookies and does not load any tracking services. It only stores what is technically necessary for it to work:
+
+- `i18n_locale`: the language you chose for this website (cookie, kept for one year).
+- `privacy_consent`: that you have seen our privacy notice, and any choice you made in it (cookie, kept for 180 days).
+- Display settings, such as the colour mode, in your browser's local storage.
+
+None of these are used to recognise or track you. Storing them is permitted without consent under § 25 (2) no. 2 TDDDG, because the website needs them to provide the service you request; the legal basis for any processing is Art. 6 (1) lit. f GDPR. You can delete them or block them in your browser at any time, though the website may then forget your settings.
+
+Should we ever use services that require your consent, such as advertising or analytics, we will only load them after you agree in the privacy banner (§ 25 (1) TDDDG, Art. 6 (1) lit. a GDPR) and describe them here. You can withdraw your consent at any time under "Privacy settings" at the bottom of every page.
 
 ## 4. Ticket Purchase
 

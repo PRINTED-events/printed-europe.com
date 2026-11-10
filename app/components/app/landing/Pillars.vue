@@ -72,23 +72,9 @@ defineProps<{
 </template>
 
 <style scoped>
-/* On small screens the keyword is solid: a thin outline is hard to read there. */
+/* The keyword is solid in the brand color on every screen size. */
 .pillar-word {
   color: var(--color-brand-400);
   letter-spacing: -0.04em;
-}
-
-/*
- * From tablet size up the keyword is outlined. The stroke is drawn twice as wide
- * and then covered by a fill in the page color: a plain transparent fill would
- * show the overlapping contours inside the letters of a variable font.
- */
-@media (min-width: 640px) {
-  .pillar-word {
-    color: var(--ui-bg);
-    letter-spacing: -0.01em;
-    paint-order: stroke fill;
-    -webkit-text-stroke: 3px var(--color-brand-400);
-  }
 }
 </style>

@@ -9,6 +9,7 @@ import { version } from '~~/package.json'
  */
 
 const { t } = useI18n()
+const { hasOptional: hasConsentChoices, reopen: openConsent } = useConsent()
 
 const appConfig = useAppConfig()
 const footerConfig = appConfig.footer
@@ -147,6 +148,15 @@ function navigateToAdmin() {
       <p class="text-muted text-sm">
         {{ t('footer.copyright', { years: yearSpan }) }}
       </p>
+      <!-- Only needed once the site uses services that ask for consent. -->
+      <UButton
+        v-if="hasConsentChoices"
+        class="text-sm"
+        color="neutral"
+        :label="t('footer.privacySettings')"
+        variant="link"
+        @click="openConsent"
+      />
     </template>
 
     <template #default>
@@ -207,7 +217,6 @@ function navigateToAdmin() {
         :to="repositoryUrl"
         variant="ghost"
       />
-
     </template>
   </UFooter>
 </template>

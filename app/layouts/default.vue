@@ -11,5 +11,7 @@
     <AppFooter />
 
     <AppDemoBanner />
+
+    <AppConsentBanner />
   </div>
 </template>

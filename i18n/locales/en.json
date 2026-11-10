@@ -94,6 +94,22 @@
     "home": "Home",
     "resource": "Resource"
   },
+  "consent": {
+    "choice": {
+      "acceptAll": "Accept all",
+      "description": "With your consent we use the services below. You can change your choice at any time under \"Privacy settings\" at the bottom of the page. More in our {privacy}.",
+      "rejectAll": "Reject all",
+      "save": "Save selection",
+      "title": "Your privacy choice"
+    },
+    "info": {
+      "acknowledge": "Got it",
+      "description": "This website uses no advertising or analytics cookies and loads no tracking services. It only stores what it needs to work, such as your language setting. If you sign up for the newsletter or apply as a speaker, we process the details you enter there. Everything else is in our {privacy}.",
+      "title": "No tracking here."
+    },
+    "label": "Privacy notice",
+    "privacy": "privacy policy"
+  },
   "countdown": {
     "days": "days",
     "eventEnded": "Event Ended",
@@ -114,6 +130,7 @@
     "legalInformation": "Legal Information",
     "legalNotice": "Legal Notice",
     "privacyPolicy": "Privacy Policy",
+    "privacySettings": "Privacy settings",
     "socialMedia": "Social Media"
   },
   "header": {

@@ -94,6 +94,22 @@
     "home": "Start",
     "resource": "Ressource"
   },
+  "consent": {
+    "choice": {
+      "acceptAll": "Alle akzeptieren",
+      "description": "Mit deiner Einwilligung nutzen wir die folgenden Dienste. Deine Auswahl kannst du jederzeit unter „Datenschutz-Einstellungen“ unten auf der Seite ändern. Mehr in unserer {privacy}.",
+      "rejectAll": "Alle ablehnen",
+      "save": "Auswahl speichern",
+      "title": "Deine Datenschutz-Auswahl"
+    },
+    "info": {
+      "acknowledge": "Alles klar",
+      "description": "Diese Website setzt keine Werbe- oder Analyse-Cookies und lädt keine Tracking-Dienste. Gespeichert wird nur, was die Seite zum Funktionieren braucht, etwa deine Spracheinstellung. Wenn du dich für den Newsletter anmeldest oder als Speaker bewirbst, verarbeiten wir die Angaben, die du dort machst. Alles Weitere steht in unserer {privacy}.",
+      "title": "Hier wird nicht getrackt."
+    },
+    "label": "Datenschutzhinweis",
+    "privacy": "Datenschutzerklärung"
+  },
   "countdown": {
     "days": "Tage",
     "eventEnded": "Event beendet",
@@ -114,6 +130,7 @@
     "legalInformation": "Rechtliches",
     "legalNotice": "Impressum",
     "privacyPolicy": "Datenschutz",
+    "privacySettings": "Datenschutz-Einstellungen",
     "socialMedia": "Social Media"
   },
   "header": {
