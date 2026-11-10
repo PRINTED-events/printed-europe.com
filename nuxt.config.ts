@@ -96,7 +96,7 @@ export default defineNuxtConfig({
     newsletter: {
       hubspotPortalId: '143423036',
       hubspotFormId: '62b08d24-a5ba-4a94-bc3f-e0e46f8dd216',
-      hubspotSubscriptionTypeId: '',
+      hubspotSubscriptionTypeId: '259670105', // "Marketing Information"
       hubspotApiBase: 'https://api-eu1.hsforms.com',
     },
     public: {
