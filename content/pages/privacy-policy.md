@@ -53,7 +53,7 @@ We delete applications that are not accepted no later than six months after the 
 
 ## 7. Newsletter
 
-You can sign up for our newsletter on this website. We ask for your first name and email address and, with your consent, use them to send you news about PRINTED events a few times a year. The legal basis is your consent under Art. 6 (1) lit. a GDPR. After signing up you receive an email with a confirmation link; you are only added to the newsletter once you click it (double opt-in). We store the time of your sign-up and confirmation as proof of your consent.
+You can sign up for our newsletter on this website. We ask for your first name and email address and, with your consent, use them to send you news about PRINTED events a few times a year. The legal basis is your consent under Art. 6 (1) lit. a GDPR. We store the time of your sign-up, the page you signed up on and the wording of the consent you gave as proof of your consent.
 
 We send the newsletter with HubSpot (HubSpot Ireland Limited, 1 Sir John Rogerson's Quay, Dublin 2, Ireland; parent company HubSpot, Inc., USA) as a processor under a data processing agreement. When you sign up, our website passes your details directly to HubSpot; no HubSpot script runs in your browser. HubSpot may record whether you open the newsletter and click its links. Transfers to HubSpot, Inc. in the USA are based on the EU-U.S. Data Privacy Framework and the EU Standard Contractual Clauses. Details: [https://legal.hubspot.com/privacy-policy](https://legal.hubspot.com/privacy-policy).
 

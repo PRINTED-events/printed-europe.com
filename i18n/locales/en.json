@@ -158,8 +158,8 @@
     },
     "privacy": "privacy policy",
     "sent": {
-      "description": "We have sent you an e-mail with a confirmation link. Your sign-up is complete once you click it.",
-      "title": "Almost there: please check your inbox."
+      "description": "You are on the list now. You can unsubscribe at any time with the link at the end of every newsletter.",
+      "title": "Welcome to the family!"
     },
     "status": {
       "error": "Something went wrong. Please try again in a moment.",

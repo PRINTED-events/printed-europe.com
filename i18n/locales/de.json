@@ -158,8 +158,8 @@
     },
     "privacy": "Datenschutzerklärung",
     "sent": {
-      "description": "Wir haben dir eine E-Mail mit einem Bestätigungslink geschickt. Erst mit dem Klick darauf ist deine Anmeldung abgeschlossen.",
-      "title": "Fast geschafft: Bitte schau in dein Postfach."
+      "description": "Du stehst jetzt auf der Liste. Abmelden kannst du dich jederzeit über den Link am Ende jedes Newsletters.",
+      "title": "Willkommen in der Familie!"
     },
     "status": {
       "error": "Da ist etwas schiefgegangen. Bitte versuch es gleich noch einmal.",

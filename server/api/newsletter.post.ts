@@ -1,8 +1,9 @@
 /**
  * Signs a visitor up for the newsletter by submitting the HubSpot form behind
  * it through HubSpot's Forms Submission API. HubSpot then handles the contact,
- * the consent, the subscription type and the double opt-in mail, exactly as
- * for its own embedded form. No HubSpot script runs in the visitor's browser.
+ * the consent and the subscription type, exactly as for its own embedded form.
+ * No HubSpot script runs in the visitor's browser. The form has no double
+ * opt-in: a sign-up is subscribed straight away.
  *
  * Configured in `runtimeConfig.newsletter` in `nuxt.config.ts`, each value can
  * be overridden with an environment variable (the IDs are not secret, they are
