@@ -91,11 +91,13 @@ export default defineNuxtConfig({
       mailTo: 'office@printed-events.com',
     },
     // Newsletter sign-up through HubSpot, see `server/api/newsletter.post.ts`.
+    // The IDs are public (they are part of the HubSpot embed code); the account
+    // is hosted in HubSpot's EU data centre, hence the `eu1` API.
     newsletter: {
-      hubspotPortalId: '',
-      hubspotFormId: '',
+      hubspotPortalId: '143423036',
+      hubspotFormId: '62b08d24-a5ba-4a94-bc3f-e0e46f8dd216',
       hubspotSubscriptionTypeId: '',
-      hubspotApiBase: 'https://api.hsforms.com',
+      hubspotApiBase: 'https://api-eu1.hsforms.com',
     },
     public: {
       demoMode: false,

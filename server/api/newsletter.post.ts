@@ -4,13 +4,14 @@
  * the consent, the subscription type and the double opt-in mail, exactly as
  * for its own embedded form. No HubSpot script runs in the visitor's browser.
  *
- * Configured with environment variables (the IDs are not secret, they are part
- * of every HubSpot embed code):
+ * Configured in `runtimeConfig.newsletter` in `nuxt.config.ts`, each value can
+ * be overridden with an environment variable (the IDs are not secret, they are
+ * part of every HubSpot embed code):
  * - `NUXT_NEWSLETTER_HUBSPOT_PORTAL_ID`: the HubSpot account ("portal") ID.
  * - `NUXT_NEWSLETTER_HUBSPOT_FORM_ID`: the ID of the newsletter form.
  * - `NUXT_NEWSLETTER_HUBSPOT_SUBSCRIPTION_TYPE_ID`: optional, the subscription
  *   type the visitor agrees to. Needed when the form uses GDPR consent.
- * - `NUXT_NEWSLETTER_HUBSPOT_API_BASE`: optional, default `https://api.hsforms.com`.
+ * - `NUXT_NEWSLETTER_HUBSPOT_API_BASE`: optional, default `https://api-eu1.hsforms.com`.
  *
  * Without portal and form ID the endpoint answers 503.
  */
